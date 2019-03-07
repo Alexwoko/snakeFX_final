@@ -14,7 +14,7 @@ public interface GameObject {
 
     void update();
 
-    // SAY W
+    
 
 
 
