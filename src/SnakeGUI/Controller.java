@@ -34,9 +34,9 @@ public class Controller {
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
 
-    ArrayList<Item> items = new ArrayList<Item>();
-    ArrayList<Wall> frameWalls = new ArrayList<>();
-    ArrayList<Wall> walls = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<Item>();
+    private ArrayList<Wall> frameWalls = new ArrayList<>();
+    private  ArrayList<Wall> walls = new ArrayList<>();
 
     public void btnStartAction(ActionEvent event)
     {
@@ -53,6 +53,7 @@ public class Controller {
     {
         player.setPrevPos(0, 0);
                 AddItems();
+                addFrameWalls();
 
         calculateFields();
         getRandomPosition();
@@ -70,6 +71,8 @@ public class Controller {
                 if (now > lastUpdate + refreshRate * 1000000)
                 {
 
+
+                  //  System.out.println(fieldWidth + " " + fieldHeight);
                     lastUpdate = now;
                     update(now);
                 }             }
@@ -78,15 +81,34 @@ public class Controller {
 
     private void addFrameWalls(){
 
-        frameWalls.add(new Wall(Color.BLACK, 20, 20));
-        frameWalls.add(new Wall(Color.BLACK, (int)canvas.getWidth() -20, 20));
-        frameWalls.add(new Wall(Color.BLACK, 20, (int)canvas.getHeight() - 20);
-        frameWalls.add(new Wall(Color.BLACK, (int)canvas.getWidth() - 20, (int)canvas.getHeight()));
+      //  frameWalls.add(new Wall(Color.BLACK, random.nextInt(30), random.nextInt(20)));
 
-        frameWalls.get(0).setWidth(((int)canvas.getWidth() - 20) - 20);
-        frameWalls.get(0).setHeight(2);
-        frameWalls.get(1).setWidth(2);
-        frameWalls.get(1).setHeight(((int)canvas.getHeight() - 20) - 20);
+        for(int i = 0; i < 50; i ++) {
+           Wall currW = new Wall(Color.BLACK, random.nextInt(30), random.nextInt(20));
+
+            currW.setProportions();
+
+        //    System.out.println(currW.getX() + " " + currW.getY());
+if(i == 0) {
+    frameWalls.add(currW);
+}
+
+           if(i > 0){
+
+               currW.connectWall(frameWalls.get(i-1));
+              frameWalls.add(currW);
+          }
+
+
+
+
+        }
+
+/*
+        for(Wall w : frameWalls){
+            w.setProportions();
+        }
+        */
 
 
     }
@@ -139,6 +161,11 @@ public class Controller {
 
         // RANDOM RAMPLER UPDATE
         // PROBABLY LOOKING FOR WALLS
+
+        for (Wall w : walls){
+            w.update();
+        }
+
         // UPDATE RANDOM RAMBLER POSITION
       //  player.update();
 
@@ -182,6 +209,13 @@ public class Controller {
         {
             g.setFill(item.getColor());
             g.fillRoundRect(item.getX() * fieldWidth, item.getY() * fieldHeight, fieldWidth, fieldHeight, 5,5);
+        }
+
+        // draw walls
+        for(Wall w : frameWalls){
+            g.setFill(Color.BLACK);
+            g.fillRoundRect(w.getX(), w.getY(), w.getWidth(), w.getHeight(), 3, 3);
+
         }
 
         // draw 'player'
