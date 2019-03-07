@@ -34,6 +34,7 @@ public class RandomRambler implements GameObject {
         // CHECK DIR
         // CHECK FOR WALLS
         // CHECK FOR PLAYER
+        // RANDOM WALK
 
     }
 }

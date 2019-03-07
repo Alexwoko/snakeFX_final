@@ -1,6 +1,6 @@
 package SnakeGUI;
 
-
+import SnakeLogic.Wall;
 import SnakeLogic.Item;
 import SnakeLogic.Player;
 import javafx.animation.AnimationTimer;
@@ -12,7 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Controller {
 
@@ -34,6 +35,8 @@ public class Controller {
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
 
     ArrayList<Item> items = new ArrayList<Item>();
+    ArrayList<Wall> frameWalls = new ArrayList<>();
+    ArrayList<Wall> walls = new ArrayList<>();
 
     public void btnStartAction(ActionEvent event)
     {
@@ -71,6 +74,21 @@ public class Controller {
                     update(now);
                 }             }
         }.start();
+    }
+
+    private void addFrameWalls(){
+
+        frameWalls.add(new Wall(Color.BLACK, 20, 20));
+        frameWalls.add(new Wall(Color.BLACK, (int)canvas.getWidth() -20, 20));
+        frameWalls.add(new Wall(Color.BLACK, 20, (int)canvas.getHeight() - 20);
+        frameWalls.add(new Wall(Color.BLACK, (int)canvas.getWidth() - 20, (int)canvas.getHeight()));
+
+        frameWalls.get(0).setWidth(((int)canvas.getWidth() - 20) - 20);
+        frameWalls.get(0).setHeight(2);
+        frameWalls.get(1).setWidth(2);
+        frameWalls.get(1).setHeight(((int)canvas.getHeight() - 20) - 20);
+
+
     }
 
     private void AddItems() {
