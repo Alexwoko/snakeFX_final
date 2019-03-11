@@ -28,7 +28,7 @@ public class Controller {
     private int gameLoopDelay = 500;
     private float refreshRate =150;
     private Player player = new Player(0, 0);
-    private RandomRambler ranRam = new RandomRambler(width/2, height/2);
+   // private RandomRambler ranRam = new RandomRambler(width/2, height/2);
 
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
@@ -65,10 +65,10 @@ public class Controller {
             long lastUpdate;
             public void handle (long now) {
 
-                ranRam.setPreX(ranRam.getX());
-                ranRam.setPreY(ranRam.getY());
-                player.setPreX(player.getX());
-                player.setPreY(player.getY());
+               // ranRam.setPreX(ranRam.getX());
+               // ranRam.setPreY(ranRam.getY());
+               // player.setPreX(player.getX());
+              //  player.setPreY(player.getY());
 
 
                 if (now > lastUpdate + refreshRate * 1000000)
@@ -128,32 +128,34 @@ public class Controller {
         switch (keyPressed)
         {
             case S:
+                this.player.setVelY(1);
                 this.player.moveDown();
                 break;
             case A:
-
+                this.player.setVelX(1);
                 this.player.moveLeft();
                 break;
             case D:
-
+                this.player.setVelX(1);
                 this.player.moveRight();
                 break;
             case W:
+                this.player.setVelY(1);
                 this.player.moveUp();
                 break;
         }
         player.setMoving(true);
         checkEdges(player);
-        checkEdges(ranRam);
+      //  checkEdges(ranRam);
         detectWalls(player);
-        detectWalls(ranRam);
+       // detectWalls(ranRam);
         player.update();
         // RANDOM RAMPLER UPDATE
         // PROBABLY LOOKING FOR WALLS
 
 
 
-        ranRam.update();
+     //   ranRam.update();
 
 
         //getRandomPosition();
@@ -206,8 +208,8 @@ public class Controller {
         }
 
         // draw RandomRambler
-        g.setFill(Color.PINK);
-        g.fillRoundRect(this.ranRam.getX() * fieldWidth, this.ranRam.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
+      //  g.setFill(Color.PINK);
+      //  g.fillRoundRect(this.ranRam.getX() * fieldWidth, this.ranRam.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 
         // draw 'player'
         g.setFill(Color.BLUE);

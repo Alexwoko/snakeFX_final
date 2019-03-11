@@ -2,61 +2,48 @@ package SnakeLogic;
 
 public class Player implements GameObject{
 
-    private int x; // Create a vector class
-    private int y;
-    private int preX;
-    private int preY;
+
     String dir;
-    private int velX;
-    private int velY;
+
     private MathVector pos;
-
-
+    private MathVector vel;
     private boolean moving;
+    private float maxSpeed;
 
 
 
     public Player(int x, int y){
 
         pos = new MathVector(x, y);
-        this.x = x;
-        this.y = y;
-       // prevPos = new Player(0, 0);
+        vel = new MathVector(0, 0);
         dir = null;
-        velX = 0;
-        velY = 0;
         moving = false;
+        maxSpeed = 1;
 
     }
 
 
 
-    public int getPreX() {return preX;}
-    public void setPreX(int preX) {this.preX = preX;}
-    public int getPreY() {return preY;}
-    public void setPreY(int preY) {this.preY = preY;}
+
     @Override
-    public int getX() {return x;}
+    public float getX() {return pos.x;}
     @Override
-    public int getY() {return y; }
+    public float getY() {return pos.y; }
     @Override
-    public void setX(int x) {this.x = x;}
+    public void setX(int x) {this.pos.x = x;}
     @Override
     public void setY(int y) {
-    this.y = y;
+    this.pos.y = y;
     }
+    public void setVelX(float in){vel.x = in;}
+    public void setVelY(float in){vel.y = in;}
+   public MathVector getVel(){return vel;}
+
 
     @Override
     public void update() {
 
-        /*
-        if(moving) {
-            x = x + velX;
-            y = y + velY;
-        }
-        */
-       // checkDir();
-
+        pos.add(vel);
     }
 
     public boolean isMoving() {
@@ -79,27 +66,30 @@ public class Player implements GameObject{
 @Override
     public void moveRight(){
     setDir("RIGHT");
-    x += 1;
-
-        velY = 0;
+   // vel.x = 1;
+    pos.x += vel.x;
     }
 @Override
     public void moveLeft(){
     setDir("LEFT");
-       x -= 1;
-        velY = 0;
+        pos.x -= vel.x;
+
     }
     @Override
     public void moveUp(){
     setDir("UP");
-           y -= 1;
-        velX = 0;
+
+    pos.y -= vel.y;
+
     }
     @Override
     public void moveDown(){
     setDir("DOWN");
-           y += 1;
-            velX = 0;
+        //   y += 1;
+          //  velX = 0;
+       // vel.y = 1;
+        pos.y += vel.y;
+      //  vel.x = 0;
     }
 
 }

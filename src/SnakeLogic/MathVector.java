@@ -5,7 +5,7 @@ public class MathVector {
     public float x, y;
 
 
-    public MathVector(int x, int y){
+    public MathVector(float x, float y){
 
         this.x = x;
         this.y = y;
@@ -66,6 +66,38 @@ public class MathVector {
 
 
     }
+
+    public void setMag(float len){
+
+        if(this.x > len){
+            this.x = len;
+        }
+        if(this.x < -len){
+            this.x = -len;
+        }
+        if(this.y > len){
+            this.y = len;
+        }
+        if (this.y < -len){
+            this.y = -len;
+        }
+
+
+    }
+
+    public void limit(float max){
+
+        if(this.mag() > max){
+            setMag(max);
+        }
+        if(this.mag() < -max){
+            setMag(-max);
+        }
+
+    }
+
+    public void set(float x, float y){this.x = x; this.y = y;}
+    public MathVector get(){return new MathVector(x, y);}
 
 
 
