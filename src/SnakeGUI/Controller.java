@@ -1,8 +1,6 @@
 package SnakeGUI;
 
-import SnakeLogic.Wall;
-import SnakeLogic.Item;
-import SnakeLogic.Player;
+import SnakeLogic.*;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,15 +26,17 @@ public class Controller {
     private int height = 20;
     private Random random = new Random();
     private int gameLoopDelay = 500;
-    private float refreshRate =300;
+    private float refreshRate =150;
     private Player player = new Player(0, 0);
+    private RandomRambler ranRam = new RandomRambler(width/2, height/2);
 
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
 
     private ArrayList<Item> items = new ArrayList<Item>();
-    private ArrayList<Wall> frameWalls = new ArrayList<>();
-    private  ArrayList<Wall> walls = new ArrayList<>();
+    private int[][] neighbours = new int[16][16];
+
+    private Wall[][] walls = new Wall[29][19];
 
     public void btnStartAction(ActionEvent event)
     {
@@ -51,9 +51,10 @@ public class Controller {
      */
     public void initialize()
     {
-        player.setPrevPos(0, 0);
+
+
                 AddItems();
-                addFrameWalls();
+        addWalls();
 
         calculateFields();
         getRandomPosition();
@@ -64,53 +65,36 @@ public class Controller {
             long lastUpdate;
             public void handle (long now) {
 
-
+                ranRam.setPreX(ranRam.getX());
+                ranRam.setPreY(ranRam.getY());
                 player.setPreX(player.getX());
                 player.setPreY(player.getY());
 
+
                 if (now > lastUpdate + refreshRate * 1000000)
                 {
-
-
                   //  System.out.println(fieldWidth + " " + fieldHeight);
                     lastUpdate = now;
                     update(now);
+                 //   System.out.println("Pre X = " + player.getPreX() + "Pre Y = " + player.getPreY());
+                  //  System.out.println("X = " + player.getX() + "Y = " + player.getY());
+
+
+
+
                 }             }
         }.start();
     }
 
-    private void addFrameWalls(){
+    private void addWalls(){
+      for(int x = 10; x < 15; x++){
+          for(int y = 10; y < 15; y++){
 
-      //  frameWalls.add(new Wall(Color.BLACK, random.nextInt(30), random.nextInt(20)));
+                  walls[x][y] = new Wall(Color.BLACK, x, y);
+                  walls[x][y].setProportions();
 
-        for(int i = 0; i < 50; i ++) {
-           Wall currW = new Wall(Color.BLACK, random.nextInt(30), random.nextInt(20));
-
-            currW.setProportions();
-
-        //    System.out.println(currW.getX() + " " + currW.getY());
-if(i == 0) {
-    frameWalls.add(currW);
-}
-
-           if(i > 0){
-
-               currW.connectWall(frameWalls.get(i-1));
-              frameWalls.add(currW);
           }
-
-
-
-
-        }
-
-/*
-        for(Wall w : frameWalls){
-            w.setProportions();
-        }
-        */
-
-
+      }
     }
 
     private void AddItems() {
@@ -138,38 +122,38 @@ if(i == 0) {
      */
     private void update(long now)
     {
-        player.setPrevPos(player.getX(), player.getY());
+       // player.setPrevPos(player.getX(), player.getY());
+
+
         switch (keyPressed)
         {
             case S:
                 this.player.moveDown();
                 break;
             case A:
+
                 this.player.moveLeft();
                 break;
             case D:
+
                 this.player.moveRight();
                 break;
             case W:
                 this.player.moveUp();
                 break;
         }
-
+        player.setMoving(true);
+        checkEdges(player);
+        checkEdges(ranRam);
+        detectWalls(player);
+        detectWalls(ranRam);
         player.update();
-       // System.out.println("now X = " + player.getX() + " now Y = " + player.getY());
-       // System.out.println("Pre X = " + player.getPreX() + " pre Y = " + player.getPreY());
-
         // RANDOM RAMPLER UPDATE
         // PROBABLY LOOKING FOR WALLS
 
-        for (Wall w : walls){
-            w.update();
-        }
-
-        // UPDATE RANDOM RAMBLER POSITION
-      //  player.update();
 
 
+        ranRam.update();
 
 
         //getRandomPosition();
@@ -211,15 +195,103 @@ if(i == 0) {
             g.fillRoundRect(item.getX() * fieldWidth, item.getY() * fieldHeight, fieldWidth, fieldHeight, 5,5);
         }
 
-        // draw walls
-        for(Wall w : frameWalls){
-            g.setFill(Color.BLACK);
-            g.fillRoundRect(w.getX(), w.getY(), w.getWidth(), w.getHeight(), 3, 3);
+// draw walls
+        for(int x = 10; x < 15; x++){
+            for(int y = 10; y < 15; y++){
+                walls[x][y].update();
+               g.setFill(Color.BLACK);
+               g.fillRoundRect(walls[x][y].getX() * fieldWidth, walls[x][y].getY() * fieldHeight, walls[x][y].getWidth(), walls[x][y].getHeight(), 5, 5);
 
+            }
         }
+
+        // draw RandomRambler
+        g.setFill(Color.PINK);
+        g.fillRoundRect(this.ranRam.getX() * fieldWidth, this.ranRam.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 
         // draw 'player'
         g.setFill(Color.BLUE);
         g.fillRoundRect(this.player.getX() * fieldWidth, this.player.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
+    }
+
+
+    int[][] reactToWalls(int x, int y, GameObject o){
+
+        int[][] pos = new int[16][16];
+
+        for (int i = x - 1; i < x +2; i++){
+            for (int j = y -1; j< y+2; j++ ){
+
+                if(i != x && j != y){
+                    neighbours[i][j] = pos[x][y];
+
+                    if(walls[x][y].getAxis().equals("VERTICAL") && o.getDir() == "LEFT"){
+                        if(o.getX() == x -1 && o.getY() == y){
+                          //  o.changeDir();
+                            o.moveRight();
+                            o.moveRight();
+                        }
+                    }
+                    if(walls[x][y].getAxis().equals("VERTICAL") && o.getDir() == "RIGHT"){
+                        if(o.getX() == x && o.getY() == y){
+                            o.moveLeft();
+                            o.moveLeft();
+                            //o.changeDir();
+                        }
+                    }
+                    if(o.getDir() == "UP" && walls[x][y].getAxis().equals("HORIZONTAL")){
+                        if(o.getX() == x && o.getY() == y-1){
+
+                            System.out.println("Moving Down");
+                            //  o.changeDir();
+                            o.moveDown();
+                            o.moveDown();
+                        }
+                    }
+                    if(o.getDir() == "DOWN" && walls[x][y].getAxis().equals("HORIZONTAL")){
+                        if(o.getX() == x && o.getY() == y){
+                            System.out.println("Moving Up");
+                            //  o.changeDir();
+                            o.moveUp();
+                            o.moveUp();
+
+                        }
+                    }
+
+                }
+            }
+        }
+        return neighbours;
+    }
+
+    void detectWalls(GameObject o){
+
+        for(int x = 10; x < 15; x++ ){
+            for(int y = 10; y < 15; y++){
+
+                reactToWalls(x, y, o);
+            }
+
+        }
+
+    }
+
+    void checkEdges(GameObject o){
+
+        if(o.getX() * fieldWidth > canvas.getWidth() - fieldWidth){
+            o.setX(0);
+        }
+        if(o.getX() < 0){
+            o.setX(29);
+        }
+
+        if(o.getY() * fieldHeight >= canvas.getHeight()){
+            o.setY(0);
+        }
+        if(o.getY() < 0){
+            o.setY(19);
+        }
+
+
     }
 }

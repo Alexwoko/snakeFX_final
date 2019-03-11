@@ -13,7 +13,14 @@ public interface GameObject {
 
 
     void update();
+    String getDir();
 
+    void moveLeft();
+    void moveRight();
+    void moveUp();
+    void moveDown();
+  //  void changeDir();
+    void setDir(String dir);
 
 
 

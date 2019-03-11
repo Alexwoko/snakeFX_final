@@ -9,6 +9,7 @@ public class Wall extends Item{
 
    private int width;
    private int height;
+   String axis;
 
 
     public Wall(javafx.scene.paint.Color color, int x, int y) {
@@ -54,6 +55,9 @@ public class Wall extends Item{
     @Override
     public  int getY(){return super.getY();}
 
+    public void setAxis(String axis){this.axis = axis;}
+    public String getAxis(){return axis;}
+
 
     public void setProportions(){
 
@@ -63,8 +67,10 @@ public class Wall extends Item{
        // Horizontal
        if(finalWidth >= finalHeight){
            finalHeight = 1;
+           setAxis("HORIZONTAL");
            // Vertical
        } else if(finalHeight > finalWidth){
+           setAxis("VERTICAL");
            finalWidth = 1;
        }
 

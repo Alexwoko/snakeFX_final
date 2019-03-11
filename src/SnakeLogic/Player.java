@@ -2,110 +2,104 @@ package SnakeLogic;
 
 public class Player implements GameObject{
 
-    private int x;
+    private int x; // Create a vector class
     private int y;
-
-
-
     private int preX;
-
     private int preY;
+    String dir;
+    private int velX;
+    private int velY;
+    private MathVector pos;
 
-    Player prevPos;
+
+    private boolean moving;
+
+
 
     public Player(int x, int y){
 
+        pos = new MathVector(x, y);
         this.x = x;
         this.y = y;
        // prevPos = new Player(0, 0);
+        dir = null;
+        velX = 0;
+        velY = 0;
+        moving = false;
 
     }
 
-    public Player getPrevPos(){return prevPos;}
-    public void setPrevPos(int x, int y){
-       // prevPos.x = x;
-       // prevPos.y = y;
-    }
 
 
+    public int getPreX() {return preX;}
+    public void setPreX(int preX) {this.preX = preX;}
+    public int getPreY() {return preY;}
+    public void setPreY(int preY) {this.preY = preY;}
     @Override
-    public int getX() {
-        return x;
-    }
-
+    public int getX() {return x;}
     @Override
-    public int getY() {
-        return y;
-    }
-
+    public int getY() {return y; }
     @Override
-    public void setX(int x) {
-    this.x = x;
-    }
-
+    public void setX(int x) {this.x = x;}
     @Override
     public void setY(int y) {
     this.y = y;
     }
 
-    public int getPreX() {
-        return preX;
-    }
-
-    public void setPreX(int preX) {
-        this.preX = preX;
-    }
-
-    public int getPreY() {
-        return preY;
-    }
-
-    public void setPreY(int preY) {
-        this.preY = preY;
-    }
-
     @Override
     public void update() {
 
-        checkDir();
-      //  prevPos.x = x;
-      //  prevPos.y = y;
+        /*
+        if(moving) {
+            x = x + velX;
+            y = y + velY;
+        }
+        */
+       // checkDir();
 
     }
 
-    public String checkDir(){
-
-        if(getX() > getPreX()){
-            return "LEFT";
-        }
-        if(getX() < getPreX()){
-            return "RIGHT";
-        }
-        if(getY() > getPreY()){
-            return "DOWN";
-        }
-        if(getY() < getPreY()){
-            return "UP";
-        }
-        return null;
-
+    public boolean isMoving() {
+        return moving;
     }
 
+    public void setMoving(boolean moving) {
+        this.moving = moving;
+    }
+
+
+    @Override
+    public String getDir() {
+        return dir;
+    }
+
+    public void setDir(String dir){this.dir = dir;}
+
+
+@Override
     public void moveRight(){
-        x += 1;
-    }
+    setDir("RIGHT");
+    x += 1;
 
+        velY = 0;
+    }
+@Override
     public void moveLeft(){
-        x -= 1;
+    setDir("LEFT");
+       x -= 1;
+        velY = 0;
     }
+    @Override
     public void moveUp(){
-        y -= 1;
+    setDir("UP");
+           y -= 1;
+        velX = 0;
     }
+    @Override
     public void moveDown(){
-        y += 1;
+    setDir("DOWN");
+           y += 1;
+            velX = 0;
     }
-
-
-
 
 }
