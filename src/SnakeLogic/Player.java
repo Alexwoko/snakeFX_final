@@ -5,10 +5,11 @@ public class Player implements GameObject{
 
     String dir;
 
-    private MathVector pos;
-    private MathVector vel;
-    private boolean moving;
+    private MathVector pos, vel, accel;
+    private MathVector up, down, left, right;
     private float maxSpeed;
+    private float maxForce;
+    private boolean leftN, rightN, topN, downN;
 
 
 
@@ -16,43 +17,69 @@ public class Player implements GameObject{
 
         pos = new MathVector(x, y);
         vel = new MathVector(0, 0);
+        accel = new MathVector(0, 0);
+
+
+       left = new MathVector(-1, 0);
+        right = new MathVector(1, 0);
+        up = new MathVector(0, -1);
+        down = new MathVector(0, 1);
+
+        leftN = false;
+        rightN = false;
+        topN = false;
+        downN = false;
+
         dir = null;
-        moving = false;
         maxSpeed = 1;
+        maxForce = 1;
 
     }
 
 
+    public boolean hasDownN(){
+        return downN;
+    }
+    public boolean hasTopN(){
+        return topN;
+    }
+    public boolean hasRightN(){
+        return rightN;
+    }
+    public boolean hasLeftN(){
+        return leftN;
+    }
+    public void setTopN(boolean topN){this.topN = topN;}
+    public void setDownN(boolean downN){this.downN = downN;}
+    public void setLeftN(boolean leftN){this.leftN = leftN;}
+    public void setRightN(boolean rightN){this.rightN = rightN;}
 
 
     @Override
     public float getX() {return pos.x;}
     @Override
-    public float getY() {return pos.y; }
+    public float getY() {return pos.y;}
     @Override
-    public void setX(int x) {this.pos.x = x;}
+    public void setX(float x) {this.pos.x = x;}
     @Override
-    public void setY(int y) {
+    public void setY(float y) {
     this.pos.y = y;
     }
-    public void setVelX(float in){vel.x = in;}
-    public void setVelY(float in){vel.y = in;}
-   public MathVector getVel(){return vel;}
+
+
 
 
     @Override
     public void update() {
 
+        System.out.println(getX() + getY());
+        vel.add(accel);
+        vel.limit(maxSpeed);
         pos.add(vel);
+       accel.mult(0);
     }
 
-    public boolean isMoving() {
-        return moving;
-    }
 
-    public void setMoving(boolean moving) {
-        this.moving = moving;
-    }
 
 
     @Override
@@ -62,34 +89,63 @@ public class Player implements GameObject{
 
     public void setDir(String dir){this.dir = dir;}
 
+    @Override
+    public void applyRepeller(Wall wall) {
 
-@Override
+        MathVector force = wall.repel(this);
+        this.applyForce(force);
+
+
+    }
+
+
+    @Override
     public void moveRight(){
     setDir("RIGHT");
-   // vel.x = 1;
-    pos.x += vel.x;
+    vel.y = 0;
+    applyForce(right);
     }
 @Override
     public void moveLeft(){
     setDir("LEFT");
-        pos.x -= vel.x;
+    vel.y = 0;
+       applyForce(left);
 
     }
     @Override
     public void moveUp(){
     setDir("UP");
+        vel.x = 0;
+    applyForce(up);
 
-    pos.y -= vel.y;
 
     }
     @Override
     public void moveDown(){
     setDir("DOWN");
-        //   y += 1;
-          //  velX = 0;
-       // vel.y = 1;
-        pos.y += vel.y;
-      //  vel.x = 0;
+        vel.x = 0;
+   applyForce(down);
     }
+
+    public void applyForce(MathVector force){
+
+       force.limit(maxForce);
+        this.accel.add(force);
+
+    }
+
+    public String toString(){
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("x = " + pos.x);
+        sb.append(" y = " + pos.y);
+        sb.append(" vel x = " + vel.x);
+        sb.append(" vel y = " + vel.y);
+        sb.append(" accel x = " + accel.x);
+        sb.append(" accel y = " + accel.y);
+
+        return sb.toString();
+    }
+
 
 }

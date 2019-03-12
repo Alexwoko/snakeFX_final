@@ -8,8 +8,8 @@ public interface GameObject {
 
     float getX();
     float getY();
-    void setX(int x);
-    void setY(int y);
+    void setX(float x);
+    void setY(float y);
 
 
     void update();
@@ -19,8 +19,18 @@ public interface GameObject {
     void moveRight();
     void moveUp();
     void moveDown();
-  //  void changeDir();
     void setDir(String dir);
+    void applyRepeller(Wall wall);
+    void applyForce(MathVector force);
+    String toString();
+    void setDownN(boolean downN);
+    void setRightN(boolean rightN);
+    void setLeftN(boolean leftN);
+    void setTopN(boolean topN);
+    boolean hasRightN();
+    boolean hasLeftN();
+    boolean hasTopN();
+    boolean hasDownN();
 
 
 

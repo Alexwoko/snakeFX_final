@@ -28,7 +28,7 @@ public class Controller {
     private int gameLoopDelay = 500;
     private float refreshRate =150;
     private Player player = new Player(0, 0);
-   // private RandomRambler ranRam = new RandomRambler(width/2, height/2);
+    private RandomRambler ranRam = new RandomRambler(width/2, height/2);
 
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
@@ -53,7 +53,7 @@ public class Controller {
     {
 
 
-                AddItems();
+        AddItems();
         addWalls();
 
         calculateFields();
@@ -65,19 +65,12 @@ public class Controller {
             long lastUpdate;
             public void handle (long now) {
 
-               // ranRam.setPreX(ranRam.getX());
-               // ranRam.setPreY(ranRam.getY());
-               // player.setPreX(player.getX());
-              //  player.setPreY(player.getY());
-
 
                 if (now > lastUpdate + refreshRate * 1000000)
                 {
-                  //  System.out.println(fieldWidth + " " + fieldHeight);
                     lastUpdate = now;
                     update(now);
-                 //   System.out.println("Pre X = " + player.getPreX() + "Pre Y = " + player.getPreY());
-                  //  System.out.println("X = " + player.getX() + "Y = " + player.getY());
+
 
 
 
@@ -122,40 +115,48 @@ public class Controller {
      */
     private void update(long now)
     {
-       // player.setPrevPos(player.getX(), player.getY());
-
 
         switch (keyPressed)
         {
             case S:
-                this.player.setVelY(1);
+              //  this.player.setVelY(1);
                 this.player.moveDown();
                 break;
             case A:
-                this.player.setVelX(1);
+             //   this.player.setVelX(1);
+
                 this.player.moveLeft();
                 break;
             case D:
-                this.player.setVelX(1);
+               // this.player.setVelX(1);
+
                 this.player.moveRight();
                 break;
             case W:
-                this.player.setVelY(1);
+               // this.player.setVelY(1);
+
                 this.player.moveUp();
                 break;
         }
-        player.setMoving(true);
+
+
+
+
         checkEdges(player);
-      //  checkEdges(ranRam);
+       checkEdges(ranRam);
         detectWalls(player);
-       // detectWalls(ranRam);
+       detectWalls(ranRam);
         player.update();
+
+
+
+
         // RANDOM RAMPLER UPDATE
         // PROBABLY LOOKING FOR WALLS
 
 
 
-     //   ranRam.update();
+       ranRam.update();
 
 
         //getRandomPosition();
@@ -201,6 +202,7 @@ public class Controller {
         for(int x = 10; x < 15; x++){
             for(int y = 10; y < 15; y++){
                 walls[x][y].update();
+              //  System.out.println(walls[x][y].getX() + walls[x][y].getY());
                g.setFill(Color.BLACK);
                g.fillRoundRect(walls[x][y].getX() * fieldWidth, walls[x][y].getY() * fieldHeight, walls[x][y].getWidth(), walls[x][y].getHeight(), 5, 5);
 
@@ -208,8 +210,8 @@ public class Controller {
         }
 
         // draw RandomRambler
-      //  g.setFill(Color.PINK);
-      //  g.fillRoundRect(this.ranRam.getX() * fieldWidth, this.ranRam.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
+       g.setFill(Color.PINK);
+        g.fillRoundRect(this.ranRam.getX() * fieldWidth, this.ranRam.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 
         // draw 'player'
         g.setFill(Color.BLUE);
@@ -228,34 +230,36 @@ public class Controller {
                     neighbours[i][j] = pos[x][y];
 
                     if(walls[x][y].getAxis().equals("VERTICAL") && o.getDir() == "LEFT"){
-                        if(o.getX() == x -1 && o.getY() == y){
-                          //  o.changeDir();
-                            o.moveRight();
-                            o.moveRight();
+                        if(o.getX() == x  && o.getY() == y){
+                            o.setLeftN(true);
+                            o.setX(o.getX() + 1);
+                            o.applyRepeller(walls[x][y]);
+
+                           // o.applyRepeller(walls[x][y]);
+
                         }
                     }
                     if(walls[x][y].getAxis().equals("VERTICAL") && o.getDir() == "RIGHT"){
-                        if(o.getX() == x && o.getY() == y){
-                            o.moveLeft();
-                            o.moveLeft();
-                            //o.changeDir();
+                        if(o.getX() == x -1  && o.getY() == y){
+                            o.setRightN(true);
+                            o.applyRepeller(walls[x][y]);
+
+
                         }
                     }
                     if(o.getDir() == "UP" && walls[x][y].getAxis().equals("HORIZONTAL")){
-                        if(o.getX() == x && o.getY() == y-1){
+                        if(o.getX() == x && o.getY() == y){
+                            o.setTopN(true);
+                            o.setY(o.getY() + 1);
+                            o.applyRepeller(walls[x][y]);
+                          //  o.applyRepeller(walls[x][y]);
 
-                            System.out.println("Moving Down");
-                            //  o.changeDir();
-                            o.moveDown();
-                            o.moveDown();
                         }
                     }
                     if(o.getDir() == "DOWN" && walls[x][y].getAxis().equals("HORIZONTAL")){
-                        if(o.getX() == x && o.getY() == y){
-                            System.out.println("Moving Up");
-                            //  o.changeDir();
-                            o.moveUp();
-                            o.moveUp();
+                        if(o.getX() == x && o.getY() == y-1){
+                            o.setDownN(true);
+                            o.applyRepeller(walls[x][y]);
 
                         }
                     }
@@ -271,6 +275,7 @@ public class Controller {
         for(int x = 10; x < 15; x++ ){
             for(int y = 10; y < 15; y++){
 
+               // o.applyRepeller(walls[x][y]);
                 reactToWalls(x, y, o);
             }
 
