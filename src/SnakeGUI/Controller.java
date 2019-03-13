@@ -34,7 +34,7 @@ public class Controller {
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
 
     private ArrayList<Item> items = new ArrayList<Item>();
-    private int[][] neighbours = new int[16][16];
+    private Wall[][] neighbours = new Wall[16][16];
 
     private Wall[][] walls = new Wall[29][19];
 
@@ -219,6 +219,72 @@ public class Controller {
     }
 
 
+    Wall[][] reactToWalls(int x, int y, GameObject o){
+
+        int[][] pos = new int[16][16];
+
+        for (int i = x - 1; i < x +2; i++){
+            for (int j = y -1; j< y+2; j++ ){
+
+                if(i != x && j != y){
+                    neighbours[i][j] = walls[x][y];
+
+                    if(neighbours[i][j].getAxis().equals("VERTICAL") && o.getDir() == "LEFT"){
+                        if(o.getX() == x  && o.getY() == y){
+                            o.setLeftN(true);
+                            o.setX(o.getX() + 1);
+
+                            o.applyRepeller(walls[x][y]);
+
+                            // o.applyRepeller(walls[x][y]);
+
+                        }else{
+                            o.setLeftN(false);
+                        }
+                    }
+                    if(neighbours[i][j].getAxis().equals("VERTICAL") && o.getDir() == "RIGHT"){
+                        if(o.getX() == x -1  && o.getY() == y){
+                            o.setRightN(true);
+
+                            o.applyRepeller(walls[x][y]);
+
+
+                        } else{
+                            o.setRightN(false);
+                        }
+                    }
+                    if(o.getDir() == "UP" && neighbours[i][j].getAxis().equals("HORIZONTAL")){
+                        if(o.getX() == x && o.getY() == y){
+                            o.setTopN(true);
+                            o.setY(o.getY() + 1);
+
+                            o.applyRepeller(walls[x][y]);
+
+                            //   o.applyRepeller(walls[x][y]);
+
+                        }else{
+                            o.setTopN(false);
+                        }
+                    }
+                    if(o.getDir() == "DOWN" && neighbours[i][j].getAxis().equals("HORIZONTAL")){
+                        if(o.getX() == x && o.getY() == y-1){
+                            o.setDownN(true);
+
+                            o.applyRepeller(walls[x][y]);
+
+                        }else{
+                            o.setDownN(false);
+                        }
+                    }
+
+                }
+            }
+        }
+        return neighbours;
+    }
+
+
+/*
     int[][] reactToWalls(int x, int y, GameObject o){
 
         int[][] pos = new int[16][16];
@@ -233,34 +299,47 @@ public class Controller {
                         if(o.getX() == x  && o.getY() == y){
                             o.setLeftN(true);
                             o.setX(o.getX() + 1);
-                            o.applyRepeller(walls[x][y]);
+
+                                o.applyRepeller(walls[x][y]);
 
                            // o.applyRepeller(walls[x][y]);
 
+                        }else{
+                            o.setLeftN(false);
                         }
                     }
                     if(walls[x][y].getAxis().equals("VERTICAL") && o.getDir() == "RIGHT"){
                         if(o.getX() == x -1  && o.getY() == y){
                             o.setRightN(true);
-                            o.applyRepeller(walls[x][y]);
+
+                                o.applyRepeller(walls[x][y]);
 
 
+                        } else{
+                            o.setRightN(false);
                         }
                     }
                     if(o.getDir() == "UP" && walls[x][y].getAxis().equals("HORIZONTAL")){
                         if(o.getX() == x && o.getY() == y){
                             o.setTopN(true);
                             o.setY(o.getY() + 1);
-                            o.applyRepeller(walls[x][y]);
-                          //  o.applyRepeller(walls[x][y]);
 
+                                o.applyRepeller(walls[x][y]);
+
+                             //   o.applyRepeller(walls[x][y]);
+
+                        }else{
+                            o.setTopN(false);
                         }
                     }
                     if(o.getDir() == "DOWN" && walls[x][y].getAxis().equals("HORIZONTAL")){
                         if(o.getX() == x && o.getY() == y-1){
                             o.setDownN(true);
-                            o.applyRepeller(walls[x][y]);
 
+                                o.applyRepeller(walls[x][y]);
+
+                        }else{
+                            o.setDownN(false);
                         }
                     }
 
@@ -269,6 +348,7 @@ public class Controller {
         }
         return neighbours;
     }
+    */
 
     void detectWalls(GameObject o){
 

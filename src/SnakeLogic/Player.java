@@ -101,30 +101,41 @@ public class Player implements GameObject{
 
     @Override
     public void moveRight(){
-    setDir("RIGHT");
-    vel.y = 0;
+
+    if(!hasRightN())
+        setDir("RIGHT");
+        vel.y = 0;
     applyForce(right);
+
     }
 @Override
     public void moveLeft(){
-    setDir("LEFT");
+
+    if(!hasLeftN())
+        setDir("LEFT");
     vel.y = 0;
        applyForce(left);
 
     }
     @Override
     public void moveUp(){
-    setDir("UP");
-        vel.x = 0;
-    applyForce(up);
 
+        if(!hasTopN())
+            setDir("UP");
+        vel.x = 0;
+
+
+    applyForce(up);
 
     }
     @Override
     public void moveDown(){
-    setDir("DOWN");
+
+        if(!hasDownN())
+            setDir("DOWN");
         vel.x = 0;
    applyForce(down);
+
     }
 
     public void applyForce(MathVector force){
