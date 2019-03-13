@@ -31,7 +31,7 @@ public interface GameObject {
     boolean hasLeftN();
     boolean hasTopN();
     boolean hasDownN();
-
+    boolean atWall(Wall w);
 
 
 

@@ -73,6 +73,11 @@ public class Player implements GameObject{
     public void update() {
 
         System.out.println(getX() + getY());
+
+pos.x = (int)pos.x;
+pos.y = (int)pos.y;
+
+
         vel.add(accel);
         vel.limit(maxSpeed);
         pos.add(vel);
@@ -157,6 +162,17 @@ public class Player implements GameObject{
 
         return sb.toString();
     }
+
+public boolean atWall(Wall w){
+
+        if(this.pos.x >= w.getX() && this.pos.y >= w.getY()){
+            return true;
+        }else{
+            return false;
+        }
+
+
+}
 
 
 }

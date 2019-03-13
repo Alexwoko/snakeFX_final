@@ -21,7 +21,7 @@ public class Controller {
     Canvas canvas;
 
     private double fieldHeight;
-    private double fieldWidth;
+    public double fieldWidth;
     private int width = 30;
     private int height = 20;
     private Random random = new Random();
@@ -84,8 +84,9 @@ public class Controller {
           for(int y = 5; y < 15; y++){
 
               if(x%2 == 0 && y % 2 == 0) {
-                  walls[x][y] = new Wall(Color.BLACK, x, y);
+                  walls[x][y] = new Wall(Color.BLACK, x , y);
                   walls[x][y].setProportions();
+                 // findNeighbours(walls[x][y]);
               }
           }
       }
@@ -146,8 +147,9 @@ public class Controller {
 
         checkEdges(player);
        checkEdges(ranRam);
-        detectWalls(player);
-       detectWalls(ranRam);
+      //  detectWalls(player);
+      // detectWalls(ranRam);
+        reactToWalls(player);
         player.update();
 
 
@@ -221,19 +223,74 @@ public class Controller {
         g.fillRoundRect(this.player.getX() * fieldWidth, this.player.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
     }
 
-    public void reactToWalls(Wall[][] w, GameObject o){
+    public void reactToWalls(GameObject o) {
 
 
-        for(int i = 0; i < w.length; i++){
-            for(int j = 0; j < w.length; j++){
+        for (int i = 10; i < 25; i++) {
+            for (int j = 5; j < 15; j++) {
+
+                if(i%2 == 0 && j %2 == 0){
+
+                    Wall w = walls[i][j];
+
+                  if(o.atWall(w)){
+
+                      if(o.getX() <= w.getX() + (w.getWidth() * fieldWidth) && w.getAxis().equals("HORIZONTAL")){
+
+                          if(o.getDir().equals("UP")){
+                              o.setY(o.getY() + 1);
+                              o.applyRepeller(w);
+                            //  o.applyRepeller(w);
+                              o.setY(o.getY() - 1);
+
+                          } else if(o.getDir().equals("DOWN")){
+                              o.setY(o.getY() - 1);
+                              o.applyRepeller(w);
+                              o.setY(o.getY() + 1);
+                           //   o.applyRepeller(w);
+                           //   o.setY(o.getY()+1);
+                          }
+
+                          System.out.println("Finally");
+
+                      } else if(o.getY() <= w.getX() + (w.getHeight() * fieldHeight) && w.getAxis().equals("VERTICAL")){
+
+                          if(o.getDir().equals("LEFT")){
+                              o.setX(o.getX() - 1);
+                              o.applyRepeller(w);
+                          //    o.applyRepeller(w);
+                            //  o.setX(o.getX() + 1);
 
 
-                if(o.getX() >= w[i][j].getX() && o.getX() <= w[i][j].getX() + w[i][j].getWidth()){
-                    if(o.getY() == w[i][j].getY() && w[i][j].getAxis().equals("HORIZONTAL")){
-                        System.out.println("In line!");
-                    }
+                          }else if(o.getDir().equals("RIGHT")){
+                              o.setX(o.getX() + 1);
+                              o.applyRepeller(w);
+                            //  o.applyRepeller(w);
+                              o.setX(o.getX() -1);
+                          }
+
+
+
+                      }
+                      /*
+                     if(w.getAxis().equals("HORIZONTAL") && o.getDir().equals("UP")){
+                         o.setY(o.getY() + 1);
+                         o.applyRepeller(w);
+
+                       //  o.setY(o.getY() -1);
+
+
+                     }
+*/
+
+                  }
+
+
+
+
 
                 }
+
 
             }
 
@@ -241,8 +298,16 @@ public class Controller {
         }
 
 
-
     }
+
+
+
+
+
+
+
+
+
 
 
 /*
@@ -309,42 +374,26 @@ public class Controller {
     }
 */
 
-public Wall[][] findNeighbours(int x, int y){
-
-    Wall[][] neighbours = new Wall[3][3];
-    for(int i = x - 1; i < x + 1; i++){
-        for(int j = y -1; j < y +1; j++){
-
-            if(i != x && j != y){
-                neighbours[i][j] = walls[i][j];
-                return neighbours;
-
-            }
 
 
-        }
-
-
-    }
-    return null;
-
-}
+/*
     void detectWalls(GameObject o){
+
 
         for(int x = 10; x < 25; x++ ){
             for(int y = 5; y < 15; y++){
 
                 if(x%2==0 && y%2==0) {
-                Wall[][] neighbours = findNeighbours(x, y);
-                    // o.applyRepeller(walls[x][y]);
-                    // reactToWalls(walls[x][y], o);
-                    reactToWalls(neighbours, o);
+                  //  if(o.getX() == )
+
+                    reactToWalls(walls, o);
                 }
             }
 
         }
 
     }
+    */
 
     void checkEdges(GameObject o){
 

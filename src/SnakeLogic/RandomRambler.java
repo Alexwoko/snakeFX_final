@@ -180,6 +180,16 @@ this.topN = topN;
     }
 
     @Override
+    public boolean atWall(Wall w) {
+        if(this.pos.x == w.getX() && this.pos.y == w.getY()) {
+            return true;
+
+        }else{
+            return false;
+        }
+    }
+
+    @Override
  public String getDir() {
   return dir;
  }

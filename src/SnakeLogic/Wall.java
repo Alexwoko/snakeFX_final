@@ -10,6 +10,7 @@ public class Wall extends Item{
    String axis;
    private final float strength;
     private float finalWidth, finalHeight;
+   // public int[][] neighbours;
 
 
     public Wall(javafx.scene.paint.Color color, int x, int y) {
@@ -17,6 +18,7 @@ public class Wall extends Item{
        // set color and position
         super(color, x, y);
         strength = 1f;
+      //  neighbours = new int[3][3];
 
     }
 
@@ -123,9 +125,28 @@ public class Wall extends Item{
         }else{
             return x;
         }
-
-
     }
+
+  /*
+    public int[][] findNeighbours(Wall w){
+
+        int[][] neighbours = new int[3][3];
+        for(int i = (int)w.getX()-1; i < w.getX() + 1; i++){
+            for (int j = (int)w.getX()-1; j < w.getY() + 1; j++){
+
+                if(i != 0 && j != 0) {
+                w.neighbours[i][j] = neighbours[i][j];
+                }
+
+                return w.neighbours;
+
+            }
+
+        }
+        return null;
+    }
+    */
+
 
     public String toString(){
 
