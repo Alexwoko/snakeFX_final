@@ -5,10 +5,11 @@ import java.util.Random;
 public class Wall extends Item{
 
 
-   private int width;
-   private int height;
+   private float width;
+   private float height;
    String axis;
    private final float strength;
+    private float finalWidth, finalHeight;
 
 
     public Wall(javafx.scene.paint.Color color, int x, int y) {
@@ -29,19 +30,22 @@ public class Wall extends Item{
 
     }
 
-    public int getWidth() {
+    public float getFinalWidth(){return finalWidth;}
+    public float getFinalHeight(){return finalHeight;}
+
+    public float getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(float width) {
         this.width = width;
     }
 
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(float height) {
         this.height = height;
     }
 
@@ -60,17 +64,19 @@ public class Wall extends Item{
 
     public void setProportions(){
 
-       int finalWidth = ranNumInRange(20, 30);
-       int finalHeight = ranNumInRange(20, 30);
+       finalWidth = ranNumInRange(20, 30);
+       finalHeight = ranNumInRange(20, 30);
 
        // Horizontal
        if(finalWidth >= finalHeight){
            finalHeight = 1;
+           finalWidth = 40;
            setAxis("HORIZONTAL");
            // Vertical
        } else if(finalHeight > finalWidth){
            setAxis("VERTICAL");
            finalWidth = 1;
+           finalHeight = 17.85f * 2;
        }
 
       this.setWidth(finalWidth);

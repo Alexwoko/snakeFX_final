@@ -102,7 +102,7 @@ public class Player implements GameObject{
     @Override
     public void moveRight(){
 
-    if(!hasRightN())
+   // if(!hasRightN())
         setDir("RIGHT");
         vel.y = 0;
     applyForce(right);
@@ -111,7 +111,7 @@ public class Player implements GameObject{
 @Override
     public void moveLeft(){
 
-    if(!hasLeftN())
+   // if(!hasLeftN())
         setDir("LEFT");
     vel.y = 0;
        applyForce(left);
@@ -120,7 +120,7 @@ public class Player implements GameObject{
     @Override
     public void moveUp(){
 
-        if(!hasTopN())
+       // if(!hasTopN())
             setDir("UP");
         vel.x = 0;
 
@@ -131,7 +131,7 @@ public class Player implements GameObject{
     @Override
     public void moveDown(){
 
-        if(!hasDownN())
+     //   if(!hasDownN())
             setDir("DOWN");
         vel.x = 0;
    applyForce(down);
