@@ -165,13 +165,7 @@ pos.y = (int)pos.y;
 
 public String atWall(Wall w){
 
-    System.out.println(this.pos.y + " " + w.getY());
-
-
-
-
-
-        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() +1) && this.pos.y == w.getY()){
+        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + 1) && this.pos.y == w.getY()){
 
             if(w.getAxis().equals("HORIZONTAL")) {
                 return "UP";
@@ -185,7 +179,7 @@ public String atWall(Wall w){
         }
     }
 
-    if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + 1) && this.pos.x == w.getX()){
+    if((this.pos.y >= w.getY() && this.pos.y <= w.getY() +1) && this.pos.x == w.getX()){
 
 
         if(w.getAxis().equals("VERTICAL")){

@@ -18,9 +18,6 @@ public class MathVector {
 
     }
 
-   // public int getX(){return x;}
-   // public int getY(){return y;}
-
     public MathVector add(MathVector in){
 
 
@@ -40,22 +37,6 @@ public class MathVector {
         return result;
     }
 
-    /*
-    public MathVector sub(MathVector one, MathVector two){
-
-        if(one > two)
-        one.x = one.x - two.x;
-        one.y = one.y - two.y;
-
-
-
-
-        MathVector result = new MathVector(one.x, one.y);
-        return result;
-
-
-    }
-    */
 
     public void div(int in){
 
@@ -104,12 +85,5 @@ public class MathVector {
             this.setMag(max);
         }
     }
-
-    public void set(int x, int y){this.x = x; this.y = y;}
-    public MathVector get(){return new MathVector(x, y);}
-
-
-
-
 
 }

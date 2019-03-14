@@ -104,7 +104,7 @@ public void moveDown(){
 
 
      // RANDOM WALK
-        randomWalk();
+       // randomWalk();
         vel.add(accel);
         vel.limit(maxSpeed);
         pos.add(vel);
@@ -182,26 +182,41 @@ this.topN = topN;
     @Override
     public String atWall(Wall w) {
 
-        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + w.getWidth()) && (this.pos.y - 1) == w.getY()){
-            if(w.getAxis().equals("HORIZONTAL"))
-                return "DOWN";
-        }
-        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + w.getWidth()) && this.pos.y == w.getY()){
-            if(w.getAxis().equals("HORIZONTAL"))
+
+
+        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + 1) && this.pos.y == w.getY()){
+
+            if(w.getAxis().equals("HORIZONTAL")) {
                 return "UP";
+            }
         }
-        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + w.getHeight()) && (this.pos.x - 1) == w.getX()){
-            if(w.getAxis().equals("VERTICAL")){
+
+        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + 1) && this.pos.x  == w.getX() - 1) {
+            if (w.getAxis().equals("VERTICAL")) {
                 return "RIGHT";
-            }
-            if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + w.getHeight()) && this.pos.x == w.getX()){
-                if(w.getAxis().equals("VERTICAL")){
-                    return "LEFT";
-                }
 
+            }
+        }
+
+        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() +1) && this.pos.x == w.getX()){
+
+
+            if(w.getAxis().equals("VERTICAL")){
+                return "LEFT";
             }
 
         }
+
+        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + 1) && this.pos.y  == w.getY() - 1){
+            System.out.println("First part working");
+            if(w.getAxis().equals("HORIZONTAL")) {
+                return "DOWN";
+            }
+        }
+
+
+
+
 
 
         return null;

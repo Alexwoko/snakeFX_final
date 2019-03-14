@@ -34,7 +34,6 @@ public class Controller {
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
 
     private ArrayList<Item> items = new ArrayList<Item>();
-  //  private Wall[][] neighbours = new Wall[29][19];
 
     private Wall[][] walls = new Wall[29][19];
 
@@ -58,7 +57,6 @@ public class Controller {
 
         calculateFields();
         getRandomPosition();
-        //drawCanvas();
 
         // Start and control game loop
         new AnimationTimer(){
@@ -68,12 +66,10 @@ public class Controller {
 
                 if (now > lastUpdate + refreshRate * 1000000)
                 {
+
                     lastUpdate = now;
+
                     update(now);
-
-
-
-
 
                 }             }
         }.start();
@@ -86,7 +82,6 @@ public class Controller {
               if(x%2 == 0 && y % 2 == 0) {
                   walls[x][y] = new Wall(Color.BLACK, x , y);
                   walls[x][y].setProportions();
-                 // findNeighbours(walls[x][y]);
               }
           }
       }
@@ -94,11 +89,8 @@ public class Controller {
 
     private void AddItems() {
 
-        // PROGRAM TO INTERFACE SO WE HAVE A LIST THAT CAN CONTAIN PLAYER, WALLS, AND ITEMS
         items.add(new Item(Color.GREEN, 3,3));
         items.add(new Item(Color.RED, 12,9));
-        // Would be nice to add player and walls here somehow
-
 
     }
 
@@ -121,49 +113,28 @@ public class Controller {
         switch (keyPressed)
         {
             case S:
-              //  this.player.setVelY(1);
                 this.player.moveDown();
                 break;
             case A:
-             //   this.player.setVelX(1);
-
                 this.player.moveLeft();
                 break;
             case D:
-               // this.player.setVelX(1);
-
                 this.player.moveRight();
                 break;
             case W:
-               // this.player.setVelY(1);
-
                 this.player.moveUp();
                 break;
         }
 
-       // System.out.println(fieldHeight + " Height");
-       // System.out.println(fieldWidth + " Width");
-
+        ranRam.randomWalk();
 
         checkEdges(player);
        checkEdges(ranRam);
-      //  detectWalls(player);
-      // detectWalls(ranRam);
+        reactToWalls(ranRam);
         reactToWalls(player);
         player.update();
+        ranRam.update();
 
-
-
-
-        // RANDOM RAMPLER UPDATE
-        // PROBABLY LOOKING FOR WALLS
-
-
-
-       ranRam.update();
-
-
-        //getRandomPosition();
         drawCanvas();
 
 
@@ -210,6 +181,7 @@ public class Controller {
                     //  System.out.println(walls[x][y].getX() + walls[x][y].getY());
                     g.setFill(Color.BLACK);
                     g.fillRoundRect(walls[x][y].getX() * fieldWidth, walls[x][y].getY() * fieldHeight, walls[x][y].getWidth(), walls[x][y].getHeight(), 5, 5);
+                 //   g.fillText("T", walls[x][y].getX() * fieldWidth, walls[x][y].getY() * fieldHeight);
                 }
             }
         }
@@ -217,6 +189,7 @@ public class Controller {
         // draw RandomRambler
        g.setFill(Color.PINK);
         g.fillRoundRect(this.ranRam.getX() * fieldWidth, this.ranRam.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
+
 
         // draw 'player'
         g.setFill(Color.BLUE);
@@ -233,16 +206,10 @@ public class Controller {
 
                     Wall w = walls[i][j];
 
-
-                  //  System.out.println("This is Y " + w.getY() + " This is y + Height " + w.getY() + );
-                   // System.out.println("This is height " + w.getHeight());
-                   // System.out.println("This is Y * fieldHeight " + w.getY() * fieldHeight);
-                   // System.out.println("This is Y * fieldHeight " +  (w.getY() * fieldHeight) + " this is y * fieldHeight + width " + (w.getY() * fieldHeight) + w.getHeight());
-
                     if(o.atWall(w) == "LEFT" && o.getDir() == "LEFT"){
                         o.setX(o.getX() + 1);
                         o.applyRepeller(w);
-                        o.setDir("RIGHT");
+                        //   o.setDir("RIGHT");
                     }
                     if(o.atWall(w) == "RIGHT" && o.getDir() == "RIGHT"){
                         o.setX(o.getX() - 1);
@@ -252,7 +219,7 @@ public class Controller {
                     if(o.atWall(w)== "UP" && o.getDir() == "UP"){
                         o.setY(o.getY() + 1);
                         o.applyRepeller(w);
-                        o.setDir("DOWN");
+                      //  o.setDir("DOWN");
 
                     }
 
@@ -261,116 +228,11 @@ public class Controller {
                         o.applyRepeller(w);
                         o.setDir("UP");
                     }
-
-
-
-
-
-                }
-
-
-            }
-
-
-        }
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-/*
-    Wall[][] reactToWalls(int x, int y, GameObject o){
-
-
-
-        for (int i = x - 1; i < x +2; i++){
-            for (int j = y -1; j< y+2; j++ ){
-
-                if(i != x && j != y){
-                    neighbours[i][j] = walls[x][y];
-
-                    if(neighbours[i][j].getAxis().equals("VERTICAL") && o.getDir() == "LEFT"){
-                        if(o.getX() == x  && o.getY() >= y && o.getY() <= y + neighbours[i][j].getFinalHeight()){
-                            o.setLeftN(true);
-                            o.setX(o.getX() + 1);
-
-                            o.applyRepeller(walls[x][y]);
-
-
-                        }else{
-                            o.setLeftN(false);
-                        }
-                    }
-                    if(neighbours[i][j].getAxis().equals("VERTICAL") && o.getDir() == "RIGHT"){
-                        if(o.getX() == x -1  && o.getY() >= y && o.getY() <= y + neighbours[i][j].getFinalHeight()){
-                            o.setRightN(true);
-
-                            o.applyRepeller(walls[x][y]);
-
-
-                        } else{
-                            o.setRightN(false);
-                        }
-                    }
-                    if(o.getDir() == "UP" && neighbours[i][j].getAxis().equals("HORIZONTAL")){
-                        if(o.getX() >= x && o.getX() <= x + neighbours[i][j].getFinalWidth() && o.getY() == y){
-                            o.setTopN(true);
-                            o.setY(o.getY() + 1);
-
-                            o.applyRepeller(walls[x][y]);
-
-
-                        }else{
-                            o.setTopN(false);
-                        }
-                    }
-                    if(o.getDir() == "DOWN" && neighbours[i][j].getAxis().equals("HORIZONTAL")){
-                        if(o.getX() >= x && o.getX() <= x + neighbours[i][j].getFinalWidth() && o.getY() == y-1){
-                            o.setDownN(true);
-
-                            o.applyRepeller(walls[x][y]);
-
-                        }else{
-                            o.setDownN(false);
-                        }
-                    }
-
                 }
             }
         }
-        return neighbours;
     }
-*/
 
-
-
-/*
-    void detectWalls(GameObject o){
-
-
-        for(int x = 10; x < 25; x++ ){
-            for(int y = 5; y < 15; y++){
-
-                if(x%2==0 && y%2==0) {
-                  //  if(o.getX() == )
-
-                    reactToWalls(walls, o);
-                }
-            }
-
-        }
-
-    }
-    */
 
     void checkEdges(GameObject o){
 
