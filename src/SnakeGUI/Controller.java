@@ -233,57 +233,19 @@ public class Controller {
 
                     Wall w = walls[i][j];
 
-                  if(o.atWall(w)){
-
-                      if(o.getX() <= w.getX() + (w.getWidth() * fieldWidth) && w.getAxis().equals("HORIZONTAL")){
-
-                          if(o.getDir().equals("UP")){
-                              o.setY(o.getY() + 1);
-                              o.applyRepeller(w);
-                            //  o.applyRepeller(w);
-                              o.setY(o.getY() - 1);
-
-                          } else if(o.getDir().equals("DOWN")){
-                              o.setY(o.getY() - 1);
-                              o.applyRepeller(w);
-                              o.setY(o.getY() + 1);
-                           //   o.applyRepeller(w);
-                           //   o.setY(o.getY()+1);
-                          }
-
-                          System.out.println("Finally");
-
-                      } else if(o.getY() <= w.getX() + (w.getHeight() * fieldHeight) && w.getAxis().equals("VERTICAL")){
-
-                          if(o.getDir().equals("LEFT")){
-                              o.setX(o.getX() - 1);
-                              o.applyRepeller(w);
-                          //    o.applyRepeller(w);
-                            //  o.setX(o.getX() + 1);
-
-
-                          }else if(o.getDir().equals("RIGHT")){
-                              o.setX(o.getX() + 1);
-                              o.applyRepeller(w);
-                            //  o.applyRepeller(w);
-                              o.setX(o.getX() -1);
-                          }
-
-
-
-                      }
-                      /*
-                     if(w.getAxis().equals("HORIZONTAL") && o.getDir().equals("UP")){
-                         o.setY(o.getY() + 1);
-                         o.applyRepeller(w);
-
-                       //  o.setY(o.getY() -1);
-
-
-                     }
-*/
-
-                  }
+                    if(o.atWall(w) == "LEFT" && o.getDir()=="LEFT"){
+                        o.setX(o.getX() + 1);
+                        o.applyRepeller(w);
+                    }
+                    if(o.atWall(w)== "RIGHT" && o.getDir() == "RIGHT"){
+                        o.applyRepeller(w);
+                    }
+                    if(o.atWall(w)== "UP" && o.getDir() == "UP"){
+                        o.applyRepeller(w);
+                    }
+                    if(o.atWall(w)== "DOWN" && o.getDir() == "DOWN"){
+                        o.applyRepeller(w);
+                    }
 
 
 

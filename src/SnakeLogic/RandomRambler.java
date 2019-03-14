@@ -180,13 +180,33 @@ this.topN = topN;
     }
 
     @Override
-    public boolean atWall(Wall w) {
-        if(this.pos.x == w.getX() && this.pos.y == w.getY()) {
-            return true;
+    public String atWall(Wall w) {
 
-        }else{
-            return false;
+        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + w.getWidth()) && (this.pos.y - 1) == w.getY()){
+            if(w.getAxis().equals("HORIZONTAL"))
+                return "DOWN";
         }
+        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + w.getWidth()) && this.pos.y == w.getY()){
+            if(w.getAxis().equals("HORIZONTAL"))
+                return "UP";
+        }
+        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + w.getHeight()) && (this.pos.x - 1) == w.getX()){
+            if(w.getAxis().equals("VERTICAL")){
+                return "RIGHT";
+            }
+            if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + w.getHeight()) && this.pos.x == w.getX()){
+                if(w.getAxis().equals("VERTICAL")){
+                    return "LEFT";
+                }
+
+            }
+
+        }
+
+
+        return null;
+
+
     }
 
     @Override
