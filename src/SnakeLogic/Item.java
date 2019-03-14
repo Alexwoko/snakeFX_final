@@ -22,14 +22,14 @@ public class Item {
         return Color;
     }
 
-    public float getX() {
+    public int getX() {
         return pos.x;
     }
 
-    public float getY() {
+    public int getY() {
         return pos.y;
     }
 
-    public void setX(float x){pos.x = x;}
-    public void setY(float y){pos.y = y;}
+    public void setX(int x){pos.x = x;}
+    public void setY(int y){pos.y = y;}
 }

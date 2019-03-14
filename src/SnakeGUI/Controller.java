@@ -242,16 +242,22 @@ public class Controller {
                     if(o.atWall(w) == "LEFT" && o.getDir() == "LEFT"){
                         o.setX(o.getX() + 1);
                         o.applyRepeller(w);
+                        o.setDir("RIGHT");
                     }
                     if(o.atWall(w)== "RIGHT" && o.getDir() == "RIGHT"){
                         o.applyRepeller(w);
+                        o.setDir("LEFT");
                     }
                     if(o.atWall(w)== "UP" && o.getDir() == "UP"){
                         o.setY(o.getY() + 1);
                         o.applyRepeller(w);
+                       // o.applyRepeller(w);
+                        o.setDir("DOWN");
                     }
+
                     if(o.atWall(w)== "DOWN" && o.getDir() == "DOWN"){
                         o.applyRepeller(w);
+                        o.setDir("UP");
                     }
 
 

@@ -52,13 +52,13 @@ public class Wall extends Item{
     }
 
     @Override
-    public void setX(float x){super.setX(x);}
+    public void setX(int x){super.setX(x);}
     @Override
-    public void setY(float y){super.setY(y);}
+    public void setY(int y){super.setY(y);}
     @Override
-    public float getX(){return super.getX();}
+    public int getX(){return super.getX();}
     @Override
-    public  float getY(){return super.getY();}
+    public  int getY(){return super.getY();}
 
     public void setAxis(String axis){this.axis = axis;}
     public String getAxis(){return axis;}
@@ -109,8 +109,8 @@ public class Wall extends Item{
         float d = (float)dir.mag();
         d = constrain(d, 0, 1);
         dir.normalize();
-        float force = 1 * strength / (d * d);
-        dir.mult(force);
+        float force = -1 * strength / (d * d);
+        dir.mult((int)force);
         return dir;
 
     }
@@ -153,6 +153,8 @@ public class Wall extends Item{
         StringBuilder sb = new StringBuilder();
         sb.append("x = " + pos.x);
         sb.append(" y = " + pos.y);
+        sb.append("Width = " + width);
+        sb.append("Height = " + height);
         sb.append(" Orientation = " + axis);
         return sb.toString();
 

@@ -7,8 +7,8 @@ public class Player implements GameObject{
 
     private MathVector pos, vel, accel;
     private MathVector up, down, left, right;
-    private float maxSpeed;
-    private float maxForce;
+    private int maxSpeed;
+    private int maxForce;
     private boolean leftN, rightN, topN, downN;
 
 
@@ -56,13 +56,13 @@ public class Player implements GameObject{
 
 
     @Override
-    public float getX() {return pos.x;}
+    public int getX() {return pos.x;}
     @Override
-    public float getY() {return pos.y;}
+    public int getY() {return pos.y;}
     @Override
-    public void setX(float x) {this.pos.x = x;}
+    public void setX(int x) {this.pos.x = x;}
     @Override
-    public void setY(float y) {
+    public void setY(int y) {
     this.pos.y = y;
     }
 
@@ -165,19 +165,27 @@ pos.y = (int)pos.y;
 
 public String atWall(Wall w){
 
-        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + 40) && (this.pos.y - 1) == w.getY()){
+        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + 1) && (this.pos.y - 1) == w.getY()){
            if(w.getAxis().equals("HORIZONTAL"))
                return "DOWN";
         }
-        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + 40) && this.pos.y == w.getY()){
+
+
+
+        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() +1) && this.pos.y == w.getY()){
+
             if(w.getAxis().equals("HORIZONTAL"))
                 return "UP";
         }
-        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + (2 * 17.85f)) && (this.pos.x - 1) == w.getX()){
+
+
+
+
+        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + 1) && (this.pos.x - 1) == w.getX()){
             if(w.getAxis().equals("VERTICAL")){
                 return "RIGHT";
             }
-            if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + (2 * 17.85f)) && this.pos.x == w.getX()){
+            if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + 1) && this.pos.x == w.getX()){
                 if(w.getAxis().equals("VERTICAL")){
                     return "LEFT";
                 }

@@ -6,10 +6,10 @@ package SnakeLogic;
 public interface GameObject {
 
 
-    float getX();
-    float getY();
-    void setX(float x);
-    void setY(float y);
+    int getX();
+    int getY();
+    void setX(int x);
+    void setY(int y);
 
 
     void update();

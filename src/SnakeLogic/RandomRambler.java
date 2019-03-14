@@ -86,16 +86,16 @@ public void moveDown(){
 }
 
     @Override
-    public float getX() {return pos.x;}
+    public int getX() {return pos.x;}
 
     @Override
-    public float getY() {return pos.y;}
+    public int getY() {return pos.y;}
 
    @Override
-    public void setX(float x) {pos.x = x;}
+    public void setX(int x) {pos.x = x;}
 
     @Override
-    public void setY(float y) {pos.y = y;}
+    public void setY(int y) {pos.y = y;}
 
 
 
