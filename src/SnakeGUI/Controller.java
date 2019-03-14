@@ -141,8 +141,8 @@ public class Controller {
                 break;
         }
 
-        System.out.println(fieldHeight + " Height");
-        System.out.println(fieldWidth + " Width");
+       // System.out.println(fieldHeight + " Height");
+       // System.out.println(fieldWidth + " Width");
 
 
         checkEdges(player);
@@ -244,18 +244,20 @@ public class Controller {
                         o.applyRepeller(w);
                         o.setDir("RIGHT");
                     }
-                    if(o.atWall(w)== "RIGHT" && o.getDir() == "RIGHT"){
+                    if(o.atWall(w) == "RIGHT" && o.getDir() == "RIGHT"){
+                        o.setX(o.getX() - 1);
                         o.applyRepeller(w);
                         o.setDir("LEFT");
                     }
                     if(o.atWall(w)== "UP" && o.getDir() == "UP"){
                         o.setY(o.getY() + 1);
                         o.applyRepeller(w);
-                       // o.applyRepeller(w);
                         o.setDir("DOWN");
+
                     }
 
                     if(o.atWall(w)== "DOWN" && o.getDir() == "DOWN"){
+                        o.setY(o.getY() - 1);
                         o.applyRepeller(w);
                         o.setDir("UP");
                     }
