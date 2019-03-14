@@ -233,7 +233,13 @@ public class Controller {
 
                     Wall w = walls[i][j];
 
-                    if(o.atWall(w) == "LEFT" && o.getDir()=="LEFT"){
+
+                  //  System.out.println("This is Y " + w.getY() + " This is y + Height " + w.getY() + );
+                   // System.out.println("This is height " + w.getHeight());
+                   // System.out.println("This is Y * fieldHeight " + w.getY() * fieldHeight);
+                   // System.out.println("This is Y * fieldHeight " +  (w.getY() * fieldHeight) + " this is y * fieldHeight + width " + (w.getY() * fieldHeight) + w.getHeight());
+
+                    if(o.atWall(w) == "LEFT" && o.getDir() == "LEFT"){
                         o.setX(o.getX() + 1);
                         o.applyRepeller(w);
                     }
@@ -241,6 +247,7 @@ public class Controller {
                         o.applyRepeller(w);
                     }
                     if(o.atWall(w)== "UP" && o.getDir() == "UP"){
+                        o.setY(o.getY() + 1);
                         o.applyRepeller(w);
                     }
                     if(o.atWall(w)== "DOWN" && o.getDir() == "DOWN"){

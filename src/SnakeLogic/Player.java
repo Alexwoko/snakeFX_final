@@ -165,19 +165,19 @@ pos.y = (int)pos.y;
 
 public String atWall(Wall w){
 
-        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + w.getWidth()) && (this.pos.y - 1) == w.getY()){
+        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + 40) && (this.pos.y - 1) == w.getY()){
            if(w.getAxis().equals("HORIZONTAL"))
                return "DOWN";
         }
-        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + w.getWidth()) && this.pos.y == w.getY()){
+        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + 40) && this.pos.y == w.getY()){
             if(w.getAxis().equals("HORIZONTAL"))
                 return "UP";
         }
-        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + w.getHeight()) && (this.pos.x - 1) == w.getX()){
+        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + (2 * 17.85f)) && (this.pos.x - 1) == w.getX()){
             if(w.getAxis().equals("VERTICAL")){
                 return "RIGHT";
             }
-            if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + w.getHeight()) && this.pos.x == w.getX()){
+            if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + (2 * 17.85f)) && this.pos.x == w.getX()){
                 if(w.getAxis().equals("VERTICAL")){
                     return "LEFT";
                 }
