@@ -31,13 +31,18 @@ public class Controller {
     private Node[][] grid;
     private List<Node> closed = new ArrayList<>();
     private List<Node> myPath = new ArrayList<>();
+    private boolean showPath = false;
+    private boolean showUnwalkables = false;
+    private long startMillis = System.currentTimeMillis();
+    private long currentMillis;
+    private long counter = 0;
 
     private MathVector target = new MathVector(25, 18);
 
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
 
-  //  private ArrayList<Item> items = new ArrayList<Item>();
+    //  private ArrayList<Item> items = new ArrayList<Item>();
 
     private Wall[][] walls = new Wall[29][19];
 
@@ -56,19 +61,29 @@ public class Controller {
     {
 
 
-     //   AddItems();
+        //   AddItems();
         createGrid();
         addWalls();
-
-
-
         calculateFields();
         getRandomPosition();
+
+
+
+
+
 
         // Start and control game loop
         new AnimationTimer(){
             long lastUpdate;
             public void handle (long now) {
+
+                counter += 1;
+
+             //   if(counter > 40) {
+
+                   // myBFS(ranRam.getPos().getPos(), target.getPos());
+               // }
+
 
 
 
@@ -76,7 +91,7 @@ public class Controller {
                 {
 
                     lastUpdate = now;
-
+                    myBFS(ranRam.getPos().getPos(), target.getPos());
                     update(now);
 
                 }             }
@@ -98,21 +113,11 @@ public class Controller {
                         grid[x][y].walkable = false;
                         grid[x +1 ][y].walkable = false;
                     }
-
-                   // grid[x][y].walkable = false;
                 }
             }
         }
     }
 
-    /*
-    private void AddItems() {
-
-        items.add(new Item(Color.GREEN, 3,3));
-        items.add(new Item(Color.RED, 12,9));
-
-    }
-    */
 
     public void keyPressed(KeyCode keyCode)
     {
@@ -144,15 +149,38 @@ public class Controller {
             case W:
                 this.player.moveUp();
                 break;
+            case P:
+
+                showPath = true;
+
+                break;
+            case U:
+
+                showUnwalkables = true;
+
+                break;
         }
 
-        myBFS(ranRam.getPos().getPos(), target.getPos());
-      //  ranRam.randomWalk();
+
+        //  ranRam.randomWalk();
 
         checkEdges(player);
         checkEdges(ranRam);
         reactToWalls(ranRam);
         reactToWalls(player);
+
+
+
+        for (int i = 0; i  < myPath.size(); i++){
+
+            Node n = myPath.get(i);
+            ranRam.setX(n.pos.x);
+            ranRam.setY(n.pos.y);
+            break;
+        }
+
+
+
         player.update();
         ranRam.update();
 
@@ -187,14 +215,6 @@ public class Controller {
         // Clears the whole screen before re-drawing
         g.clearRect(0,0,width*fieldWidth ,height*fieldHeight);
 
-        /*
-        // draw items
-        for (Item item : items)
-        {
-            g.setFill(item.getColor());
-            g.fillRoundRect(item.getX() * fieldWidth, item.getY() * fieldHeight, fieldWidth, fieldHeight, 5,5);
-        }
-        */
 
         g.setFill(Color.BLACK);
         g.fillOval(target.x * fieldWidth, target.y * fieldHeight, 20, 20);
@@ -205,28 +225,13 @@ public class Controller {
             for(int y = 0; y < 20; y++){
                 if(x%2==0 && y%3==0) {
                     walls[x][y].update();
-                    //  System.out.println(walls[x][y].getX() + walls[x][y].getY());
 
                     g.setFill(Color.BLACK);
                     g.fillRoundRect(walls[x][y].getX() * fieldWidth, walls[x][y].getY() * fieldHeight, walls[x][y].getWidth(), walls[x][y].getHeight(), 5, 5);
 
-                    //   g.fillText("T", walls[x][y].getX() * fieldWidth, walls[x][y].getY() * fieldHeight);
                 }
             }
         }
-
-       for (int i = 0; i < 30; i++){
-           for(int j = 0; j < 20; j++){
-
-               if(!grid[i][j].walkable){
-                   g.setFill(Color.RED);
-               }else{
-                   g.setFill(Color.TEAL);
-               }
-              g.fillRoundRect(grid[i][j].pos.x * fieldWidth, grid[i][j].pos.y * fieldHeight, fieldWidth, fieldHeight,3, 3);
-           }
-
-       }
 
 // draw path
         for(Node n: myPath){
@@ -258,7 +263,6 @@ public class Controller {
                     if(o.atWall(w) == "LEFT" && o.getDir() == "LEFT"){
                         o.setX(o.getX() + 1);
                         o.applyRepeller(w);
-                        //   o.setDir("RIGHT");
                     }
                     if(o.atWall(w) == "RIGHT" && o.getDir() == "RIGHT"){
                         o.setX(o.getX() - 1);
@@ -268,7 +272,6 @@ public class Controller {
                     if(o.atWall(w)== "UP" && o.getDir() == "UP"){
                         o.setY(o.getY() + 1);
                         o.applyRepeller(w);
-                        //  o.setDir("DOWN");
 
                     }
 
@@ -306,40 +309,12 @@ public class Controller {
         for (int i = 0; i < 30; i++){
             for(int j = 0; j < 20; j++){
 
-
-
-                    grid[i][j] = new Node(i, j, true);
-
-
-
-                /*
-               if (i == walls[i][j].getX() && j == walls[i][j].getY() && i%2==0 && j%2==0){
-                grid[i][j] = new Node(i, j, false);
-
-                } else{
-                    grid[i][j] = new Node(i, j, true);
-                }
-               */
+                grid[i][j] = new Node(i, j, true);
 
             }
         }
     }
 
-    /*
-    private Node nodeFromPos(MathVector v){
-
-        for(int i = 0; i < 30; i ++){
-            for (int j = 0; j < 20; j++){
-
-                if(v.x == i && v.y == j){
-                  //  Node n = new Node(v.x, v.y, true);
-                    return n;
-                }
-            }
-        }
-        return null;
-    }
-    */
 
     public List<Node> getNeighbours(Node n){
 
@@ -376,7 +351,7 @@ public class Controller {
             currentNode = currentNode.parent;
 
         }
-    Collections.reverse(thePath);
+        Collections.reverse(thePath);
         myPath = thePath;
 
 
@@ -384,51 +359,48 @@ public class Controller {
 
     public void myBFS(MathVector startPos, MathVector endPos){
 
-      List<Node> openList = new ArrayList<>();
-      List<Node> closedList = new ArrayList<>();
+        List<Node> openList = new ArrayList<>();
+        List<Node> closedList = new ArrayList<>();
 
-      Node currentNode;
-     // Node startNode = nodeFromPos(startPos);
+        Node currentNode;
 
-      Node startNode = new Node(startPos.x, startPos.y, true);
-      Node targetNode = new Node(endPos.x, endPos.y, true);
-     // targetNode.pos.x = endPos.x;
-     // targetNode.pos.y = endPos.y;
+        Node startNode = new Node(startPos.x, startPos.y, true);
+        Node targetNode = new Node(endPos.x, endPos.y, true);
 
-     // Node targetNode = nodeFromPos(endPos);
         openList.add(startNode);
 
-      while(!openList.isEmpty()){
+        while(!openList.isEmpty()){
 
-          currentNode = openList.get(0);
-          openList.remove(currentNode);
-          closedList.add(currentNode);
+            currentNode = openList.get(0);
+            openList.remove(currentNode);
+            closedList.add(currentNode);
 
 
-          //   if(currentNode.pos.getPos() == targetNode.pos.getPos()){
-          if(currentNode.pos.x == targetNode.pos.x && currentNode.pos.y == targetNode.pos.y){
-              targetNode = currentNode;
-              closed = closedList;
-              retracePath(startNode, targetNode);
-              return;
+            //   if(currentNode.pos.getPos() == targetNode.pos.getPos()){
+            if(currentNode.pos.x == targetNode.pos.x && currentNode.pos.y == targetNode.pos.y){
+                targetNode = currentNode;
+                closed = closedList;
+                retracePath(startNode, targetNode);
+                return;
 
-          }
-
-         for (Node n : getNeighbours(currentNode)){
-
-            if(closedList.contains(n) || !n.walkable){
-               continue;
             }
-            if(!openList.contains(n)){
-                n.parent = currentNode;
-                openList.add(n);
-            }
-           }
 
-      }
+            for (Node n : getNeighbours(currentNode)){
+
+                if(closedList.contains(n) || !n.walkable){
+                    continue;
+                }
+                if(!openList.contains(n)){
+                    n.parent = currentNode;
+                    openList.add(n);
+                }
+            }
+
+        }
 
 
     }
+
 
     class Node{
 
@@ -442,7 +414,7 @@ public class Controller {
         public Node(int x, int y, boolean walkable){
 
             pos = new MathVector(x, y);
-          //  childNodes = new ArrayList<>();
+            //  childNodes = new ArrayList<>();
             parent = null;
             this.walkable = walkable;
 
