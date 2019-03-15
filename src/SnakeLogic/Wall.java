@@ -5,35 +5,30 @@ import java.util.Random;
 public class Wall extends Item{
 
 
-   private float width;
-   private float height;
-   String axis;
-   private final float strength;
+    private float width;
+    private float height;
+    private String axis;
+    private final float strength;
     private float finalWidth, finalHeight;
-   // public int[][] neighbours;
+
 
 
     public Wall(javafx.scene.paint.Color color, int x, int y) {
 
-       // set color and position
+        // set color and position
         super(color, x, y);
         strength = 1f;
-      //  neighbours = new int[3][3];
 
     }
 
     public void update(){
 
-    this.setX(this.getX());
-    this.setY(this.getY());
-    this.width = getWidth();
-    this.height = getHeight();
-
+        this.setX(this.getX());
+        this.setY(this.getY());
+        this.width = getWidth();
+        this.height = getHeight();
 
     }
-
-    public float getFinalWidth(){return finalWidth;}
-    public float getFinalHeight(){return finalHeight;}
 
     public float getWidth() {
         return width;
@@ -66,23 +61,23 @@ public class Wall extends Item{
 
     public void setProportions(){
 
-       finalWidth = ranNumInRange(20, 30);
-       finalHeight = ranNumInRange(20, 30);
+        finalWidth = ranNumInRange(20, 30);
+        finalHeight = ranNumInRange(20, 30);
 
-       // Horizontal
-       if(finalWidth >= finalHeight){
-           finalHeight = 1;
-           finalWidth = 40;
-           setAxis("HORIZONTAL");
-           // Vertical
-       } else if(finalHeight > finalWidth){
-           setAxis("VERTICAL");
-           finalWidth = 1;
-           finalHeight = 17.85f * 2;
-       }
+        // Horizontal
+        if(finalWidth >= finalHeight){
+            finalHeight = 1;
+            finalWidth = 40;
+            setAxis("HORIZONTAL");
+            // Vertical
+        } else if(finalHeight > finalWidth){
+            setAxis("VERTICAL");
+            finalWidth = 1;
+            finalHeight = 17.85f * 2;
+        }
 
-      this.setWidth(finalWidth);
-      this.setHeight(finalHeight);
+        this.setWidth(finalWidth);
+        this.setHeight(finalHeight);
 
     }
 
@@ -127,27 +122,6 @@ public class Wall extends Item{
         }
     }
 
-  /*
-    public int[][] findNeighbours(Wall w){
-
-        int[][] neighbours = new int[3][3];
-        for(int i = (int)w.getX()-1; i < w.getX() + 1; i++){
-            for (int j = (int)w.getX()-1; j < w.getY() + 1; j++){
-
-                if(i != 0 && j != 0) {
-                w.neighbours[i][j] = neighbours[i][j];
-                }
-
-                return w.neighbours;
-
-            }
-
-        }
-        return null;
-    }
-    */
-
-
     public String toString(){
 
         StringBuilder sb = new StringBuilder();
@@ -158,8 +132,5 @@ public class Wall extends Item{
         sb.append(" Orientation = " + axis);
         return sb.toString();
 
-
     }
-
-
 }

@@ -23,14 +23,7 @@ public interface GameObject {
     void applyRepeller(Wall wall);
     void applyForce(MathVector force);
     String toString();
-    void setDownN(boolean downN);
-    void setRightN(boolean rightN);
-    void setLeftN(boolean leftN);
-    void setTopN(boolean topN);
-    boolean hasRightN();
-    boolean hasLeftN();
-    boolean hasTopN();
-    boolean hasDownN();
+
     String atWall(Wall w);
 
 

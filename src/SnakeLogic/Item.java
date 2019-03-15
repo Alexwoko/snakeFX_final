@@ -7,15 +7,13 @@ import javafx.scene.paint.Color;
  */
 public class Item {
     private Color Color;
-   // private int x;
-  //  private int y;
+
     MathVector pos;
 
     public Item(Color color, int x, int y) {
         Color = color;
-     pos = new MathVector(x, y);
-       // pos.x = x;
-       // pos.y = y;
+        pos = new MathVector(x, y);
+
     }
 
     public Color getColor() {

@@ -18,6 +18,18 @@ public class MathVector {
 
     }
 
+    public void setPos(MathVector pos){
+        pos = new MathVector(this.x, this.y);
+
+    }
+
+    public MathVector getPos(){
+          MathVector v = new MathVector(this.x, this.y);
+
+        return v;
+    }
+
+
     public MathVector add(MathVector in){
 
 
@@ -45,18 +57,18 @@ public class MathVector {
 
 
     }
-        public void mult(int in){
+    public void mult(int in){
 
 
-            this.x = this.x * in;
-            this.y = this.y * in;
+        this.x = this.x * in;
+        this.y = this.y * in;
 
     }
 
     public double mag(){
 
-       double result = Math.sqrt((this.x * this.x) + (this.y * this.y));
-       return result;
+        double result = Math.sqrt((this.x * this.x) + (this.y * this.y));
+        return result;
 
     }
 
