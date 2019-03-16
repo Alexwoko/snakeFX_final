@@ -19,7 +19,9 @@ public class MathVector {
     }
 
     public void setPos(MathVector pos){
-        pos = new MathVector(this.x, this.y);
+       // pos = new MathVector(this.x, this.y);
+        this.x = pos.x;
+       this.y = pos.y;
 
     }
 

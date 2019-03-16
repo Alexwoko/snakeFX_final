@@ -37,7 +37,8 @@ public class Controller {
     private long currentMillis;
     private long counter = 0;
 
-    private MathVector target = new MathVector(25, 18);
+    private MathVector target = new MathVector(0, 0);
+
 
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
@@ -64,6 +65,9 @@ public class Controller {
         //   AddItems();
         createGrid();
         addWalls();
+        targetPos();
+
+
         calculateFields();
         getRandomPosition();
 
@@ -170,15 +174,15 @@ public class Controller {
         reactToWalls(player);
 
 
+//if(myBFS(ranRam.getPos(), target)) {
+    for (int i = 0; i < myPath.size(); i++) {
 
-        for (int i = 0; i  < myPath.size(); i++){
-
-            Node n = myPath.get(i);
-            ranRam.setX(n.pos.x);
-            ranRam.setY(n.pos.y);
-            break;
-        }
-
+        Node n = myPath.get(i);
+        ranRam.setX(n.pos.x);
+        ranRam.setY(n.pos.y);
+        break;
+    }
+//}
 
 
         player.update();
@@ -192,6 +196,35 @@ public class Controller {
     /**
      * Get a random position
      */
+
+    private void targetPos(){
+
+        MathVector pos = new MathVector(random.nextInt(width), random.nextInt(height));
+
+        target.setPos(pos);
+
+        for(int i = 0; i < width; i ++){
+            for (int j = 0; j < height; j++){
+
+
+                    if (target.x == i && target.y == j && !isWalkable(grid[i][j])) {
+                        System.out.println("In if");
+                        targetPos();
+                       // pos = new MathVector(random.nextInt(width), random.nextInt(height));
+
+                      //  target.setPos(pos);
+
+                    }else{
+                      //  break;
+
+                    }
+
+            }
+
+        }
+
+
+    }
 
     private void getRandomPosition() {
         this.player.setX(random.nextInt(width));
@@ -220,7 +253,21 @@ public class Controller {
         g.fillOval(target.x * fieldWidth, target.y * fieldHeight, 20, 20);
 
 
-// draw walls
+
+
+        for(int i = 0; i < 30; i++){
+            for(int j = 0; j < 20; j++){
+
+                if(!grid[i][j].walkable){
+                    g.setFill(Color.RED);
+                   g.fillRoundRect(grid[i][j].pos.x * fieldWidth, grid[i][j].pos.y * fieldHeight, fieldWidth, fieldHeight, 3, 3);
+                }
+
+            }
+
+        }
+
+        // draw walls
         for(int x = 0; x < 30; x++){
             for(int y = 0; y < 20; y++){
                 if(x%2==0 && y%3==0) {
@@ -232,6 +279,7 @@ public class Controller {
                 }
             }
         }
+
 
 // draw path
         for(Node n: myPath){
@@ -375,13 +423,12 @@ public class Controller {
             openList.remove(currentNode);
             closedList.add(currentNode);
 
-
-            //   if(currentNode.pos.getPos() == targetNode.pos.getPos()){
             if(currentNode.pos.x == targetNode.pos.x && currentNode.pos.y == targetNode.pos.y){
                 targetNode = currentNode;
                 closed = closedList;
                 retracePath(startNode, targetNode);
-                return;
+              //  return true;
+               return;
 
             }
 
@@ -397,8 +444,26 @@ public class Controller {
             }
 
         }
+//return false;
 
+    }
 
+    boolean isWalkable(Node n){
+
+        for(int i = 0; i < 30; i++){
+            for (int j = 0; j < 20; j++){
+
+               if(n.pos.x == i && n.pos.y == j) {
+
+                   if (grid[i][j].walkable) {
+                       return true;
+                   } else {
+                       return false;
+                   }
+               }
+            }
+        }
+        return false;
     }
 
 
@@ -431,6 +496,7 @@ public class Controller {
             sb.append(" Y = " + pos.y);
             sb.append(" Parent node = " + parent);
             sb.append(" child node = " + child);
+            sb.append(" is walkable = " + walkable);
 
             return sb.toString();
 
