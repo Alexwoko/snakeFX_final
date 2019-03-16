@@ -19,7 +19,6 @@ public class MathVector {
     }
 
     public void setPos(MathVector pos){
-       // pos = new MathVector(this.x, this.y);
         this.x = pos.x;
        this.y = pos.y;
 
@@ -80,16 +79,13 @@ public class MathVector {
         if(m != 0){
             this.div((int)m);
         }
-
-
     }
 
-    public void setMag(int len){
+    public void setMag(int magnitude){
 
         MathVector myV = this;
         myV.normalize();
-        myV.mult(len);
-
+        myV.mult(magnitude);
     }
 
     public void limit(int max){
@@ -99,5 +95,4 @@ public class MathVector {
             this.setMag(max);
         }
     }
-
 }

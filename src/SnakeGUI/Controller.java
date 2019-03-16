@@ -31,11 +31,7 @@ public class Controller {
     private Node[][] grid;
     private List<Node> closed = new ArrayList<>();
     private List<Node> myPath = new ArrayList<>();
-    private boolean showPath = false;
-    private boolean showUnwalkables = false;
-    private long startMillis = System.currentTimeMillis();
-    private long currentMillis;
-    private long counter = 0;
+
 
     private MathVector target = new MathVector(0, 0);
 
@@ -81,16 +77,6 @@ public class Controller {
             long lastUpdate;
             public void handle (long now) {
 
-                counter += 1;
-
-             //   if(counter > 40) {
-
-                   // myBFS(ranRam.getPos().getPos(), target.getPos());
-               // }
-
-
-
-
                 if (now > lastUpdate + refreshRate * 1000000)
                 {
 
@@ -103,8 +89,8 @@ public class Controller {
     }
 
     private void addWalls(){
-        for(int x = 0; x < 30; x++){
-            for(int y = 0; y < 20; y++){
+        for(int x = 0; x < width; x++){
+            for(int y = 0; y < height; y++){
 
                 if(x%2 == 0 && y % 3 == 0) {
                     walls[x][y] = new Wall(Color.BLACK, x , y);
@@ -153,19 +139,8 @@ public class Controller {
             case W:
                 this.player.moveUp();
                 break;
-            case P:
 
-                showPath = true;
-
-                break;
-            case U:
-
-                showUnwalkables = true;
-
-                break;
         }
-
-
         //  ranRam.randomWalk();
 
         checkEdges(player);
@@ -173,8 +148,7 @@ public class Controller {
         reactToWalls(ranRam);
         reactToWalls(player);
 
-
-//if(myBFS(ranRam.getPos(), target)) {
+        // Walk the path
     for (int i = 0; i < myPath.size(); i++) {
 
         Node n = myPath.get(i);
@@ -182,14 +156,11 @@ public class Controller {
         ranRam.setY(n.pos.y);
         break;
     }
-//}
-
 
         player.update();
         ranRam.update();
 
         drawCanvas();
-
 
     }
 
@@ -199,7 +170,7 @@ public class Controller {
 
     private void targetPos(){
 
-        MathVector pos = new MathVector(random.nextInt(width), random.nextInt(height));
+        MathVector pos = new MathVector(random.nextInt(width) , random.nextInt(height));
 
         target.setPos(pos);
 
@@ -208,22 +179,13 @@ public class Controller {
 
 
                     if (target.x == i && target.y == j && !isWalkable(grid[i][j])) {
-                        System.out.println("In if");
                         targetPos();
-                       // pos = new MathVector(random.nextInt(width), random.nextInt(height));
-
-                      //  target.setPos(pos);
 
                     }else{
-                      //  break;
 
                     }
-
             }
-
         }
-
-
     }
 
     private void getRandomPosition() {
@@ -253,23 +215,20 @@ public class Controller {
         g.fillOval(target.x * fieldWidth, target.y * fieldHeight, 20, 20);
 
 
-
-
-        for(int i = 0; i < 30; i++){
-            for(int j = 0; j < 20; j++){
+// draw unwalkable
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
 
                 if(!grid[i][j].walkable){
                     g.setFill(Color.RED);
-                   g.fillRoundRect(grid[i][j].pos.x * fieldWidth, grid[i][j].pos.y * fieldHeight, fieldWidth, fieldHeight, 3, 3);
+                  // g.fillRoundRect(grid[i][j].pos.x * fieldWidth, grid[i][j].pos.y * fieldHeight, fieldWidth, fieldHeight, 3, 3);
                 }
-
             }
-
         }
 
         // draw walls
-        for(int x = 0; x < 30; x++){
-            for(int y = 0; y < 20; y++){
+        for(int x = 0; x < width; x++){
+            for(int y = 0; y < height; y++){
                 if(x%2==0 && y%3==0) {
                     walls[x][y].update();
 
@@ -301,8 +260,8 @@ public class Controller {
     public void reactToWalls(GameObject o) {
 
 
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 20; j++) {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
 
                 if(i%2 == 0 && j %3 == 0){
 
@@ -333,7 +292,6 @@ public class Controller {
         }
     }
 
-
     void checkEdges(GameObject o){
 
         if(o.getX() * fieldWidth > canvas.getWidth() - fieldWidth){
@@ -350,12 +308,13 @@ public class Controller {
             o.setY(19);
         }
     }
+
     void createGrid(){
 
         grid = new Node[30][20];
 
-        for (int i = 0; i < 30; i++){
-            for(int j = 0; j < 20; j++){
+        for (int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
 
                 grid[i][j] = new Node(i, j, true);
 
@@ -427,7 +386,6 @@ public class Controller {
                 targetNode = currentNode;
                 closed = closedList;
                 retracePath(startNode, targetNode);
-              //  return true;
                return;
 
             }
@@ -444,14 +402,13 @@ public class Controller {
             }
 
         }
-//return false;
 
     }
 
     boolean isWalkable(Node n){
 
-        for(int i = 0; i < 30; i++){
-            for (int j = 0; j < 20; j++){
+        for(int i = 0; i < width; i++){
+            for (int j = 0; j < height; j++){
 
                if(n.pos.x == i && n.pos.y == j) {
 
@@ -470,24 +427,19 @@ public class Controller {
     class Node{
 
         MathVector pos;
-        Node child;
         Node parent;
-        Node root;
+
         boolean walkable;
-        List<Node> childNodes;
+
 
         public Node(int x, int y, boolean walkable){
 
             pos = new MathVector(x, y);
-            //  childNodes = new ArrayList<>();
             parent = null;
             this.walkable = walkable;
 
         }
 
-
-        public void setChild(Node n){this.child = n;}
-        public Node getChild(){return child;}
 
         public String toString(){
 
@@ -495,7 +447,6 @@ public class Controller {
             sb.append("x = " + pos.x);
             sb.append(" Y = " + pos.y);
             sb.append(" Parent node = " + parent);
-            sb.append(" child node = " + child);
             sb.append(" is walkable = " + walkable);
 
             return sb.toString();
