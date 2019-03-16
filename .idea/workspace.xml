@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/SnakeLogic/MovingObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SnakeLogic/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SnakeLogic/RandomRambler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/RandomRambler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SnakeGUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeGUI/Controller.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,7 +64,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
+            <state relative-caret-position="60">
               <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -79,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4785">
-              <caret line="319" lean-forward="true" selection-start-line="319" selection-end-line="319" />
+            <state relative-caret-position="362">
+              <caret line="395" column="58" selection-start-line="395" selection-start-column="58" selection-end-line="395" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,7 +92,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MathVector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
+            <state relative-caret-position="1440">
               <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
             </state>
           </provider>
@@ -104,7 +102,7 @@
         <entry file="file://$PROJECT_DIR$/src/SnakeLogic/GameObject.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="465">
-              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
             </state>
           </provider>
         </entry>
@@ -129,10 +127,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="4" selection-start-line="4" selection-end-line="4" />
-              <folding>
-                <element signature="e#205#206#0" expanded="true" />
-                <element signature="e#232#233#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -146,15 +140,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SnakeLogic/RandomRambler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-              <folding>
-                <element signature="e#153#154#0" expanded="true" />
-                <element signature="e#180#181#0" expanded="true" />
-              </folding>
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -162,8 +152,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Wall.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1316">
-              <caret line="94" column="5" lean-forward="true" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+            <state relative-caret-position="1290">
+              <caret line="94" column="5" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
               <folding>
                 <element signature="e#659#660#0" expanded="true" />
                 <element signature="e#693#694#0" expanded="true" />
@@ -209,20 +199,18 @@
         <option value="$PROJECT_DIR$/src/SnakeLogic/GameObject.java" />
         <option value="$PROJECT_DIR$/src/SnakeLogic/Wall.java" />
         <option value="$PROJECT_DIR$/src/SnakeLogic/Item.java" />
-        <option value="$PROJECT_DIR$/src/SnakeGUI/Controller.java" />
         <option value="$PROJECT_DIR$/src/SnakeLogic/MathVector.java" />
         <option value="$PROJECT_DIR$/src/SnakeLogic/MovingObject.java" />
         <option value="$PROJECT_DIR$/src/SnakeLogic/RandomRambler.java" />
         <option value="$PROJECT_DIR$/src/SnakeLogic/Player.java" />
+        <option value="$PROJECT_DIR$/src/SnakeGUI/Controller.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1" />
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1440" />
-    <option name="height" value="877" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -233,8 +221,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -275,7 +263,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552748202681" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552748297056" />
     <property name="dynamic.classpath" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -527,23 +515,23 @@
       <workItem from="1552337520150" duration="23483000" />
       <workItem from="1552474129048" duration="3664000" />
       <workItem from="1552502819191" duration="2372000" />
-      <workItem from="1552596963073" duration="30327000" />
+      <workItem from="1552596963073" duration="30438000" />
+      <workItem from="1552756090070" duration="344000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163013000" />
+    <option name="totallyTimeSpent" value="163468000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="24" width="1440" height="877" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
       <window_info id="Image Layers" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Favorites" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Nl-Palette" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.6703755" visible="true" weight="0.14592275" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.6703755" visible="true" weight="0.14806867" />
       <window_info id="Palette&#9;" order="6" />
       <window_info id="Structure" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Application Servers" order="0" />
@@ -555,7 +543,7 @@
       <window_info anchor="bottom" id="Messages" order="6" weight="0.32611465" />
       <window_info anchor="bottom" id="Message" order="7" />
       <window_info anchor="bottom" id="Find" order="8" weight="0.32891566" />
-      <window_info active="true" anchor="bottom" id="Run" order="9" visible="true" weight="0.14267516" />
+      <window_info anchor="bottom" id="Run" order="9" weight="0.14216867" />
       <window_info anchor="bottom" id="Debug" order="10" weight="0.35414013" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
@@ -619,12 +607,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Lion.java" />
     <entry file="file://$PROJECT_DIR$/src/SnakeGUI/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="240" selection-start-line="12" selection-start-column="240" selection-end-line="12" selection-end-column="240" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/javafx.base/javafx/beans/property/DoublePropertyBase.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -691,7 +679,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
+        <state relative-caret-position="60">
           <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -703,20 +691,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MathVector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4785">
-          <caret line="319" lean-forward="true" selection-start-line="319" selection-end-line="319" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="1440">
+          <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MathVector.java">
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/GameObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
+        <state relative-caret-position="465">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
@@ -733,23 +718,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/GameObject.java">
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Wall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1316">
-          <caret line="94" column="5" lean-forward="true" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
-          <folding>
-            <element signature="e#659#660#0" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#797#798#0" expanded="true" />
-            <element signature="e#833#834#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
@@ -760,24 +732,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/RandomRambler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Wall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1290">
+          <caret line="94" column="5" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
           <folding>
-            <element signature="e#205#206#0" expanded="true" />
-            <element signature="e#232#233#0" expanded="true" />
+            <element signature="e#659#660#0" expanded="true" />
+            <element signature="e#693#694#0" expanded="true" />
+            <element signature="e#797#798#0" expanded="true" />
+            <element signature="e#833#834#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/RandomRambler.java">
+    <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="362">
+          <caret line="395" column="58" selection-start-line="395" selection-start-column="58" selection-end-line="395" selection-end-column="58" />
           <folding>
-            <element signature="e#153#154#0" expanded="true" />
-            <element signature="e#180#181#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

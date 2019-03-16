@@ -81,7 +81,8 @@ public class Controller {
                 {
 
                     lastUpdate = now;
-                    myBFS(ranRam.getPos().getPos(), target.getPos());
+                    myBFS(ranRam.getPos().getPos(), player.getPos());
+                  //  myBFS(ranRam.getPos().getPos(), target.getPos());
                     update(now);
 
                 }             }
