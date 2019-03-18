@@ -23,7 +23,7 @@ public abstract class MovingObject implements GameObject{
 
         dir = null;
         maxSpeed = 1;
-        maxForce = 1;
+        maxForce = 6;
 
     }
 

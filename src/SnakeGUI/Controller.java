@@ -105,6 +105,11 @@ public class Controller {
                         grid[x +1 ][y].walkable = false;
                     }
                 }
+
+                if(x%2== 0&& y % 3 == 0){
+                    walls[x][y].setStrength(20);
+                }
+
             }
         }
     }

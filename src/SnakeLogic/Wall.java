@@ -8,7 +8,7 @@ public class Wall extends Item{
     private float width;
     private float height;
     private String axis;
-    private final float strength;
+    private float strength;
     private float finalWidth, finalHeight;
 
 
@@ -17,7 +17,7 @@ public class Wall extends Item{
 
         // set color and position
         super(color, x, y);
-        strength = 1f;
+        strength = 8f;
 
     }
 
@@ -29,6 +29,8 @@ public class Wall extends Item{
         this.height = getHeight();
 
     }
+
+    public void setStrength(float s){strength = s;}
 
     public float getWidth() {
         return width;
@@ -97,15 +99,17 @@ public class Wall extends Item{
 
     public MathVector repel(GameObject o){
 
-        MathVector dir = new MathVector(0, 0);
+      //  MathVector dir = new MathVector(0, 0);
+        MathVector dir;
         MathVector oPos = new MathVector(o.getX(), o.getY());
         dir = oPos.sub(this.pos);
 
         float d = (float)dir.mag();
-        d = constrain(d, 0, 1);
+        d = constrain(d, 1, 2);
         dir.normalize();
-        float force = -1 * strength / (d * d);
+        float force =  1 * strength / (d * d);
         dir.mult((int)force);
+        System.out.println(dir);
         return dir;
 
     }
