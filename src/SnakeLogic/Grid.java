@@ -1,5 +1,7 @@
 package SnakeLogic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Grid {
@@ -9,12 +11,16 @@ public class Grid {
     private int frameWidth, frameHeight;
     private int maxWallsInLine;
     private int maxAmount;
+    private int numOFUnwalks;
+    private List<Tile> unwalks = new ArrayList<>();
+
 private String buildDir;
 
 
 
     public Grid(){
 
+        numOFUnwalks = 0;
         this.maxAmount = 0;
         frameWidth = 30;
         frameHeight = 20;
@@ -26,6 +32,7 @@ private String buildDir;
         System.out.println(numOFUnwalkN(tiles[7][0]));
        // System.out.println(hasNeighbour(tiles[frameWidth-1][5]));
       //  System.out.println(maxInLine(tiles[7][0]));
+
 
     }
 
@@ -141,62 +148,76 @@ private void getBuildDir(Tile tile){
 */
 
 
-public int ranNumInRange(int a, int b){
+    public int ranNumInRange(int min, int max){
 
-    
-
-
-}
+        if(min >= max){
+            throw new IllegalArgumentException("Minimum must be smaller than maximum");
+        }else{
+            Random r = new Random();
+            return r.nextInt((max - min) + 1) + min;
+        }
+    }
 
 private void buildWall(Tile tile){
 
-    int checkX;
-    int checkY;
+   // System.out.println(unwalks.size());
 
-    int count = 0;
-    Random ranXOne = new Random();
-    Random ranXTwo = new Random();
-    Random ranYOne = new Random();
-    Random ranYTwo = new Random();
-
-    ranXOne.nextInt(-1);
-    ranXTwo.nextInt(1);
-    ranYOne.nextInt(-1);
-    ranYTwo.nextInt(1);
+  //  int checkX;
+   // int checkY;
 
 
-    for(int i = -1; i <= 1; i++){
-        for (int j = -1; j <= 1; j++) {
-
-            if(i == 0 && j == 0){
-                continue;
-            } else{
+    // Find to tilfældige tal mellem  -1 og 1
+   int ranX = ranNumInRange(-1, 1);
+int ranY = ranNumInRange(-1, 1);
 
 
+// Tallet oversættes i relation til this.tile
 
-                checkX = tile.pos.x + i;
-                checkY = tile.pos.y + j;
+                ranX = tile.pos.x + ranX;
+                ranY = tile.pos.y + ranY;
 
-            }
+                //Hvis tallet er lig med this.tile position - recursive
 
-            if(checkX >= 0 && checkX <= frameWidth-1 && checkY >= 0 && checkY <= frameHeight-1){
-
-                if(numOFUnwalkN(tile) <= 2 && numOFUnwalkN(tiles[checkX][checkY]) < 2 && !tiles[checkX][checkY].getUnwalkable()){
-                  //  if(numOFUnwalkN(tile) <= 1 && nu){
-
-
-
-                  //  tile.setUnwalkable(true);
-                   tiles[checkX][checkY].setUnwalkable(true);
-                   buildWall(tiles[checkX][checkY]);
-
+                if(ranX == tile.pos.x && ranY == tile.pos.y){
+                    buildWall(tile);
                 }
 
 
+// hvis der er under 200 unwalks (rammen udgør 127)
+    if(numOFUnwalks == 130) {
+return;
+    }
+        // Hvis tiles[ranX][ranY] er inden for rammen
+
+        if (ranX >= 0 && ranX <= frameWidth - 1 && ranY >= 0 && ranY <= frameHeight - 1) {
+
+
+            // Hvis der er 2 eller færere naboer til this.tile -- hvis der er 2 eller færere naboer til tiles[ranX][ranY] -- hvis listen ikke allerede indeholder tiles[ranX][ranY]
+
+            if (numOFUnwalkN(tile) <= 2 && numOFUnwalkN(tiles[ranX][ranY]) <= 1 && !unwalks.contains(tiles[ranX][ranY])) {
+
+                unwalks.add(tiles[ranX][ranY]);
+                numOFUnwalks += 1;
+                tiles[ranX][ranY].setUnwalkable(true);
+                buildWall(tiles[ranX][ranY]);
+
+
+            } else {
+                buildWall(tiles[ranX][ranY]);
             }
 
+
+/*
+                    else{
+                        buildWall(tile);
+                    }
+*/
+
+
         }
-        }
+
+
+//return 0;
 
 
 }
@@ -273,8 +294,12 @@ private void buildWall(Tile tile){
 
         for(int i = 0; i < frameWidth; i++){
 
+
             tiles[i][0].setUnwalkable(true);
             tiles[i][frameHeight-1].setUnwalkable(true);
+            unwalks.add(tiles[i][0]);
+            unwalks.add(tiles[i][frameHeight -1]);
+
 
         }
 
@@ -282,6 +307,8 @@ private void buildWall(Tile tile){
 
             tiles[0][i].setUnwalkable(true);
             tiles[frameWidth-1][i].setUnwalkable(true);
+            unwalks.add(tiles[0][i]);
+            unwalks.add(tiles[frameWidth - 1][i]);
 
         }
 
@@ -302,6 +329,16 @@ private void buildWall(Tile tile){
         }
     }
 
+    /*
+    public String toString(){
+
+
+
+
+
+
+    }
+*/
 
 
     /*
