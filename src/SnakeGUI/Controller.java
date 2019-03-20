@@ -260,6 +260,45 @@ public class Controller {
         }
     }
 
+    public void reactToWalls(GameObject o) {
+
+
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+
+                if(myGrid.tiles[i][j].getUnwalkable()) {
+
+                    Grid.Tile t = myGrid.tiles[i][j];
+
+                    if (o.atWall(t) == "LEFT" && o.getDir() == "LEFT") {
+                        o.setX(o.getX() + 1);
+                        o.applyRepeller(t);
+                    }
+                    if (o.atWall(t) == "RIGHT" && o.getDir() == "RIGHT") {
+                        o.setX(o.getX() - 1);
+                        o.applyRepeller(w);
+                        o.setDir("LEFT");
+                    }
+                    if (o.atWall(w) == "UP" && o.getDir() == "UP") {
+                        o.setY(o.getY() + 1);
+                        o.applyRepeller(w);
+
+                    }
+
+                    if (o.atWall(w) == "DOWN" && o.getDir() == "DOWN") {
+                        o.setY(o.getY() - 1);
+                        o.applyRepeller(w);
+                        o.setDir("UP");
+                    }
+
+                }
+            }
+        }
+    }
+
+
+
+
  /*
 
 
