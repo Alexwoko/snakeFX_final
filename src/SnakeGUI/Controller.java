@@ -28,9 +28,14 @@ public class Controller {
     private float refreshRate =150;
     private Player player = new Player(0, 0);
     private RandomRambler ranRam = new RandomRambler(3, 3);
-    private Node[][] grid;
-    private List<Node> closed = new ArrayList<>();
-    private List<Node> myPath = new ArrayList<>();
+    Grid myGrid = new Grid();
+
+  //  private Node[][] grid;
+ //   private List<Node> closed = new ArrayList<>();
+  //  private List<Node> myPath = new ArrayList<>();
+
+
+
 
 
     private MathVector target = new MathVector(0, 0);
@@ -41,7 +46,7 @@ public class Controller {
 
     //  private ArrayList<Item> items = new ArrayList<Item>();
 
-    private Wall[][] walls = new Wall[29][19];
+
 
     public void btnStartAction(ActionEvent event)
     {
@@ -57,17 +62,15 @@ public class Controller {
     public void initialize()
     {
 
-
-        //   AddItems();
-        createGrid();
-        addWalls();
-        targetPos();
+       // createGrid();
+      //  addWalls();
+      //  targetPos();
 
 
         calculateFields();
         getRandomPosition();
 
-
+     //  myMaze.initialize();
 
 
 
@@ -81,7 +84,7 @@ public class Controller {
                 {
 
                     lastUpdate = now;
-                    myBFS(ranRam.getPos().getPos(), player.getPos());
+                 //   myBFS(ranRam.getPos().getPos(), player.getPos());
                   //  myBFS(ranRam.getPos().getPos(), target.getPos());
                     update(now);
 
@@ -89,30 +92,6 @@ public class Controller {
         }.start();
     }
 
-    private void addWalls(){
-        for(int x = 0; x < width; x++){
-            for(int y = 0; y < height; y++){
-
-                if(x%2 == 0 && y % 3 == 0) {
-                    walls[x][y] = new Wall(Color.BLACK, x , y);
-                    walls[x][y].setProportions();
-
-                    if(walls[x][y].getAxis().equals("VERTICAL")){
-                        grid[x][y].walkable = false;
-                        grid[x][y + 1].walkable = false;
-                    }else if(walls[x][y].getAxis().equals("HORIZONTAL")){
-                        grid[x][y].walkable = false;
-                        grid[x +1 ][y].walkable = false;
-                    }
-                }
-
-                if(x%2== 0&& y % 3 == 0){
-                    walls[x][y].setStrength(20);
-                }
-
-            }
-        }
-    }
 
 
     public void keyPressed(KeyCode keyCode)
@@ -151,9 +130,11 @@ public class Controller {
 
         checkEdges(player);
         checkEdges(ranRam);
-        reactToWalls(ranRam);
-        reactToWalls(player);
+      //  reactToWalls(ranRam);
+      //  reactToWalls(player);
 
+
+        /*
         // Walk the path
     for (int i = 0; i < myPath.size(); i++) {
 
@@ -162,6 +143,7 @@ public class Controller {
         ranRam.setY(n.pos.y);
         break;
     }
+    */
 
         player.update();
         ranRam.update();
@@ -174,6 +156,7 @@ public class Controller {
      * Get a random position
      */
 
+    /*
     private void targetPos(){
 
         MathVector pos = new MathVector(random.nextInt(width) , random.nextInt(height));
@@ -193,6 +176,7 @@ public class Controller {
             }
         }
     }
+    */
 
     private void getRandomPosition() {
         this.player.setX(random.nextInt(width));
@@ -221,6 +205,7 @@ public class Controller {
         g.fillOval(target.x * fieldWidth, target.y * fieldHeight, 20, 20);
 
 
+        /*
 // draw unwalkable
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
@@ -231,27 +216,46 @@ public class Controller {
                 }
             }
         }
+        */
 
+        /*
         // draw walls
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
                 if(x%2==0 && y%3==0) {
-                    walls[x][y].update();
+                 //   walls[x][y].update();
 
                     g.setFill(Color.BLACK);
-                    g.fillRoundRect(walls[x][y].getX() * fieldWidth, walls[x][y].getY() * fieldHeight, walls[x][y].getWidth(), walls[x][y].getHeight(), 5, 5);
+                 //   g.fillRoundRect(walls[x][y].getX() * fieldWidth, walls[x][y].getY() * fieldHeight, walls[x][y].getWidth(), walls[x][y].getHeight(), 5, 5);
 
                 }
             }
         }
-
-
+*/
+/*
 // draw path
         for(Node n: myPath){
             g.setFill(Color.GREEN);
             g.fillRoundRect(n.pos.x * fieldWidth, n.pos.y * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 
         }
+        */
+
+        for(int i = 0; i < myGrid.getFrameWidth(); i++){
+            for (int j = 0; j < myGrid.getFrameHeight(); j++){
+
+                        g.setFill(Color.GREEN);
+                      //  g.setStroke(Color.BLACK);
+                if(myGrid.tiles[i][j].getUnwalkable()){
+                    g.setFill(Color.BLACK);
+                }
+                        g.fillRoundRect(myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight, myGrid.tiles[i][j].getWidth(), myGrid.tiles[i][j].getHeight(), 3, 3);
+                     //   g.fillText("T", myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight);
+
+            }
+        }
+
+
 
         // draw RandomRambler
         g.setFill(Color.PINK);
@@ -263,40 +267,6 @@ public class Controller {
         g.fillRoundRect(this.player.getX() * fieldWidth, this.player.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
     }
 
-    public void reactToWalls(GameObject o) {
-
-
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-
-                if(i%2 == 0 && j %3 == 0){
-
-                    Wall w = walls[i][j];
-
-                    if(o.atWall(w) == "LEFT" && o.getDir() == "LEFT"){
-                        o.setX(o.getX() + 1);
-                        o.applyRepeller(w);
-                    }
-                    if(o.atWall(w) == "RIGHT" && o.getDir() == "RIGHT"){
-                        o.setX(o.getX() - 1);
-                        o.applyRepeller(w);
-                        o.setDir("LEFT");
-                    }
-                    if(o.atWall(w)== "UP" && o.getDir() == "UP"){
-                        o.setY(o.getY() + 1);
-                        o.applyRepeller(w);
-
-                    }
-
-                    if(o.atWall(w)== "DOWN" && o.getDir() == "DOWN"){
-                        o.setY(o.getY() - 1);
-                        o.applyRepeller(w);
-                        o.setDir("UP");
-                    }
-                }
-            }
-        }
-    }
 
     void checkEdges(GameObject o){
 
@@ -315,6 +285,7 @@ public class Controller {
         }
     }
 
+    /*
     void createGrid(){
 
         grid = new Node[30][20];
@@ -411,6 +382,7 @@ public class Controller {
 
     }
 
+    /*
     boolean isWalkable(Node n){
 
         for(int i = 0; i < width; i++){
@@ -463,5 +435,5 @@ public class Controller {
 
     }
 
-
+*/
 }

@@ -55,12 +55,6 @@ public abstract class MovingObject implements GameObject{
 
 
 
-    @Override
-    public void applyRepeller(Wall wall) {
-
-        MathVector force = wall.repel(this);
-        this.applyForce(force);
-    }
 
     @Override
     public void applyForce(MathVector force) {
@@ -82,46 +76,7 @@ public abstract class MovingObject implements GameObject{
         return sb.toString();
     }
 
-    public String atWall(Wall w){
 
-        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + 1) && this.pos.y == w.getY()){
-
-            if(w.getAxis().equals("HORIZONTAL")) {
-                return "UP";
-            }
-        }
-
-        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + 1) && this.pos.x  == w.getX() - 1) {
-            if (w.getAxis().equals("VERTICAL")) {
-                return "RIGHT";
-
-            }
-        }
-
-        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() +1) && this.pos.x == w.getX()){
-
-
-            if(w.getAxis().equals("VERTICAL")){
-                return "LEFT";
-            }
-
-        }
-
-        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + 1) && this.pos.y  == w.getY() - 1){
-
-            if(w.getAxis().equals("HORIZONTAL")) {
-                return "DOWN";
-            }
-        }
-
-
-
-
-
-
-        return null;
-
-    }
 
     @Override
     public void moveRight(){

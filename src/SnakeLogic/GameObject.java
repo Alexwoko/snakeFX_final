@@ -20,11 +20,11 @@ public interface GameObject {
     void moveUp();
     void moveDown();
     void setDir(String dir);
-    void applyRepeller(Wall wall);
+  //  void applyRepeller(Grid.Tile tile);
     void applyForce(MathVector force);
     String toString();
 
-    String atWall(Wall w);
+ //   String atWall(Grid.Tile w);
 
 
 
