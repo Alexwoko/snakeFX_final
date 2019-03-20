@@ -30,6 +30,7 @@ public class Controller {
     private RandomRambler ranRam = new RandomRambler(3, 3);
     Grid myGrid = new Grid();
 
+
   //  private Node[][] grid;
  //   private List<Node> closed = new ArrayList<>();
   //  private List<Node> myPath = new ArrayList<>();
@@ -205,33 +206,7 @@ public class Controller {
         g.fillOval(target.x * fieldWidth, target.y * fieldHeight, 20, 20);
 
 
-        /*
-// draw unwalkable
-        for(int i = 0; i < width; i++){
-            for(int j = 0; j < height; j++){
 
-                if(!grid[i][j].walkable){
-                    g.setFill(Color.RED);
-                  // g.fillRoundRect(grid[i][j].pos.x * fieldWidth, grid[i][j].pos.y * fieldHeight, fieldWidth, fieldHeight, 3, 3);
-                }
-            }
-        }
-        */
-
-        /*
-        // draw walls
-        for(int x = 0; x < width; x++){
-            for(int y = 0; y < height; y++){
-                if(x%2==0 && y%3==0) {
-                 //   walls[x][y].update();
-
-                    g.setFill(Color.BLACK);
-                 //   g.fillRoundRect(walls[x][y].getX() * fieldWidth, walls[x][y].getY() * fieldHeight, walls[x][y].getWidth(), walls[x][y].getHeight(), 5, 5);
-
-                }
-            }
-        }
-*/
 /*
 // draw path
         for(Node n: myPath){
@@ -244,7 +219,7 @@ public class Controller {
         for(int i = 0; i < myGrid.getFrameWidth(); i++){
             for (int j = 0; j < myGrid.getFrameHeight(); j++){
 
-                        g.setFill(Color.GREEN);
+                        g.setFill(Color.LIGHTGRAY);
                       //  g.setStroke(Color.BLACK);
                 if(myGrid.tiles[i][j].getUnwalkable()){
                     g.setFill(Color.BLACK);
@@ -285,19 +260,7 @@ public class Controller {
         }
     }
 
-    /*
-    void createGrid(){
-
-        grid = new Node[30][20];
-
-        for (int i = 0; i < width; i++){
-            for(int j = 0; j < height; j++){
-
-                grid[i][j] = new Node(i, j, true);
-
-            }
-        }
-    }
+ /*
 
 
     public List<Node> getNeighbours(Node n){
@@ -382,58 +345,5 @@ public class Controller {
 
     }
 
-    /*
-    boolean isWalkable(Node n){
-
-        for(int i = 0; i < width; i++){
-            for (int j = 0; j < height; j++){
-
-               if(n.pos.x == i && n.pos.y == j) {
-
-                   if (grid[i][j].walkable) {
-                       return true;
-                   } else {
-                       return false;
-                   }
-               }
-            }
-        }
-        return false;
-    }
-
-
-    class Node{
-
-        MathVector pos;
-        Node parent;
-
-        boolean walkable;
-
-
-        public Node(int x, int y, boolean walkable){
-
-            pos = new MathVector(x, y);
-            parent = null;
-            this.walkable = walkable;
-
-        }
-
-
-        public String toString(){
-
-            StringBuilder sb = new StringBuilder();
-            sb.append("x = " + pos.x);
-            sb.append(" Y = " + pos.y);
-            sb.append(" Parent node = " + parent);
-            sb.append(" is walkable = " + walkable);
-
-            return sb.toString();
-
-
-        }
-
-
-    }
-
-*/
+ */
 }
