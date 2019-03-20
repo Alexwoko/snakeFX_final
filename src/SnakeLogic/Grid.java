@@ -14,6 +14,7 @@ public class Grid {
     private int numOFUnwalks;
     private List<Tile> unwalks = new ArrayList<>();
 
+
     private String buildDir;
 
 
@@ -194,6 +195,7 @@ public class Grid {
         float height;
         Boolean unwalkable, aWall;
         int nCounter;
+        private int strength;
 
         public Tile(int x, int y){
 
@@ -201,6 +203,7 @@ public class Grid {
             width = 20;
             height = 17.5f;
             unwalkable = false;
+           strength = 1;
 
 
         }
@@ -212,7 +215,34 @@ public class Grid {
         public MathVector getPos(){return pos;}
         public void setUnwalkable(boolean unW){this.unwalkable = unW;}
 
+        public MathVector repel(MovingObject o){
 
+            //  MathVector dir = new MathVector(0, 0);
+            MathVector dir;
+            MathVector oPos = new MathVector(o.getX(), o.getY());
+            dir = oPos.sub(this.pos);
+
+            float d = (float)dir.mag();
+            d = constrain(d, 1, 2);
+            dir.normalize();
+            float force =  -1 * strength / (d * d);
+            dir.mult((int)force);
+          //  System.out.println(dir);
+            return dir;
+
+        }
+
+        public float constrain(float x, float a, float b){
+
+            if(x < a){
+                return a;
+            }
+            if(b < x){
+                return b;
+            }else{
+                return x;
+            }
+        }
         
 
         public Boolean getUnwalkable() {return unwalkable;}
