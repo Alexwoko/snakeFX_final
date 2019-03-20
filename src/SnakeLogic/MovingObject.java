@@ -112,7 +112,49 @@ public abstract class MovingObject implements GameObject{
     }
 
 
+    @Override
+    public void applyRepeller(Grid.Tile wall) {
 
+        MathVector force = wall.repel(this);
+        this.applyForce(force);
+    }
+
+
+    public String atWall(Grid.Tile w){
+
+        if(this.pos.x >= w.getX() && this.pos.x <= (w.getX() + 20) && this.pos.y == (w.getY() + 17.85)){
+
+                return "UP";
+
+        }
+
+        /*
+        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + 1) && this.pos.x  == w.getX() - 1) {
+
+                return "RIGHT";
+
+        }
+
+        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() +1) && this.pos.x == w.getX()){
+
+                return "LEFT";
+
+        }
+
+        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + 1) && this.pos.y  == w.getY() - 1){
+
+                return "DOWN";
+
+        }
+*/
+
+
+
+
+
+        return null;
+
+    }
 
 
 

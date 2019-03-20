@@ -212,6 +212,8 @@ public class Grid {
         public void setNCounter(int n){nCounter = n;}
         public float getWidth(){return width;}
         public float getHeight(){return height;}
+        public int getX(){return pos.x;}
+        public int getY(){return pos.y;}
         public MathVector getPos(){return pos;}
         public void setUnwalkable(boolean unW){this.unwalkable = unW;}
 
@@ -221,6 +223,7 @@ public class Grid {
             MathVector dir;
             MathVector oPos = new MathVector(o.getX(), o.getY());
             dir = oPos.sub(this.pos);
+
 
             float d = (float)dir.mag();
             d = constrain(d, 1, 2);

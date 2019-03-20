@@ -132,7 +132,7 @@ public class Controller {
         checkEdges(player);
         checkEdges(ranRam);
       //  reactToWalls(ranRam);
-      //  reactToWalls(player);
+        reactToWalls(player);
 
 
         /*
@@ -260,7 +260,7 @@ public class Controller {
         }
     }
 
-    public void reactToWalls(GameObject o) {
+    public void reactToWalls(MovingObject o) {
 
 
         for (int i = 0; i < width; i++) {
@@ -270,6 +270,12 @@ public class Controller {
 
                     Grid.Tile t = myGrid.tiles[i][j];
 
+                    if(o.atWall(t) == "UP" && o.getDir() == "UP"){
+                        o.setY(o.getY() - 1);
+                        o.applyRepeller(t);
+
+                    }
+                    /*
                     if (o.atWall(t) == "LEFT" && o.getDir() == "LEFT") {
                         o.setX(o.getX() + 1);
                         o.applyRepeller(t);
@@ -290,6 +296,7 @@ public class Controller {
                         o.applyRepeller(w);
                         o.setDir("UP");
                     }
+                    */
 
                 }
             }
