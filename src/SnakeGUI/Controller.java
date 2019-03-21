@@ -266,12 +266,28 @@ public class Controller {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
 
+             //   System.out.println(o.getX() + " w= x");
+              //  System.out.println(o.getY() + " = y");
+             //   System.out.println(myGrid.tiles[i][j].getX() + " = x Tile");
+              //  System.out.println(myGrid.tiles[i][j].getY() + " = y Tile");
+
+                if(o.getDir() == "UP" && o.getY() == myGrid.tiles[i][j + 1].getY() && o.getX() == i){
+                    System.out.println("UP UP UP UP");
+
+
+                   if(myGrid.tiles[i][j].getUnwalkable()){
+                       o.applyRepeller(myGrid.tiles[i][j]);
+                   }
+
+                }
+
+                /*
                 if(myGrid.tiles[i][j].getUnwalkable()) {
 
                     Grid.Tile t = myGrid.tiles[i][j];
 
-                    if(o.atWall(t) == "UP" && o.getDir() == "UP"){
-                        o.setY(o.getY() - 1);
+                    if(o.atWall(t) == "UP" && o.getDir() == "UP" ){
+                    //    o.setY(o.getY());
                         o.applyRepeller(t);
 
                     }
@@ -298,7 +314,8 @@ public class Controller {
                     }
                     */
 
-                }
+             //   }
+
             }
         }
     }

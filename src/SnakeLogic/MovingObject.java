@@ -122,7 +122,8 @@ public abstract class MovingObject implements GameObject{
 
     public String atWall(Grid.Tile w){
 
-        if(this.pos.x >= w.getX() && this.pos.x <= (w.getX() + 20) && this.pos.y == (w.getY() + 17.85)){
+
+        if(this.pos.x >= w.getX() && this.pos.x <= w.pos.x + w.getWidth() && this.pos.y <= w.getHeight()){
 
                 return "UP";
 
