@@ -23,9 +23,27 @@ public abstract class MovingObject implements GameObject{
 
         dir = null;
         maxSpeed = 1;
-        maxForce = 6;
+        maxForce = 2;
 
     }
+
+
+public void stopMoving(String t){
+
+
+        if (t == "up" || t == "right" || t == "left" || t== "down"){
+           // System.out.println("UUUUUUUUUUPPPPPPPPPPPPPPPP!!!");
+            this.vel.mult(0);
+            setAccel(new MathVector(0, 0));
+            this.accel.mult(0);
+        }
+}
+
+
+public void setVel(MathVector newVal){vel = newVal;}
+    public void setAccel(MathVector newVal){accel = newVal;}
+public MathVector getVel(){return vel;}
+public MathVector getAccel(){return accel;}
 
     @Override
     public int getX() {return pos.x;}
@@ -119,15 +137,52 @@ public abstract class MovingObject implements GameObject{
         this.applyForce(force);
     }
 
+/*
+    public Grid.Tile atWall(Grid.Tile[][] ts, Grid grid){
 
-    public String atWall(Grid.Tile w){
+        int checkX;
+        int checkY;
+
+        for(int i = -1; i < 1; i++){
+            for(int j = -1; j < 1; j++){
+
+             if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == -1|| i == -1 && j == 1 || i==1 && j == 1){
+                 continue;
+             }else{
+
+                 checkX = this.pos.x + i;
+                 checkY = this.pos.y + j;
+
+             if(checkX >= 0 && checkX <= grid.getFrameWidth() && checkY >= 0 && checkY <= grid.getFrameHeight()){
+                 if(ts[checkX][checkY].getUnwalkable()){
+                     if(checkY < this.pos.y){
+
+                         return ts[checkX][checkY];
+                     }
+                 }
 
 
-        if(this.pos.x >= w.getX() && this.pos.x <= w.pos.x + w.getWidth() && this.pos.y <= w.getHeight()){
+             }
 
-                return "UP";
+
+            }
+
 
         }
+
+
+    }
+
+    /*
+    public Boolean atWall(Grid.Tile w){
+
+
+        if(this.pos.x == w.getX() && this.pos.y >= w.pos.y + w.getHeight()){
+
+                return true;
+
+        }
+
 
         /*
         if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + 1) && this.pos.x  == w.getX() - 1) {
@@ -147,7 +202,7 @@ public abstract class MovingObject implements GameObject{
                 return "DOWN";
 
         }
-*/
+
 
 
 
@@ -156,7 +211,7 @@ public abstract class MovingObject implements GameObject{
         return null;
 
     }
-
+*/
 
 
 

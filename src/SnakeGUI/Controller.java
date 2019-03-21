@@ -132,7 +132,9 @@ public class Controller {
         checkEdges(player);
         checkEdges(ranRam);
       //  reactToWalls(ranRam);
-        reactToWalls(player);
+     //   reactToWalls(player);
+
+        myGrid.playerScanner(player);
 
 
         /*
@@ -260,35 +262,44 @@ public class Controller {
         }
     }
 
+    /*
     public void reactToWalls(MovingObject o) {
 
 
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        for (int i = 0; i < myGrid.getFrameWidth(); i++) {
+            for (int j = 0; j < myGrid.getFrameHeight(); j++) {
 
              //   System.out.println(o.getX() + " w= x");
               //  System.out.println(o.getY() + " = y");
              //   System.out.println(myGrid.tiles[i][j].getX() + " = x Tile");
               //  System.out.println(myGrid.tiles[i][j].getY() + " = y Tile");
+/*
+                if(j < height - 1){
 
-                if(o.getDir() == "UP" && o.getY() == myGrid.tiles[i][j + 1].getY() && o.getX() == i){
+                if(o.getDir() == "UP" && o.getY() == myGrid.tiles[i][j + 1].getY() && o.getX() == i) {
                     System.out.println("UP UP UP UP");
 
-
+                }
                    if(myGrid.tiles[i][j].getUnwalkable()){
                        o.applyRepeller(myGrid.tiles[i][j]);
                    }
 
                 }
+                */
 
-                /*
-                if(myGrid.tiles[i][j].getUnwalkable()) {
 
-                    Grid.Tile t = myGrid.tiles[i][j];
+            //    if(myGrid.tiles[i][j].getUnwalkable()) {
 
-                    if(o.atWall(t) == "UP" && o.getDir() == "UP" ){
+/*
+
+                    if(o.atWall(myGrid.tiles, myGrid) == myGrid.tiles[i][j] && o.getDir() == "UP"){
+                       // Grid.Tile t = myGrid.tiles[i][j];
+
+                        System.out.println("True");
                     //    o.setY(o.getY());
-                        o.applyRepeller(t);
+                     //  o.setY(t.getY());
+                       o.applyRepeller( myGrid.tiles[i][j]);
+                      //  o.applyRepeller( myGrid.tiles[i][j]);
 
                     }
                     /*
@@ -312,14 +323,14 @@ public class Controller {
                         o.applyRepeller(w);
                         o.setDir("UP");
                     }
-                    */
 
-             //   }
+
+              //  }
 
             }
         }
     }
-
+                */
 
 
 

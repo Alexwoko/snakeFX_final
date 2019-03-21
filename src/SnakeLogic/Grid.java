@@ -40,7 +40,7 @@ public class Grid {
     public int getFrameWidth(){return  frameWidth;}
     public int getFrameHeight(){return frameHeight;}
 
-
+public Tile[][] getTiles(){return tiles;}
 
 
     private void createMaze(){
@@ -49,6 +49,118 @@ public class Grid {
         tiles[5][2].setUnwalkable(true);
 
         buildWall(tiles[5][2]);
+
+
+    }
+
+    public String scan(MovingObject o){
+
+        int checkX;
+        int checkY;
+
+        Tile left, right, up, down;
+
+        for(int i = -1; i <= 1; i++){
+            for(int j = -1; j <= 1; j++){
+
+                checkX = o.getX() + i;
+                checkY = o.getY() + j;
+
+
+                if(checkX >= 0 && checkX <= frameWidth && checkY >= 0 && checkY <= frameHeight) {
+
+                    if (checkX == o.getX() + 1 && checkY == o.getY() && tiles[checkX][checkY].getUnwalkable() && o.getDir() == "RIGHT") {
+                        right = tiles[checkX][checkY];
+                        o.applyRepeller(right);
+                        return "right";
+                    }
+                    if (checkX == o.getX() -1 && checkY == o.getY() && tiles[checkX][checkY].getUnwalkable() && o.getDir() == "LEFT") {
+                        left = tiles[checkX][checkY];
+                        o.applyRepeller(left);
+                        return "left";
+
+                    }
+
+
+                    if (checkX == o.getX() && checkY == o.getY() -1 && tiles[checkX][checkY].getUnwalkable()&& o.getDir() == "UP") {
+                        up = tiles[checkX][checkY];
+                        o.applyRepeller(up);
+                        return "up";
+
+                    }
+                    if (checkX == o.getX() && checkY == o.getY() + 1 && tiles[checkX][checkY].getUnwalkable()&& o.getDir() == "DOWN") {
+                        down = tiles[checkX][checkY];
+                        o.applyRepeller(down);
+                        return "down";
+
+                    }
+
+                }
+
+                /*
+
+                if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == -1 || i == -1 && j == 1 || i == 1 && j == 1){
+                    continue;
+                } else {
+                    checkX = o.getX() + i;
+                    checkY = o.getY() + j;
+
+                    if((checkX >= o.getX() && checkX <= frameWidth - 1) && (checkY >= 0 && checkY <= frameHeight - 1) && tiles[checkX][checkY].getUnwalkable()){
+
+                        if(o.getY() < checkY  && o.getX() == checkX){
+                       //    o.applyRepeller(tiles[checkX][checkY]);
+
+
+                        }
+                        if(o.getY() > checkY && o.getX() == checkX){
+                            o.applyRepeller(tiles[checkX][checkY]);
+                        }
+
+
+
+                        /*
+                    if (tiles[checkX][checkY].getUnwalkable() && o.getY() > checkY && o.getDir() == "UP") {
+                        o.applyRepeller(tiles[checkX][checkY]);
+                    } else if (tiles[checkX][checkY].getUnwalkable() && y < checkY) {
+                        o.applyRepeller(tiles[checkX][checkY]);
+                    } else if (tiles[checkX][checkY].getUnwalkable() && x > checkX) {
+                        o.applyRepeller(tiles[checkX][checkY]);
+                    } else if (tiles[checkX][checkY].getUnwalkable() && x < checkX) {
+                        o.applyRepeller(tiles[checkX][checkY]);
+                    }
+*/
+              //  }
+
+            //    }
+
+
+            }
+        }
+return null;
+
+    }
+
+    public void playerScanner(MovingObject o){
+
+     for(int i = 0; i < frameWidth; i++){
+         for(int j = 0; j <  frameHeight; j++){
+
+             if(o.getX() == i && o.getY() == j && !tiles[i][j].getUnwalkable()){
+
+
+                 o.stopMoving(scan(o));
+               //  System.out.println( this.scan(o));
+
+       //  o.applyRepeller(t);
+
+
+             }
+
+
+         }
+
+     }
+
 
 
     }
@@ -83,8 +195,6 @@ public class Grid {
         }
 
         if (ranX >= 0 && ranX <= frameWidth - 1 && ranY >= 0 && ranY <= frameHeight - 1) {
-
-
 
             if (numOFUnwalkN(tile) <= 2 && numOFUnwalkN(tiles[ranX][ranY]) <= 1 && !unwalks.contains(tiles[ranX][ranY])) {
 
@@ -195,7 +305,7 @@ public class Grid {
         float height;
         Boolean unwalkable, aWall;
         int nCounter;
-        private int strength;
+        private float strength;
 
         public Tile(int x, int y){
 
@@ -203,7 +313,7 @@ public class Grid {
             width = 20;
             height = 17.5f;
             unwalkable = false;
-           strength = 1;
+          strength = 2.9f;
 
 
         }
@@ -228,9 +338,9 @@ public class Grid {
             float d = (float)dir.mag();
             d = constrain(d, 1, 2);
             dir.normalize();
-            float force =  -1 * strength / (d * d);
+            float force =    strength / (d * d);
             dir.mult((int)force);
-          //  System.out.println(dir);
+           System.out.println(dir);
             return dir;
 
         }
