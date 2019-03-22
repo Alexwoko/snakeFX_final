@@ -53,7 +53,7 @@ public Tile[][] getTiles(){return tiles;}
 
     }
 
-    public String scan(MovingObject o){
+    public String scanForWalls(MovingObject o){
 
         int checkX;
         int checkY;
@@ -96,44 +96,6 @@ public Tile[][] getTiles(){return tiles;}
                     }
 
                 }
-
-                /*
-
-                if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == -1 || i == -1 && j == 1 || i == 1 && j == 1){
-                    continue;
-                } else {
-                    checkX = o.getX() + i;
-                    checkY = o.getY() + j;
-
-                    if((checkX >= o.getX() && checkX <= frameWidth - 1) && (checkY >= 0 && checkY <= frameHeight - 1) && tiles[checkX][checkY].getUnwalkable()){
-
-                        if(o.getY() < checkY  && o.getX() == checkX){
-                       //    o.applyRepeller(tiles[checkX][checkY]);
-
-
-                        }
-                        if(o.getY() > checkY && o.getX() == checkX){
-                            o.applyRepeller(tiles[checkX][checkY]);
-                        }
-
-
-
-                        /*
-                    if (tiles[checkX][checkY].getUnwalkable() && o.getY() > checkY && o.getDir() == "UP") {
-                        o.applyRepeller(tiles[checkX][checkY]);
-                    } else if (tiles[checkX][checkY].getUnwalkable() && y < checkY) {
-                        o.applyRepeller(tiles[checkX][checkY]);
-                    } else if (tiles[checkX][checkY].getUnwalkable() && x > checkX) {
-                        o.applyRepeller(tiles[checkX][checkY]);
-                    } else if (tiles[checkX][checkY].getUnwalkable() && x < checkX) {
-                        o.applyRepeller(tiles[checkX][checkY]);
-                    }
-*/
-              //  }
-
-            //    }
-
-
             }
         }
 return null;
@@ -147,24 +109,12 @@ return null;
 
              if(o.getX() == i && o.getY() == j && !tiles[i][j].getUnwalkable()){
 
-
-                 o.stopMoving(scan(o));
-               //  System.out.println( this.scan(o));
-
-       //  o.applyRepeller(t);
-
+                 o.stopMoving(scanForWalls(o));
 
              }
-
-
          }
-
      }
-
-
-
     }
-
 
     public int ranNumInRange(int min, int max){
 
@@ -203,7 +153,6 @@ return null;
                 tiles[ranX][ranY].setUnwalkable(true);
                 buildWall(tiles[ranX][ranY]);
 
-
             } else {
                 buildWall(tiles[ranX][ranY]);
             }
@@ -237,14 +186,9 @@ return null;
 
 
                     }
-
                 }
-
-
             }
-
         }
-
         return myCount;
     }
 
