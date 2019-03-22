@@ -49,8 +49,48 @@ public class Grid {
 public Tile[][] getTiles(){return tiles;}
 
 
+    public void BFS(MathVector startPos, MathVector endPos){
 
-    public Tile[][] getNeighbours(Tile t){
+        openList = new ArrayList<>();
+        closedList = new ArrayList<>();
+        Tile origin = new Tile(startPos.x, startPos.y);
+        Tile target = new Tile(endPos.x, endPos.y);
+        Tile currentTile;
+
+        openList.add(origin);
+
+        while(!openList.isEmpty()){
+
+            currentTile = openList.get(0);
+
+            openList.remove(currentTile);
+            closedList.add(currentTile);
+
+            if(currentTile == target){
+
+                target = currentTile;
+                retracePath(origin, target);
+                return;
+            }
+
+            for(Tile t : getNeighbours(currentTile)){
+
+                
+
+            }
+
+
+
+
+        }
+
+
+
+    }
+
+
+
+    public List<Tile> getNeighbours(Tile t){
 
         List<Grid.Tile> neighbours = new ArrayList<>();
 
@@ -65,7 +105,7 @@ public Tile[][] getTiles(){return tiles;}
                     int checkY = t.pos.y + j;
 
                     if(checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20){
-                        neighbours.add([checkX][checkY]);
+                        neighbours.add(tiles[checkX][checkY]);
 
                     }
                 }
@@ -296,6 +336,7 @@ return null;
 
         }
 
+        public void setPos(MathVector pos){this.pos = pos;}
         public int getNCounter(){return nCounter;}
         public void setNCounter(int n){nCounter = n;}
         public float getWidth(){return width;}
