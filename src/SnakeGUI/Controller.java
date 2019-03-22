@@ -31,6 +31,7 @@ public class Controller {
     Grid myGrid = new Grid();
 
 
+
   //  private Node[][] grid;
  //   private List<Node> closed = new ArrayList<>();
   //  private List<Node> myPath = new ArrayList<>();

@@ -3,6 +3,7 @@ package SnakeLogic;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 public class Grid {
 
@@ -13,6 +14,11 @@ public class Grid {
     private int maxAmount;
     private int numOFUnwalks;
     private List<Tile> unwalks = new ArrayList<>();
+
+    private List<Tile> openList;
+    private List<Tile> closedList;
+    private Stack<Tile> thePath;
+
 
 
     private String buildDir;
@@ -41,6 +47,34 @@ public class Grid {
     public int getFrameHeight(){return frameHeight;}
 
 public Tile[][] getTiles(){return tiles;}
+
+
+
+    public Tile[][] getNeighbours(Tile t){
+
+        List<Grid.Tile> neighbours = new ArrayList<>();
+
+        for(int i =  - 1; i <=   1; i++){
+            for(int j =  -1; j <= 1; j++){
+
+                if(t.pos.x == i && t.pos.y == j || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
+
+                }else{
+
+                    int checkX = t.pos.x +i;
+                    int checkY = t.pos.y + j;
+
+                    if(checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20){
+                        neighbours.add([checkX][checkY]);
+
+                    }
+                }
+            }
+        }
+        return neighbours;
+    }
+
+
 
 
     private void createMaze(){
