@@ -1,9 +1,6 @@
 package SnakeLogic;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Stack;
+import java.util.*;
 
 public class Grid {
 
@@ -17,7 +14,8 @@ public class Grid {
 
     private List<Tile> openList;
     private List<Tile> closedList;
-    private Stack<Tile> thePath;
+    public Stack<Tile> thePath;
+    private int pathCounter;
 
 
 
@@ -33,6 +31,7 @@ public class Grid {
         frameHeight = 20;
         tiles = new Tile[frameWidth][frameHeight];
         maxWallsInLine = 4;
+        pathCounter = 0;
         createGrid();
         createFrame();
         createMaze();
@@ -43,10 +42,33 @@ public class Grid {
 
     }
 
+    public int getPathSize(){
+
+            return pathCounter;
+
+       }
     public int getFrameWidth(){return  frameWidth;}
     public int getFrameHeight(){return frameHeight;}
 
 public Tile[][] getTiles(){return tiles;}
+
+
+    public void retracePath(Tile starNode, Tile endNode){
+
+       // List<Tile> thePath = new ArrayList<>();
+        Tile currentNode = endNode;
+
+        while(!currentNode.equals(starNode)){
+            pathCounter += 1;
+            thePath.add(currentNode);
+            currentNode = currentNode.parent;
+
+        }
+      //  Collections.reverse(thePath);
+    //    this.thePath = thePath;
+
+
+    }
 
 
     public void BFS(MathVector startPos, MathVector endPos){
@@ -54,7 +76,8 @@ public Tile[][] getTiles(){return tiles;}
         openList = new ArrayList<>();
         closedList = new ArrayList<>();
         Tile origin = new Tile(startPos.x, startPos.y);
-        Tile target = new Tile(endPos.x, endPos.y);
+       // Tile target = new Tile(endPos.x, endPos.y);
+        Tile target;
         Tile currentTile;
 
         openList.add(origin);
@@ -66,26 +89,26 @@ public Tile[][] getTiles(){return tiles;}
             openList.remove(currentTile);
             closedList.add(currentTile);
 
-            if(currentTile == target){
+            if(currentTile.getPos() == endPos){
+
 
                 target = currentTile;
+
                 retracePath(origin, target);
                 return;
             }
 
             for(Tile t : getNeighbours(currentTile)){
 
-                
-
+                if(closedList.contains(t) || t.getUnwalkable()){
+                    continue;
+                }
+                if(!openList.contains(t)){
+                    t.parent = currentTile;
+                    openList.add(t);
+                }
             }
-
-
-
-
         }
-
-
-
     }
 
 
@@ -97,7 +120,7 @@ public Tile[][] getTiles(){return tiles;}
         for(int i =  - 1; i <=   1; i++){
             for(int j =  -1; j <= 1; j++){
 
-                if(t.pos.x == i && t.pos.y == j || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
+                if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
 
                 }else{
 
@@ -324,6 +347,7 @@ return null;
         Boolean unwalkable, aWall;
         int nCounter;
         private float strength;
+        private Tile parent;
 
         public Tile(int x, int y){
 

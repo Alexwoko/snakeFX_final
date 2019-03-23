@@ -26,8 +26,11 @@ public class Controller {
     private Random random = new Random();
     private int gameLoopDelay = 500;
     private float refreshRate =150;
-    private Player player = new Player(0, 0);
-    private RandomRambler ranRam = new RandomRambler(3, 3);
+    private Player player = new Player(4, 6);
+    private RandomRambler ranRam = new RandomRambler(4, 5);
+    private MovingObject target = new RandomRambler(0, 0);
+  //  private RandomRambler ranRam;
+
     Grid myGrid = new Grid();
 
 
@@ -40,7 +43,7 @@ public class Controller {
 
 
 
-    private MathVector target = new MathVector(0, 0);
+  //  private MathVector target = new MathVector(0, 0);
 
 
 
@@ -54,7 +57,7 @@ public class Controller {
     {
         System.out.println("btn clicked");
         labelStatus.setText("test");
-        getRandomPosition();
+      //  getRandomPosition();
         drawCanvas();
     }
 
@@ -66,11 +69,18 @@ public class Controller {
 
        // createGrid();
       //  addWalls();
-      //  targetPos();
 
+      //  targetPos();
+    givePos(ranRam);
+    givePos(player);
+    givePos(target);
 
         calculateFields();
-        getRandomPosition();
+      //  getRandomPosition();
+
+        System.out.println(myGrid.tiles[player.getX()][player.getY()].getUnwalkable());
+      //  myGrid.BFS(ranRam.getPos(), player.getPos());
+        myGrid.BFS(ranRam.getPos(), target.getPos());
 
      //  myMaze.initialize();
 
@@ -134,8 +144,21 @@ public class Controller {
         checkEdges(ranRam);
       //  reactToWalls(ranRam);
      //   reactToWalls(player);
+        System.out.println(ranRam.getX() + " Rambler X");
+        System.out.println(ranRam.getY() + " Rambler y");
 
         myGrid.playerScanner(player);
+        myGrid.playerScanner(ranRam);
+
+
+        for(int i = 0; i < myGrid.getPathSize(); i++ ){
+
+            Grid.Tile t = myGrid.thePath.get(i);
+            ranRam.setX(t.getX());
+            ranRam.setY(t.getY());
+            break;
+
+        }
 
 
         /*
@@ -160,6 +183,25 @@ public class Controller {
      * Get a random position
      */
 
+    private void givePos(MovingObject o){
+
+        MathVector pos = new MathVector(random.nextInt(width), random.nextInt(height));
+       // ranRam = new RandomRambler(pos.x, pos.y);
+        o.setX(pos.x);
+        o.setY(pos.y);
+
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
+
+                if(o.getX() == i && o.getY() == j && myGrid.tiles[i][j].getUnwalkable()){
+                    givePos(o);
+                }else{
+
+                }
+            }
+        }
+    }
+
     /*
     private void targetPos(){
 
@@ -181,11 +223,11 @@ public class Controller {
         }
     }
     */
-
-    private void getRandomPosition() {
+/*    private void getRandomPosition() {
         this.player.setX(random.nextInt(width));
         this.player.setY(random.nextInt(height));
     }
+    */
 
     /**
      * Calculate height and width of each field
@@ -203,10 +245,6 @@ public class Controller {
 
         // Clears the whole screen before re-drawing
         g.clearRect(0,0,width*fieldWidth ,height*fieldHeight);
-
-
-        g.setFill(Color.BLACK);
-        g.fillOval(target.x * fieldWidth, target.y * fieldHeight, 20, 20);
 
 
 
@@ -234,9 +272,13 @@ public class Controller {
         }
 
 
+        g.setFill(Color.RED);
+        g.fillOval(target.getX() * fieldWidth, target.getY() * fieldHeight, 20, 20);
+
+
 
         // draw RandomRambler
-        g.setFill(Color.PINK);
+        g.setFill(Color.YELLOW);
         g.fillRoundRect(this.ranRam.getX() * fieldWidth, this.ranRam.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 
 
@@ -281,47 +323,6 @@ public class Controller {
         Collections.reverse(thePath);
         myPath = thePath;
 
-
-    }
-
-    public void myBFS(MathVector startPos, MathVector endPos){
-
-        List<Node> openList = new ArrayList<>();
-        List<Node> closedList = new ArrayList<>();
-
-        Node currentNode;
-
-        Node startNode = new Node(startPos.x, startPos.y, true);
-        Node targetNode = new Node(endPos.x, endPos.y, true);
-
-        openList.add(startNode);
-
-        while(!openList.isEmpty()){
-
-            currentNode = openList.get(0);
-            openList.remove(currentNode);
-            closedList.add(currentNode);
-
-            if(currentNode.pos.x == targetNode.pos.x && currentNode.pos.y == targetNode.pos.y){
-                targetNode = currentNode;
-                closed = closedList;
-                retracePath(startNode, targetNode);
-               return;
-
-            }
-
-            for (Node n : getNeighbours(currentNode)){
-
-                if(closedList.contains(n) || !n.walkable){
-                    continue;
-                }
-                if(!openList.contains(n)){
-                    n.parent = currentNode;
-                    openList.add(n);
-                }
-            }
-
-        }
 
     }
 
