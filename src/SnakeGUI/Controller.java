@@ -17,7 +17,7 @@ public class Controller {
     @FXML
     Label labelStatus;
     @FXML
-    Canvas canvas;
+    Canvas canvas;  
 
     private double fieldHeight;
     private double fieldWidth;
@@ -27,7 +27,7 @@ public class Controller {
     private int gameLoopDelay = 500;
     private float refreshRate =150;
     private Player player = new Player(4, 6);
-    private RandomRambler ranRam = new RandomRambler(4, 5);
+    private RandomRambler ranRam = new RandomRambler(3, 5);
     private MovingObject target = new RandomRambler(0, 0);
   //  private RandomRambler ranRam;
 
