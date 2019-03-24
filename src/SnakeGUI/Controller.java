@@ -29,29 +29,11 @@ public class Controller {
     private Player player = new Player(3, 5);
     private RandomRambler ranRam = new RandomRambler(4, 6);
     private MovingObject target = new RandomRambler(0, 0);
-  //  private RandomRambler ranRam;
 
     Grid myGrid = new Grid();
 
 
-
-  //  private Node[][] grid;
- //   private List<Node> closed = new ArrayList<>();
-  //  private List<Node> myPath = new ArrayList<>();
-
-
-
-
-
-  //  private MathVector target = new MathVector(0, 0);
-
-
-
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
-
-    //  private ArrayList<Item> items = new ArrayList<Item>();
-
-
 
     public void btnStartAction(ActionEvent event)
     {
@@ -67,23 +49,11 @@ public class Controller {
     public void initialize()
     {
 
-
-
-      //  targetPos();
-   // givePos(ranRam);
-  //  givePos(player);
+    givePos(ranRam);
+    givePos(player);
     givePos(target);
 
         calculateFields();
-      //  getRandomPosition();
-
-        System.out.println(myGrid.tiles[player.getX()][player.getY()].getUnwalkable());
-      //  myGrid.BFS(ranRam.getPos(), player.getPos());
-        myGrid.BFS(ranRam.getPos(), player.getPos());
-
-     //  myMaze.initialize();
-
-
 
 
         // Start and control game loop
@@ -95,8 +65,7 @@ public class Controller {
                 {
 
                     lastUpdate = now;
-                 //   myBFS(ranRam.getPos().getPos(), player.getPos());
-                  //  myBFS(ranRam.getPos().getPos(), target.getPos());
+                    myGrid.BFS(ranRam.getPos(), player.getPos());
                     update(now);
 
                 }             }
@@ -137,20 +106,14 @@ public class Controller {
                 break;
 
         }
-        //  ranRam.randomWalk();
 
         checkEdges(player);
         checkEdges(ranRam);
-      //  reactToWalls(ranRam);
-     //   reactToWalls(player);
-        System.out.println(ranRam.getX() + " Rambler X");
-        System.out.println(ranRam.getY() + " Rambler y");
-
         myGrid.playerScanner(player);
         myGrid.playerScanner(ranRam);
 
 
-        for(int i = 0; i < myGrid.getPathSize(); i++ ){
+        for(int i = 0; i < myGrid.thePath.size(); i++ ){
 
             Grid.Tile t = myGrid.thePath.get(i);
             ranRam.setX(t.getX());
@@ -159,17 +122,6 @@ public class Controller {
 
         }
 
-
-        /*
-        // Walk the path
-    for (int i = 0; i < myPath.size(); i++) {
-
-        Node n = myPath.get(i);
-        ranRam.setX(n.pos.x);
-        ranRam.setY(n.pos.y);
-        break;
-    }
-    */
 
         player.update();
         ranRam.update();
@@ -201,32 +153,6 @@ public class Controller {
         }
     }
 
-    /*
-    private void targetPos(){
-
-        MathVector pos = new MathVector(random.nextInt(width) , random.nextInt(height));
-
-        target.setPos(pos);
-
-        for(int i = 0; i < width; i ++){
-            for (int j = 0; j < height; j++){
-
-
-                    if (target.x == i && target.y == j && !isWalkable(grid[i][j])) {
-                        targetPos();
-
-                    }else{
-
-                    }
-            }
-        }
-    }
-    */
-/*    private void getRandomPosition() {
-        this.player.setX(random.nextInt(width));
-        this.player.setY(random.nextInt(height));
-    }
-    */
 
     /**
      * Calculate height and width of each field
@@ -247,15 +173,6 @@ public class Controller {
 
 
 
-/*
-// draw path
-        for(Node n: myPath){
-            g.setFill(Color.GREEN);
-            g.fillRoundRect(n.pos.x * fieldWidth, n.pos.y * fieldHeight, fieldWidth, fieldHeight, 3, 3);
-
-        }
-        */
-
         for(int i = 0; i < myGrid.getFrameWidth(); i++){
             for (int j = 0; j < myGrid.getFrameHeight(); j++){
 
@@ -270,6 +187,12 @@ public class Controller {
             }
         }
 
+        // draw path
+        for(Grid.Tile t: myGrid.thePath){
+            g.setFill(Color.GREEN);
+            g.fillRoundRect(t.getX() * fieldWidth, t.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
+
+        }
 
         g.setFill(Color.RED);
         g.fillOval(target.getX() * fieldWidth, target.getY() * fieldHeight, 20, 20);
@@ -304,26 +227,4 @@ public class Controller {
         }
     }
 
-
-
- /*
-
-
-    public void retracePath(Node starNode, Node endNode){
-
-        List<Node> thePath = new ArrayList<>();
-        Node currentNode = endNode;
-
-        while(!currentNode.equals(starNode)){
-            thePath.add(currentNode);
-            currentNode = currentNode.parent;
-
-        }
-        Collections.reverse(thePath);
-        myPath = thePath;
-
-
-    }
-
- */
 }
