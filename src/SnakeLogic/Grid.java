@@ -89,7 +89,7 @@ public Tile[][] getTiles(){return tiles;}
             openList.remove(currentTile);
             closedList.add(currentTile);
 
-            if(currentTile.getPos() == endPos){
+            if(currentTile.getPos().equals(endPos)){
 
 
                 target = currentTile;
@@ -120,7 +120,10 @@ public Tile[][] getTiles(){return tiles;}
         for(int i =  - 1; i <=   1; i++){
             for(int j =  -1; j <= 1; j++){
 
-                if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
+            //    if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
+
+                if(i == 0 && j == 0){
+                    continue;
 
                 }else{
 

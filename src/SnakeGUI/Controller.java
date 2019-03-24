@@ -17,7 +17,7 @@ public class Controller {
     @FXML
     Label labelStatus;
     @FXML
-    Canvas canvas;  
+    Canvas canvas;
 
     private double fieldHeight;
     private double fieldWidth;
@@ -26,8 +26,8 @@ public class Controller {
     private Random random = new Random();
     private int gameLoopDelay = 500;
     private float refreshRate =150;
-    private Player player = new Player(4, 6);
-    private RandomRambler ranRam = new RandomRambler(3, 5);
+    private Player player = new Player(3, 5);
+    private RandomRambler ranRam = new RandomRambler(4, 6);
     private MovingObject target = new RandomRambler(0, 0);
   //  private RandomRambler ranRam;
 
@@ -67,12 +67,11 @@ public class Controller {
     public void initialize()
     {
 
-       // createGrid();
-      //  addWalls();
+
 
       //  targetPos();
-    givePos(ranRam);
-    givePos(player);
+   // givePos(ranRam);
+  //  givePos(player);
     givePos(target);
 
         calculateFields();
@@ -80,7 +79,7 @@ public class Controller {
 
         System.out.println(myGrid.tiles[player.getX()][player.getY()].getUnwalkable());
       //  myGrid.BFS(ranRam.getPos(), player.getPos());
-        myGrid.BFS(ranRam.getPos(), target.getPos());
+        myGrid.BFS(ranRam.getPos(), player.getPos());
 
      //  myMaze.initialize();
 
