@@ -8,7 +8,7 @@ public class RandomRambler extends MovingObject {
     public RandomRambler(int x, int y) {
         super(x, y);
     }
-
+/*
     public void randomWalk(){
 
         Random ran = new Random();
@@ -29,7 +29,7 @@ public class RandomRambler extends MovingObject {
 
         }
     }
-
+*/
 
 
 }
