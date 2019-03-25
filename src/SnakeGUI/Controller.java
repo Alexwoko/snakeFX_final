@@ -9,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.util.*;
 
@@ -25,7 +26,7 @@ public class Controller {
     private int height = 20;
     private Random random = new Random();
     private int gameLoopDelay = 500;
-    private float refreshRate =150;
+    private float refreshRate =250;
     private Player player = new Player(3, 5);
     private RandomRambler ranRam = new RandomRambler(4, 6);
     private MovingObject target = new RandomRambler(0, 0);
@@ -176,13 +177,18 @@ public class Controller {
         for(int i = 0; i < myGrid.getFrameWidth(); i++){
             for (int j = 0; j < myGrid.getFrameHeight(); j++){
 
-                        g.setFill(Color.LIGHTGRAY);
+
+                        g.setFill(Color.DARKGREEN);
                       //  g.setStroke(Color.BLACK);
                 if(myGrid.tiles[i][j].getUnwalkable()){
                     g.setFill(Color.BLACK);
                 }
                         g.fillRoundRect(myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight, myGrid.tiles[i][j].getWidth(), myGrid.tiles[i][j].getHeight(), 3, 3);
                      //   g.fillText("T", myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight);
+              //  g.setFill(Color.TEAL);
+                g.setFill(Color.WHITE);
+                g.setFont(new Font(null , 7));
+                g.fillText(Float.toString(myGrid.tiles[i][j].getMoveCost()), (myGrid.tiles[i][j].getX()) * fieldWidth , (myGrid.tiles[i][j].getY()) * fieldHeight);
 
             }
         }

@@ -80,7 +80,9 @@ public Tile[][] getTiles(){return tiles;}
         Tile origin = new Tile(startPos.x, startPos.y);
         Tile target = new Tile(endPos.x, endPos.y);
      //   Tile target;
+
         Tile currentTile;
+        origin.setMoveCost(Float.MAX_VALUE);
 
         openList.add(origin);
 
@@ -102,11 +104,18 @@ public Tile[][] getTiles(){return tiles;}
 
             for(Tile t : getNeighbours(currentTile)){
 
+                int newMoveCost =  getDistance(currentTile, t);
+
                 if(closedList.contains(t) || t.getUnwalkable()){
                     continue;
                 }
-                if(!openList.contains(t)){
-                    t.parent = currentTile;
+
+                if(!openList.contains(t) || newMoveCost < currentTile.getMoveCost()){
+
+                t.setMoveCost(newMoveCost);
+                t.parent = currentTile;
+
+                if(!openList.contains(t))
                     openList.add(t);
                 }
             }
@@ -122,9 +131,9 @@ public Tile[][] getTiles(){return tiles;}
         for(int i =  - 1; i <=   1; i++){
             for(int j =  -1; j <= 1; j++){
 
-               if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
+            //   if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
 
-              //  if(i == 0 && j == 0){
+                if(i == 0 && j == 0){
                     continue;
 
                 }else{
@@ -335,6 +344,20 @@ return null;
     }
 
 
+    public int getDistance(Tile tileA, Tile tileB){
+// Math abs så vi sikrer at tallet er positivt.
+    int dstX = Math.abs(tileA.pos.x - tileB.pos.x);
+    int dstY = Math.abs(tileA.pos.y - tileB.pos.y);
+
+    if(dstX > dstY){
+        return 14 * dstY + 10 * (dstX - dstY);
+    }
+return 14 * dstX + 10 * (dstY - dstX);
+
+
+    }
+
+
 
     /**
      * PRIVATE CLASS -----------------------------------------
@@ -353,6 +376,7 @@ return null;
         int nCounter;
         private float strength;
         private Tile parent;
+        private float moveCost;
 
         public Tile(int x, int y){
 
@@ -361,10 +385,13 @@ return null;
             height = 17.5f;
             unwalkable = false;
           strength = 2.9f;
+          moveCost = 0;
 
 
         }
 
+        public void setMoveCost(float cost){moveCost = cost;}
+        public float getMoveCost(){return moveCost;}
         public void setPos(MathVector pos){this.pos = pos;}
         public int getNCounter(){return nCounter;}
         public void setNCounter(int n){nCounter = n;}
