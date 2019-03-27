@@ -20,11 +20,12 @@ public class Item {
         return Color;
     }
 
+    /*
     public int getX() {
         return pos.x;
     }
-
-    public int getY() {
+*/
+    public float getY() {
         return pos.y;
     }
 

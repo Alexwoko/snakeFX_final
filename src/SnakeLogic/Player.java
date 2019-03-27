@@ -8,12 +8,5 @@ public class Player extends MovingObject {
     }
 
 
-    @Override
-    public void update() {
 
-        super.getVel().add(super.getAccel());
-        super.getVel().limit(2);
-        super.getPos().add(super.getVel());
-        super.getAccel().mult(0);
-    }
 }

@@ -26,7 +26,7 @@ public class Controller {
     private int height = 20;
     private Random random = new Random();
     private int gameLoopDelay = 500;
-    private float refreshRate =250;
+    private float refreshRate =150;
     private Player player = new Player(3, 5);
     private RandomRambler ranRam = new RandomRambler(4, 6);
     private MovingObject target = new RandomRambler(0, 0);
@@ -186,16 +186,16 @@ public class Controller {
                         g.fillRoundRect(myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight, myGrid.tiles[i][j].getWidth(), myGrid.tiles[i][j].getHeight(), 3, 3);
                      //   g.fillText("T", myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight);
               //  g.setFill(Color.TEAL);
-                g.setFill(Color.WHITE);
-                g.setFont(new Font(null , 7));
-                g.fillText(Float.toString(myGrid.tiles[i][j].getMoveCost()), (myGrid.tiles[i][j].getX()) * fieldWidth , (myGrid.tiles[i][j].getY()) * fieldHeight);
+              //  g.setFill(Color.WHITE);
+              //  g.setFont(new Font(null , 7));
+              //  g.fillText(Float.toString(myGrid.tiles[i][j].getMoveCost()), (myGrid.tiles[i][j].getX()) * fieldWidth , (myGrid.tiles[i][j].getY()) * fieldHeight);
 
             }
         }
 
         // draw path
         for(Grid.Tile t: myGrid.thePath){
-            g.setFill(Color.GREEN);
+            g.setFill(Color.WHITE);
             g.fillRoundRect(t.getX() * fieldWidth, t.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 
         }

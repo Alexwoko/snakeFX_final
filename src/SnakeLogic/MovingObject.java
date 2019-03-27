@@ -4,7 +4,7 @@ public abstract class MovingObject implements GameObject{
 
     private MathVector pos, vel, accel;
     private MathVector up, down, right, left;
-    private int maxForce, maxSpeed;
+    private float maxForce, maxSpeed;
     private String dir;
 
 
@@ -45,14 +45,25 @@ public void setVel(MathVector newVal){vel = newVal;}
 public MathVector getVel(){return vel;}
 public MathVector getAccel(){return accel;}
 
+   @Override
+   public float getVelX(){return vel.x;}
+   @Override
+   public float getVelY(){return vel.y;}
+   @Override
+   public void setVelX(float velX){this.vel.x = velX;}
+   @Override
+   public void setVelY(float velY){this.vel.y = velY;}
+
+   public void setMaxSpeed(float max){this.maxSpeed = max;}
+
     @Override
-    public int getX() {return pos.x;}
+    public float getX() {return pos.x;}
     @Override
-    public int getY() {return pos.y;}
+    public float getY() {return pos.y;}
     @Override
-    public void setX(int x) {this.pos.x = x;}
+    public void setX(float x) {this.pos.x = x;}
     @Override
-    public void setY(int y) {
+    public void setY(float y) {
         this.pos.y = y;
     }
     @Override
@@ -137,81 +148,7 @@ public MathVector getAccel(){return accel;}
         this.applyForce(force);
     }
 
-/*
-    public Grid.Tile atWall(Grid.Tile[][] ts, Grid grid){
 
-        int checkX;
-        int checkY;
-
-        for(int i = -1; i < 1; i++){
-            for(int j = -1; j < 1; j++){
-
-             if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == -1|| i == -1 && j == 1 || i==1 && j == 1){
-                 continue;
-             }else{
-
-                 checkX = this.pos.x + i;
-                 checkY = this.pos.y + j;
-
-             if(checkX >= 0 && checkX <= grid.getFrameWidth() && checkY >= 0 && checkY <= grid.getFrameHeight()){
-                 if(ts[checkX][checkY].getUnwalkable()){
-                     if(checkY < this.pos.y){
-
-                         return ts[checkX][checkY];
-                     }
-                 }
-
-
-             }
-
-
-            }
-
-
-        }
-
-
-    }
-
-    /*
-    public Boolean atWall(Grid.Tile w){
-
-
-        if(this.pos.x == w.getX() && this.pos.y >= w.pos.y + w.getHeight()){
-
-                return true;
-
-        }
-
-
-        /*
-        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() + 1) && this.pos.x  == w.getX() - 1) {
-
-                return "RIGHT";
-
-        }
-
-        if((this.pos.y >= w.getY() && this.pos.y <= w.getY() +1) && this.pos.x == w.getX()){
-
-                return "LEFT";
-
-        }
-
-        if((this.pos.x >= w.getX() && this.pos.x <= w.getX() + 1) && this.pos.y  == w.getY() - 1){
-
-                return "DOWN";
-
-        }
-
-
-
-
-
-
-        return null;
-
-    }
-*/
 
 
 

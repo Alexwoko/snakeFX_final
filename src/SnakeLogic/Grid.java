@@ -77,8 +77,8 @@ public Tile[][] getTiles(){return tiles;}
 
         openList = new ArrayList<>();
         closedList = new ArrayList<>();
-        Tile origin = new Tile(startPos.x, startPos.y);
-        Tile target = new Tile(endPos.x, endPos.y);
+        Tile origin = new Tile((int)startPos.x, (int)startPos.y);
+        Tile target = new Tile((int)endPos.x, (int)endPos.y);
      //   Tile target;
 
         Tile currentTile;
@@ -104,7 +104,7 @@ public Tile[][] getTiles(){return tiles;}
 
             for(Tile t : getNeighbours(currentTile)){
 
-                int newMoveCost =  getDistance(currentTile, t);
+                float newMoveCost =  getDistance(currentTile, t);
 
                 if(closedList.contains(t) || t.getUnwalkable()){
                     continue;
@@ -131,18 +131,18 @@ public Tile[][] getTiles(){return tiles;}
         for(int i =  - 1; i <=   1; i++){
             for(int j =  -1; j <= 1; j++){
 
-            //   if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
+             //  if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
 
                 if(i == 0 && j == 0){
                     continue;
 
                 }else{
 
-                    int checkX = t.pos.x +i;
-                    int checkY = t.pos.y + j;
+                    float checkX = t.pos.x +i;
+                    float checkY = t.pos.y + j;
 
                     if(checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20){
-                        neighbours.add(tiles[checkX][checkY]);
+                        neighbours.add(tiles[(int)checkX][(int)checkY]);
 
                     }
                 }
@@ -171,11 +171,11 @@ public Tile[][] getTiles(){return tiles;}
 
         Tile left, right, up, down;
 
-        for(int i = -1; i <= 1; i++){
-            for(int j = -1; j <= 1; j++){
+        for(int i = -1; i <= 1; i+=1f){
+            for(int j = -1; j <= 1; j+=1f){
 
-                checkX = o.getX() + i;
-                checkY = o.getY() + j;
+                checkX = (int)o.getX() + i;
+                checkY = (int)o.getY() + j;
 
 
                 if(checkX >= 0 && checkX <= frameWidth && checkY >= 0 && checkY <= frameHeight) {
@@ -215,8 +215,8 @@ return null;
 
     public void playerScanner(MovingObject o){
 
-     for(int i = 0; i < frameWidth; i++){
-         for(int j = 0; j <  frameHeight; j++){
+     for(int i = 0; i < frameWidth; i+=1f){
+         for(int j = 0; j <  frameHeight; j+=1f){
 
              if(o.getX() == i && o.getY() == j && !tiles[i][j].getUnwalkable()){
 
@@ -227,7 +227,7 @@ return null;
      }
     }
 
-    public int ranNumInRange(int min, int max){
+    public float ranNumInRange(int min, int max){
 
         if(min >= max){
             throw new IllegalArgumentException("Minimum must be smaller than maximum");
@@ -239,11 +239,11 @@ return null;
 
     private void buildWall(Tile tile){
 
-        int ranX = ranNumInRange(-1, 1);
-        int ranY = ranNumInRange(-1, 1);
+        float ranX = ranNumInRange(-1, 1);
+        float ranY = ranNumInRange(-1, 1);
 
-        ranX = tile.pos.x + ranX;
-        ranY = tile.pos.y + ranY;
+        ranX = (int)tile.pos.x + ranX;
+        ranY = (int)tile.pos.y + ranY;
 
 
         if(ranX == tile.pos.x && ranY == tile.pos.y){
@@ -257,15 +257,15 @@ return null;
 
         if (ranX >= 0 && ranX <= frameWidth - 1 && ranY >= 0 && ranY <= frameHeight - 1) {
 
-            if (numOFUnwalkN(tile) <= 2 && numOFUnwalkN(tiles[ranX][ranY]) <= 1 && !unwalks.contains(tiles[ranX][ranY])) {
+            if (numOFUnwalkN(tile) <= 2 && numOFUnwalkN(tiles[(int)ranX][(int)ranY]) <= 1 && !unwalks.contains(tiles[(int)ranX][(int)ranY])) {
 
-                unwalks.add(tiles[ranX][ranY]);
+                unwalks.add(tiles[(int)ranX][(int)ranY]);
                 numOFUnwalks += 1;
-                tiles[ranX][ranY].setUnwalkable(true);
-                buildWall(tiles[ranX][ranY]);
+                tiles[(int)ranX][(int)ranY].setUnwalkable(true);
+                buildWall(tiles[(int)ranX][(int)ranY]);
 
             } else {
-                buildWall(tiles[ranX][ranY]);
+                buildWall(tiles[(int)ranX][(int)ranY]);
             }
         }
 
@@ -274,8 +274,8 @@ return null;
 
     private int numOFUnwalkN(Tile tile){
 
-        int checkX = 0;
-        int checkY = 0;
+        int checkX;
+        int checkY;
 
         int myCount = 0;
 
@@ -288,8 +288,8 @@ return null;
 
                 } else{
 
-                    checkX = tile.pos.x + i;
-                    checkY = tile.pos.y + j;
+                    checkX = (int)tile.pos.x + i;
+                    checkY = (int)tile.pos.y + j;
 
                     if(checkX >= 0 && checkX <= frameWidth-1 && checkY >= 0 && checkY <= frameHeight-1){
                         if(tiles[checkX][checkY].getUnwalkable())
@@ -304,9 +304,9 @@ return null;
     }
 
 
-    public void createFrame(){
+    private void createFrame(){
 
-        for(int i = 0; i < frameWidth; i++){
+        for(int i = 0; i < frameWidth; i+=1f){
 
 
             tiles[i][0].setUnwalkable(true);
@@ -317,7 +317,7 @@ return null;
 
         }
 
-        for (int i = 0; i < frameHeight; i++){
+        for (int i = 0; i < frameHeight; i+= 1f){
 
             tiles[0][i].setUnwalkable(true);
             tiles[frameWidth-1][i].setUnwalkable(true);
@@ -333,8 +333,8 @@ return null;
     public void createGrid(){
 
 
-        for(int i = 0; i < frameWidth; i++){
-            for(int j = 0; j < frameHeight; j++){
+        for(int i = 0; i < frameWidth; i+=1f){
+            for(int j = 0; j < frameHeight; j+=1f){
 
                 tiles[i][j] = new Tile(i, j);
 
@@ -344,10 +344,10 @@ return null;
     }
 
 
-    public int getDistance(Tile tileA, Tile tileB){
+    private float getDistance(Tile tileA, Tile tileB){
 // Math abs så vi sikrer at tallet er positivt.
-    int dstX = Math.abs(tileA.pos.x - tileB.pos.x);
-    int dstY = Math.abs(tileA.pos.y - tileB.pos.y);
+    float dstX = Math.abs(tileA.pos.x - tileB.pos.x);
+    float dstY = Math.abs(tileA.pos.y - tileB.pos.y);
 
     if(dstX > dstY){
         return 14 * dstY + 10 * (dstX - dstY);
@@ -397,8 +397,8 @@ return 14 * dstX + 10 * (dstY - dstX);
         public void setNCounter(int n){nCounter = n;}
         public float getWidth(){return width;}
         public float getHeight(){return height;}
-        public int getX(){return pos.x;}
-        public int getY(){return pos.y;}
+        public float getX(){return pos.x;}
+        public float getY(){return pos.y;}
         public MathVector getPos(){return pos;}
         public void setUnwalkable(boolean unW){this.unwalkable = unW;}
 

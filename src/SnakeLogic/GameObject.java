@@ -6,14 +6,20 @@ package SnakeLogic;
 public interface GameObject {
 
 
-    int getX();
-    int getY();
-    void setX(int x);
-    void setY(int y);
+    float getX();
+    float getY();
+    void setX(float x);
+    void setY(float y);
+    void setVelX(float x);
+    void setVelY(float y);
+    float getVelX();
+    float getVelY();
+
 
 
     void update();
     String getDir();
+
 
     void moveLeft();
     void moveRight();

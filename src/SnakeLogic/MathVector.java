@@ -2,10 +2,10 @@ package SnakeLogic;
 
 public class MathVector {
 
-    public int x, y;
+    public float x, y;
 
 
-    public MathVector(int x, int y){
+    public MathVector(float x, float y){
 
         this.x = x;
         this.y = y;
@@ -58,7 +58,7 @@ public class MathVector {
 
 
     }
-    public void mult(int in){
+    public void mult(float in){
 
 
         this.x = this.x * in;
@@ -81,14 +81,14 @@ public class MathVector {
         }
     }
 
-    public void setMag(int magnitude){
+    public void setMag(float magnitude){
 
         MathVector myV = this;
         myV.normalize();
         myV.mult(magnitude);
     }
 
-    public void limit(int max){
+    public void limit(float max){
 
         if(max < this.mag()){
             this.normalize();
