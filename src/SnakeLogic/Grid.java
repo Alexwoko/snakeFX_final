@@ -18,6 +18,8 @@ public class Grid {
     private int pathCounter;
     public List<Tile> thePath;
 
+    public Tree<Integer> tree;
+
 
 
     private String buildDir;
@@ -33,6 +35,11 @@ public class Grid {
         tiles = new Tile[frameWidth][frameHeight];
         maxWallsInLine = 4;
         pathCounter = 0;
+        tree = new Tree<>();
+        tree.add(5);
+        tree.add(7);
+        tree.add(2);
+        tree.add(10);
         createGrid();
         createFrame();
         createMaze();
@@ -131,9 +138,9 @@ public Tile[][] getTiles(){return tiles;}
         for(int i =  - 1; i <=   1; i++){
             for(int j =  -1; j <= 1; j++){
 
-             //  if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
+               if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
 
-                if(i == 0 && j == 0){
+             //   if(i == 0 && j == 0){
                     continue;
 
                 }else{
@@ -247,7 +254,7 @@ return null;
 
 
         if(ranX == tile.pos.x && ranY == tile.pos.y){
-            buildWall(tile);
+            buildWall(tile); // --> THIS FREEZES THE ALGORITHM? --> WE HAVE TO CHANGE THE PARAMETER FOR THE RECURSIVE CALL
         }
 
 
@@ -367,16 +374,17 @@ return 14 * dstX + 10 * (dstY - dstX);
 
 
 
-    public class Tile{
+    public class Tile<T>{
 
         MathVector pos;
         int width;
         float height;
-        Boolean unwalkable, aWall;
+        Boolean unwalkable;
         int nCounter;
         private float strength;
         private Tile parent;
         private float moveCost;
+        T value;
 
         public Tile(int x, int y){
 
@@ -386,7 +394,11 @@ return 14 * dstX + 10 * (dstY - dstX);
             unwalkable = false;
           strength = 2.9f;
           moveCost = 0;
+        }
 
+        public Tile(T val){
+
+           this.value = val;
 
         }
 
