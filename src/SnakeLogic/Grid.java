@@ -14,12 +14,11 @@ public class Grid {
 
     private List<Tile> openList;
     private List<Tile> closedList;
- //   public Stack<Tile> thePath;
     private int pathCounter;
     public List<Tile> thePath;
 
   //  public Tree<Float> tree;
-  private Tree<Float> tree;
+  public Tree<Float> tree;
 
 
     private String buildDir;
@@ -57,7 +56,6 @@ public Tile[][] getTiles(){return tiles;}
 
     public void retracePath(Tile starNode, Tile endNode){
 
-       // List<Tile> thePath = new ArrayList<>();
         Tile currentNode = endNode;
         thePath = new ArrayList<>();
 
@@ -68,14 +66,11 @@ public Tile[][] getTiles(){return tiles;}
 
         }
         Collections.reverse(thePath);
-       // this.thePath = thePath;
-
 
     }
 
     public void BFS(MathVector startPos, MathVector endPos){
 
-       // openList = new ArrayList<>();
 
         tree = new Tree<>(0, 1f);
         openList = new ArrayList<>();
@@ -83,28 +78,19 @@ public Tile[][] getTiles(){return tiles;}
         Tile origin = getTile(startPos.getPos());
         Tile target = getTile(endPos.getPos());
 
-
-
         origin.setMoveCost(Float.MAX_VALUE);
         Tile currentTile;
 
-       // tree.add(origin.getMoveCost());
         openList.add(origin);
 
         while(!openList.isEmpty()){
 
             currentTile = openList.get(0);
-         //   currentNode.pos = tree.get(1);
-
-
             openList.remove(currentTile);
-            //tree.add((Integer)currentTile.getValue());  // Index
             tree.add(currentTile.getMoveCost());
 
             currentTile.setIndex(tree.numOfNodes);
-           // tree.add(currentTile.get);
-           // closedList.add(currentTile);
-          //  tree.add()
+
 
             if(currentTile.pos.x == target.pos.x && currentTile.pos.y == target.pos.y){
 
@@ -117,27 +103,12 @@ public Tile[][] getTiles(){return tiles;}
 
             for(Tile t : getNeighbours(currentTile)){
 
-               // float val = tree.containsValue((Float)t.index);
-
-
-
-              //  if(tree.containsValue(newMoveCost)){
-              //  int val = tree.containsValue(t.getIndex());
-               // if(val >= 0 && val <= (frameWidth * frameHeight) || t.getUnwalkable() ){
-             //   if(val == currentTile.getIndex() || t.getUnwalkable()){
                 if(tree.containsValue(t.index) || t.getUnwalkable()){
-            //    if(tree.containsValue((Float)t.getIndex()) && t.getUnwalkable()){
-
-            //    t.setValue(getDistance(currentTile, t));
-
-              //  if(tree.containsValue((Float)getTile(t.pos).getIndex()) || t.getUnwalkable()){
-
-
 
                     continue;
                 }
 
-                if(!openList.contains(t) || t.getMoveCost() < currentTile.getMoveCost()) {
+                if(!openList.contains(t) || t.getMoveCost() <= currentTile.getMoveCost()) {
 
                     t.setMoveCost(getDistance(currentTile, t));
                     t.parent = currentTile;
@@ -239,8 +210,6 @@ public Tile[][] getTiles(){return tiles;}
         tiles[5][2].setUnwalkable(true);
 
         buildWall(tiles[5][2]);
-
-
     }
 
     public String scanForWalls(MovingObject o){
@@ -428,14 +397,12 @@ return null;
 
     public void createGrid(){
 
-       // int counter = 0;
 
         for(int i = 0; i < frameWidth; i++){
             for(int j = 0; j < frameHeight; j++){
 
                 tiles[i][j] = new Tile(i, j);
-               // tiles[i][j].setIndex(counter);
-                //counter++;
+
             }
 
         }

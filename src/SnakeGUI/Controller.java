@@ -179,17 +179,16 @@ public class Controller {
 
 
                         g.setFill(Color.DARKGREEN);
-                      //  g.setStroke(Color.BLACK);
-                if(myGrid.tiles[i][j].getUnwalkable()){
+                   if(myGrid.tiles[i][j].getUnwalkable()){
                     g.setFill(Color.BLACK);
                 }
-                        g.fillRoundRect(myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight, myGrid.tiles[i][j].getWidth(), myGrid.tiles[i][j].getHeight(), 3, 3);
-                     //   g.fillText("T", myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight);
-              //  g.setFill(Color.TEAL);
-              //  g.setFill(Color.WHITE);
-              //  g.setFont(new Font(null , 7));
-              //  g.fillText(Float.toString(myGrid.tiles[i][j].getMoveCost()), (myGrid.tiles[i][j].getX()) * fieldWidth , (myGrid.tiles[i][j].getY()) * fieldHeight);
 
+                   if(myGrid.tree.containsValue(myGrid.tiles[i][j].getIndex())){
+                      // g.fillRoundRect(myGrid.tiles[i][]);
+                       g.setFill(Color.RED);
+                   }
+
+                        g.fillRoundRect(myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight, myGrid.tiles[i][j].getWidth(), myGrid.tiles[i][j].getHeight(), 3, 3);
             }
         }
 
