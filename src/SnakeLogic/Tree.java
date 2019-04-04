@@ -7,89 +7,150 @@ public class Tree<T extends Comparable<T>> {
     //  Node leftNode;
     // Node rightNode
     int numOfNodes;
+    T incrementer;
+    T sum;
 
 
-    public Tree() {
+    public Tree(int numOfNodes, T incrementer) {
 
-        numOfNodes = 0;
+        this.incrementer = incrementer;
+        this.numOfNodes = numOfNodes;
         // rootNode = new Node<>(0);
         // rootNode = new Node(Integer.MAX_VALUE);
     }
 
+    public MathVector get(int index){
+
+        if(rootNode != null) {
+            if (rootNode.nodeIndex == index) {
+                return rootNode.pos;
+            } else {
+                getChildNode(rootNode, index);
+            }
+        }
+        return null;
+    }
+
+    public MathVector getChildNode(Node<T> rootNode, int index){
+
+        if(rootNode.leftChild != null) {
+            if (rootNode.leftChild.nodeIndex == index) {
+                return rootNode.leftChild.pos;
+            } else{
+                getChildNode(rootNode.leftChild, index);
+            }
+        }else if(rootNode.rightChild != null){
+            if(rootNode.rightChild.nodeIndex == index){
+                return rootNode.rightChild.pos;
+            } else{
+                getChildNode(rootNode.rightChild, index);
+            }
+        }
+
+
+        return null;
+    }
+
+   
+
     public boolean add(T val) {
 
-       if(rootNode == null){
-           rootNode = new Node(val);
-       }else{
-           addChildNote(rootNode, val);
-       }
 
-        // recursiveAdd(val, this.rootNode);
+
+        if(rootNode == null){
+
+            numOfNodes += 1;
+            rootNode = new Node(val);
+            rootNode.nodeIndex = numOfNodes;
+        }else{
+            addChildNote(rootNode, val);
+        }
+
         return true;
 
     }
 
     private void addChildNote(Node<T> parent, T val) {
 
-        if(val.compareTo(parent.value) < 0){
+        if(val.compareTo(parent.value) > 0){
             if(parent.leftChild == null){
                 parent.leftChild = new Node(val);
+                numOfNodes += 1;
+               // incIndex((Float)numOfNodes, (Float)incrementer);
+                parent.leftChild.nodeIndex = numOfNodes;
             }else{
                 addChildNote(parent.leftChild, val);
             }
         } else {
             if(parent.rightChild == null){
                 parent.rightChild = new Node(val);
+               // incIndex((Float)numOfNodes, (Float)incrementer);
+                numOfNodes += 1;
+                parent.rightChild.nodeIndex = numOfNodes;
             }else{
                 addChildNote(parent.rightChild, val);
             }
 
         }
-
-
-
-    }
-
-    public T containsValue(T value) {
-        if (rootNode != null) {
-            if (rootNode.value == value) return (T) rootNode.value;
-            else return containsValue(rootNode, value);
-        }
-        return null;
-
     }
 
 
-    public T containsValue(Node parent, T value) {
+    public boolean containsValue(int index){
 
-
-        if ((value.compareTo((T) parent.value) < 0) && (parent.leftChild != null)) {
-            if (parent.leftChild.value.equals(value)) {
-                return (T) parent.value;
-            }else  { containsValue(parent.leftChild, value); }
-
-
-
-        }else if((value.compareTo((T)parent.value) > 0) && (parent.rightChild != null)){
-            if(value.equals(parent.rightChild.value)){
-                return (T)parent.value;
-            } else{
-                 containsValue(parent.rightChild, value);
+        if(rootNode != null){
+            if (rootNode.nodeIndex == index){
+                return true;
+            }else{
+               return containsValue(rootNode, index);
             }
+
         }
 
 
+        return false;
+    }
 
-      return null;
+    public boolean containsValue(Node parent, int index){
+
+
+        if(parent.nodeIndex < index && parent.leftChild != null){
+            if(parent.leftChild.nodeIndex == index){
+                return true;
+            } else {
+               return containsValue(parent.leftChild, index);
+            }
+
+        } else if(parent.nodeIndex < index && parent.rightChild != null){
+            if(parent.rightChild.nodeIndex == index){
+                return true;
+            } else{
+                return containsValue(parent.rightChild, index);
+            }
+
+        }
+
+
+        return false;
     }
 
 
 
+public String toString(){
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Number of nodes in tree = " + numOfNodes);
+
+        return sb.toString();
+
+
+}
 
 
 
-    private class Node<T extends Comparable<T>>{
+    public class Node<T extends Comparable<T>> implements Comparable<Node> {
 
+        MathVector pos;
         Node parent;
         Node leftChild;
         Node rightChild;
@@ -105,6 +166,10 @@ public class Tree<T extends Comparable<T>> {
         public Node getRightChild() {return rightChild;}
         public Node getParent(){return parent;}
         public int getIndex(){return nodeIndex;}
+        public MathVector getPos(){return pos;}
+        public void setPos(int x, int y){this.pos = new MathVector(x, y);}
+        public T getValue(){return value;}
+
 
         public Node(T val){
 
@@ -119,6 +184,13 @@ public class Tree<T extends Comparable<T>> {
 
         }
 
+        Node(float x, float y, T val){
+
+            this.value = val;
+            pos = new MathVector(x, y);
+
+        }
+
 
         public String toString(){
 
@@ -126,13 +198,28 @@ public class Tree<T extends Comparable<T>> {
             sb.append("Index = " + nodeIndex);
             sb.append(", value = " + value);
             sb.append(", parent node = " + parent);
+            sb.append(", Index nr. = " + value);
 
             return sb.toString();
 
 
         }
 
+        @Override
+        public int compareTo(Node o) {
+
+            if(this.value.equals(o.value)){
+                return 0;
+            }else if((Integer)this.value > (Integer) o.value){
+                return 1;
+            } else if ((Integer)this.value < (Integer) o.value){
+                return -1;
+            }
+
+            return 0;
+        }
     }
+
 
 
 }

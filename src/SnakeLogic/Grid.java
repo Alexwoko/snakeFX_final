@@ -18,8 +18,8 @@ public class Grid {
     private int pathCounter;
     public List<Tile> thePath;
 
-    public Tree<Integer> tree;
-
+  //  public Tree<Float> tree;
+  private Tree<Float> tree;
 
 
     private String buildDir;
@@ -35,17 +35,11 @@ public class Grid {
         tiles = new Tile[frameWidth][frameHeight];
         maxWallsInLine = 4;
         pathCounter = 0;
-        tree = new Tree<>();
-        tree.add(5);
-        tree.add(7);
-        tree.add(2);
-        tree.add(10);
+
         createGrid();
         createFrame();
         createMaze();
-        System.out.println(numOFUnwalkN(tiles[7][0]));
-        // System.out.println(hasNeighbour(tiles[frameWidth-1][5]));
-        //  System.out.println(maxInLine(tiles[7][0]));
+
 
 
     }
@@ -70,7 +64,7 @@ public Tile[][] getTiles(){return tiles;}
         while(!currentNode.equals(starNode)){
           //  pathCounter += 1;
             thePath.add(currentNode);
-            currentNode = currentNode.parent;
+            currentNode = currentNode.getParent();
 
         }
         Collections.reverse(thePath);
@@ -79,7 +73,85 @@ public Tile[][] getTiles(){return tiles;}
 
     }
 
+    public void BFS(MathVector startPos, MathVector endPos){
 
+       // openList = new ArrayList<>();
+
+        tree = new Tree<>(0, 1f);
+        openList = new ArrayList<>();
+
+        Tile origin = getTile(startPos.getPos());
+        Tile target = getTile(endPos.getPos());
+
+
+
+        origin.setMoveCost(Float.MAX_VALUE);
+        Tile currentTile;
+
+       // tree.add(origin.getMoveCost());
+        openList.add(origin);
+
+        while(!openList.isEmpty()){
+
+            currentTile = openList.get(0);
+         //   currentNode.pos = tree.get(1);
+
+
+            openList.remove(currentTile);
+            //tree.add((Integer)currentTile.getValue());  // Index
+            tree.add(currentTile.getMoveCost());
+
+            currentTile.setIndex(tree.numOfNodes);
+           // tree.add(currentTile.get);
+           // closedList.add(currentTile);
+          //  tree.add()
+
+            if(currentTile.pos.x == target.pos.x && currentTile.pos.y == target.pos.y){
+
+
+                target = currentTile;
+
+                retracePath(origin, target);
+                return;
+            }
+
+            for(Tile t : getNeighbours(currentTile)){
+
+               // float val = tree.containsValue((Float)t.index);
+
+
+
+              //  if(tree.containsValue(newMoveCost)){
+              //  int val = tree.containsValue(t.getIndex());
+               // if(val >= 0 && val <= (frameWidth * frameHeight) || t.getUnwalkable() ){
+             //   if(val == currentTile.getIndex() || t.getUnwalkable()){
+                if(tree.containsValue(t.index) || t.getUnwalkable()){
+            //    if(tree.containsValue((Float)t.getIndex()) && t.getUnwalkable()){
+
+            //    t.setValue(getDistance(currentTile, t));
+
+              //  if(tree.containsValue((Float)getTile(t.pos).getIndex()) || t.getUnwalkable()){
+
+
+
+                    continue;
+                }
+
+                if(!openList.contains(t) || t.getMoveCost() < currentTile.getMoveCost()) {
+
+                    t.setMoveCost(getDistance(currentTile, t));
+                    t.parent = currentTile;
+
+                    if (!openList.contains(t))
+                        openList.add(t);
+
+                }
+            }
+        }
+    }
+
+
+/*
     public void BFS(MathVector startPos, MathVector endPos){
 
         openList = new ArrayList<>();
@@ -128,7 +200,7 @@ public Tile[][] getTiles(){return tiles;}
             }
         }
     }
-
+*/
 
 
     public List<Tile> getNeighbours(Tile t){
@@ -244,6 +316,8 @@ return null;
         }
     }
 
+
+
     private void buildWall(Tile tile){
 
         float ranX = ranNumInRange(-1, 1);
@@ -333,18 +407,35 @@ return null;
 
         }
 
+    }
+
+    private Tile getTile(MathVector pos){
+
+        for(int i = 0; i < frameWidth; i++){
+            for (int j = 0; j < frameHeight; j++){
+
+                if(pos.x == i && pos.y == j){
+                    return tiles[i][j];
+                }
+
+
+            }
+        }
+return null;
+
 
     }
 
-
     public void createGrid(){
 
+       // int counter = 0;
 
-        for(int i = 0; i < frameWidth; i+=1f){
-            for(int j = 0; j < frameHeight; j+=1f){
+        for(int i = 0; i < frameWidth; i++){
+            for(int j = 0; j < frameHeight; j++){
 
                 tiles[i][j] = new Tile(i, j);
-
+               // tiles[i][j].setIndex(counter);
+                //counter++;
             }
 
         }
@@ -359,7 +450,7 @@ return null;
     if(dstX > dstY){
         return 14 * dstY + 10 * (dstX - dstY);
     }
-return 14 * dstX + 10 * (dstY - dstX);
+    return 14 * dstX + 10 * (dstY - dstX);
 
 
     }
@@ -385,15 +476,16 @@ return 14 * dstX + 10 * (dstY - dstX);
         private Tile parent;
         private float moveCost;
         T value;
+        int index;
 
         public Tile(int x, int y){
 
-            pos = new MathVector(x, y);
-            width = 20;
-            height = 17.5f;
-            unwalkable = false;
-          strength = 2.9f;
-          moveCost = 0;
+            this.pos = new MathVector(x, y);
+            this.width = 20;
+            this.height = 17.5f;
+            this.unwalkable = false;
+          this.strength = 2.9f;
+          this.moveCost = 0;
         }
 
         public Tile(T val){
@@ -413,6 +505,11 @@ return 14 * dstX + 10 * (dstY - dstX);
         public float getY(){return pos.y;}
         public MathVector getPos(){return pos;}
         public void setUnwalkable(boolean unW){this.unwalkable = unW;}
+        public void setValue(T value){this.value = value;}
+        public T getValue(){return value;}
+        public int getIndex(){return index;}
+        public void setIndex(int index){this.index = index;}
+        public Tile getParent(){return parent;}
 
         public MathVector repel(MovingObject o){
 
@@ -452,12 +549,16 @@ return 14 * dstX + 10 * (dstY - dstX);
             StringBuilder sb = new StringBuilder();
 
             sb.append(" x = " + this.pos.x + " y = " + this.pos.y);
-            sb.append( " unwalkable = " + this.unwalkable);
+            sb.append( ", unwalkable = " + this.unwalkable);
+            sb.append(", Index nr = " + value);
 
             return sb.toString();
 
 
         }
+
+
+
     }
 
 }

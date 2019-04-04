@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/SnakeLogic/Tree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeGUI/Controller$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeGUI/Controller$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeGUI/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeGUI/Main$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeGUI/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/GameObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/Grid$Tile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/Grid.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/Item.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/MathVector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/MovingObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/RandomRambler.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SnakeLogic/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SnakeLogic/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/Tree.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Grid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="1515">
+              <caret line="101" selection-start-line="101" selection-end-line="101" />
             </state>
           </provider>
         </entry>
@@ -87,17 +74,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Tree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+            <state relative-caret-position="794">
+              <caret line="53" column="3" selection-start-line="53" selection-start-column="3" selection-end-line="53" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MathVector.java">
+        <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
+            <state relative-caret-position="1575">
+              <caret line="116" selection-start-line="116" selection-end-line="116" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,17 +95,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MovingObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="56" column="58" selection-start-line="56" selection-start-column="58" selection-end-line="56" selection-end-column="58" />
+            <state relative-caret-position="1035">
+              <caret line="73" column="31" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SnakeLogic/GameObject.java">
+        <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MathVector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="435">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -206,10 +196,10 @@
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1382" />
-    <option name="height" value="784" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -220,6 +210,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -248,7 +239,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -262,7 +252,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553810901658" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554111497120" />
     <property name="dynamic.classpath" value="false" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -528,15 +518,19 @@
       <workItem from="1553757363270" duration="624000" />
       <workItem from="1553759900114" duration="151000" />
       <workItem from="1553764432681" duration="16057000" />
-      <workItem from="1553894475810" duration="3070000" />
+      <workItem from="1553894475810" duration="3123000" />
+      <workItem from="1553903713047" duration="18405000" />
+      <workItem from="1554111621397" duration="1003000" />
+      <workItem from="1554214973545" duration="2932000" />
+      <workItem from="1554410444471" duration="208000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="267872000" />
+    <option name="totallyTimeSpent" value="290473000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
@@ -544,7 +538,7 @@
       <window_info id="Favorites" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Nl-Palette" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.6703755" visible="true" weight="0.17668097" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.6703755" visible="true" weight="0.18526466" />
       <window_info id="Palette&#9;" order="6" />
       <window_info id="Structure" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Application Servers" order="0" />
@@ -553,11 +547,11 @@
       <window_info anchor="bottom" id="Event Log" order="3" />
       <window_info anchor="bottom" id="Problems" order="4" />
       <window_info anchor="bottom" id="Version Control" order="5" />
-      <window_info active="true" anchor="bottom" id="Messages" order="6" visible="true" weight="0.3253012" />
+      <window_info anchor="bottom" id="Messages" order="6" weight="0.3253012" />
       <window_info anchor="bottom" id="Message" order="7" />
-      <window_info anchor="bottom" id="Find" order="8" weight="0.32866243" />
-      <window_info anchor="bottom" id="Run" order="9" weight="0.15345268" />
-      <window_info anchor="bottom" id="Debug" order="10" weight="0.2879518" />
+      <window_info anchor="bottom" id="Find" order="8" weight="0.32738853" />
+      <window_info anchor="bottom" id="Run" order="9" weight="0.15159236" />
+      <window_info anchor="bottom" id="Debug" order="10" weight="0.30963856" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="13" />
@@ -595,27 +589,9 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/SnakeLogic/Grid.java</url>
-          <line>38</line>
+          <line>79</line>
           <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SnakeLogic/Grid.java</url>
-          <line>39</line>
-          <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SnakeLogic/Grid.java</url>
-          <line>40</line>
-          <properties />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SnakeLogic/Grid.java</url>
-          <line>41</line>
-          <properties />
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -703,16 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/javafx.graphics/javafx/stage/Window.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="153" selection-start-line="153" selection-end-line="153" />
-          <folding>
-            <element signature="e#5148#5149#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SnakeLogic/BFS.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-41">
@@ -734,16 +700,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2790">
-          <caret line="197" column="33" selection-start-line="197" selection-start-column="33" selection-end-line="197" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/javafx.fxml/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -751,31 +707,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Grid.java">
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/GameObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MathVector.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Boolean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        <state relative-caret-position="189">
+          <caret line="161" selection-start-line="161" selection-end-line="161" />
+          <folding>
+            <element signature="e#4968#4969#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.jdk/Contents/Home/lib/src.zip!/javafx.graphics/javafx/stage/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="153" selection-start-line="153" selection-end-line="153" />
+          <folding>
+            <element signature="e#5148#5149#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Grid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1515">
+          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1575">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MovingObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="56" column="58" selection-start-line="56" selection-start-column="58" selection-end-line="56" selection-end-column="58" />
+        <state relative-caret-position="1035">
+          <caret line="73" column="31" selection-start-line="73" selection-start-column="31" selection-end-line="73" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/GameObject.java">
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MathVector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="435">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
@@ -809,8 +802,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Tree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+        <state relative-caret-position="794">
+          <caret line="53" column="3" selection-start-line="53" selection-start-column="3" selection-end-line="53" selection-end-column="3" />
         </state>
       </provider>
     </entry>
