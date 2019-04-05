@@ -36,8 +36,8 @@ public class Grid {
         pathCounter = 0;
 
         createGrid();
-        createFrame();
-        createMaze();
+      //  createFrame();
+      //  createMaze();
 
 
 
@@ -204,6 +204,17 @@ public Tile[][] getTiles(){return tiles;}
 
 
 
+
+
+
+
+
+
+
+
+
+
+    /*
     private void createMaze(){
 
         tiles[5][1].setUnwalkable(true);
@@ -211,6 +222,7 @@ public Tile[][] getTiles(){return tiles;}
 
         buildWall(tiles[5][2]);
     }
+    */
 
     public String scanForWalls(MovingObject o){
 
@@ -286,7 +298,7 @@ return null;
     }
 
 
-
+/*
     private void buildWall(Tile tile){
 
         float ranX = ranNumInRange(-1, 1);
@@ -318,9 +330,8 @@ return null;
                 buildWall(tiles[(int)ranX][(int)ranY]);
             }
         }
-
-
     }
+    */
 
     private int numOFUnwalkN(Tile tile){
 
@@ -354,6 +365,7 @@ return null;
     }
 
 
+    /*
     private void createFrame(){
 
         for(int i = 0; i < frameWidth; i+=1f){
@@ -377,6 +389,7 @@ return null;
         }
 
     }
+    */
 
     private Tile getTile(MathVector pos){
 
