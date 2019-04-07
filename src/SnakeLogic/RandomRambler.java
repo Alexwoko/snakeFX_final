@@ -31,6 +31,20 @@ public class RandomRambler extends MovingObject {
         }
     }
 
+    public void followPath(List<Grid.Tile> path){
+
+        for(int i = 0; i < path.size(); i++ ){
+
+            Grid.Tile t = path.get(i);
+            this.setX(t.getX());
+            this.setY(t.getY());
+            break;
+        }
+
+
+
+
+    }
 
 @Override
     public void update(){

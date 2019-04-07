@@ -1,11 +1,14 @@
 package SnakeLogic;
 
+import java.util.List;
+
 public abstract class MovingObject implements GameObject{
 
     private MathVector pos, vel, accel;
     private MathVector up, down, right, left;
     private float maxForce, maxSpeed;
     private String dir;
+    private List<Grid.Tile> myPath;
 
 
     public MovingObject(int x, int y){
@@ -27,6 +30,8 @@ public abstract class MovingObject implements GameObject{
 
     }
 
+    public void setMyPath(List<Grid.Tile> path){myPath = path;}
+    public List<Grid.Tile> getMyPath(){return  myPath;}
 
 public void stopMoving(String t){
 

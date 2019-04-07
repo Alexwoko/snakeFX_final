@@ -69,12 +69,10 @@ public class Controller {
 
                     lastUpdate = now;
 
-
-
-                    if(player.getPos().x > 0 && player.getPos().x < 29) {
-                        myGrid.BFS(ranRam.getPos(), player.getPos());
-                        myGrid.BFS(ranRamTwo.getPos(), player.getPos());
-                        myGrid.BFS(ranRamThree.getPos(), ranRamTwo.getPos());
+                    if(player.getPos().x >= 0 && player.getPos().x < 29) {
+                        myGrid.BFS(ranRam, player);
+                        myGrid.BFS(ranRamTwo, player);
+                        myGrid.BFS(ranRamThree, ranRamTwo);
 
 
                     }else{
@@ -137,14 +135,10 @@ public class Controller {
 
 
 
-        for(int i = 0; i < myGrid.thePath.size(); i++ ){
 
-            Grid.Tile t = myGrid.thePath.get(i);
-            ranRam.setX(t.getX());
-            ranRam.setY(t.getY());
-            break;
-        }
-
+        ranRam.followPath(myGrid.thePath);
+        ranRamTwo.followPath(myGrid.thePath);
+        ranRamThree.followPath(myGrid.thePath);
 
 
         player.update();

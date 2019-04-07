@@ -55,15 +55,20 @@ public class Grid {
 public Tile[][] getTiles(){return tiles;}
 
 
-    public void retracePath(Tile starNode, Tile endNode){
+    public void retracePath(MovingObject hunter, Tile prey){
 
-        Tile currentNode = endNode;
+      //  MathVector currentNode = prey.getPos();
+        Tile t = convertPosToTile(hunter);
+
+       // Tile t = convertPosToTile(prey);
         thePath = new ArrayList<>();
 
-        while(!currentNode.equals(starNode)){
+        while(!currentNode.equals(hunter.getPos())){
           //  pathCounter += 1;
-            thePath.add(currentNode);
-            currentNode = currentNode.getParent();
+
+
+            thePath.add();
+            t = t.getParent();
 
         }
         Collections.reverse(thePath);
@@ -71,13 +76,74 @@ public Tile[][] getTiles(){return tiles;}
 
     }
 
+    public void BFS(MovingObject hunter, MovingObject prey){
+
+
+
+        tree = new Tree<>(0, 1f);
+        openList = new ArrayList<>();
+
+        Tile origin = getTile(hunter.getPos());
+        Tile target = getTile(prey.getPos());
+
+        origin.setMoveCost(Float.MAX_VALUE);
+        Tile currentTile;
+
+        openList.add(origin);
+
+        while(!openList.isEmpty()){
+
+            currentTile = openList.get(0);
+            openList.remove(currentTile);
+            tree.add(currentTile.getMoveCost());
+
+            currentTile.setIndex(tree.numOfNodes);
+
+
+
+            if (currentTile.pos.x == target.pos.x && currentTile.pos.y == target.pos.y) {
+
+
+               target = currentTile;
+
+            //    target = convertTileToPos();
+
+                retracePath(hunter, prey);
+
+                tree.emptyTree();
+
+
+                return;
+            }
+
+
+            for(Tile t : getNeighbours(currentTile)){
+
+                if(tree.containsValue(t.index) || t.getUnwalkable()){
+
+                    continue;
+                }
+
+                if(!openList.contains(t) || t.getMoveCost() <= currentTile.getMoveCost()) {
+
+                    t.setMoveCost(getDistance(currentTile, t));
+                    t.parent = currentTile;
+
+                    if (!openList.contains(t))
+                        openList.add(t);
+
+                }
+            }
+        }
+    }
+
+
+
+    /*
+
     public void BFS(MathVector startPos, MathVector endPos){
 
-        /*
-        if(endPos.x <= 1 || endPos.x > 29){
-            return;
-        }
-*/
+
 
         tree = new Tree<>(0, 1f);
         openList = new ArrayList<>();
@@ -133,7 +199,7 @@ public Tile[][] getTiles(){return tiles;}
             }
         }
     }
-
+*/
 
 
     public List<Tile> getNeighbours(Tile t){
@@ -374,6 +440,26 @@ return null;
 
     }
 
+    public Tile convertPosToTile(MovingObject o){
+
+        // Tile t = new Tile(o.getX(), o.getY());
+        return new Tile(o.getX(), o.getY());
+
+
+    }
+
+    public MovingObject convertTileToPos(Tile t){
+
+        // Tile t = new Tile(o.getX(), o.getY());
+      //  return new Tile(o.getX(), o.getY());
+
+       // return new RandomRambler(t.pos.x, t.pos.y);
+        RandomRambler rr = new RandomRambler((int)t.pos.x, (int)t.pos.y);
+
+        return rr;
+
+    }
+
 
 
     /**
@@ -397,7 +483,7 @@ return null;
         T value;
         int index;
 
-        public Tile(int x, int y){
+        public Tile(float x, float y){
 
             this.pos = new MathVector(x, y);
             this.width = 20;
@@ -412,6 +498,8 @@ return null;
            this.value = val;
 
         }
+
+
 
         public void setMoveCost(float cost){moveCost = cost;}
         public float getMoveCost(){return moveCost;}
