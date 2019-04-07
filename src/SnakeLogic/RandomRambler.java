@@ -9,7 +9,7 @@ public class RandomRambler extends MovingObject {
         super(x, y);
         setMaxSpeed(0.5f);
     }
-/*
+
     public void randomWalk(){
 
         Random ran = new Random();
@@ -30,7 +30,7 @@ public class RandomRambler extends MovingObject {
 
         }
     }
-*/
+
 
 @Override
     public void update(){

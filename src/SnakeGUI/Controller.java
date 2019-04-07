@@ -27,9 +27,11 @@ public class Controller {
     private Random random = new Random();
     private int gameLoopDelay = 500;
     private float refreshRate =150;
-    private Player player = new Player(3, 5);
-    private RandomRambler ranRam = new RandomRambler(4, 6);
-    private MovingObject target = new RandomRambler(0, 0);
+    private Player player = new Player(14, 14);
+    private RandomRambler ranRam = new RandomRambler(13, 9);
+    private RandomRambler ranRamTwo = new RandomRambler(14, 9);
+    private RandomRambler ranRamThree = new RandomRambler(15, 9);
+   // private MovingObject target = new RandomRambler(0, 0);
 
     Grid myGrid = new Grid();
 
@@ -50,9 +52,9 @@ public class Controller {
     public void initialize()
     {
 
-    givePos(ranRam);
-    givePos(player);
-    givePos(target);
+  //  givePos(ranRam);
+  //  givePos(player);
+   // givePos(target);
 
         calculateFields();
 
@@ -66,7 +68,21 @@ public class Controller {
                 {
 
                     lastUpdate = now;
-                    myGrid.BFS(ranRam.getPos(), player.getPos());
+
+
+
+                    if(player.getPos().x > 0 && player.getPos().x < 29) {
+                        myGrid.BFS(ranRam.getPos(), player.getPos());
+                        myGrid.BFS(ranRamTwo.getPos(), player.getPos());
+                        myGrid.BFS(ranRamThree.getPos(), ranRamTwo.getPos());
+
+
+                    }else{
+                        ranRam.stop();
+                    }
+
+
+
                     update(now);
 
                 }             }
@@ -108,10 +124,17 @@ public class Controller {
 
         }
 
-        checkEdges(player);
-        checkEdges(ranRam);
+
+
         myGrid.playerScanner(player);
         myGrid.playerScanner(ranRam);
+        myGrid.playerScanner(ranRamTwo);
+        myGrid.playerScanner(ranRamThree);
+        checkEdges(player);
+        checkEdges(ranRam);
+        checkEdges(ranRamTwo);
+        checkEdges(ranRamThree);
+
 
 
         for(int i = 0; i < myGrid.thePath.size(); i++ ){
@@ -120,12 +143,14 @@ public class Controller {
             ranRam.setX(t.getX());
             ranRam.setY(t.getY());
             break;
-
         }
+
 
 
         player.update();
         ranRam.update();
+        ranRamTwo.update();
+        ranRamThree.update();
 
         drawCanvas();
 
@@ -188,6 +213,7 @@ public class Controller {
                        g.setFill(Color.RED);
                    }
 
+
                         g.fillRoundRect(myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight, myGrid.tiles[i][j].getWidth(), myGrid.tiles[i][j].getHeight(), 3, 3);
             }
         }
@@ -199,14 +225,20 @@ public class Controller {
 
         }
 
-        g.setFill(Color.RED);
-        g.fillOval(target.getX() * fieldWidth, target.getY() * fieldHeight, 20, 20);
+
+       // g.setFill(Color.RED);
+       // g.fillOval(target.getX() * fieldWidth, target.getY() * fieldHeight, 20, 20);
 
 
 
         // draw RandomRambler
         g.setFill(Color.YELLOW);
         g.fillRoundRect(this.ranRam.getX() * fieldWidth, this.ranRam.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
+
+        g.setFill(Color.TEAL);
+        g.fillRoundRect(this.ranRamTwo.getX() * fieldWidth, this.ranRamTwo.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
+        g.setFill(Color.PINK);
+        g.fillRoundRect(this.ranRamThree.getX() * fieldWidth, this.ranRamThree.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 
 
         // draw 'player'

@@ -106,6 +106,10 @@ public MathVector getAccel(){return accel;}
     }
 
 
+    public void stop(){
+        vel.x = 0;
+        vel.y = 0;
+    }
 
     @Override
     public void moveRight(){

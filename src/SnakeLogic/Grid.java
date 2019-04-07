@@ -36,9 +36,10 @@ public class Grid {
         pathCounter = 0;
 
         createGrid();
-      //  createFrame();
-      //  createMaze();
+        createFrame();
 
+      //  createMaze();
+       buildMaze();
 
 
     }
@@ -67,10 +68,16 @@ public Tile[][] getTiles(){return tiles;}
         }
         Collections.reverse(thePath);
 
+
     }
 
     public void BFS(MathVector startPos, MathVector endPos){
 
+        /*
+        if(endPos.x <= 1 || endPos.x > 29){
+            return;
+        }
+*/
 
         tree = new Tree<>(0, 1f);
         openList = new ArrayList<>();
@@ -92,14 +99,20 @@ public Tile[][] getTiles(){return tiles;}
             currentTile.setIndex(tree.numOfNodes);
 
 
-            if(currentTile.pos.x == target.pos.x && currentTile.pos.y == target.pos.y){
+
+                if (currentTile.pos.x == target.pos.x && currentTile.pos.y == target.pos.y) {
 
 
-                target = currentTile;
+                    target = currentTile;
 
-                retracePath(origin, target);
-                return;
-            }
+                    retracePath(origin, target);
+
+                    tree.emptyTree();
+
+
+                    return;
+                }
+
 
             for(Tile t : getNeighbours(currentTile)){
 
@@ -121,57 +134,6 @@ public Tile[][] getTiles(){return tiles;}
         }
     }
 
-
-/*
-    public void BFS(MathVector startPos, MathVector endPos){
-
-        openList = new ArrayList<>();
-        closedList = new ArrayList<>();
-        Tile origin = new Tile((int)startPos.x, (int)startPos.y);
-        Tile target = new Tile((int)endPos.x, (int)endPos.y);
-     //   Tile target;
-
-        Tile currentTile;
-        origin.setMoveCost(Float.MAX_VALUE);
-
-        openList.add(origin);
-
-        while(!openList.isEmpty()){
-
-            currentTile = openList.get(0);
-
-            openList.remove(currentTile);
-            closedList.add(currentTile);
-
-            if(currentTile.pos.x == target.pos.x && currentTile.pos.y == target.pos.y){
-
-
-                target = currentTile;
-
-                retracePath(origin, target);
-                return;
-            }
-
-            for(Tile t : getNeighbours(currentTile)){
-
-                float newMoveCost =  getDistance(currentTile, t);
-
-                if(closedList.contains(t) || t.getUnwalkable()){
-                    continue;
-                }
-
-                if(!openList.contains(t) || newMoveCost < currentTile.getMoveCost()){
-
-                t.setMoveCost(newMoveCost);
-                t.parent = currentTile;
-
-                if(!openList.contains(t))
-                    openList.add(t);
-                }
-            }
-        }
-    }
-*/
 
 
     public List<Tile> getNeighbours(Tile t){
@@ -202,27 +164,62 @@ public Tile[][] getTiles(){return tiles;}
     }
 
 
+    private void buildMaze(){
+
+        int[] firstLine = {14};
+        buildWallHorizLine(firstLine, 1);
+        int[] secondLine = {2, 3, 5, 6, 7, 8, 9, 10, 11, 14, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27};
+        buildWallHorizLine(secondLine, 2);
+        int[] fourthLine = {2, 3, 6, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 23, 26, 27};
+        buildWallHorizLine(fourthLine, 4);
+        int[] fifthLine = {6, 14, 23};
+        buildWallHorizLine(fifthLine, 5);
+        int[] sixthLine = {1, 2, 3, 6, 7, 8, 21, 22, 23, 26, 27, 28};
+        buildWallHorizLine(sixthLine, 6);
+        int[] seventhLine = {0, 1, 2, 3, 6, 11, 12, 13, 15, 16, 17, 23, 26, 27, 28, 29};
+        buildWallHorizLine(seventhLine, 7);
+        int[] eightsLine = {1, 2, 3, 6, 11, 17, 23, 26, 27, 28};
+        buildWallHorizLine(eightsLine, 8);
+        int[] ninthLine = {11, 17};
+        buildWallHorizLine(ninthLine, 9);
+        int[] tenthLine = {1, 2, 3, 6, 11, 12, 13, 14,  15, 16, 17, 23, 26, 27, 28};
+        buildWallHorizLine(tenthLine, 10);
+        int[] eleventhLine = {0, 1, 2, 3, 6, 23, 26, 27, 28, 29};
+        buildWallHorizLine(eleventhLine, 11);
+        int[] twelfthLine = {1, 2, 3, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 28};
+        buildWallHorizLine(twelfthLine, 12);
+        int[] thirteenthLine = {6, 7, 8, 14, 20, 21, 22, 23};
+        buildWallHorizLine(thirteenthLine, 13);
+        int[] fourteenth = {2, 3, 4, 25, 26, 27};
+        buildWallHorizLine(fourteenth, 14);
+        int[] fifteenth = {4, 6, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 23, 25};
+        buildWallHorizLine(fifteenth, 15);
+        int[] sixteenth = {1, 2, 6, 14, 23, 27, 28};
+        buildWallHorizLine(sixteenth, 16);
+        int[] seventeenth = {4, 5, 6, 7, 8, 14, 20, 21, 22, 23, 24, 25};
+        buildWallHorizLine(seventeenth, 17);
 
 
 
-
-
-
-
-
-
-
-
-
-    /*
-    private void createMaze(){
-
-        tiles[5][1].setUnwalkable(true);
-        tiles[5][2].setUnwalkable(true);
-
-        buildWall(tiles[5][2]);
     }
-    */
+
+
+    private void buildWallHorizLine(int fields[], int posY){
+
+
+        for(int i = 0; i < frameWidth; i++){
+
+            for (int j = 0; j < fields.length; j ++){
+
+                if(fields[j] == i){
+                    unwalks.add(tiles[i][posY]);
+                    tiles[i][posY].setUnwalkable(true);
+
+                }
+            }
+        }
+    }
+
 
     public String scanForWalls(MovingObject o){
 
@@ -238,7 +235,7 @@ public Tile[][] getTiles(){return tiles;}
                 checkY = (int)o.getY() + j;
 
 
-                if(checkX >= 0 && checkX <= frameWidth && checkY >= 0 && checkY <= frameHeight) {
+                if(checkX >= 0 && checkX <= 29 && checkY >= 0 && checkY <= frameHeight) {
 
                     if (checkX == o.getX() + 1 && checkY == o.getY() && tiles[checkX][checkY].getUnwalkable() && o.getDir() == "RIGHT") {
                         right = tiles[checkX][checkY];
@@ -267,6 +264,7 @@ public Tile[][] getTiles(){return tiles;}
                     }
 
                 }
+
             }
         }
 return null;
@@ -298,77 +296,10 @@ return null;
     }
 
 
-/*
-    private void buildWall(Tile tile){
-
-        float ranX = ranNumInRange(-1, 1);
-        float ranY = ranNumInRange(-1, 1);
-
-        ranX = (int)tile.pos.x + ranX;
-        ranY = (int)tile.pos.y + ranY;
-
-
-        if(ranX == tile.pos.x && ranY == tile.pos.y){
-            buildWall(tile); // --> THIS FREEZES THE ALGORITHM? --> WE HAVE TO CHANGE THE PARAMETER FOR THE RECURSIVE CALL
-        }
-
-
-        if(numOFUnwalks == 130) {
-            return;
-        }
-
-        if (ranX >= 0 && ranX <= frameWidth - 1 && ranY >= 0 && ranY <= frameHeight - 1) {
-
-            if (numOFUnwalkN(tile) <= 2 && numOFUnwalkN(tiles[(int)ranX][(int)ranY]) <= 1 && !unwalks.contains(tiles[(int)ranX][(int)ranY])) {
-
-                unwalks.add(tiles[(int)ranX][(int)ranY]);
-                numOFUnwalks += 1;
-                tiles[(int)ranX][(int)ranY].setUnwalkable(true);
-                buildWall(tiles[(int)ranX][(int)ranY]);
-
-            } else {
-                buildWall(tiles[(int)ranX][(int)ranY]);
-            }
-        }
-    }
-    */
-
-    private int numOFUnwalkN(Tile tile){
-
-        int checkX;
-        int checkY;
-
-        int myCount = 0;
-
-
-        for(int i = -1; i <= 1; i++){
-            for (int j = -1; j <= 1; j++){
-
-                if( i == 0 && j == 0){
-                    continue;
-
-                } else{
-
-                    checkX = (int)tile.pos.x + i;
-                    checkY = (int)tile.pos.y + j;
-
-                    if(checkX >= 0 && checkX <= frameWidth-1 && checkY >= 0 && checkY <= frameHeight-1){
-                        if(tiles[checkX][checkY].getUnwalkable())
-                            myCount += 1;
-
-
-                    }
-                }
-            }
-        }
-        return myCount;
-    }
-
-
-    /*
     private void createFrame(){
 
-        for(int i = 0; i < frameWidth; i+=1f){
+        for(int i = 0; i < frameWidth; i+=1){
+
 
 
             tiles[i][0].setUnwalkable(true);
@@ -379,7 +310,7 @@ return null;
 
         }
 
-        for (int i = 0; i < frameHeight; i+= 1f){
+        for (int i = 0; i < frameHeight; i+= 1){
 
             tiles[0][i].setUnwalkable(true);
             tiles[frameWidth-1][i].setUnwalkable(true);
@@ -388,8 +319,16 @@ return null;
 
         }
 
+        tiles[0][7].setUnwalkable(false);
+        tiles[0][9].setUnwalkable(false);
+        tiles[0][11].setUnwalkable(false);
+
+        tiles[frameWidth-1][7].setUnwalkable(false);
+        tiles[frameWidth-1][9].setUnwalkable(false);
+        tiles[frameWidth-1][11].setUnwalkable(false);
+
     }
-    */
+
 
     private Tile getTile(MathVector pos){
 

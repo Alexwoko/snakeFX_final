@@ -52,6 +52,17 @@ public class Tree<T extends Comparable<T>> {
     }
 
 
+    public void emptyTree(){
+
+
+        if(rootNode != null){
+            rootNode = null;
+            numOfNodes = 0;
+        }
+
+
+    }
+
 
     public boolean add(T val) {
 
@@ -75,6 +86,7 @@ public class Tree<T extends Comparable<T>> {
         if(val.compareTo(parent.value) > 0){
             if(parent.leftChild == null){
                 parent.leftChild = new Node(val);
+                parent.leftChild.parent = parent;
                 numOfNodes += 1;
                // incIndex((Float)numOfNodes, (Float)incrementer);
                 parent.leftChild.nodeIndex = numOfNodes;
@@ -84,6 +96,7 @@ public class Tree<T extends Comparable<T>> {
         } else {
             if(parent.rightChild == null){
                 parent.rightChild = new Node(val);
+                parent.rightChild.parent = parent;
                // incIndex((Float)numOfNodes, (Float)incrementer);
                 numOfNodes += 1;
                 parent.rightChild.nodeIndex = numOfNodes;
@@ -198,7 +211,7 @@ public String toString(){
             sb.append("Index = " + nodeIndex);
             sb.append(", value = " + value);
             sb.append(", parent node = " + parent);
-            sb.append(", Index nr. = " + value);
+
 
             return sb.toString();
 
