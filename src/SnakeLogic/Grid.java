@@ -79,7 +79,8 @@ public Tile[][] getTiles(){return tiles;}
 
         thePath = new ArrayList<>();
 
-        while(!currentNode.equals(prey.getCurrentTile())){
+       // while(!currentNode.equals(hunter.getCurrentTile())){
+        while (hunter.getCurrentTile() != currentNode){
           //  pathCounter += 1;
 
 
@@ -257,14 +258,9 @@ public Tile[][] getTiles(){return tiles;}
 
                 if(!tiles[i][j].getUnwalkable()){
                     tiles[i][j].hasCookie = true;
-
                 }
-
-
             }
-
         }
-
     }
 
 
@@ -419,14 +415,10 @@ return null;
 
         for(int i = 0; i < frameWidth; i+=1){
 
-
-
             tiles[i][0].setUnwalkable(true);
             tiles[i][frameHeight-1].setUnwalkable(true);
             unwalks.add(tiles[i][0]);
             unwalks.add(tiles[i][frameHeight -1]);
-
-
         }
 
         for (int i = 0; i < frameHeight; i+= 1){
@@ -437,15 +429,8 @@ return null;
             unwalks.add(tiles[frameWidth - 1][i]);
 
         }
-
-        tiles[0][7].setUnwalkable(false);
         tiles[0][9].setUnwalkable(false);
-        tiles[0][11].setUnwalkable(false);
-
-        tiles[frameWidth-1][7].setUnwalkable(false);
-        tiles[frameWidth-1][9].setUnwalkable(false);
-        tiles[frameWidth-1][11].setUnwalkable(false);
-
+         tiles[frameWidth-1][9].setUnwalkable(false);
     }
 
 
@@ -493,21 +478,9 @@ return null;
 
     }
 
-    /*
-    public Tile convertPosToTile(MovingObject o){
-
-        // Tile t = new Tile(o.getX(), o.getY());
-       // return new Tile(o.getX(), o.getY());
-
-    }
-    */
 
     public MovingObject convertTileToPos(Tile t){
 
-        // Tile t = new Tile(o.getX(), o.getY());
-      //  return new Tile(o.getX(), o.getY());
-
-       // return new RandomRambler(t.pos.x, t.pos.y);
         RandomRambler rr = new RandomRambler((int)t.pos.x, (int)t.pos.y);
 
         return rr;
@@ -614,6 +587,7 @@ return null;
             sb.append(" x = " + this.pos.x + " y = " + this.pos.y);
             sb.append( ", unwalkable = " + this.unwalkable);
             sb.append(", Index nr = " + value);
+            sb.append(", parent is = " + parent);
 
             return sb.toString();
 

@@ -73,12 +73,14 @@ public class Controller {
 
                     if(player.getPos().x >= 0 && player.getPos().x < 29) {
                         myGrid.BFS(ranRam, player);
-                        myGrid.BFS(ranRamTwo, player);
-                        myGrid.BFS(ranRamThree, ranRamTwo);
+                      //  myGrid.BFS(ranRamTwo, player);
+                      //  myGrid.BFS(ranRamThree, ranRamTwo);
 
 
                     }else{
                         ranRam.stop();
+                        ranRamTwo.stop();
+                        ranRamThree.stop();
                     }
 
 
@@ -211,7 +213,7 @@ public class Controller {
                    // g.(((myGrid.tiles[i][j].getX() * fieldWidth) + myGrid.tiles[i][j].getWidth()/2), (myGrid.tiles[i][j].getY() * fieldHeight) + myGrid.tiles[i][j].getHeight()/2, 5, 5);
                //  g.fillText();
                    // g.getPixelWriter();
-                   g.fillText("O", (myGrid.tiles[i][j].getX() * fieldWidth) + myGrid.tiles[i][j].getWidth()/2, (myGrid.tiles[i][j].getY() * fieldHeight) + myGrid.tiles[i][j].getHeight()/2);
+                //   g.fillText("O", (myGrid.tiles[i][j].getX() * fieldWidth) + myGrid.tiles[i][j].getWidth()/2, (myGrid.tiles[i][j].getY() * fieldHeight) + myGrid.tiles[i][j].getHeight()/2);
                 }
 
 

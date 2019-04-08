@@ -33,11 +33,11 @@ public class RandomRambler extends MovingObject {
 
     public void followPath(){
 
-        if(super.getMyPath() != null){
+        if(getMyPath() != null){
 
-            for(int i = 0; i < super.getMyPath().size(); i++){
+            for(int i = 0; i < getMyPath().size(); i++){
 
-                Grid.Tile t = super.getMyPath().get(i); //    path.get(i);
+                Grid.Tile t = getMyPath().get(i); //    path.get(i);
                 this.setX(t.getX());
                 this.setY(t.getY());
                 break;
