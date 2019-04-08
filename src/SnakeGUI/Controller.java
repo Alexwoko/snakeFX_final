@@ -69,6 +69,8 @@ public class Controller {
 
                     lastUpdate = now;
 
+
+
                     if(player.getPos().x >= 0 && player.getPos().x < 29) {
                         myGrid.BFS(ranRam, player);
                         myGrid.BFS(ranRamTwo, player);
@@ -134,13 +136,17 @@ public class Controller {
         checkEdges(ranRamThree);
 
 
+        ranRam.followPath();
+        ranRamTwo.followPath();
+        ranRamThree.followPath();
 
-
+/*
         ranRam.followPath(myGrid.thePath);
         ranRamTwo.followPath(myGrid.thePath);
         ranRamThree.followPath(myGrid.thePath);
+*/
 
-
+        myGrid.cookieEating(player);
         player.update();
         ranRam.update();
         ranRamTwo.update();
@@ -197,14 +203,25 @@ public class Controller {
             for (int j = 0; j < myGrid.getFrameHeight(); j++){
 
 
-                        g.setFill(Color.DARKGREEN);
+                g.setFill(Color.DARKGREEN);
+
+
+                if(myGrid.tiles[i][j].getHasCookie()){
+                 //   g.setStroke(Color.WHITESMOKE);
+                   // g.(((myGrid.tiles[i][j].getX() * fieldWidth) + myGrid.tiles[i][j].getWidth()/2), (myGrid.tiles[i][j].getY() * fieldHeight) + myGrid.tiles[i][j].getHeight()/2, 5, 5);
+               //  g.fillText();
+                   // g.getPixelWriter();
+                   g.fillText("O", (myGrid.tiles[i][j].getX() * fieldWidth) + myGrid.tiles[i][j].getWidth()/2, (myGrid.tiles[i][j].getY() * fieldHeight) + myGrid.tiles[i][j].getHeight()/2);
+                }
+
+
                    if(myGrid.tiles[i][j].getUnwalkable()){
                     g.setFill(Color.BLACK);
                 }
 
                    if(myGrid.tree.containsValue(myGrid.tiles[i][j].getIndex())){
                       // g.fillRoundRect(myGrid.tiles[i][]);
-                       g.setFill(Color.RED);
+                       g.setFill(Color.LIGHTGREEN);
                    }
 
 
@@ -226,17 +243,17 @@ public class Controller {
 
 
         // draw RandomRambler
-        g.setFill(Color.YELLOW);
+        g.setFill(Color.PURPLE);
         g.fillRoundRect(this.ranRam.getX() * fieldWidth, this.ranRam.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 
-        g.setFill(Color.TEAL);
+        g.setFill(Color.RED);
         g.fillRoundRect(this.ranRamTwo.getX() * fieldWidth, this.ranRamTwo.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
         g.setFill(Color.PINK);
         g.fillRoundRect(this.ranRamThree.getX() * fieldWidth, this.ranRamThree.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 
 
         // draw 'player'
-        g.setFill(Color.BLUE);
+        g.setFill(Color.YELLOW);
         g.fillRoundRect(this.player.getX() * fieldWidth, this.player.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
     }
 

@@ -40,6 +40,7 @@ public class Grid {
 
       //  createMaze();
        buildMaze();
+       placeCookies();
 
 
     }
@@ -55,25 +56,40 @@ public class Grid {
 public Tile[][] getTiles(){return tiles;}
 
 
-    public void retracePath(MovingObject hunter, Tile prey){
+/*
+    public void retracePath(Tile starNode, Tile endNode){
 
-      //  MathVector currentNode = prey.getPos();
-        Tile t = convertPosToTile(hunter);
-
-       // Tile t = convertPosToTile(prey);
+        Tile currentNode = endNode;
         thePath = new ArrayList<>();
 
-        while(!currentNode.equals(hunter.getPos())){
-          //  pathCounter += 1;
-
-
-            thePath.add();
-            t = t.getParent();
+        while(!currentNode.equals(starNode)){
+            //  pathCounter += 1;
+            thePath.add(currentNode);
+            currentNode = currentNode.getParent();
 
         }
         Collections.reverse(thePath);
+    }
+*/
 
 
+    public void retracePath(MovingObject hunter, MovingObject prey){
+
+        Tile currentNode = prey.getCurrentTile();
+
+        thePath = new ArrayList<>();
+
+        while(!currentNode.equals(prey.getCurrentTile())){
+          //  pathCounter += 1;
+
+
+            thePath.add(currentNode);
+
+            currentNode = currentNode.getParent();
+
+        }
+        Collections.reverse(thePath);
+        hunter.setMyPath(thePath);
     }
 
     public void BFS(MovingObject hunter, MovingObject prey){
@@ -85,6 +101,11 @@ public Tile[][] getTiles(){return tiles;}
 
         Tile origin = getTile(hunter.getPos());
         Tile target = getTile(prey.getPos());
+
+        hunter.setCurrentTile(origin);
+        prey.setCurrentTile(target);
+
+       // hunter.setCurrentTile(origin);
 
         origin.setMoveCost(Float.MAX_VALUE);
         Tile currentTile;
@@ -104,7 +125,7 @@ public Tile[][] getTiles(){return tiles;}
             if (currentTile.pos.x == target.pos.x && currentTile.pos.y == target.pos.y) {
 
 
-               target = currentTile;
+               hunter.setCurrentTile(currentTile);
 
             //    target = convertTileToPos();
 
@@ -227,6 +248,23 @@ public Tile[][] getTiles(){return tiles;}
             }
         }
         return neighbours;
+    }
+
+    public void placeCookies(){
+
+        for(int i = 0; i  < frameWidth; i++){
+            for (int j = 0; j < frameHeight; j++){
+
+                if(!tiles[i][j].getUnwalkable()){
+                    tiles[i][j].hasCookie = true;
+
+                }
+
+
+            }
+
+        }
+
     }
 
 
@@ -362,6 +400,21 @@ return null;
     }
 
 
+    public void cookieEating(Player p){
+
+
+        for(int i = 0; i < frameWidth; i++){
+            for(int j = 0; j < frameHeight; j++){
+
+                if(p.getPos() == tiles[i][j].getPos()){
+                    tiles[i][j].hasCookie = false;
+
+                }
+
+            }
+        }
+    }
+
     private void createFrame(){
 
         for(int i = 0; i < frameWidth; i+=1){
@@ -440,13 +493,14 @@ return null;
 
     }
 
+    /*
     public Tile convertPosToTile(MovingObject o){
 
         // Tile t = new Tile(o.getX(), o.getY());
-        return new Tile(o.getX(), o.getY());
-
+       // return new Tile(o.getX(), o.getY());
 
     }
+    */
 
     public MovingObject convertTileToPos(Tile t){
 
@@ -469,7 +523,6 @@ return null;
      */
 
 
-
     public class Tile<T>{
 
         MathVector pos;
@@ -482,6 +535,7 @@ return null;
         private float moveCost;
         T value;
         int index;
+        boolean hasCookie;
 
         public Tile(float x, float y){
 
@@ -491,6 +545,7 @@ return null;
             this.unwalkable = false;
           this.strength = 2.9f;
           this.moveCost = 0;
+          hasCookie = false;
         }
 
         public Tile(T val){
@@ -500,6 +555,7 @@ return null;
         }
 
 
+        public boolean getHasCookie(){return hasCookie;}
 
         public void setMoveCost(float cost){moveCost = cost;}
         public float getMoveCost(){return moveCost;}

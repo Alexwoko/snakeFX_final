@@ -9,6 +9,7 @@ public abstract class MovingObject implements GameObject{
     private float maxForce, maxSpeed;
     private String dir;
     private List<Grid.Tile> myPath;
+    Grid.Tile currentTile;
 
 
     public MovingObject(int x, int y){
@@ -29,6 +30,9 @@ public abstract class MovingObject implements GameObject{
         maxForce = 2;
 
     }
+
+    public Grid.Tile getCurrentTile(){return currentTile;}
+    public void setCurrentTile(Grid.Tile t){currentTile = t;}
 
     public void setMyPath(List<Grid.Tile> path){myPath = path;}
     public List<Grid.Tile> getMyPath(){return  myPath;}
