@@ -38,7 +38,7 @@ public class Grid {
         createGrid();
         createFrame();
 
-      //  createMaze();
+
        buildMaze();
        placeCookies();
 
@@ -77,7 +77,9 @@ public Tile[][] getTiles(){return tiles;}
 
     public void BFS(MovingObject hunter, MovingObject prey){
 
-
+        createGrid();
+        createFrame();
+        buildMaze();
 
        tree = new Tree<>(0, 1f);
       // Tree<Float> tree = hunter.getTree();
@@ -104,14 +106,14 @@ public Tile[][] getTiles(){return tiles;}
             tree.add(currentTile.getMoveCost());
 
             currentTile.setIndex(tree.numOfNodes);
-
+            hunter.setTree(tree);
 
 
             if (currentTile.pos.x == target.pos.x && currentTile.pos.y == target.pos.y) {
 
-                hunter.setTree(tree);
 
-               hunter.setCurrentTile(currentTile);
+
+         //      hunter.setCurrentTile(currentTile);
 
             //    target = convertTileToPos();
 
@@ -119,6 +121,12 @@ public Tile[][] getTiles(){return tiles;}
 
                 hunter.getTree().emptyTree();
                 tree.emptyTree();
+
+                for(int i = openList.size(); i > 0; i--){
+
+                    openList.remove(i-1);
+
+                }
 
 
                 return;

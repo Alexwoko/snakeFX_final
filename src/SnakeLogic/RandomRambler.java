@@ -5,10 +5,12 @@ import javafx.scene.paint.Color;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class RandomRambler extends MovingObject {
 
     private double fieldWidth, fieldHeight;
+
 
 
     public RandomRambler(int x, int y) {
@@ -16,6 +18,7 @@ public class RandomRambler extends MovingObject {
         setMaxSpeed(1f);
         fieldWidth = 20;
         fieldHeight = 17.85;
+
 
     }
 
@@ -42,6 +45,7 @@ public class RandomRambler extends MovingObject {
 
         }
     }
+
 
 
 

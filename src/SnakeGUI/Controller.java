@@ -34,6 +34,7 @@ public class Controller {
    // private MovingObject target = new RandomRambler(0, 0);
 
     Grid myGrid = new Grid();
+   // Grid myGrid;
 
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
@@ -116,6 +117,7 @@ public class Controller {
                 break;
 
         }
+
 
 
 

@@ -1,5 +1,6 @@
 package SnakeLogic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class MovingObject implements GameObject{
@@ -8,9 +9,10 @@ public abstract class MovingObject implements GameObject{
     private MathVector up, down, right, left;
     private float maxForce, maxSpeed;
     private String dir;
-    private List<Grid.Tile> myPath;
+
     Grid.Tile currentTile;
     private Tree<Float> closedList;
+    private List<Grid.Tile> myPath;
 
 
     public MovingObject(int x, int y){
@@ -29,19 +31,21 @@ public abstract class MovingObject implements GameObject{
         dir = null;
         maxSpeed = 1;
         maxForce = 2;
+        myPath = new ArrayList<>();
 
         closedList = new Tree<>(0, 1f);
 
     }
 
+
+    public void setMyPath(List<Grid.Tile> path){myPath = path;}
+    public List<Grid.Tile> getMyPath(){return  myPath;}
     public void setTree(Tree tree ){this.closedList = tree;}
     public Tree getTree(){return closedList;}
 
     public Grid.Tile getCurrentTile(){return currentTile;}
     public void setCurrentTile(Grid.Tile t){currentTile = t;}
 
-    public void setMyPath(List<Grid.Tile> path){myPath = path;}
-    public List<Grid.Tile> getMyPath(){return  myPath;}
 
 public void stopMoving(String t){
 
