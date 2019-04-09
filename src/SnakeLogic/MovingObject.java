@@ -10,6 +10,7 @@ public abstract class MovingObject implements GameObject{
     private String dir;
     private List<Grid.Tile> myPath;
     Grid.Tile currentTile;
+    private Tree<Float> closedList;
 
 
     public MovingObject(int x, int y){
@@ -29,7 +30,12 @@ public abstract class MovingObject implements GameObject{
         maxSpeed = 1;
         maxForce = 2;
 
+        closedList = new Tree<>(0, 1f);
+
     }
+
+    public void setTree(Tree tree ){this.closedList = tree;}
+    public Tree getTree(){return closedList;}
 
     public Grid.Tile getCurrentTile(){return currentTile;}
     public void setCurrentTile(Grid.Tile t){currentTile = t;}

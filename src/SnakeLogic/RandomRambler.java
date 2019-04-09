@@ -1,14 +1,26 @@
 package SnakeLogic;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
+import java.awt.*;
 import java.util.*;
 
 public class RandomRambler extends MovingObject {
 
+    private double fieldWidth, fieldHeight;
+
 
     public RandomRambler(int x, int y) {
         super(x, y);
-        setMaxSpeed(0.5f);
+        setMaxSpeed(1f);
+        fieldWidth = 20;
+        fieldHeight = 17.85;
+
     }
+
+
+
 
     public void randomWalk(){
 
@@ -31,6 +43,8 @@ public class RandomRambler extends MovingObject {
         }
     }
 
+
+
     public void followPath(){
 
         if(getMyPath() != null){
@@ -48,26 +62,31 @@ public class RandomRambler extends MovingObject {
         }
     }
 
+    public void displaySelf(GraphicsContext g, Color c){
 
-    /*
-    public void followPath(List<Grid.Tile> path){
 
-        for(int i = 0; i < path.size(); i++ ){
+        g.setFill(c);
+        g.fillRoundRect(this.getX() * fieldWidth, this.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 
-            Grid.Tile t = path.get(i);
-            this.setX(t.getX());
-            this.setY(t.getY());
-            break;
+    }
+
+    public void displayPath(GraphicsContext g, Color c){
+
+        if(this.getMyPath() != null) {
+            for (Grid.Tile t : this.getMyPath()) {
+                g.setFill(c);
+                g.fillRoundRect(t.getX() * fieldWidth, t.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
+
+            }
         }
     }
-    */
 
 @Override
     public void update(){
 
 
    getVel().add(getAccel());
-   getVel().limit(0.5f);
+   getVel().limit(1f);
    getPos().add(getVel());
    getAccel().mult(0f);
 

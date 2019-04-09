@@ -70,18 +70,9 @@ public class Controller {
                     lastUpdate = now;
 
 
-
-                    if(player.getPos().x >= 0 && player.getPos().x < 29) {
-                        myGrid.BFS(ranRam, player);
-                      //  myGrid.BFS(ranRamTwo, player);
-                      //  myGrid.BFS(ranRamThree, ranRamTwo);
+                //    System.out.println(fieldWidth + " " + fieldHeight);
 
 
-                    }else{
-                        ranRam.stop();
-                        ranRamTwo.stop();
-                        ranRamThree.stop();
-                    }
 
 
 
@@ -136,6 +127,18 @@ public class Controller {
         checkEdges(ranRam);
         checkEdges(ranRamTwo);
         checkEdges(ranRamThree);
+
+        if(player.getPos().x >= 0 && player.getPos().x < 29) {
+            myGrid.BFS(ranRam, player);
+            myGrid.BFS(ranRamTwo, player);
+            myGrid.BFS(ranRamThree, player);
+
+
+        }else{
+            ranRam.stop();
+            ranRamTwo.stop();
+            ranRamThree.stop();
+        }
 
 
         ranRam.followPath();
@@ -221,37 +224,49 @@ public class Controller {
                     g.setFill(Color.BLACK);
                 }
 
-                   if(myGrid.tree.containsValue(myGrid.tiles[i][j].getIndex())){
-                      // g.fillRoundRect(myGrid.tiles[i][]);
-                       g.setFill(Color.LIGHTGREEN);
+/*
+                   if(ranRam.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
+                       g.setFill(Color.GREY);
+
                    }
 
+                if(ranRamTwo.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
+                    g.setFill(Color.DARKGREY);
+
+                }
+
+                if(ranRamThree.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
+                    g.setFill(Color.LIGHTGREY);
+
+                } else if(ranRam.getTree().containsValue(myGrid.tiles[i][j].getIndex()) && ranRamTwo.getTree().containsValue(myGrid.tiles[i][j].getIndex()) && ranRamThree.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
+                    g.setFill(Color.LIGHTGREEN);
+
+                }
+                */
+
+                   /*
+                   if(myGrid.tree.containsValue(myGrid.tiles[i][j].getIndex())){
+                      // g.fillRoundRect(myGrid.tiles[i][]);
+
+                   }
+                   */
+
+                if(ranRam.getTree().containsValue(myGrid.tiles[i][j].getIndex()) && ranRamTwo.getTree().containsValue(myGrid.tiles[i][j].getIndex()) && ranRamThree.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
+                    g.setFill(Color.LIGHTGREY);
+
+                }
 
                         g.fillRoundRect(myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight, myGrid.tiles[i][j].getWidth(), myGrid.tiles[i][j].getHeight(), 3, 3);
             }
         }
 
-        // draw path
-        for(Grid.Tile t: myGrid.thePath){
-            g.setFill(Color.WHITE);
-            g.fillRoundRect(t.getX() * fieldWidth, t.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
+        ranRam.displayPath(g, Color.LIGHTBLUE);
+        ranRamTwo.displayPath(g, Color.LIGHTSALMON);
+        ranRamThree.displayPath(g, Color.LIGHTPINK);
 
-        }
-
-
-       // g.setFill(Color.RED);
-       // g.fillOval(target.getX() * fieldWidth, target.getY() * fieldHeight, 20, 20);
-
-
-
-        // draw RandomRambler
-        g.setFill(Color.PURPLE);
-        g.fillRoundRect(this.ranRam.getX() * fieldWidth, this.ranRam.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
-
-        g.setFill(Color.RED);
-        g.fillRoundRect(this.ranRamTwo.getX() * fieldWidth, this.ranRamTwo.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
-        g.setFill(Color.PINK);
-        g.fillRoundRect(this.ranRamThree.getX() * fieldWidth, this.ranRamThree.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
+        ranRam.displaySelf(g, Color.PURPLE);
+        ranRamTwo.displaySelf(g, Color.RED);
+        ranRamThree.displaySelf(g, Color.PINK);
 
 
         // draw 'player'
@@ -276,5 +291,8 @@ public class Controller {
             o.setY(19);
         }
     }
+
+    public double getFieldWidth(){return fieldWidth;}
+    public double getFieldHeight(){return fieldHeight;}
 
 }

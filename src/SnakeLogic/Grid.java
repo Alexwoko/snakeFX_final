@@ -17,8 +17,8 @@ public class Grid {
     private int pathCounter;
     public List<Tile> thePath;
 
-  //  public Tree<Float> tree;
-  public Tree<Float> tree;
+    public Tree<Float> tree;
+ // public Tree<Float> tree;
 
 
     private String buildDir;
@@ -56,8 +56,8 @@ public class Grid {
 public Tile[][] getTiles(){return tiles;}
 
 
-/*
-    public void retracePath(Tile starNode, Tile endNode){
+
+    public void retracePath(Tile starNode, Tile endNode, MovingObject o){
 
         Tile currentNode = endNode;
         thePath = new ArrayList<>();
@@ -69,35 +69,19 @@ public Tile[][] getTiles(){return tiles;}
 
         }
         Collections.reverse(thePath);
+        o.setMyPath(thePath);
+
     }
-*/
 
 
-    public void retracePath(MovingObject hunter, MovingObject prey){
-
-        Tile currentNode = prey.getCurrentTile();
-
-        thePath = new ArrayList<>();
-
-       // while(!currentNode.equals(hunter.getCurrentTile())){
-        while (hunter.getCurrentTile() != currentNode){
-          //  pathCounter += 1;
-
-
-            thePath.add(currentNode);
-
-            currentNode = currentNode.getParent();
-
-        }
-        Collections.reverse(thePath);
-        hunter.setMyPath(thePath);
-    }
 
     public void BFS(MovingObject hunter, MovingObject prey){
 
 
 
-        tree = new Tree<>(0, 1f);
+       tree = new Tree<>(0, 1f);
+      // Tree<Float> tree = hunter.getTree();
+
         openList = new ArrayList<>();
 
         Tile origin = getTile(hunter.getPos());
@@ -125,13 +109,15 @@ public Tile[][] getTiles(){return tiles;}
 
             if (currentTile.pos.x == target.pos.x && currentTile.pos.y == target.pos.y) {
 
+                hunter.setTree(tree);
 
                hunter.setCurrentTile(currentTile);
 
             //    target = convertTileToPos();
 
-                retracePath(hunter, prey);
+                retracePath(origin, target, hunter);
 
+                hunter.getTree().emptyTree();
                 tree.emptyTree();
 
 
@@ -146,7 +132,7 @@ public Tile[][] getTiles(){return tiles;}
                     continue;
                 }
 
-                if(!openList.contains(t) || t.getMoveCost() <= currentTile.getMoveCost()) {
+                if(!openList.contains(t) || t.getMoveCost() < currentTile.getMoveCost()) {
 
                     t.setMoveCost(getDistance(currentTile, t));
                     t.parent = currentTile;
@@ -154,74 +140,12 @@ public Tile[][] getTiles(){return tiles;}
                     if (!openList.contains(t))
                         openList.add(t);
 
-                }
-            }
-        }
-    }
-
-
-
-    /*
-
-    public void BFS(MathVector startPos, MathVector endPos){
-
-
-
-        tree = new Tree<>(0, 1f);
-        openList = new ArrayList<>();
-
-        Tile origin = getTile(startPos.getPos());
-        Tile target = getTile(endPos.getPos());
-
-        origin.setMoveCost(Float.MAX_VALUE);
-        Tile currentTile;
-
-        openList.add(origin);
-
-        while(!openList.isEmpty()){
-
-            currentTile = openList.get(0);
-            openList.remove(currentTile);
-            tree.add(currentTile.getMoveCost());
-
-            currentTile.setIndex(tree.numOfNodes);
-
-
-
-                if (currentTile.pos.x == target.pos.x && currentTile.pos.y == target.pos.y) {
-
-
-                    target = currentTile;
-
-                    retracePath(origin, target);
-
-                    tree.emptyTree();
-
-
-                    return;
-                }
-
-
-            for(Tile t : getNeighbours(currentTile)){
-
-                if(tree.containsValue(t.index) || t.getUnwalkable()){
-
-                    continue;
-                }
-
-                if(!openList.contains(t) || t.getMoveCost() <= currentTile.getMoveCost()) {
-
-                    t.setMoveCost(getDistance(currentTile, t));
-                    t.parent = currentTile;
-
-                    if (!openList.contains(t))
-                        openList.add(t);
 
                 }
             }
         }
     }
-*/
+
 
 
     public List<Tile> getNeighbours(Tile t){
