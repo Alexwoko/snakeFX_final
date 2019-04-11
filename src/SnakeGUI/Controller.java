@@ -262,9 +262,9 @@ public class Controller {
             }
         }
 
-        ranRam.displayPath(g, Color.LIGHTBLUE);
-        ranRamTwo.displayPath(g, Color.LIGHTSALMON);
-        ranRamThree.displayPath(g, Color.LIGHTPINK);
+     //   ranRam.displayPath(g, Color.LIGHTBLUE);
+      //  ranRamTwo.displayPath(g, Color.LIGHTSALMON);
+       // ranRamThree.displayPath(g, Color.LIGHTPINK);
 
         ranRam.displaySelf(g, Color.PURPLE);
         ranRamTwo.displaySelf(g, Color.RED);
