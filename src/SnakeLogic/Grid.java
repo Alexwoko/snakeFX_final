@@ -428,7 +428,7 @@ return null;
      */
 
 
-    public class Tile<T>{
+    public class Tile{
 
         MathVector pos;
         int width;
@@ -453,11 +453,6 @@ return null;
           hasCookie = false;
         }
 
-        public Tile(T val){
-
-           this.value = val;
-
-        }
 
 
         public boolean getHasCookie(){return hasCookie;}
@@ -473,7 +468,6 @@ return null;
         public float getY(){return pos.y;}
         public MathVector getPos(){return pos;}
         public void setUnwalkable(boolean unW){this.unwalkable = unW;}
-        public void setValue(T value){this.value = value;}
         public T getValue(){return value;}
         public int getIndex(){return index;}
         public void setIndex(int index){this.index = index;}
