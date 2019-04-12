@@ -7,55 +7,61 @@ public class Grid {
 
     public Tile[][] tiles;
     private int frameWidth, frameHeight;
-    private int maxWallsInLine;
-    private int maxAmount;
-    private int numOFUnwalks;
-    private List<Tile> unwalks = new ArrayList<>();
-
-    private List<Tile> openList;
-    private List<Tile> closedList;
-    private int pathCounter;
-    public List<Tile> thePath;
-
-    public Tree<Float> tree;
- // public Tree<Float> tree;
+    public Node[][] nodes;
 
 
-    private String buildDir;
+
 
 
 
     public Grid(){
 
-        numOFUnwalks = 0;
-        this.maxAmount = 0;
+
         frameWidth = 30;
         frameHeight = 20;
         tiles = new Tile[frameWidth][frameHeight];
-        maxWallsInLine = 4;
-        pathCounter = 0;
-
+        nodes = new Node[frameWidth][frameHeight];
         createGrid();
         createFrame();
+        buildMaze();
 
-
-       buildMaze();
-       placeCookies();
 
 
     }
 
-    public int getPathSize(){
-
-            return pathCounter;
-
-       }
     public int getFrameWidth(){return  frameWidth;}
     public int getFrameHeight(){return frameHeight;}
 
 public Tile[][] getTiles(){return tiles;}
 
+    public List<Node> getNeighbours(Node n){
 
+        List<Node> neighbours = new ArrayList<>();
+
+        for(int i =  - 1; i <=   1; i++){
+            for(int j =  -1; j <= 1; j++){
+
+                if(n.getX() == i && n.getY() == j || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
+
+                }else{
+
+                    float checkX = n.getX() +i;
+                    float checkY = n.getY() + j;
+
+                    if(checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20){
+
+                        neighbours.add(nodes[(int)checkX][(int)checkY]);
+
+                    }
+                }
+            }
+        }
+        return neighbours;
+    }
+
+
+
+/*
 
     public void retracePath(Tile starNode, Tile endNode, MovingObject o){
 
@@ -182,18 +188,7 @@ public Tile[][] getTiles(){return tiles;}
         }
         return neighbours;
     }
-
-    public void placeCookies(){
-
-        for(int i = 0; i  < frameWidth; i++){
-            for (int j = 0; j < frameHeight; j++){
-
-                if(!tiles[i][j].getUnwalkable()){
-                    tiles[i][j].hasCookie = true;
-                }
-            }
-        }
-    }
+    */
 
 
     private void buildMaze(){
@@ -244,8 +239,7 @@ public Tile[][] getTiles(){return tiles;}
             for (int j = 0; j < fields.length; j ++){
 
                 if(fields[j] == i){
-                    unwalks.add(tiles[i][posY]);
-                    tiles[i][posY].setUnwalkable(true);
+                    tiles[i][posY].setWalkable(false);
 
                 }
             }
@@ -269,12 +263,12 @@ public Tile[][] getTiles(){return tiles;}
 
                 if(checkX >= 0 && checkX <= 29 && checkY >= 0 && checkY <= frameHeight) {
 
-                    if (checkX == o.getX() + 1 && checkY == o.getY() && tiles[checkX][checkY].getUnwalkable() && o.getDir() == "RIGHT") {
+                    if (checkX == o.getX() + 1 && checkY == o.getY() && !tiles[checkX][checkY].getWalkable() && o.getDir() == "RIGHT") {
                         right = tiles[checkX][checkY];
                         o.applyRepeller(right);
                         return "right";
                     }
-                    if (checkX == o.getX() -1 && checkY == o.getY() && tiles[checkX][checkY].getUnwalkable() && o.getDir() == "LEFT") {
+                    if (checkX == o.getX() -1 && checkY == o.getY() && !tiles[checkX][checkY].getWalkable() && o.getDir() == "LEFT") {
                         left = tiles[checkX][checkY];
                         o.applyRepeller(left);
                         return "left";
@@ -282,13 +276,13 @@ public Tile[][] getTiles(){return tiles;}
                     }
 
 
-                    if (checkX == o.getX() && checkY == o.getY() -1 && tiles[checkX][checkY].getUnwalkable()&& o.getDir() == "UP") {
+                    if (checkX == o.getX() && checkY == o.getY() -1 && !tiles[checkX][checkY].getWalkable()&& o.getDir() == "UP") {
                         up = tiles[checkX][checkY];
                         o.applyRepeller(up);
                         return "up";
 
                     }
-                    if (checkX == o.getX() && checkY == o.getY() + 1 && tiles[checkX][checkY].getUnwalkable()&& o.getDir() == "DOWN") {
+                    if (checkX == o.getX() && checkY == o.getY() + 1 && !tiles[checkX][checkY].getWalkable() && o.getDir() == "DOWN") {
                         down = tiles[checkX][checkY];
                         o.applyRepeller(down);
                         return "down";
@@ -308,7 +302,7 @@ return null;
      for(int i = 0; i < frameWidth; i+=1f){
          for(int j = 0; j <  frameHeight; j+=1f){
 
-             if(o.getX() == i && o.getY() == j && !tiles[i][j].getUnwalkable()){
+             if(o.getX() == i && o.getY() == j && tiles[i][j].getWalkable()){
 
                  o.stopMoving(scanForWalls(o));
 
@@ -328,41 +322,26 @@ return null;
     }
 
 
-    public void cookieEating(Player p){
 
-
-        for(int i = 0; i < frameWidth; i++){
-            for(int j = 0; j < frameHeight; j++){
-
-                if(p.getPos() == tiles[i][j].getPos()){
-                    tiles[i][j].hasCookie = false;
-
-                }
-
-            }
-        }
-    }
 
     private void createFrame(){
 
         for(int i = 0; i < frameWidth; i+=1){
 
-            tiles[i][0].setUnwalkable(true);
-            tiles[i][frameHeight-1].setUnwalkable(true);
-            unwalks.add(tiles[i][0]);
-            unwalks.add(tiles[i][frameHeight -1]);
+            tiles[i][0].setWalkable(false);
+            tiles[i][frameHeight-1].setWalkable(false);
+
         }
 
         for (int i = 0; i < frameHeight; i+= 1){
 
-            tiles[0][i].setUnwalkable(true);
-            tiles[frameWidth-1][i].setUnwalkable(true);
-            unwalks.add(tiles[0][i]);
-            unwalks.add(tiles[frameWidth - 1][i]);
+            tiles[0][i].setWalkable(false);
+            tiles[frameWidth-1][i].setWalkable(false);
+
 
         }
-        tiles[0][9].setUnwalkable(false);
-         tiles[frameWidth-1][9].setUnwalkable(false);
+        tiles[0][9].setWalkable(true);
+         tiles[frameWidth-1][9].setWalkable(true);
     }
 
 
@@ -433,60 +412,42 @@ return null;
         MathVector pos;
         int width;
         float height;
-        Boolean unwalkable;
-        int nCounter;
+        Boolean walkable;
         private float strength;
-        private Tile parent;
-        private float moveCost;
-        T value;
         int index;
-        boolean hasCookie;
+
 
         public Tile(float x, float y){
 
             this.pos = new MathVector(x, y);
             this.width = 20;
             this.height = 17.5f;
-            this.unwalkable = false;
+            this.walkable = true;
           this.strength = 2.9f;
-          this.moveCost = 0;
-          hasCookie = false;
+
         }
 
 
 
-        public boolean getHasCookie(){return hasCookie;}
-
-        public void setMoveCost(float cost){moveCost = cost;}
-        public float getMoveCost(){return moveCost;}
-        public void setPos(MathVector pos){this.pos = pos;}
-        public int getNCounter(){return nCounter;}
-        public void setNCounter(int n){nCounter = n;}
         public float getWidth(){return width;}
         public float getHeight(){return height;}
         public float getX(){return pos.x;}
         public float getY(){return pos.y;}
         public MathVector getPos(){return pos;}
-        public void setUnwalkable(boolean unW){this.unwalkable = unW;}
-        public T getValue(){return value;}
+        public void setWalkable(boolean w){this.walkable = w;}
         public int getIndex(){return index;}
-        public void setIndex(int index){this.index = index;}
-        public Tile getParent(){return parent;}
 
         public MathVector repel(MovingObject o){
 
-            //  MathVector dir = new MathVector(0, 0);
+
             MathVector dir;
             MathVector oPos = new MathVector(o.getX(), o.getY());
             dir = oPos.sub(this.pos);
-
-
             float d = (float)dir.mag();
             d = constrain(d, 1, 2);
             dir.normalize();
             float force =    strength / (d * d);
             dir.mult((int)force);
-           System.out.println(dir);
             return dir;
 
         }
@@ -504,16 +465,14 @@ return null;
         }
         
 
-        public Boolean getUnwalkable() {return unwalkable;}
+        public Boolean getWalkable() {return walkable;}
 
         public String toString(){
 
             StringBuilder sb = new StringBuilder();
 
             sb.append(" x = " + this.pos.x + " y = " + this.pos.y);
-            sb.append( ", unwalkable = " + this.unwalkable);
-            sb.append(", Index nr = " + value);
-            sb.append(", parent is = " + parent);
+            sb.append( ", walkable = " + this.walkable);
 
             return sb.toString();
 

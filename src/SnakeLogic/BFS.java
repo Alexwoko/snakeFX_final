@@ -1,63 +1,81 @@
-
-/*
 package SnakeLogic;
+
 
 import SnakeGUI.Controller;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 import java.util.Stack;
+
 
 public class BFS {
 
-    private Grid.Tile[][] tiles;
+    private Grid myGrid;
     private MovingObject startNode;
     private MovingObject endNode;
-    private Grid.Tile currentTile;
-    private Stack<Grid.Tile> thePath;
-    private ArrayList<Grid.Tile> openList;
-    private ArrayList<Grid.Tile> closedList;
+    private Node currentNode;
+    private Stack<Node> thePath;
+    private ArrayList<Node> openList;
+    // private ArrayList<Grid.Tile> closedList;
+    private Tree<Node> closedList;
 
 
-    public BFS(MovingObject startNode, MovingObject endNode){
+    public BFS(MovingObject startNode, MovingObject endNode, Grid grid){
 
         this.startNode = startNode;
         this.endNode = endNode;
+        this.myGrid = grid;
         startBFS();
 
-
     }
 
-    public List<Grid.Tile> getNeighbours(Grid.Tile t){
+ //   public void setMyGrid(Grid grid){ this.myGrid = grid;}
 
-        List<Grid.Tile> neighbours = new ArrayList<>();
 
-        for(int i =  - 1; i <=   1; i++){
-            for(int j =  -1; j <= 1; j++){
+    public void retracePath(Node startNode, Node targetNode){
 
-                if(t.pos.x == i && t.pos.y == j || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
+        Node currentNode = targetNode;
 
-                }else{
+        while(currentNode != startNode){
 
-                    int checkX = t.pos.x +i;
-                    int checkY = t.pos.y + j;
+            thePath.add(currentNode);
+            currentNode = currentNode.getParent();
 
-                    if(checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20){
-                        neighbours.add([checkX][checkY]);
-
-                    }
-                }
-            }
         }
-        return neighbours;
+
+        Collections.reverse(thePath);
+        this.startNode.setMyPath(thePath);
+
+
     }
+
+    public boolean isWalkable(Node n){
+
+        for(int i = 0; i < myGrid.getFrameWidth(); i++){
+            for(int j = 0; j < myGrid.getFrameHeight(); i++){
+
+             //   if(myGrid.tiles[i][j].walkable && (n.getX() == i && n.getY() == j)){
+                if(n.getX() == i && n.getY() == j && myGrid.tiles[i][j].walkable){
+                    return true;
+
+                }
+
+            }
+
+        }
+        return false;
+    }
+
 
     public void startBFS(){
 
         openList = new ArrayList<>();
-        closedList = new ArrayList<>();
-        Grid.Tile origin = this.startNode.getPos();
-      //  Grid.Tile target = this.endNode;
+        closedList = new Tree<>();
+
+
+
+        Node origin = new Node(startNode.getX(), startNode.getY());
+        Node target = new Node(endNode.getX(), endNode.getY());
 
 
         openList.add(origin);
@@ -65,25 +83,31 @@ public class BFS {
         while(!openList.isEmpty()){
 
 
-            currentTile = openList.get(0);
-            openList.remove(currentTile);
-            closedList.add(currentTile);
+            currentNode = openList.get(0);
+            openList.remove(currentNode);
+            closedList.add(currentNode);
 
-            if(currentTile.getX() == target.getX() && currentTile.getY() == target.getY()){
+            if(currentNode.getX() == target.getX() && currentNode.getY() == target.getY()){
 
-                target = currentTile;
+                target = currentNode;
                 retracePath(origin, target);
                 return;
             }
 
-            For (Grid.Tile t : getNeighbours(currentTile)){
 
+            for (Node n : myGrid.getNeighbours(currentNode)){
 
+                if(closedList.containsValue(n) || !isWalkable(n)){
+                    continue;
+
+                }
+
+                if(!openList.contains(n)){
+                    n.setParent(currentNode);
+                    openList.add(n);
+
+                }
             }
-
         }
-
-
     }
 }
-*/

@@ -1,24 +1,26 @@
 package SnakeLogic;
 
-public class Tree<T extends Comparable<T>> {
+public class Tree<T> {
 
 
-    Node rootNode;
-    //  Node leftNode;
-    // Node rightNode
-    int numOfNodes;
-    T incrementer;
-    T sum;
+    private T rootNode;
+    private T westNode;
+    private T eastNode;
+    private T northNode;
+    private T southNode;
+    private int numOfNodes;
 
 
-    public Tree(int numOfNodes, T incrementer) {
 
-        this.incrementer = incrementer;
-        this.numOfNodes = numOfNodes;
-        // rootNode = new Node<>(0);
-        // rootNode = new Node(Integer.MAX_VALUE);
+    public Tree() {
+
+
+        numOfNodes = 0;
+
     }
 
+
+    /*
     public MathVector get(int index){
 
         if(rootNode != null) {
@@ -31,7 +33,7 @@ public class Tree<T extends Comparable<T>> {
         return null;
     }
 
-    public MathVector getChildNode(Node<T> rootNode, int index){
+    public MathVector getChildNode(T rootNode, int index){
 
         if(rootNode.leftChild != null) {
             if (rootNode.leftChild.nodeIndex == index) {
@@ -50,7 +52,7 @@ public class Tree<T extends Comparable<T>> {
 
         return null;
     }
-
+*/
 
     public void emptyTree(){
 
@@ -64,91 +66,104 @@ public class Tree<T extends Comparable<T>> {
     }
 
 
-    public boolean add(T val) {
-
-
+    public boolean add(T node) {
 
         if(rootNode == null){
-
             numOfNodes += 1;
-            rootNode = new Node(val);
-            rootNode.nodeIndex = numOfNodes;
+            rootNode = node;
         }else{
-            addChildNote(rootNode, val);
+            addChildNote(rootNode, node);
         }
 
         return true;
 
     }
 
-    private void addChildNote(Node<T> parent, T val) {
 
-        if(val.compareTo(parent.value) > 0){
-            if(parent.leftChild == null){
-                parent.leftChild = new Node(val);
-                parent.leftChild.parent = parent;
-                numOfNodes += 1;
-               // incIndex((Float)numOfNodes, (Float)incrementer);
-                parent.leftChild.nodeIndex = numOfNodes;
-            }else{
-                addChildNote(parent.leftChild, val);
-            }
+    public void addChildNote(T parent, T node) {
+
+        if(westNode == null){
+            westNode = node;
+            numOfNodes += 1;
         } else {
-            if(parent.rightChild == null){
-                parent.rightChild = new Node(val);
-                parent.rightChild.parent = parent;
-               // incIndex((Float)numOfNodes, (Float)incrementer);
-                numOfNodes += 1;
-                parent.rightChild.nodeIndex = numOfNodes;
-            }else{
-                addChildNote(parent.rightChild, val);
-            }
+            addChildNote(westNode, node);
 
         }
+
+        if(northNode == null){
+            northNode = node;
+            numOfNodes += 1;
+        } else{
+            addChildNote(northNode, node);
+        }
+
+        if(eastNode == null){
+            eastNode = node;
+            numOfNodes += 1;
+        } else{
+            addChildNote(eastNode, node);
+        }
+        if(southNode == null){
+            southNode = node;
+            numOfNodes += 1;
+        } else{
+            addChildNote(southNode, node);
+        }
+
     }
 
 
-    public boolean containsValue(int index){
+    public boolean containsValue(T node){
 
         if(rootNode != null){
-            if (rootNode.nodeIndex == index){
+            if (rootNode == node){
                 return true;
             }else{
-               return containsValue(rootNode, index);
+                return containsValue(rootNode, node);
             }
 
         }
-
-
         return false;
     }
 
-    public boolean containsValue(Node parent, int index){
+    public boolean containsValue(T parent, T node){
 
-
-        if(parent.nodeIndex < index && parent.leftChild != null){
-            if(parent.leftChild.nodeIndex == index){
-                return true;
-            } else {
-               return containsValue(parent.leftChild, index);
-            }
-
-        } else if(parent.nodeIndex < index && parent.rightChild != null){
-            if(parent.rightChild.nodeIndex == index){
-                return true;
-            } else{
-                return containsValue(parent.rightChild, index);
-            }
-
-        }
-
+      if(westNode != null){
+          if(westNode == node){
+              return true;
+          }else{
+              containsValue(westNode, node);
+          }
+      }
+      if(northNode != null){
+          if(northNode == node){
+              return true;
+          }else{
+              containsValue(northNode, node);
+          }
+      }
+      if(eastNode != null){
+          if(eastNode == node){
+              return true;
+          }else{
+              containsValue(eastNode, node);
+          }
+      }
+      if(southNode != null){
+          if(southNode == node){
+              return true;
+          }else{
+              containsValue(southNode, node);
+          }
+      }
 
         return false;
+
     }
 
 
 
-public String toString(){
+    public String toString(){
 
         StringBuilder sb = new StringBuilder();
 
@@ -157,9 +172,9 @@ public String toString(){
         return sb.toString();
 
 
-}
+    }
 
-
+/*
 
     public class Node<T extends Comparable<T>> implements Comparable<Node> {
 
@@ -232,7 +247,7 @@ public String toString(){
             return 0;
         }
     }
-
+*/
 
 
 }

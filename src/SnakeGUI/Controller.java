@@ -33,6 +33,7 @@ public class Controller {
     private RandomRambler ranRamThree = new RandomRambler(15, 9);
    // private MovingObject target = new RandomRambler(0, 0);
 
+    BFS pathfinder;
     Grid myGrid = new Grid();
    // Grid myGrid;
 
@@ -131,21 +132,24 @@ public class Controller {
         checkEdges(ranRamThree);
 
         if(player.getPos().x >= 0 && player.getPos().x < 29) {
-            myGrid.BFS(ranRam, player);
-            myGrid.BFS(ranRamTwo, player);
-            myGrid.BFS(ranRamThree, player);
+            pathfinder = new BFS(ranRam, player, myGrid);
+
+
+           // myGrid.BFS(ranRam, player);
+          //  myGrid.BFS(ranRamTwo, player);
+        //    myGrid.BFS(ranRamThree, player);
 
 
         }else{
             ranRam.stop();
-            ranRamTwo.stop();
-            ranRamThree.stop();
+          //  ranRamTwo.stop();
+          //  ranRamThree.stop();
         }
 
 
         ranRam.followPath();
-        ranRamTwo.followPath();
-        ranRamThree.followPath();
+      //  ranRamTwo.followPath();
+      //  ranRamThree.followPath();
 
 /*
         ranRam.followPath(myGrid.thePath);
@@ -153,7 +157,6 @@ public class Controller {
         ranRamThree.followPath(myGrid.thePath);
 */
 
-        myGrid.cookieEating(player);
         player.update();
         ranRam.update();
         ranRamTwo.update();
@@ -177,7 +180,7 @@ public class Controller {
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
 
-                if(o.getX() == i && o.getY() == j && myGrid.tiles[i][j].getUnwalkable()){
+                if(o.getX() == i && o.getY() == j && !myGrid.tiles[i][j].getWalkable()){
                     givePos(o);
                 }else{
 
@@ -213,16 +216,9 @@ public class Controller {
                 g.setFill(Color.DARKGREEN);
 
 
-                if(myGrid.tiles[i][j].getHasCookie()){
-                 //   g.setStroke(Color.WHITESMOKE);
-                   // g.(((myGrid.tiles[i][j].getX() * fieldWidth) + myGrid.tiles[i][j].getWidth()/2), (myGrid.tiles[i][j].getY() * fieldHeight) + myGrid.tiles[i][j].getHeight()/2, 5, 5);
-               //  g.fillText();
-                   // g.getPixelWriter();
-                //   g.fillText("O", (myGrid.tiles[i][j].getX() * fieldWidth) + myGrid.tiles[i][j].getWidth()/2, (myGrid.tiles[i][j].getY() * fieldHeight) + myGrid.tiles[i][j].getHeight()/2);
-                }
 
 
-                   if(myGrid.tiles[i][j].getUnwalkable()){
+                   if(!myGrid.tiles[i][j].getWalkable()){
                     g.setFill(Color.BLACK);
                 }
 
@@ -253,10 +249,12 @@ public class Controller {
                    }
                    */
 
+                   /*
                 if(ranRam.getTree().containsValue(myGrid.tiles[i][j].getIndex()) && ranRamTwo.getTree().containsValue(myGrid.tiles[i][j].getIndex()) && ranRamThree.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
                     g.setFill(Color.LIGHTGREY);
 
                 }
+                */
 
                         g.fillRoundRect(myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight, myGrid.tiles[i][j].getWidth(), myGrid.tiles[i][j].getHeight(), 3, 3);
             }
