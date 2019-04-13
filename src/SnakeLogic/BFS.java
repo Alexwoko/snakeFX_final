@@ -13,11 +13,10 @@ public class BFS {
     private Grid myGrid;
     private MovingObject startNode;
     private MovingObject endNode;
-    private Node currentNode;
-    private Stack<Node> thePath;
-    private ArrayList<Node> openList;
-    // private ArrayList<Grid.Tile> closedList;
-    private Tree<Node> closedList;
+   // private Node currentNode;
+   // private Stack<Node> thePath;
+    private ArrayList<Node> thePath;
+
 
 
     public BFS(MovingObject startNode, MovingObject endNode, Grid grid){
@@ -52,7 +51,7 @@ public class BFS {
     public boolean isWalkable(Node n){
 
         for(int i = 0; i < myGrid.getFrameWidth(); i++){
-            for(int j = 0; j < myGrid.getFrameHeight(); i++){
+            for(int j = 0; j < myGrid.getFrameHeight(); j++){
 
              //   if(myGrid.tiles[i][j].walkable && (n.getX() == i && n.getY() == j)){
                 if(n.getX() == i && n.getY() == j && myGrid.tiles[i][j].walkable){
@@ -69,8 +68,12 @@ public class BFS {
 
     public void startBFS(){
 
+        ArrayList<Node> openList;
+         Tree<Node> closedList;
+
         openList = new ArrayList<>();
         closedList = new Tree<>();
+        Node currentNode;
 
 
 

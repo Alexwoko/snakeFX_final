@@ -50,8 +50,9 @@ public Tile[][] getTiles(){return tiles;}
 
                     if(checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20){
 
-                        neighbours.add(nodes[(int)checkX][(int)checkY]);
 
+                       // neighbours.add(nodes[(int)checkX][(int)checkY]);
+                        neighbours.add(new Node(checkX, checkY));
                     }
                 }
             }
