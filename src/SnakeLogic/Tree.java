@@ -83,6 +83,35 @@ public class Tree<T extends TreeItem> {
     public boolean addChildNote(T rootNode, T node) {
 
 
+        if(rootNode.getWest() == null){
+            numOfNodes += 1;
+            node.setTreeIndex(numOfNodes);
+            rootNode.setWest(node);
+            return true;
+        } else if(rootNode.getNorth() == null){
+            numOfNodes += 1;
+            node.setTreeIndex(numOfNodes);
+            rootNode.setNorth(node);
+            return true;
+        } else if(rootNode.getEast() == null){
+            numOfNodes += 1;
+            node.setTreeIndex(numOfNodes);
+            rootNode.setEast(node);
+            return true;
+        } else if(rootNode.getSouth() == null){
+            numOfNodes += 1;
+            node.setTreeIndex(numOfNodes);
+            rootNode.setSouth(node);
+            return true;
+        }
+
+        if(rootNode.getSouth() != null){
+            addChildNote((T)rootNode.getWest(), node);
+        }
+
+        return false;
+
+        /*
     if(rootNode.getWest() == null){
         numOfNodes += 1;
         node.setTreeIndex(numOfNodes);
@@ -105,123 +134,7 @@ public class Tree<T extends TreeItem> {
 
 return false;
 
-        /*
-        if(westNode == null){
-            westNode = node;
-            numOfNodes += 1;
-            return true;
-        } else {
-            addChildNote(westNode, node);
-        }
-        else (northNode == null){
-            northNode = node;
-            numOfNodes += 1;
-            return true;
-        } else{
-            addChildNote(northNode, node);
-        }
-        if(eastNode == null){
-            eastNode = node;
-            numOfNodes += 1;
-            return true;
-        }else{
-            addChildNote(eastNode, node);
-        }
-        if(southNode == null){
-            southNode = node;
-            numOfNodes += 1;
-            return true;
-        } else{
-            addChildNote(southNode, node);
-        }
-
-        return false;
-*/
-        /*
-        if(westNode == null){
-            westNode = node;
-            numOfNodes += 1;
-
-        } else if(northNode == null){
-            northNode = node;
-            numOfNodes += 1;
-
-        } else if(eastNode == null){
-            eastNode = node;
-            numOfNodes += 1;
-        } else if(southNode == null){
-            southNode = node;
-            numOfNodes += 1;
-        }
-
-        if(westNode != null){
-            addChildNote(westNode, node);
-        } else if(northNode != null){
-            addChildNote(northNode, node);
-        } else if(eastNode != null){
-            addChildNote(eastNode, node);
-        } else if(southNode != null){
-            addChildNote(southNode, node);
-        }
-*/
-
-
-/*
-        if(westNode == null){
-           westNode = node;
-           numOfNodes += 1;
-
-
-        } else if (northNode == null){
-            northNode = node;
-            numOfNodes += 1;
-
-        }else if(eastNode == null){
-            eastNode = node;
-            numOfNodes += 1;
-
-        } else if(southNode == null){
-            southNode = node;
-            numOfNodes += 1;
-        } else {
-            add(addChildNote();
-
-        }
-*/
-
-        /*
-        if(westNode == null){
-            westNode = node;
-            numOfNodes += 1;
-            nodes.add(node);
-        } else {
-            addChildNote(westNode, node);
-
-        }
-
-        if(northNode == null){
-            northNode = node;
-            numOfNodes += 1;
-            nodes.add(node);
-        } else{
-            addChildNote(northNode, node);
-        }
-
-        if(eastNode == null){
-            eastNode = node;
-            numOfNodes += 1;
-            nodes.add(node);
-        } else{
-            addChildNote(eastNode, node);
-        }
-        if(southNode == null){
-            southNode = node;
-            numOfNodes += 1;
-            nodes.add(node);
-        } else{
-            addChildNote(southNode, node);
-        }
-*/
+      */
     }
 
 
