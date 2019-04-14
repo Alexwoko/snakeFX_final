@@ -30,6 +30,12 @@ public class Node {
 
     }
 
+    public Node(float x, float y, boolean walkable){
+        pos = new MathVector(x, y);
+        this.walkable = walkable;
+
+    }
+
     public int getIndex(){return index;}
     public Node getParent(){return parent;}
     public void setParent(Node parent){this.parent = parent;}

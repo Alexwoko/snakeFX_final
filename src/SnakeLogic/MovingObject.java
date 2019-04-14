@@ -15,6 +15,7 @@ public abstract class MovingObject implements GameObject{
     private List<Node> myPath;
 
 
+
     public MovingObject(int x, int y){
 
         pos = new MathVector(x, y);

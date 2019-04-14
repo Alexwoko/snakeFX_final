@@ -77,8 +77,8 @@ public class BFS {
 
 
 
-        Node origin = new Node(startNode.getX(), startNode.getY());
-        Node target = new Node(endNode.getX(), endNode.getY());
+        Node origin = new Node(startNode.getX(), startNode.getY(), true);
+        Node target = new Node(endNode.getX(), endNode.getY(), true);
 
 
         openList.add(origin);

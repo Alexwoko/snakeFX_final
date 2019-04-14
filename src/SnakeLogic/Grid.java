@@ -48,11 +48,19 @@ public Tile[][] getTiles(){return tiles;}
                     float checkX = n.getX() +i;
                     float checkY = n.getY() + j;
 
-                    if(checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20){
+                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20)){
+
+                        if(tiles[(int)checkX][(int)checkY].getWalkable()){
+                            neighbours.add(new Node(checkX, checkY, true));
+                        } else{
+                           // neighbours.add(nodes[(int)checkX][(int)checkY], false);
+                            neighbours.add(new Node(checkX, checkY, false));
+
+                        }
 
 
                        // neighbours.add(nodes[(int)checkX][(int)checkY]);
-                        neighbours.add(new Node(checkX, checkY));
+
                     }
                 }
             }

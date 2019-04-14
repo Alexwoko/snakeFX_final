@@ -1,5 +1,7 @@
 package SnakeLogic;
 
+import java.util.ArrayList;
+
 public class Tree<T> {
 
 
@@ -9,13 +11,14 @@ public class Tree<T> {
     private T northNode;
     private T southNode;
     private int numOfNodes;
-
+    private ArrayList<T> nodes;
 
 
     public Tree() {
 
 
         numOfNodes = 0;
+        nodes = new ArrayList<>();
 
     }
 
@@ -71,6 +74,7 @@ public class Tree<T> {
         if(rootNode == null){
             numOfNodes += 1;
             rootNode = node;
+            nodes.add(node);
         }else{
             addChildNote(rootNode, node);
         }
@@ -80,11 +84,97 @@ public class Tree<T> {
     }
 
 
-    public void addChildNote(T parent, T node) {
+    public boolean addChildNote(T rootNode, T node) {
+
 
         if(westNode == null){
             westNode = node;
             numOfNodes += 1;
+            return true;
+        } else {
+            addChildNote(westNode, node);
+        }
+        else if(northNode == null){
+            northNode = node;
+            numOfNodes += 1;
+            return true;
+        } else{
+            addChildNote(northNode, node);
+        }
+        if(eastNode == null){
+            eastNode = node;
+            numOfNodes += 1;
+            return true;
+        }else{
+            addChildNote(eastNode, node);
+        }
+        if(southNode == null){
+            southNode = node;
+            numOfNodes += 1;
+            return true;
+        } else{
+            addChildNote(southNode, node);
+        }
+
+        return false;
+
+        /*
+        if(westNode == null){
+            westNode = node;
+            numOfNodes += 1;
+
+        } else if(northNode == null){
+            northNode = node;
+            numOfNodes += 1;
+
+        } else if(eastNode == null){
+            eastNode = node;
+            numOfNodes += 1;
+        } else if(southNode == null){
+            southNode = node;
+            numOfNodes += 1;
+        }
+
+        if(westNode != null){
+            addChildNote(westNode, node);
+        } else if(northNode != null){
+            addChildNote(northNode, node);
+        } else if(eastNode != null){
+            addChildNote(eastNode, node);
+        } else if(southNode != null){
+            addChildNote(southNode, node);
+        }
+*/
+
+
+/*
+        if(westNode == null){
+           westNode = node;
+           numOfNodes += 1;
+
+
+        } else if (northNode == null){
+            northNode = node;
+            numOfNodes += 1;
+
+        }else if(eastNode == null){
+            eastNode = node;
+            numOfNodes += 1;
+
+        } else if(southNode == null){
+            southNode = node;
+            numOfNodes += 1;
+        } else {
+            add(addChildNote();
+
+        }
+*/
+
+        /*
+        if(westNode == null){
+            westNode = node;
+            numOfNodes += 1;
+            nodes.add(node);
         } else {
             addChildNote(westNode, node);
 
@@ -93,6 +183,7 @@ public class Tree<T> {
         if(northNode == null){
             northNode = node;
             numOfNodes += 1;
+            nodes.add(node);
         } else{
             addChildNote(northNode, node);
         }
@@ -100,16 +191,18 @@ public class Tree<T> {
         if(eastNode == null){
             eastNode = node;
             numOfNodes += 1;
+            nodes.add(node);
         } else{
             addChildNote(eastNode, node);
         }
         if(southNode == null){
             southNode = node;
             numOfNodes += 1;
+            nodes.add(node);
         } else{
             addChildNote(southNode, node);
         }
-
+*/
     }
 
 
@@ -127,6 +220,18 @@ public class Tree<T> {
     }
 
     public boolean containsValue(T parent, T node){
+
+
+
+        if(westNode != null){
+            if(westNode == node){
+                return true;
+            }
+
+        }
+return false;
+
+        /*
 
       if(westNode != null){
           if(westNode == node){
@@ -158,6 +263,7 @@ public class Tree<T> {
       }
 
         return false;
+      */
 
     }
 
@@ -168,6 +274,8 @@ public class Tree<T> {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Number of nodes in tree = " + numOfNodes);
+        sb.append( "Node + " + nodes);
+
 
         return sb.toString();
 
