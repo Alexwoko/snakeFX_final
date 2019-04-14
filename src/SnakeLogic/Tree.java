@@ -2,14 +2,10 @@ package SnakeLogic;
 
 import java.util.ArrayList;
 
-public class Tree<T> {
+public class Tree<T extends TreeItem> {
 
 
     private T rootNode;
-    private T westNode;
-    private T eastNode;
-    private T northNode;
-    private T southNode;
     private int numOfNodes;
     private ArrayList<T> nodes;
 
@@ -73,8 +69,8 @@ public class Tree<T> {
 
         if(rootNode == null){
             numOfNodes += 1;
+            node.setTreeIndex(numOfNodes);
             rootNode = node;
-            nodes.add(node);
         }else{
             addChildNote(rootNode, node);
         }
@@ -87,21 +83,27 @@ public class Tree<T> {
     public boolean addChildNote(T rootNode, T node) {
 
 
-        if (westNode == null) {
-            westNode = node;
-            numOfNodes == += 1;
-            return true;
-        } else {
-            addChildNote(westNode, node);
-        } else{
-        if (northNode == null) {
-            westNode = node;
-            numOfNodes += 1;
-            return true;
-        }
-
+    if(rootNode.getWest() == null){
+        numOfNodes += 1;
+        node.setTreeIndex(numOfNodes);
+        rootNode.setWest(node);
+        return true;
+    }else{
+        addChildNote((T)rootNode.getWest(), node);
 
     }
+
+    if(rootNode.getNorth() == null){
+        numOfNodes += 1;
+        node.setTreeIndex(numOfNodes);
+        rootNode.setNorth(node);
+        return true;
+
+    } else{
+        addChildNote((T)rootNode.getNorth(), node);
+    }
+
+return false;
 
         /*
         if(westNode == null){
@@ -239,13 +241,14 @@ public class Tree<T> {
     public boolean containsValue(T parent, T node){
 
 
-
+/*
         if(westNode != null){
             if(westNode == node){
                 return true;
             }
 
         }
+        */
 return false;
 
         /*
@@ -376,3 +379,5 @@ return false;
 
 
 }
+
+

@@ -11,8 +11,8 @@ public abstract class MovingObject implements GameObject{
     private String dir;
 
     Grid.Tile currentTile;
-    private Tree<Float> closedList;
-    private List<Node> myPath;
+    private Tree<TreeItem> closedList;
+    private List<TreeItem> myPath;
 
 
 
@@ -39,8 +39,8 @@ public abstract class MovingObject implements GameObject{
     }
 
 
-    public void setMyPath(List<Node> path){myPath = path;}
-    public List<Node> getMyPath(){return  myPath;}
+    public void setMyPath(List<TreeItem> path){myPath = path;}
+    public List<TreeItem> getMyPath(){return  myPath;}
     public void setTree(Tree tree ){this.closedList = tree;}
     public Tree getTree(){return closedList;}
 

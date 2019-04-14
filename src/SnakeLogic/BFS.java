@@ -15,7 +15,7 @@ public class BFS {
     private MovingObject endNode;
    // private Node currentNode;
    // private Stack<Node> thePath;
-    private ArrayList<Node> thePath;
+    private ArrayList<TreeItem> thePath;
 
 
 
@@ -33,7 +33,7 @@ public class BFS {
 
     public void retracePath(Node startNode, Node targetNode){
 
-        Node currentNode = targetNode;
+        TreeItem currentNode = targetNode;
 
         while(currentNode != startNode){
 

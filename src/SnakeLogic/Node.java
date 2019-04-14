@@ -1,12 +1,12 @@
 package SnakeLogic;
 
-public class Node {
+public class Node implements TreeItem<Node>{
 
-   private Node westNode;
-    private Node eastNode;
-    private Node northNode;
-    private Node southNode;
-    private Node parent;
+   private TreeItem westNode;
+    private TreeItem eastNode;
+    private TreeItem northNode;
+    private TreeItem southNode;
+    private TreeItem parent;
     private MathVector pos;
     private int index;
     private boolean walkable;
@@ -36,15 +36,28 @@ public class Node {
 
     }
 
-    public int getIndex(){return index;}
-    public Node getParent(){return parent;}
-    public void setParent(Node parent){this.parent = parent;}
+    public void setWest(TreeItem westNode){this.westNode = westNode;}
+    public void setNorth(TreeItem northNode){this.northNode = northNode;}
+    public void setEast(TreeItem eastNode){this.eastNode = eastNode;}
+    public void setSouth(TreeItem southNode){this.southNode = southNode;}
+    public TreeItem getWest(){return westNode;}
+    public TreeItem getNorth(){return northNode;}
+    public TreeItem getEast(){return eastNode;}
+    public TreeItem getSouth(){return southNode;}
+    public void setParent(TreeItem parent){this.parent = parent;}
+    public TreeItem getParent(){return parent;}
+
+    public void setTreeIndex(int index){this.index = index;}
+    public int getTreeIndex(){return index;}
+
     public boolean isWalkable(){return walkable;}
 
 
     public void setWalkable(boolean w){walkable = w;}
     public float getX(){return pos.x;}
     public float getY(){return pos.y;}
+    public void setX(float x){this.pos.x = x;}
+    public void setY(float y){this.pos.y = y;}
 
     public String toString(){
 

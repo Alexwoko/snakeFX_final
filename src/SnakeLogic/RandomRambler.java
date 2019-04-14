@@ -55,7 +55,7 @@ public class RandomRambler extends MovingObject {
 
             for(int i = 0; i < getMyPath().size(); i++){
 
-                Node t = getMyPath().get(i); //    path.get(i);
+                TreeItem t = getMyPath().get(i); //    path.get(i);
                 this.setX(t.getX());
                 this.setY(t.getY());
                 break;
@@ -77,7 +77,7 @@ public class RandomRambler extends MovingObject {
     public void displayPath(GraphicsContext g, Color c){
 
         if(this.getMyPath() != null) {
-            for (Node t : this.getMyPath()) {
+            for (TreeItem t : this.getMyPath()) {
                 g.setFill(c);
                 g.fillRoundRect(t.getX() * fieldWidth, t.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 
