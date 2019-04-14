@@ -87,6 +87,23 @@ public class Tree<T> {
     public boolean addChildNote(T rootNode, T node) {
 
 
+        if (westNode == null) {
+            westNode = node;
+            numOfNodes == += 1;
+            return true;
+        } else {
+            addChildNote(westNode, node);
+        } else{
+        if (northNode == null) {
+            westNode = node;
+            numOfNodes += 1;
+            return true;
+        }
+
+
+    }
+
+        /*
         if(westNode == null){
             westNode = node;
             numOfNodes += 1;
@@ -94,7 +111,7 @@ public class Tree<T> {
         } else {
             addChildNote(westNode, node);
         }
-        else if(northNode == null){
+        else (northNode == null){
             northNode = node;
             numOfNodes += 1;
             return true;
@@ -117,7 +134,7 @@ public class Tree<T> {
         }
 
         return false;
-
+*/
         /*
         if(westNode == null){
             westNode = node;
