@@ -2,18 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/META-INF/snakeFX.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/BFS.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/BFS.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/Grid$Tile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/Grid$Tile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/Grid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/MovingObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/MovingObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/Tree.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/Tree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SnakeLogic/BFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/BFS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SnakeLogic/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SnakeLogic/MovingObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/MovingObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SnakeLogic/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SnakeLogic/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/Tree.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -95,9 +83,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="287">
               <caret line="90" selection-start-line="90" selection-end-line="90" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -106,7 +91,7 @@
         <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Node.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
             </state>
           </provider>
         </entry>
@@ -114,8 +99,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Tree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="118" column="21" selection-start-line="118" selection-start-column="21" selection-end-line="118" selection-end-column="21" />
+            <state relative-caret-position="165">
+              <caret line="95" column="15" selection-start-line="95" selection-start-column="15" selection-end-line="95" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -521,7 +506,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="349083000" />
+    <option name="totallyTimeSpent" value="349337000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -533,7 +518,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="0" />
+    <frame x="0" y="24" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Image Layers" order="0" />
@@ -807,7 +792,7 @@
     <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Node.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
         </state>
       </provider>
     </entry>
@@ -815,16 +800,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
           <caret line="90" selection-start-line="90" selection-end-line="90" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Tree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="118" column="21" selection-start-line="118" selection-start-column="21" selection-end-line="118" selection-end-column="21" />
+        <state relative-caret-position="165">
+          <caret line="95" column="15" selection-start-line="95" selection-start-column="15" selection-end-line="95" selection-end-column="15" />
         </state>
       </provider>
     </entry>
