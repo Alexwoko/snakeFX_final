@@ -5,9 +5,15 @@ import java.util.List;
 
 public abstract class MovingObject implements GameObject{
 
-    private MathVector pos, vel, accel;
-    private MathVector up, down, right, left;
-    private float maxForce, maxSpeed;
+    private MathVector pos;
+    private MathVector vel;
+    private MathVector accel;
+    private MathVector up;
+    private MathVector down;
+    private MathVector right;
+    private MathVector left;
+    private float maxForce;
+    private float maxSpeed;
     private String dir;
 
     Grid.Tile currentTile;

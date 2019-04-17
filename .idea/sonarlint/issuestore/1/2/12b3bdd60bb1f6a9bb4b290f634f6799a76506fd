@@ -1,3 +1,8 @@
 
+vsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(íïÃñşÿÿÿÿ8¤Á®¾¢-
+Ssquid:S1066 "/Merge this if statement with the enclosing one.(ıˆ’µúÿÿÿÿ8²¢¨¾¢-
+Nsquid:S1066¨"/Merge this if statement with the enclosing one.(£ŠÕ±8õÄ²¾¢-
+psquid:S3776U"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(ÿÅ²Ç8À÷¹²¢-
+Ssquid:S1066°"/Merge this if statement with the enclosing one.(€·éûÿÿÿÿ8§î·¾¢-
+Nsquid:S1066–"/Merge this if statement with the enclosing one.(ÙÂ¥Ø8¤¥ä½¢-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ
-Esquid:S1172ñ"&Remove these unused method parameters.(îè¨”8õµèÜ¡-

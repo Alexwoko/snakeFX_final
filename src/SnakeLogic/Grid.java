@@ -6,8 +6,10 @@ public class Grid {
 
 
     public Tile[][] tiles;
-    private int frameWidth, frameHeight;
+    private int frameWidth;
+    private int frameHeight;
     public Node[][] nodes;
+    private int numOfNodes;
 
 
 
@@ -21,6 +23,7 @@ public class Grid {
         frameHeight = 20;
         tiles = new Tile[frameWidth][frameHeight];
         nodes = new Node[frameWidth][frameHeight];
+        numOfNodes = 0;
         createGrid();
         createFrame();
         buildMaze();
@@ -28,6 +31,9 @@ public class Grid {
 
 
     }
+
+    public void setNumOfNodes(int numOfNodes){this.numOfNodes = numOfNodes;}
+    public int getNumOfNodes(){return numOfNodes;}
 
     public int getFrameWidth(){return  frameWidth;}
     public int getFrameHeight(){return frameHeight;}
@@ -51,16 +57,28 @@ public Tile[][] getTiles(){return tiles;}
                     if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20)){
 
                         if(tiles[(int)checkX][(int)checkY].getWalkable()){
-                            neighbours.add(new Node(checkX, checkY, true));
+
+                            if(checkX < n.getX()){
+                                numOfNodes += 1;
+                                neighbours.add(new Node(checkX, checkY, true, "WEST", numOfNodes));
+                            }
+                            if(checkX > n.getX()){
+                                numOfNodes += 1;
+                                neighbours.add(new Node(checkX, checkY, true, "EAST", numOfNodes));
+                            }
+                            if(checkY < n.getY()){
+                                numOfNodes += 1;
+                                neighbours.add(new Node(checkX, checkY, true, "NORTH", numOfNodes));
+                            }
+                            if(checkY > n.getY()){
+                                numOfNodes += 1;
+                                neighbours.add(new Node(checkX, checkY, true, "SOUTH", numOfNodes));
+                            }
+
                         } else{
-                           // neighbours.add(nodes[(int)checkX][(int)checkY], false);
-                            neighbours.add(new Node(checkX, checkY, false));
-
+                            numOfNodes += 1;
+                            neighbours.add(new Node(checkX, checkY, false, "None", numOfNodes));
                         }
-
-
-                       // neighbours.add(nodes[(int)checkX][(int)checkY]);
-
                     }
                 }
             }
@@ -240,7 +258,7 @@ public Tile[][] getTiles(){return tiles;}
     }
 
 
-    private void buildWallHorizLine(int fields[], int posY){
+    private void buildWallHorizLine(int[] fields, int posY){
 
 
         for(int i = 0; i < frameWidth; i++){
@@ -261,14 +279,16 @@ public Tile[][] getTiles(){return tiles;}
         int checkX;
         int checkY;
 
-        Tile left, right, up, down;
+        Tile left;
+        Tile right;
+        Tile up;
+        Tile down;
 
         for(int i = -1; i <= 1; i+=1f){
             for(int j = -1; j <= 1; j+=1f){
 
                 checkX = (int)o.getX() + i;
                 checkY = (int)o.getY() + j;
-
 
                 if(checkX >= 0 && checkX <= 29 && checkY >= 0 && checkY <= frameHeight) {
 
@@ -281,29 +301,21 @@ public Tile[][] getTiles(){return tiles;}
                         left = tiles[checkX][checkY];
                         o.applyRepeller(left);
                         return "left";
-
                     }
-
-
                     if (checkX == o.getX() && checkY == o.getY() -1 && !tiles[checkX][checkY].getWalkable()&& o.getDir() == "UP") {
                         up = tiles[checkX][checkY];
                         o.applyRepeller(up);
                         return "up";
-
                     }
                     if (checkX == o.getX() && checkY == o.getY() + 1 && !tiles[checkX][checkY].getWalkable() && o.getDir() == "DOWN") {
                         down = tiles[checkX][checkY];
                         o.applyRepeller(down);
                         return "down";
-
                     }
-
                 }
-
             }
         }
 return null;
-
     }
 
     public void playerScanner(MovingObject o){
@@ -320,15 +332,7 @@ return null;
      }
     }
 
-    public float ranNumInRange(int min, int max){
 
-        if(min >= max){
-            throw new IllegalArgumentException("Minimum must be smaller than maximum");
-        }else{
-            Random r = new Random();
-            return r.nextInt((max - min) + 1) + min;
-        }
-    }
 
 
 
@@ -354,22 +358,6 @@ return null;
     }
 
 
-    private Tile getTile(MathVector pos){
-
-        for(int i = 0; i < frameWidth; i++){
-            for (int j = 0; j < frameHeight; j++){
-
-                if(pos.x == i && pos.y == j){
-                    return tiles[i][j];
-                }
-
-
-            }
-        }
-return null;
-
-
-    }
 
     public void createGrid(){
 
@@ -385,6 +373,7 @@ return null;
     }
 
 
+    /*
     private float getDistance(Tile tileA, Tile tileB){
 // Math abs så vi sikrer at tallet er positivt.
     float dstX = Math.abs(tileA.pos.x - tileB.pos.x);
@@ -397,15 +386,9 @@ return null;
 
 
     }
+    */
 
 
-    public MovingObject convertTileToPos(Tile t){
-
-        RandomRambler rr = new RandomRambler((int)t.pos.x, (int)t.pos.y);
-
-        return rr;
-
-    }
 
 
 

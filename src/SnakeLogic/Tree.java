@@ -18,6 +18,8 @@ public class Tree<T extends TreeItem> {
 
     }
 
+    public int getSize(){return numOfNodes;}
+
 
     /*
     public MathVector get(int index){
@@ -68,139 +70,172 @@ public class Tree<T extends TreeItem> {
     public boolean add(T node) {
 
         if(rootNode == null){
+          //  node.setTreeIndex(numOfNodes);
             numOfNodes += 1;
-            node.setTreeIndex(numOfNodes);
             rootNode = node;
         }else{
             addChildNote(rootNode, node);
         }
-
+        System.out.println("num of nodes in tree = " + getSize());
         return true;
 
     }
 
 
-    public boolean addChildNote(T rootNode, T node) {
+
+    public void addChildNote(T rootNode, T node) {
 
 
-        if(rootNode.getWest() == null){
+        if(rootNode.getWest() == null && node.getIAmWest()){
+          //  node.setTreeIndex(numOfNodes);
             numOfNodes += 1;
-            node.setTreeIndex(numOfNodes);
             rootNode.setWest(node);
-            return true;
-        } else if(rootNode.getNorth() == null){
-            numOfNodes += 1;
-            node.setTreeIndex(numOfNodes);
-            rootNode.setNorth(node);
-            return true;
-        } else if(rootNode.getEast() == null){
-            numOfNodes += 1;
-            node.setTreeIndex(numOfNodes);
-            rootNode.setEast(node);
-            return true;
-        } else if(rootNode.getSouth() == null){
-            numOfNodes += 1;
-            node.setTreeIndex(numOfNodes);
-            rootNode.setSouth(node);
-            return true;
-        }
 
-        if(rootNode.getSouth() != null){
+        } else if(rootNode.getSouth() != null && node.getIAmWest() || (node.getIAmWest() && rootNode.getWest() != null)){
             addChildNote((T)rootNode.getWest(), node);
         }
 
-        return false;
+        if(rootNode.getNorth() == null && rootNode.getWest() != node && node.getIAmNorth()){
 
-        /*
-    if(rootNode.getWest() == null){
-        numOfNodes += 1;
-        node.setTreeIndex(numOfNodes);
-        rootNode.setWest(node);
-        return true;
-    }else{
-        addChildNote((T)rootNode.getWest(), node);
+           // node.setTreeIndex(numOfNodes);
+            numOfNodes += 1;
+            rootNode.setNorth(node);
+
+        }else if(rootNode.getWest() != null && rootNode.getWest().getSouth() != null && node.getIAmNorth()|| (node.getIAmNorth() && rootNode.getNorth() != null)){
+            addChildNote((T)rootNode.getNorth(), node);
+        }
+        if(rootNode.getEast() == null && rootNode.getNorth() != node && rootNode.getWest() != node && node.getIAmEast()){
+
+
+         //   node.setTreeIndex(numOfNodes);
+            numOfNodes += 1;
+            rootNode.setEast(node);
+
+        } else if(rootNode.getNorth() != null && rootNode.getNorth().getEast() != null && node.getIAmEast() || (node.getIAmEast() && rootNode.getEast() != null)){
+            addChildNote((T)rootNode.getEast(), node);
+        }
+        if(rootNode.getSouth() == null && rootNode.getEast() != node && rootNode.getNorth() != node && rootNode.getWest() != node && node.getIAmSouth()){
+
+      //      node.setTreeIndex(numOfNodes);
+            numOfNodes += 1;
+            rootNode.setSouth(node);
+
+        } else if(rootNode.getEast() != null && rootNode.getEast().getSouth() != null && node.getIAmSouth() || (node.getIAmSouth() && rootNode.getSouth() != null)){
+            addChildNote((T)rootNode.getSouth(), node);
+        }
 
     }
 
-    if(rootNode.getNorth() == null){
-        numOfNodes += 1;
-        node.setTreeIndex(numOfNodes);
-        rootNode.setNorth(node);
-        return true;
 
-    } else{
-        addChildNote((T)rootNode.getNorth(), node);
-    }
-
-return false;
-
-      */
-    }
-
-
-    public boolean containsValue(T node){
+    public boolean containsValue(int index){
 
         if(rootNode != null){
-            if (rootNode == node){
+            if(rootNode.getTreeIndex() == index){
                 return true;
-            }else{
-                return containsValue(rootNode, node);
+            } else{
+                containsValue(rootNode, index);
             }
 
         }
         return false;
+
     }
 
-    public boolean containsValue(T parent, T node){
+    public boolean containsValue(T node, int index){
 
+
+        if(node.getWest() != null && node.getWest().getTreeIndex() == index){
+            return true;
+        } else if(node.getNorth() != null && node.getEast() != null && node.getSouth() != null){
+            if(node.getNorth().getTreeIndex() != index && node.getEast().getTreeIndex() != index && node.getSouth().getTreeIndex() != index){
+                containsValue((T)node.getWest(), index);
+            }
+
+        }
+
+
+        if(node.getNorth() != null && node.getNorth().getTreeIndex() == index){
+            return true;
+        } else if(node.getWest() != null && node.getWest().getSouth() != null){
+            if(node.getWest().getSouth().getTreeIndex() != index){
+                containsValue((T)node.getNorth(), index);
+            }
+        }
+
+        if(node.getEast() != null && node.getEast().getTreeIndex() ==index){
+            return true;
+        } else if(node.getNorth() != null && node.getNorth().getEast() != null){
+            if(node.getNorth().getEast().getTreeIndex() != index){
+                containsValue((T)node.getEast(), index);
+            }
+        }
+
+        if(node.getSouth() != null && node.getSouth().getTreeIndex() == index){
+            return true;
+        } else if(node.getEast() != null && node.getEast().getSouth() != null){
+            if(node.getEast().getSouth().getTreeIndex() != index){
+                containsValue((T)node.getSouth(), index);
+            }
+        }
 
 /*
-        if(westNode != null){
-            if(westNode == node){
-                return true;
+        if(node.getNorth() != null && node.getNorth().getTreeIndex() == index){
+            return true;
+        } else if(node.getWest().getSouth() != null){
+            if(node.getWest().getSouth().getTreeIndex() != index){
+                containsValue((T)node.getNorth(), index);
             }
-
         }
+
+
+        if(node.getEast() != null && node.getEast().getTreeIndex() == index){
+            return true;
+        } else if(node.getNorth().getEast() != null){
+            if(node.getNorth().getEast().getTreeIndex() != index){
+                containsValue((T)node.getEast(), index);
+            }
+        }
+
+        if(node.getSouth() != null && node.getSouth().getTreeIndex() == index){
+            return true;
+        } else if(node.getEast().getSouth() != null){
+            if(node.getEast().getSouth().getTreeIndex() != index){
+                containsValue((T)node.getSouth(), index);
+            }
+        }
+
         */
-return false;
-
-        /*
-
-      if(westNode != null){
-          if(westNode == node){
-              return true;
-          }else{
-              containsValue(westNode, node);
-          }
-      }
-      if(northNode != null){
-          if(northNode == node){
-              return true;
-          }else{
-              containsValue(northNode, node);
-          }
-      }
-      if(eastNode != null){
-          if(eastNode == node){
-              return true;
-          }else{
-              containsValue(eastNode, node);
-          }
-      }
-      if(southNode != null){
-          if(southNode == node){
-              return true;
-          }else{
-              containsValue(southNode, node);
-          }
-      }
 
         return false;
-      */
+
+        /*
+        if(node.getWest() != null && node.getWest().getTreeIndex() == index){
+            return true;
+        } else if(node.getNorth().getTreeIndex() != index && node.getEast().getTreeIndex() != index && node.getWest().getTreeIndex() != index){
+
+            containsValue((T)node.getWest(), index);
+        }
+        if(node.getNorth() != null && node.getNorth().getTreeIndex() == index){
+            return true;
+        } else if(node.getWest().getSouth().getTreeIndex() != index){
+            containsValue((T)node.getNorth(), index);
+        }
+        if(node.getEast() != null && node.getEast().getTreeIndex() == index){
+            return true;
+        } else if(node.getNorth().getTreeIndex() != index){
+            containsValue((T)node.getEast(), index);
+        }
+        if(node.getSouth() != null && node.getSouth().getTreeIndex() == index){
+            return true;
+        }else if(node.getEast().getTreeIndex() != index){
+            containsValue((T)node.getEast(), index);
+        }
+
+return false;
+
+*/
 
     }
-
-
 
     public String toString(){
 
@@ -214,83 +249,6 @@ return false;
 
 
     }
-
-/*
-
-    public class Node<T extends Comparable<T>> implements Comparable<Node> {
-
-        MathVector pos;
-        Node parent;
-        Node leftChild;
-        Node rightChild;
-        Node upChild;
-        Node downChild;
-        int nodeIndex;
-        T value;
-
-
-
-        public Node getLeftChild(){return leftChild;}
-
-        public Node getRightChild() {return rightChild;}
-        public Node getParent(){return parent;}
-        public int getIndex(){return nodeIndex;}
-        public MathVector getPos(){return pos;}
-        public void setPos(int x, int y){this.pos = new MathVector(x, y);}
-        public T getValue(){return value;}
-
-
-        public Node(T val){
-
-            this.value = val;
-
-        }
-
-        public Node(T val, Node parent){
-
-            this.value = val;
-            this.parent = parent;
-
-        }
-
-        Node(float x, float y, T val){
-
-            this.value = val;
-            pos = new MathVector(x, y);
-
-        }
-
-
-        public String toString(){
-
-            StringBuilder sb = new StringBuilder();
-            sb.append("Index = " + nodeIndex);
-            sb.append(", value = " + value);
-            sb.append(", parent node = " + parent);
-
-
-            return sb.toString();
-
-
-        }
-
-        @Override
-        public int compareTo(Node o) {
-
-            if(this.value.equals(o.value)){
-                return 0;
-            }else if((Integer)this.value > (Integer) o.value){
-                return 1;
-            } else if ((Integer)this.value < (Integer) o.value){
-                return -1;
-            }
-
-            return 0;
-        }
-    }
-*/
-
-
 }
 
 

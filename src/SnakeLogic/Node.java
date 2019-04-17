@@ -10,6 +10,10 @@ public class Node implements TreeItem<Node>{
     private MathVector pos;
     private int index;
     private boolean walkable;
+    private boolean iAmWest;
+    private boolean iAmNorth;
+    private boolean iAmEast;
+    private boolean iAmSouth;
 
 
     public Node(int index){
@@ -30,11 +34,52 @@ public class Node implements TreeItem<Node>{
 
     }
 
-    public Node(float x, float y, boolean walkable){
+    public Node(float x, float y, boolean walkable, String dirFromOrigin){
         pos = new MathVector(x, y);
         this.walkable = walkable;
+        assignDirFromOrigin(dirFromOrigin);
+        this.index = Integer.MAX_VALUE;
 
     }
+
+    public Node(float x, float y, boolean walkable, String dirFromOrigin, int index){
+
+        pos = new MathVector(x, y);
+        this.walkable = walkable;
+        assignDirFromOrigin(dirFromOrigin);
+        this.index = index;
+
+    }
+
+    public void assignDirFromOrigin(String dir){
+
+        if(dir == "WEST"){
+            setIAmWest(true);
+        }
+        if(dir == "NORTH"){
+            setIAmNorth(true);
+        }
+        if(dir == "EAST"){
+            setIAmEast(true);
+        }
+        if(dir == "SOUTH"){
+            setIAmSouth(true);
+        }
+
+    }
+
+
+    public void setIAmWest(boolean amWest){iAmWest = amWest;}
+    public void setIAmNorth(boolean amNorth){iAmNorth = amNorth;}
+    public void setIAmEast(boolean amEast){iAmEast = amEast;}
+    public void setIAmSouth(boolean amSouth){iAmSouth = amSouth;}
+    public boolean getIAmWest(){return iAmWest;}
+    public boolean getIAmNorth(){return iAmNorth;}
+    public boolean getIAmEast(){return iAmEast;}
+    public boolean getIAmSouth(){return iAmSouth;}
+
+
+
 
     public void setWest(TreeItem westNode){this.westNode = westNode;}
     public void setNorth(TreeItem northNode){this.northNode = northNode;}
@@ -62,8 +107,24 @@ public class Node implements TreeItem<Node>{
     public String toString(){
 
         StringBuilder sb = new StringBuilder();
+        String dir = " ";
 
-        sb.append("Pos = " + pos);
+        if(this.getIAmWest()){
+            dir = "WEST";
+        }
+        if(this.getIAmNorth()){
+            dir = "NORTH";
+        }
+        if(this.getIAmEast()){
+            dir = "EAST";
+        }
+        if(this.getIAmSouth()){
+            dir = "SOUTH";
+        }
+
+        sb.append(" Direction = " + dir);
+        sb.append(", Index nr = " + index);
+        sb.append(", Pos = " + pos);
         sb.append(", parent = " + parent);
         sb.append(", is walkable = " + walkable);
 

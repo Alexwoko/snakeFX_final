@@ -5,11 +5,12 @@ import javafx.scene.paint.Color;
 
 import java.awt.*;
 import java.util.*;
-import java.util.List;
+
 
 public class RandomRambler extends MovingObject {
 
-    private double fieldWidth, fieldHeight;
+    private double fieldWidth;
+    private double fieldHeight;
 
 
 
@@ -25,6 +26,7 @@ public class RandomRambler extends MovingObject {
 
 
 
+    /*
     public void randomWalk(){
 
         Random ran = new Random();
@@ -45,7 +47,7 @@ public class RandomRambler extends MovingObject {
 
         }
     }
-
+*/
 
 
 
@@ -56,13 +58,25 @@ public class RandomRambler extends MovingObject {
             for(int i = 0; i < getMyPath().size(); i++){
 
                 TreeItem t = getMyPath().get(i); //    path.get(i);
+
+                    if(i < getMyPath().size() && t.getX() == this.getX() && t.getY() == this.getY()){
+
+                        this.setX(getMyPath().get(i + 1).getX());
+                        this.setX(getMyPath().get(i + 1).getY());
+                        break;
+                    }
+
+
+
+
+                /*
                 this.setX(t.getX());
                 this.setY(t.getY());
-                break;
+               // break;
+                return;
+                */
 
             }
-
-
         }
     }
 

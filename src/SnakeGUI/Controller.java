@@ -9,7 +9,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 import java.util.*;
 
@@ -24,11 +23,9 @@ public class Controller {
     private double fieldWidth;
     private int width = 30;
     private int height = 20;
-    private Random random = new Random();
-    private int gameLoopDelay = 500;
     private float refreshRate =150;
     private Player player = new Player(14, 14);
-    private RandomRambler ranRam = new RandomRambler(13, 9);
+    private RandomRambler ranRam = new RandomRambler(15, 14);
     private RandomRambler ranRamTwo = new RandomRambler(14, 9);
     private RandomRambler ranRamThree = new RandomRambler(15, 9);
    // private MovingObject target = new RandomRambler(0, 0);
@@ -40,7 +37,8 @@ public class Controller {
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
 
-    public void btnStartAction(ActionEvent event)
+    //public void btnStartAction(ActionEvent event)
+    public void btnStartAction()
     {
         System.out.println("btn clicked");
         labelStatus.setText("test");
@@ -116,7 +114,8 @@ public class Controller {
             case W:
                 this.player.moveUp();
                 break;
-
+            default:
+                break;
         }
 
 
@@ -157,6 +156,7 @@ public class Controller {
         ranRamThree.followPath(myGrid.thePath);
 */
 
+
         player.update();
         ranRam.update();
         ranRamTwo.update();
@@ -165,30 +165,6 @@ public class Controller {
         drawCanvas();
 
     }
-
-    /**
-     * Get a random position
-     */
-
-    private void givePos(MovingObject o){
-
-        MathVector pos = new MathVector(random.nextInt(width), random.nextInt(height));
-       // ranRam = new RandomRambler(pos.x, pos.y);
-        o.setX(pos.x);
-        o.setY(pos.y);
-
-        for(int i = 0; i < width; i++){
-            for(int j = 0; j < height; j++){
-
-                if(o.getX() == i && o.getY() == j && !myGrid.tiles[i][j].getWalkable()){
-                    givePos(o);
-                }else{
-
-                }
-            }
-        }
-    }
-
 
     /**
      * Calculate height and width of each field
@@ -215,18 +191,16 @@ public class Controller {
 
                 g.setFill(Color.DARKGREEN);
 
-
-
-
                    if(!myGrid.tiles[i][j].getWalkable()){
                     g.setFill(Color.BLACK);
                 }
 
-/*
+ /*
                    if(ranRam.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
                        g.setFill(Color.GREY);
 
                    }
+
 
                 if(ranRamTwo.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
                     g.setFill(Color.DARKGREY);

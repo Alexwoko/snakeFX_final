@@ -1,12 +1,7 @@
 
-Msquid:S1068"1Remove this unused "gameLoopDelay" private field.(°à§Ïûÿÿÿÿ
-Wsquid:UselessImportCheck"3Remove this unused import 'javafx.scene.text.Font'.(¾¼¡Ê
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(æÁëÏ
-V"squid:SwitchLastCaseIsDefaultChecki""Add a default case to this switch.(­àÓ-8ğ«Ú¡-
-V
-squid:S106-"9Replace this use of System.out or System.err by a logger.(àÅóè8ğ«Ú¡-
 [
-squid:S106\"9Replace this use of System.out or System.err by a logger.(ƒÙ­üÿÿÿÿ8ğ«Ú¡-
-Osquid:S1172+",Remove this unused method parameter "event".(ÙŞÒüÿÿÿÿ8ğ«Ú¡-
-Hsquid:S1172f"*Remove this unused method parameter "now".(ÈÕ¢×8ğ«Ú¡-
-Isquid:S00108¹")Either remove or fill this block of code.(å¥‡8ğ«Ú¡-
+squid:S106Z"9Replace this use of System.out or System.err by a logger.(ƒÙ­üÿÿÿÿ8ª¿Ôì¡-
+Hsquid:S1172d"*Remove this unused method parameter "now".(ÈÕ¢×8ª¿Ôì¡-
+V
+squid:S106+"9Replace this use of System.out or System.err by a logger.(àÅóè8ª¿Ôì¡-

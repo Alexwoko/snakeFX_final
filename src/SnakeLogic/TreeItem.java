@@ -20,5 +20,13 @@ public interface TreeItem<T>  {
     void setY(float y);
     float getX();
     float getY();
+    void setIAmWest(boolean amWest);
+    void setIAmNorth(boolean amNorth);
+    void setIAmEast(boolean amEast);
+    void setIAmSouth(boolean amSouth);
+    boolean getIAmWest();
+    boolean getIAmNorth();
+    boolean getIAmEast();
+    boolean getIAmSouth();
 
 }

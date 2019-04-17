@@ -1,8 +1,6 @@
 package SnakeLogic;
 
 
-import SnakeGUI.Controller;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
@@ -24,6 +22,7 @@ public class BFS {
         this.startNode = startNode;
         this.endNode = endNode;
         this.myGrid = grid;
+        thePath = new ArrayList<>();
         startBFS();
 
     }
@@ -37,7 +36,7 @@ public class BFS {
 
         while(currentNode != startNode){
 
-            thePath.add(currentNode);
+            this.thePath.add(currentNode);
             currentNode = currentNode.getParent();
 
         }
@@ -77,8 +76,8 @@ public class BFS {
 
 
 
-        Node origin = new Node(startNode.getX(), startNode.getY(), true);
-        Node target = new Node(endNode.getX(), endNode.getY(), true);
+        Node origin = new Node(startNode.getX(), startNode.getY(), true, "None");
+        Node target = new Node(endNode.getX(), endNode.getY(), true, "None");
 
 
         openList.add(origin);
@@ -94,13 +93,17 @@ public class BFS {
 
                 target = currentNode;
                 retracePath(origin, target);
+               // System.out.println("num of nodes in tree = " + closedList.getSize());
+             //   System.out.println("num of E in open = " + openList.size());
+                closedList.emptyTree();
+              //  System.out.println("num of nodes in tree = " + closedList.getSize());
                 return;
             }
 
-
             for (Node n : myGrid.getNeighbours(currentNode)){
 
-                if(closedList.containsValue(n) || !isWalkable(n)){
+                System.out.println(n.getTreeIndex() + " = node index");
+                if(closedList.containsValue(n.getTreeIndex()) || !isWalkable(n)){
                     continue;
 
                 }
