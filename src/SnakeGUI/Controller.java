@@ -25,7 +25,7 @@ public class Controller {
     private int height = 20;
     private float refreshRate =150;
     private Player player = new Player(13, 14);
-    private RandomRambler ranRam = new RandomRambler(15, 14);
+    private RandomRambler ranRam = new RandomRambler(13, 9);
     private RandomRambler ranRamTwo = new RandomRambler(14, 9);
     private RandomRambler ranRamThree = new RandomRambler(15, 9);
    // private MovingObject target = new RandomRambler(0, 0);

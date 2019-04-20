@@ -88,30 +88,75 @@ public class Tree<T extends TreeItem> {
     private void addChildNote(T rootNode, T node) {
 
 
+
+
+        if(rootNode.getWest() == null){
+            if(node.getIAmWest()){
+                numOfNodes += 1;
+                rootNode.setWest(node);
+            } else{
+                if(rootNode.getSouth() != null){
+                    addChildNote((T)rootNode.getWest(), node);
+                }
+            }
+
+        } else if(rootNode.getNorth() == null){
+            if(node.getIAmNorth()){
+                numOfNodes += 1;
+                rootNode.setNorth(node);
+            } else{
+                if(rootNode.getWest() != null && node.getWest().getSouth() != null){
+                    addChildNote((T)rootNode.getNorth(), node);
+                }
+            }
+        } else if(rootNode.getEast() == null){
+            if(node.getIAmEast()){
+                numOfNodes += 1;
+                rootNode.setEast(node);
+            } else{
+                if(rootNode.getNorth() != null && rootNode.getNorth().getEast() != null){
+                    addChildNote((T)rootNode.getEast(), node);
+                }
+
+            }
+        } else if(rootNode.getSouth() == null){
+            if(node.getIAmSouth()){
+                numOfNodes += 1;
+                rootNode.setSouth(node);
+            } else {
+                if(rootNode.getEast() != null && rootNode.getEast().getSouth() != null){
+                    addChildNote((T)rootNode.getSouth(), node);
+                }
+            }
+        }
+
+
+
+        /*
        if(rootNode.getWest() == null && node.getIAmWest()){
            rootNode.setWest(node);
        } else {
-           if(rootNode.getSouth() != null && node.getIAmWest()){
+           if(rootNode.getSouth() != null){
                addChildNote((T)rootNode.getWest(), node);
            }
 
            if(rootNode.getNorth() == null && node.getIAmNorth()){
                rootNode.setNorth(node);
            } else {
-               if(rootNode.getWest() != null && rootNode.getWest().getSouth() != null && rootNode.getSouth() != null && node.getIAmNorth()){
+               if(rootNode.getWest() != null && rootNode.getWest().getSouth() != null && rootNode.getSouth() != null){
                    addChildNote((T)rootNode.getNorth(), node);
                }
 
                if(rootNode.getEast() == null && node.getIAmEast()){
                    rootNode.setEast(node);
                } else {
-                   if(rootNode.getNorth() != null && rootNode.getNorth().getEast() != null && rootNode.getSouth() != null && node.getIAmEast()){
+                   if(rootNode.getNorth() != null && rootNode.getNorth().getEast() != null && rootNode.getSouth() != null){
                        addChildNote((T)rootNode.getEast(), node);
                    }
                    if(rootNode.getSouth() == null && node.getIAmSouth()){
                        rootNode.setSouth(node);
                    } else{
-                       if(rootNode.getEast() != null && rootNode.getEast().getSouth() != null && node.getIAmSouth()){
+                       if(rootNode.getEast() != null && rootNode.getEast().getSouth() != null){
                            addChildNote((T)rootNode.getSouth(), node);
                        } else{
                            return;
@@ -122,6 +167,7 @@ public class Tree<T extends TreeItem> {
 
            }
        }
+*/
 
 
         /*
