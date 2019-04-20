@@ -24,7 +24,7 @@ public class Controller {
     private int width = 30;
     private int height = 20;
     private float refreshRate =150;
-    private Player player = new Player(14, 14);
+    private Player player = new Player(13, 14);
     private RandomRambler ranRam = new RandomRambler(15, 14);
     private RandomRambler ranRamTwo = new RandomRambler(14, 9);
     private RandomRambler ranRamThree = new RandomRambler(15, 9);
@@ -191,7 +191,7 @@ public class Controller {
 
                 g.setFill(Color.DARKGREEN);
 
-                   if(!myGrid.tiles[i][j].getWalkable()){
+                   if(!myGrid.nodes[i][j].getWalkable()){
                     g.setFill(Color.BLACK);
                 }
 
@@ -230,11 +230,11 @@ public class Controller {
                 }
                 */
 
-                        g.fillRoundRect(myGrid.tiles[i][j].getPos().x * fieldWidth, myGrid.tiles[i][j].getPos().y * fieldHeight, myGrid.tiles[i][j].getWidth(), myGrid.tiles[i][j].getHeight(), 3, 3);
+                        g.fillRoundRect(myGrid.nodes[i][j].getX() * fieldWidth, myGrid.nodes[i][j].getY() * fieldHeight, myGrid.nodes[i][j].getWidth(), myGrid.nodes[i][j].getHeight(), 3, 3);
             }
         }
 
-     //   ranRam.displayPath(g, Color.LIGHTBLUE);
+       ranRam.displayPath(g, Color.LIGHTBLUE);
       //  ranRamTwo.displayPath(g, Color.LIGHTSALMON);
        // ranRamThree.displayPath(g, Color.LIGHTPINK);
 

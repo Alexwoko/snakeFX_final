@@ -16,7 +16,8 @@ public abstract class MovingObject implements GameObject{
     private float maxSpeed;
     private String dir;
 
-    Grid.Tile currentTile;
+   // Grid.Tile currentTile;
+    Node currentNode;
     private Tree<TreeItem> closedList;
     private List<TreeItem> myPath;
 
@@ -50,8 +51,8 @@ public abstract class MovingObject implements GameObject{
     public void setTree(Tree tree ){this.closedList = tree;}
     public Tree getTree(){return closedList;}
 
-    public Grid.Tile getCurrentTile(){return currentTile;}
-    public void setCurrentTile(Grid.Tile t){currentTile = t;}
+    public Node getCurrentTile(){return currentNode;}
+    public void setCurrentTile(Node t){currentNode = t;}
 
 
 public void stopMoving(String t){
@@ -171,10 +172,10 @@ public MathVector getAccel(){return accel;}
     }
 
 
-    @Override
-    public void applyRepeller(Grid.Tile wall) {
+   // @Override
+    public void applyRepeller(Node node) {
 
-        MathVector force = wall.repel(this);
+        MathVector force = node.repel(this);
         this.applyForce(force);
     }
 

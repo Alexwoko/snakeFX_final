@@ -53,7 +53,7 @@ public class BFS {
             for(int j = 0; j < myGrid.getFrameHeight(); j++){
 
              //   if(myGrid.tiles[i][j].walkable && (n.getX() == i && n.getY() == j)){
-                if(n.getX() == i && n.getY() == j && myGrid.tiles[i][j].walkable){
+                if(n.getX() == i && n.getY() == j && myGrid.nodes[i][j].getWalkable()){
                     return true;
 
                 }
@@ -76,9 +76,11 @@ public class BFS {
 
 
 
-        Node origin = new Node(startNode.getX(), startNode.getY(), true, "None");
-        Node target = new Node(endNode.getX(), endNode.getY(), true, "None");
+      //  Node origin = new Node(startNode.getX(), startNode.getY(), true, "None");
+       // Node target = new Node(endNode.getX(), endNode.getY(), true, "None");
 
+        Node origin = myGrid.getTile(startNode.getX(),startNode.getY());
+        Node target = myGrid.getTile(endNode.getX(), endNode.getY());
 
         openList.add(origin);
 
@@ -93,16 +95,14 @@ public class BFS {
 
                 target = currentNode;
                 retracePath(origin, target);
-               // System.out.println("num of nodes in tree = " + closedList.getSize());
-             //   System.out.println("num of E in open = " + openList.size());
+
                 closedList.emptyTree();
-              //  System.out.println("num of nodes in tree = " + closedList.getSize());
                 return;
             }
 
             for (Node n : myGrid.getNeighbours(currentNode)){
 
-                System.out.println(n.getTreeIndex() + " = node index");
+           //     System.out.println(n.getTreeIndex() + " = node index");
                 if(closedList.containsValue(n.getTreeIndex()) || !isWalkable(n)){
                     continue;
 

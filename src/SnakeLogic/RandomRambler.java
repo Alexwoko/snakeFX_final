@@ -13,7 +13,6 @@ public class RandomRambler extends MovingObject {
     private double fieldHeight;
 
 
-
     public RandomRambler(int x, int y) {
         super(x, y);
         setMaxSpeed(1f);
@@ -23,7 +22,12 @@ public class RandomRambler extends MovingObject {
 
     }
 
+    @Override
+    public void applyRepeller(Node node) {
 
+        MathVector force = node.repel(this);
+        this.applyForce(force);
+    }
 
 
     /*
@@ -50,21 +54,25 @@ public class RandomRambler extends MovingObject {
 */
 
 
+    public void followPath() {
 
-    public void followPath(){
+        if (getMyPath() != null) {
 
-        if(getMyPath() != null){
-
-            for(int i = 0; i < getMyPath().size(); i++){
+            for (int i = 0; i < getMyPath().size(); i++) {
 
                 TreeItem t = getMyPath().get(i); //    path.get(i);
 
-                    if(i < getMyPath().size() && t.getX() == this.getX() && t.getY() == this.getY()){
+                this.setX(getMyPath().get(i).getX());
+                this.setY(getMyPath().get(i).getY());
+                break;
 
-                        this.setX(getMyPath().get(i + 1).getX());
-                        this.setX(getMyPath().get(i + 1).getY());
-                        break;
-                    }
+                /*
+            //    if (i < getMyPath().size() && t.getX() == this.getX() && t.getY() == this.getY()) {
+                    if(){
+                    this.setX(getMyPath().get(i + 1).getX());
+                    this.setX(getMyPath().get(i + 1).getY());
+                    break;
+                }
 
 
 
@@ -80,7 +88,7 @@ public class RandomRambler extends MovingObject {
         }
     }
 
-    public void displaySelf(GraphicsContext g, Color c){
+    public void displaySelf(GraphicsContext g, Color c) {
 
 
         g.setFill(c);
@@ -88,9 +96,9 @@ public class RandomRambler extends MovingObject {
 
     }
 
-    public void displayPath(GraphicsContext g, Color c){
+    public void displayPath(GraphicsContext g, Color c) {
 
-        if(this.getMyPath() != null) {
+        if (this.getMyPath() != null) {
             for (TreeItem t : this.getMyPath()) {
                 g.setFill(c);
                 g.fillRoundRect(t.getX() * fieldWidth, t.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
@@ -99,19 +107,15 @@ public class RandomRambler extends MovingObject {
         }
     }
 
-@Override
-    public void update(){
+    @Override
+    public void update() {
 
 
-   getVel().add(getAccel());
-   getVel().limit(1f);
-   getPos().add(getVel());
-   getAccel().mult(0f);
+        getVel().add(getAccel());
+        getVel().limit(1f);
+        getPos().add(getVel());
+        getAccel().mult(0f);
 
 
-
-
-}
-
-
+    }
 }

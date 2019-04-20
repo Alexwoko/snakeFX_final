@@ -14,6 +14,10 @@ public class Node implements TreeItem<Node>{
     private boolean iAmNorth;
     private boolean iAmEast;
     private boolean iAmSouth;
+    private float strength;
+
+    private final int width = 20;
+    private final float height = 17.5f;
 
 
     public Node(int index){
@@ -40,14 +44,17 @@ public class Node implements TreeItem<Node>{
         assignDirFromOrigin(dirFromOrigin);
         this.index = Integer.MAX_VALUE;
 
+
     }
 
-    public Node(float x, float y, boolean walkable, String dirFromOrigin, int index){
+    public Node(float x, float y, int index){
 
         pos = new MathVector(x, y);
-        this.walkable = walkable;
-        assignDirFromOrigin(dirFromOrigin);
+       // this.walkable = walkable;
+       // assignDirFromOrigin(dirFromOrigin);
         this.index = index;
+        this.strength = 2.9f;
+        this.walkable = true;
 
     }
 
@@ -67,6 +74,38 @@ public class Node implements TreeItem<Node>{
         }
 
     }
+
+
+    public MathVector repel(MovingObject o){
+
+
+        MathVector dir;
+        MathVector oPos = new MathVector(o.getX(), o.getY());
+        dir = oPos.sub(this.pos);
+        float d = (float)dir.mag();
+        d = constrain(d, 1, 2);
+        dir.normalize();
+        float force =    strength / (d * d);
+        dir.mult((int)force);
+        return dir;
+
+    }
+
+    public float constrain(float x, float a, float b){
+
+        if(x < a){
+            return a;
+        }
+        if(b < x){
+            return b;
+        }else{
+            return x;
+        }
+    }
+
+
+    public int getWidth(){return width;}
+    public float getHeight(){return height;}
 
 
     public void setIAmWest(boolean amWest){iAmWest = amWest;}
@@ -95,9 +134,7 @@ public class Node implements TreeItem<Node>{
     public void setTreeIndex(int index){this.index = index;}
     public int getTreeIndex(){return index;}
 
-    public boolean isWalkable(){return walkable;}
-
-
+    public boolean getWalkable(){return walkable;}
     public void setWalkable(boolean w){walkable = w;}
     public float getX(){return pos.x;}
     public float getY(){return pos.y;}

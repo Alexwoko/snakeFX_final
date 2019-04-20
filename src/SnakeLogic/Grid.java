@@ -5,7 +5,7 @@ import java.util.*;
 public class Grid {
 
 
-    public Tile[][] tiles;
+  //  public Tile[][] tiles;
     private int frameWidth;
     private int frameHeight;
     public Node[][] nodes;
@@ -21,16 +21,20 @@ public class Grid {
 
         frameWidth = 30;
         frameHeight = 20;
-        tiles = new Tile[frameWidth][frameHeight];
+    //    tiles = new Tile[frameWidth][frameHeight];
         nodes = new Node[frameWidth][frameHeight];
         numOfNodes = 0;
         createGrid();
-        createFrame();
         buildMaze();
+        createFrame();
+
 
 
 
     }
+
+
+
 
     public void setNumOfNodes(int numOfNodes){this.numOfNodes = numOfNodes;}
     public int getNumOfNodes(){return numOfNodes;}
@@ -38,7 +42,25 @@ public class Grid {
     public int getFrameWidth(){return  frameWidth;}
     public int getFrameHeight(){return frameHeight;}
 
-public Tile[][] getTiles(){return tiles;}
+//public Tile[][] getTiles(){return tiles;}
+
+
+
+    public Node getTile(float x, float y){
+
+        for(int i = 0; i < frameWidth; i ++){
+            for (int j = 0; j < frameHeight; j++){
+
+                if(i == x && j == y){
+                    return nodes[i][j];
+                }
+
+            }
+        }
+return null;
+
+    }
+
 
     public List<Node> getNeighbours(Node n){
 
@@ -54,9 +76,39 @@ public Tile[][] getTiles(){return tiles;}
                     float checkX = n.getX() +i;
                     float checkY = n.getY() + j;
 
-                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20)){
+                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20)) {
 
-                        if(tiles[(int)checkX][(int)checkY].getWalkable()){
+                        Node nTwo = nodes[(int) checkX][(int) checkY];
+
+                        //  if(nodes[(int)checkX][(int)checkY].getWalkable()){
+                      //  if (nTwo.getWalkable()) {
+                            if (nTwo.getX() < n.getX()) {
+                                nTwo.setIAmWest(true);
+                                neighbours.add(nTwo);
+
+                            }
+
+                            if (nTwo.getY() < n.getY()) {
+                                nTwo.setIAmNorth(true);
+                                neighbours.add(nTwo);
+                            }
+                        if (nTwo.getX() > n.getX()) {
+                            nTwo.setIAmEast(true);
+                            neighbours.add(nTwo);
+                        }
+                            if (nTwo.getY() > n.getY()) {
+                                nTwo.setIAmSouth(true);
+                                neighbours.add(nTwo);
+                            }
+
+                       // neighbours.add(nTwo);
+                      //  }
+
+
+
+                        /*
+
+                        {
 
                             if(checkX < n.getX()){
                                 numOfNodes += 1;
@@ -79,6 +131,7 @@ public Tile[][] getTiles(){return tiles;}
                             numOfNodes += 1;
                             neighbours.add(new Node(checkX, checkY, false, "None", numOfNodes));
                         }
+                        */
                     }
                 }
             }
@@ -89,105 +142,6 @@ public Tile[][] getTiles(){return tiles;}
 
 
 /*
-
-    public void retracePath(Tile starNode, Tile endNode, MovingObject o){
-
-        Tile currentNode = endNode;
-        thePath = new ArrayList<>();
-
-        while(!currentNode.equals(starNode)){
-            //  pathCounter += 1;
-            thePath.add(currentNode);
-            currentNode = currentNode.getParent();
-
-        }
-        Collections.reverse(thePath);
-        o.setMyPath(thePath);
-
-    }
-
-
-
-    public void BFS(MovingObject hunter, MovingObject prey){
-
-        createGrid();
-        createFrame();
-        buildMaze();
-
-       tree = new Tree<>(0, 1f);
-      // Tree<Float> tree = hunter.getTree();
-
-        openList = new ArrayList<>();
-
-        Tile origin = getTile(hunter.getPos());
-        Tile target = getTile(prey.getPos());
-
-        hunter.setCurrentTile(origin);
-        prey.setCurrentTile(target);
-
-       // hunter.setCurrentTile(origin);
-
-        origin.setMoveCost(Float.MAX_VALUE);
-        Tile currentTile;
-
-        openList.add(origin);
-
-        while(!openList.isEmpty()){
-
-            currentTile = openList.get(0);
-            openList.remove(currentTile);
-            tree.add(currentTile.getMoveCost());
-
-            currentTile.setIndex(tree.numOfNodes);
-            hunter.setTree(tree);
-
-
-            if (currentTile.pos.x == target.pos.x && currentTile.pos.y == target.pos.y) {
-
-
-
-         //      hunter.setCurrentTile(currentTile);
-
-            //    target = convertTileToPos();
-
-                retracePath(origin, target, hunter);
-
-                hunter.getTree().emptyTree();
-                tree.emptyTree();
-
-                for(int i = openList.size(); i > 0; i--){
-
-                    openList.remove(i-1);
-
-                }
-
-
-                return;
-            }
-
-
-            for(Tile t : getNeighbours(currentTile)){
-
-                if(tree.containsValue(t.index) || t.getUnwalkable()){
-
-                    continue;
-                }
-
-                if(!openList.contains(t) || t.getMoveCost() < currentTile.getMoveCost()) {
-
-                    t.setMoveCost(getDistance(currentTile, t));
-                    t.parent = currentTile;
-
-                    if (!openList.contains(t))
-                        openList.add(t);
-
-
-                }
-            }
-        }
-    }
-
-
 
     public List<Tile> getNeighbours(Tile t){
 
@@ -266,8 +220,8 @@ public Tile[][] getTiles(){return tiles;}
             for (int j = 0; j < fields.length; j ++){
 
                 if(fields[j] == i){
-                    tiles[i][posY].setWalkable(false);
-
+                  //  tiles[i][posY].setWalkable(false);
+                    nodes[i][posY].setWalkable(false);
                 }
             }
         }
@@ -279,10 +233,10 @@ public Tile[][] getTiles(){return tiles;}
         int checkX;
         int checkY;
 
-        Tile left;
-        Tile right;
-        Tile up;
-        Tile down;
+        Node left;
+        Node right;
+        Node up;
+        Node down;
 
         for(int i = -1; i <= 1; i+=1f){
             for(int j = -1; j <= 1; j+=1f){
@@ -292,23 +246,23 @@ public Tile[][] getTiles(){return tiles;}
 
                 if(checkX >= 0 && checkX <= 29 && checkY >= 0 && checkY <= frameHeight) {
 
-                    if (checkX == o.getX() + 1 && checkY == o.getY() && !tiles[checkX][checkY].getWalkable() && o.getDir() == "RIGHT") {
-                        right = tiles[checkX][checkY];
+                    if (checkX == o.getX() + 1 && checkY == o.getY() && !nodes[checkX][checkY].getWalkable() && o.getDir() == "RIGHT") {
+                        right = nodes[checkX][checkY];
                         o.applyRepeller(right);
                         return "right";
                     }
-                    if (checkX == o.getX() -1 && checkY == o.getY() && !tiles[checkX][checkY].getWalkable() && o.getDir() == "LEFT") {
-                        left = tiles[checkX][checkY];
+                    if (checkX == o.getX() -1 && checkY == o.getY() && !nodes[checkX][checkY].getWalkable() && o.getDir() == "LEFT") {
+                        left = nodes[checkX][checkY];
                         o.applyRepeller(left);
                         return "left";
                     }
-                    if (checkX == o.getX() && checkY == o.getY() -1 && !tiles[checkX][checkY].getWalkable()&& o.getDir() == "UP") {
-                        up = tiles[checkX][checkY];
+                    if (checkX == o.getX() && checkY == o.getY() -1 && !nodes[checkX][checkY].getWalkable()&& o.getDir() == "UP") {
+                        up = nodes[checkX][checkY];
                         o.applyRepeller(up);
                         return "up";
                     }
-                    if (checkX == o.getX() && checkY == o.getY() + 1 && !tiles[checkX][checkY].getWalkable() && o.getDir() == "DOWN") {
-                        down = tiles[checkX][checkY];
+                    if (checkX == o.getX() && checkY == o.getY() + 1 && !nodes[checkX][checkY].getWalkable() && o.getDir() == "DOWN") {
+                        down = nodes[checkX][checkY];
                         o.applyRepeller(down);
                         return "down";
                     }
@@ -323,7 +277,7 @@ return null;
      for(int i = 0; i < frameWidth; i+=1f){
          for(int j = 0; j <  frameHeight; j+=1f){
 
-             if(o.getX() == i && o.getY() == j && tiles[i][j].getWalkable()){
+             if(o.getX() == i && o.getY() == j && nodes[i][j].getWalkable()){
 
                  o.stopMoving(scanForWalls(o));
 
@@ -341,31 +295,34 @@ return null;
 
         for(int i = 0; i < frameWidth; i+=1){
 
-            tiles[i][0].setWalkable(false);
-            tiles[i][frameHeight-1].setWalkable(false);
+            nodes[i][0].setWalkable(false);
+            nodes[i][frameHeight-1].setWalkable(false);
 
         }
 
         for (int i = 0; i < frameHeight; i+= 1){
 
-            tiles[0][i].setWalkable(false);
-            tiles[frameWidth-1][i].setWalkable(false);
+            nodes[0][i].setWalkable(false);
+            nodes[frameWidth-1][i].setWalkable(false);
 
 
         }
-        tiles[0][9].setWalkable(true);
-         tiles[frameWidth-1][9].setWalkable(true);
+        nodes[0][9].setWalkable(true);
+        nodes[frameWidth-1][9].setWalkable(true);
     }
 
 
 
     public void createGrid(){
 
+        int indexer = 0;
 
         for(int i = 0; i < frameWidth; i++){
             for(int j = 0; j < frameHeight; j++){
 
-                tiles[i][j] = new Tile(i, j);
+
+                nodes[i][j] = new Node(i, j, indexer);
+                indexer++;
 
             }
 
@@ -398,7 +355,7 @@ return null;
      *
      */
 
-
+/*
     public class Tile{
 
         MathVector pos;
@@ -457,7 +414,7 @@ return null;
         }
         
 
-        public Boolean getWalkable() {return walkable;}
+        public boolean getWalkable() {return walkable;}
 
         public String toString(){
 
@@ -474,5 +431,7 @@ return null;
 
 
     }
+
+    */
 
 }

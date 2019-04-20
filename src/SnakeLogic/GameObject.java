@@ -26,7 +26,7 @@ public interface GameObject {
     void moveUp();
     void moveDown();
     void setDir(String dir);
-    void applyRepeller(Grid.Tile tile);
+    void applyRepeller(Node node);
     void applyForce(MathVector force);
     String toString();
 
