@@ -3,7 +3,8 @@ package SnakeLogic;
 public interface TreeItem<T>  {
 
 
-
+    boolean getVisited();
+    void setVisited(boolean visited);
     void setTreeIndex(int index);
     int getTreeIndex();
     TreeItem getWest();

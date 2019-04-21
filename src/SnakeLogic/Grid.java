@@ -45,6 +45,16 @@ public class Grid {
 //public Tile[][] getTiles(){return tiles;}
 
 
+    public void resetVisited(){
+
+        for (int i = 0; i < frameWidth; i++){
+            for(int j = 0; j < frameHeight; j++){
+                nodes[i][j].setVisited(false);
+
+            }
+        }
+
+    }
 
     public Node getTile(float x, float y){
 
@@ -69,16 +79,18 @@ return null;
         for(int i =  - 1; i <=   1; i++){
             for(int j =  -1; j <= 1; j++){
 
-                if(n.getX() == i && n.getY() == j || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
+             //   if(n.getX() == i && n.getY() == j || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
+                if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
 
                 }else{
 
                     float checkX = n.getX() +i;
                     float checkY = n.getY() + j;
 
-                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20)) {
+                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20) && !nodes[(int)checkX][(int)checkY].visited) {
 
                         Node nTwo = nodes[(int) checkX][(int) checkY];
+                        nTwo.setVisited(true);
 
                         //  if(nodes[(int)checkX][(int)checkY].getWalkable()){
                       //  if (nTwo.getWalkable()) {

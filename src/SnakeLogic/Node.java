@@ -9,11 +9,13 @@ public class Node implements TreeItem<Node>{
     private TreeItem parent;
     private MathVector pos;
     private int index;
+    private int treeIndex;
     private boolean walkable;
     private boolean iAmWest;
     private boolean iAmNorth;
     private boolean iAmEast;
     private boolean iAmSouth;
+    public boolean visited;
     private float strength;
 
     private final int width = 20;
@@ -55,6 +57,7 @@ public class Node implements TreeItem<Node>{
         this.index = index;
         this.strength = 2.9f;
         this.walkable = true;
+        visited = false;
 
     }
 
@@ -108,6 +111,16 @@ public class Node implements TreeItem<Node>{
     public float getHeight(){return height;}
 
 
+public boolean getVisited(){return visited;}
+
+    @Override
+    public void setVisited(boolean visited) {
+
+        this.visited = visited;
+    }
+
+    public void setTreeIndex(int treeIndex){this.treeIndex = treeIndex;}
+public int getTreeIndex(){return treeIndex;}
     public void setIAmWest(boolean amWest){iAmWest = amWest;}
     public void setIAmNorth(boolean amNorth){iAmNorth = amNorth;}
     public void setIAmEast(boolean amEast){iAmEast = amEast;}
@@ -131,8 +144,8 @@ public class Node implements TreeItem<Node>{
     public void setParent(TreeItem parent){this.parent = parent;}
     public TreeItem getParent(){return parent;}
 
-    public void setTreeIndex(int index){this.index = index;}
-    public int getTreeIndex(){return index;}
+    public void setIndex(int index){this.index = index;}
+    public int getIndex(){return index;}
 
     public boolean getWalkable(){return walkable;}
     public void setWalkable(boolean w){walkable = w;}
@@ -160,6 +173,7 @@ public class Node implements TreeItem<Node>{
         }
 
         sb.append(" Direction = " + dir);
+        sb.append(", Treeindex = " + treeIndex);
         sb.append(", Index nr = " + index);
         sb.append(", Pos = " + pos);
         sb.append(", parent = " + parent);

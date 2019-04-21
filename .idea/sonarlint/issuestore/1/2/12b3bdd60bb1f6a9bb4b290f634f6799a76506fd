@@ -1,6 +1,4 @@
 
-V
-squid:S106M"9Replace this use of System.out or System.err by a logger.(³”Ì“8‚ˆ§å¢-
-usquid:S3776W"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(‰Ÿíøùÿÿÿÿ8òÂ‹’£-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ
-qsquid:S3776¶"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ø’öž8¡‹è‘£-
+usquid:S3776X"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(‰Ÿíøùÿÿÿÿ8¸‰Ïá£-
+Esquid:S1172‹"&Remove these unused method parameters.(ø’öž8Š±àÖ£-

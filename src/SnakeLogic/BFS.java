@@ -82,6 +82,7 @@ public class BFS {
         Node origin = myGrid.getTile(startNode.getX(),startNode.getY());
         Node target = myGrid.getTile(endNode.getX(), endNode.getY());
 
+
         openList.add(origin);
 
         while(!openList.isEmpty()){
@@ -91,19 +92,22 @@ public class BFS {
             openList.remove(currentNode);
             closedList.add(currentNode);
 
+
+
             if(currentNode.getX() == target.getX() && currentNode.getY() == target.getY()){
 
                 target = currentNode;
                 retracePath(origin, target);
 
                 closedList.emptyTree();
+                myGrid.resetVisited();
                 return;
             }
 
             for (Node n : myGrid.getNeighbours(currentNode)){
 
            //     System.out.println(n.getTreeIndex() + " = node index");
-                if(closedList.containsValue(n.getTreeIndex()) || !isWalkable(n)){
+                if(closedList.containsValue(n.getIndex()) || !isWalkable(n)){
                     continue;
 
                 }
