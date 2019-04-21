@@ -29,31 +29,6 @@ public class RandomRambler extends MovingObject {
         this.applyForce(force);
     }
 
-
-    /*
-    public void randomWalk(){
-
-        Random ran = new Random();
-        int result = ran.nextInt(3);
-
-        switch(result){
-            case 0:
-                moveRight();
-                break;
-            case 1:
-                moveLeft();
-                break;
-            case 2:
-                moveUp();
-                break;
-            case 3:
-                moveDown();
-
-        }
-    }
-*/
-
-
     public void followPath() {
 
         if (getMyPath() != null) {
@@ -65,24 +40,6 @@ public class RandomRambler extends MovingObject {
                 this.setX(getMyPath().get(i).getX());
                 this.setY(getMyPath().get(i).getY());
                 break;
-
-                /*
-            //    if (i < getMyPath().size() && t.getX() == this.getX() && t.getY() == this.getY()) {
-                    if(){
-                    this.setX(getMyPath().get(i + 1).getX());
-                    this.setX(getMyPath().get(i + 1).getY());
-                    break;
-                }
-
-
-
-
-                /*
-                this.setX(t.getX());
-                this.setY(t.getY());
-               // break;
-                return;
-                */
 
             }
         }

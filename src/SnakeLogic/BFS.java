@@ -3,7 +3,7 @@ package SnakeLogic;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Stack;
+
 
 
 public class BFS {
@@ -11,11 +11,7 @@ public class BFS {
     private Grid myGrid;
     private MovingObject startNode;
     private MovingObject endNode;
-   // private Node currentNode;
-   // private Stack<Node> thePath;
     private ArrayList<TreeItem> thePath;
-
-
 
     public BFS(MovingObject startNode, MovingObject endNode, Grid grid){
 
@@ -26,9 +22,6 @@ public class BFS {
         startBFS();
 
     }
-
- //   public void setMyGrid(Grid grid){ this.myGrid = grid;}
-
 
     public void retracePath(Node startNode, Node targetNode){
 
@@ -43,8 +36,6 @@ public class BFS {
 
         Collections.reverse(thePath);
         this.startNode.setMyPath(thePath);
-
-
     }
 
     public boolean isWalkable(Node n){
@@ -52,14 +43,10 @@ public class BFS {
         for(int i = 0; i < myGrid.getFrameWidth(); i++){
             for(int j = 0; j < myGrid.getFrameHeight(); j++){
 
-             //   if(myGrid.tiles[i][j].walkable && (n.getX() == i && n.getY() == j)){
                 if(n.getX() == i && n.getY() == j && myGrid.nodes[i][j].getWalkable()){
                     return true;
-
                 }
-
             }
-
         }
         return false;
     }
@@ -75,10 +62,6 @@ public class BFS {
         closedList = new Tree<>();
         Node currentNode;
 
-
-
-      //  Node origin = new Node(startNode.getX(), startNode.getY(), true, "None");
-       // Node target = new Node(endNode.getX(), endNode.getY(), true, "None");
 
         Node origin = myGrid.getTile(startNode.getX(),startNode.getY());
         Node target = myGrid.getTile(endNode.getX(), endNode.getY());
@@ -97,8 +80,6 @@ public class BFS {
 
             if(currentNode.getX() == target.getX() && currentNode.getY() == target.getY()){
 
-               // myGrid.setPrevVisited(myGrid.nodes);
-
                 target = currentNode;
                 retracePath(origin, target);
 
@@ -109,7 +90,6 @@ public class BFS {
 
             for (Node n : myGrid.getNeighbours(currentNode)){
 
-           //     System.out.println(n.getTreeIndex() + " = node index");
                 if(closedList.containsValue(n.getGridIndex()) || !isWalkable(n)){
                     continue;
 

@@ -19,7 +19,6 @@ public class Grid {
 
     public Grid(){
 
-
         fieldWidth = 20;
         fieldHeight = 17.85;
         frameWidth = 30;
@@ -28,21 +27,10 @@ public class Grid {
         createGrid();
         buildMaze();
         createFrame();
-
-
-
     }
-
-
-public void setPrevVisited(Node[][] visited){prevVisited = visited;}
-
-
 
     public int getFrameWidth(){return  frameWidth;}
     public int getFrameHeight(){return frameHeight;}
-
-
-
 
     public void resetVisited(){
 
@@ -95,7 +83,6 @@ return null;
                             if (nTwo.getX() < n.getX()) {
                                 nTwo.setIAmWest(true);
                                 neighbours.add(nTwo);
-
                             }
 
                             if (nTwo.getY() < n.getY()) {
@@ -116,8 +103,6 @@ return null;
         }
         return neighbours;
     }
-
-
 
     private void buildMaze(){
 
@@ -153,27 +138,20 @@ return null;
         buildWallHorizLine(sixteenth, 16);
         int[] seventeenth = {4, 5, 6, 7, 8, 14, 20, 21, 22, 23, 24, 25};
         buildWallHorizLine(seventeenth, 17);
-
-
-
     }
 
-
     private void buildWallHorizLine(int[] fields, int posY){
-
 
         for(int i = 0; i < frameWidth; i++){
 
             for (int j = 0; j < fields.length; j ++){
 
                 if(fields[j] == i){
-                  //  tiles[i][posY].setWalkable(false);
                     nodes[i][posY].setWalkable(false);
                 }
             }
         }
     }
-
 
     public String scanForWalls(MovingObject o){
 
@@ -227,16 +205,10 @@ return null;
              if(o.getX() == i && o.getY() == j && nodes[i][j].getWalkable()){
 
                  o.stopMoving(scanForWalls(o));
-
              }
          }
      }
     }
-
-
-
-
-
 
     private void createFrame(){
 
@@ -244,7 +216,6 @@ return null;
 
             nodes[i][0].setWalkable(false);
             nodes[i][frameHeight-1].setWalkable(false);
-
         }
 
         for (int i = 0; i < frameHeight; i+= 1){
@@ -252,12 +223,10 @@ return null;
             nodes[0][i].setWalkable(false);
             nodes[frameWidth-1][i].setWalkable(false);
 
-
         }
         nodes[0][9].setWalkable(true);
         nodes[frameWidth-1][9].setWalkable(true);
     }
-
 
 
     public void createGrid(){
@@ -267,23 +236,17 @@ return null;
         for(int i = 0; i < frameWidth; i++){
             for(int j = 0; j < frameHeight; j++){
 
-
                 nodes[i][j] = new Node(i, j, indexer);
                 indexer++;
 
             }
-
         }
     }
 
     public void displayGrid(GraphicsContext g){
 
-
-
-
         for(int i = 0; i < getFrameWidth(); i++){
             for (int j = 0; j < getFrameHeight(); j++) {
-
 
                 g.setFill(Color.DARKGREEN);
 
@@ -291,23 +254,14 @@ return null;
                     g.setFill(Color.BLACK);
                 }
 
-
                 g.fillRoundRect(nodes[i][j].getX() * fieldWidth, nodes[i][j].getY() * fieldHeight, nodes[i][j].getWidth(), nodes[i][j].getHeight(), 3, 3);
 
                 if (nodes[i][j].getPrevVisited() && nodes[i][j].getWalkable()) {
-                    g.setFill(Color.YELLOW);
+                    g.setFill(new Color(1, 1, 0, 0.25f));
                     g.fillRoundRect(nodes[i][j].getX() * fieldWidth, nodes[i][j].getY() * fieldHeight, nodes[i][j].getWidth(), nodes[i][j].getHeight(), 3, 3);
                     nodes[i][j].setPrevVisited(false);
                 }
-
-
-
             }
         }
-
-
-
     }
-
-
 }

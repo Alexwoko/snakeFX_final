@@ -28,12 +28,9 @@ public class Controller {
     private RandomRambler ranRam = new RandomRambler(13, 9);
     private RandomRambler ranRamTwo = new RandomRambler(14, 9);
     private RandomRambler ranRamThree = new RandomRambler(15, 9);
-   // private MovingObject target = new RandomRambler(0, 0);
 
     BFS pathfinder;
     Grid myGrid = new Grid();
-   // Grid myGrid;
-
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
 
@@ -52,10 +49,6 @@ public class Controller {
     public void initialize()
     {
 
-  //  givePos(ranRam);
-  //  givePos(player);
-   // givePos(target);
-
         calculateFields();
 
 
@@ -70,19 +63,11 @@ public class Controller {
                     lastUpdate = now;
 
 
-                //    System.out.println(fieldWidth + " " + fieldHeight);
-
-
-
-
-
                     update(now);
 
                 }             }
         }.start();
     }
-
-
 
     public void keyPressed(KeyCode keyCode)
     {
@@ -90,8 +75,6 @@ public class Controller {
         System.out.println("key pressed: " + keyCode);
         this.keyPressed = keyCode;
     }
-
-
 
     /**
      * Game loop - executed continously during the game
@@ -118,9 +101,6 @@ public class Controller {
                 break;
         }
 
-
-
-
         myGrid.playerScanner(player);
         myGrid.playerScanner(ranRam);
         myGrid.playerScanner(ranRamTwo);
@@ -132,30 +112,18 @@ public class Controller {
 
         if(player.getPos().x >= 0 && player.getPos().x < 29) {
             pathfinder = new BFS(ranRam, player, myGrid);
-
-
-           // myGrid.BFS(ranRam, player);
-          //  myGrid.BFS(ranRamTwo, player);
-        //    myGrid.BFS(ranRamThree, player);
-
+            pathfinder = new BFS(ranRamTwo, player, myGrid);
+            pathfinder = new BFS(ranRamThree, player, myGrid);
 
         }else{
             ranRam.stop();
-          //  ranRamTwo.stop();
-          //  ranRamThree.stop();
+           ranRamTwo.stop();
+            ranRamThree.stop();
         }
 
-
         ranRam.followPath();
-      //  ranRamTwo.followPath();
-      //  ranRamThree.followPath();
-
-/*
-        ranRam.followPath(myGrid.thePath);
-        ranRamTwo.followPath(myGrid.thePath);
-        ranRamThree.followPath(myGrid.thePath);
-*/
-
+        ranRamTwo.followPath();
+        ranRamThree.followPath();
 
         player.update();
         ranRam.update();

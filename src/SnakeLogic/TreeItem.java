@@ -22,8 +22,6 @@ public interface TreeItem<T>  {
     void setNorth(TreeItem north);
     void setEast(TreeItem east);
     void setSouth(TreeItem south);
-    void setX(float x);
-    void setY(float y);
     float getX();
     float getY();
     void setIAmWest(boolean amWest);
