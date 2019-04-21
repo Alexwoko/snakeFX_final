@@ -3,6 +3,11 @@ package SnakeLogic;
 public interface TreeItem<T>  {
 
 
+
+    boolean getPrevVisited();
+    void setPrevVisited(boolean visited);
+    void setGridIndex(int index);
+    int getGridIndex();
     boolean getVisited();
     void setVisited(boolean visited);
     void setTreeIndex(int index);

@@ -15,7 +15,9 @@ public class Node implements TreeItem<Node>{
     private boolean iAmNorth;
     private boolean iAmEast;
     private boolean iAmSouth;
-    public boolean visited;
+    private boolean visited;
+    private boolean prevVisited;
+
     private float strength;
 
     private final int width = 20;
@@ -58,6 +60,8 @@ public class Node implements TreeItem<Node>{
         this.strength = 2.9f;
         this.walkable = true;
         visited = false;
+        this.treeIndex = Integer.MAX_VALUE;
+        prevVisited = false;
 
     }
 
@@ -119,6 +123,9 @@ public boolean getVisited(){return visited;}
         this.visited = visited;
     }
 
+    public void setPrevVisited(boolean visited){this.prevVisited = visited;}
+    public boolean getPrevVisited(){return prevVisited;}
+
     public void setTreeIndex(int treeIndex){this.treeIndex = treeIndex;}
 public int getTreeIndex(){return treeIndex;}
     public void setIAmWest(boolean amWest){iAmWest = amWest;}
@@ -144,8 +151,8 @@ public int getTreeIndex(){return treeIndex;}
     public void setParent(TreeItem parent){this.parent = parent;}
     public TreeItem getParent(){return parent;}
 
-    public void setIndex(int index){this.index = index;}
-    public int getIndex(){return index;}
+    public void setGridIndex(int index){this.index = index;}
+    public int getGridIndex(){return index;}
 
     public boolean getWalkable(){return walkable;}
     public void setWalkable(boolean w){walkable = w;}

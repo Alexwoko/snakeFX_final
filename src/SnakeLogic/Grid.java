@@ -1,48 +1,47 @@
 package SnakeLogic;
 
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 import java.util.*;
 
 public class Grid {
 
 
-  //  public Tile[][] tiles;
+
     private int frameWidth;
     private int frameHeight;
     public Node[][] nodes;
-    private int numOfNodes;
+    private double fieldWidth;
+    private double fieldHeight;
 
-
-
-
-
+    public Node[][] prevVisited;
 
     public Grid(){
 
 
+        fieldWidth = 20;
+        fieldHeight = 17.85;
         frameWidth = 30;
         frameHeight = 20;
-    //    tiles = new Tile[frameWidth][frameHeight];
         nodes = new Node[frameWidth][frameHeight];
-        numOfNodes = 0;
         createGrid();
         buildMaze();
         createFrame();
 
 
 
-
     }
 
 
+public void setPrevVisited(Node[][] visited){prevVisited = visited;}
 
 
-    public void setNumOfNodes(int numOfNodes){this.numOfNodes = numOfNodes;}
-    public int getNumOfNodes(){return numOfNodes;}
 
     public int getFrameWidth(){return  frameWidth;}
     public int getFrameHeight(){return frameHeight;}
 
-//public Tile[][] getTiles(){return tiles;}
+
 
 
     public void resetVisited(){
@@ -79,7 +78,7 @@ return null;
         for(int i =  - 1; i <=   1; i++){
             for(int j =  -1; j <= 1; j++){
 
-             //   if(n.getX() == i && n.getY() == j || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
+
                 if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
 
                 }else{
@@ -87,13 +86,12 @@ return null;
                     float checkX = n.getX() +i;
                     float checkY = n.getY() + j;
 
-                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20) && !nodes[(int)checkX][(int)checkY].visited) {
+                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20) && !nodes[(int)checkX][(int)checkY].getVisited()) {
 
                         Node nTwo = nodes[(int) checkX][(int) checkY];
                         nTwo.setVisited(true);
+                        nTwo.setPrevVisited(true);
 
-                        //  if(nodes[(int)checkX][(int)checkY].getWalkable()){
-                      //  if (nTwo.getWalkable()) {
                             if (nTwo.getX() < n.getX()) {
                                 nTwo.setIAmWest(true);
                                 neighbours.add(nTwo);
@@ -112,38 +110,6 @@ return null;
                                 nTwo.setIAmSouth(true);
                                 neighbours.add(nTwo);
                             }
-
-                       // neighbours.add(nTwo);
-                      //  }
-
-
-
-                        /*
-
-                        {
-
-                            if(checkX < n.getX()){
-                                numOfNodes += 1;
-                                neighbours.add(new Node(checkX, checkY, true, "WEST", numOfNodes));
-                            }
-                            if(checkX > n.getX()){
-                                numOfNodes += 1;
-                                neighbours.add(new Node(checkX, checkY, true, "EAST", numOfNodes));
-                            }
-                            if(checkY < n.getY()){
-                                numOfNodes += 1;
-                                neighbours.add(new Node(checkX, checkY, true, "NORTH", numOfNodes));
-                            }
-                            if(checkY > n.getY()){
-                                numOfNodes += 1;
-                                neighbours.add(new Node(checkX, checkY, true, "SOUTH", numOfNodes));
-                            }
-
-                        } else{
-                            numOfNodes += 1;
-                            neighbours.add(new Node(checkX, checkY, false, "None", numOfNodes));
-                        }
-                        */
                     }
                 }
             }
@@ -151,37 +117,6 @@ return null;
         return neighbours;
     }
 
-
-
-/*
-
-    public List<Tile> getNeighbours(Tile t){
-
-        List<Grid.Tile> neighbours = new ArrayList<>();
-
-        for(int i =  - 1; i <=   1; i++){
-            for(int j =  -1; j <= 1; j++){
-
-               if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
-
-             //   if(i == 0 && j == 0){
-                    continue;
-
-                }else{
-
-                    float checkX = t.pos.x +i;
-                    float checkY = t.pos.y + j;
-
-                    if(checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20){
-                        neighbours.add(tiles[(int)checkX][(int)checkY]);
-
-                    }
-                }
-            }
-        }
-        return neighbours;
-    }
-    */
 
 
     private void buildMaze(){
@@ -341,109 +276,38 @@ return null;
         }
     }
 
-
-    /*
-    private float getDistance(Tile tileA, Tile tileB){
-// Math abs så vi sikrer at tallet er positivt.
-    float dstX = Math.abs(tileA.pos.x - tileB.pos.x);
-    float dstY = Math.abs(tileA.pos.y - tileB.pos.y);
-
-    if(dstX > dstY){
-        return 14 * dstY + 10 * (dstX - dstY);
-    }
-    return 14 * dstX + 10 * (dstY - dstX);
-
-
-    }
-    */
+    public void displayGrid(GraphicsContext g){
 
 
 
 
-
-    /**
-     * PRIVATE CLASS -----------------------------------------
-     *
-     *
-     */
-
-/*
-    public class Tile{
-
-        MathVector pos;
-        int width;
-        float height;
-        Boolean walkable;
-        private float strength;
-        int index;
+        for(int i = 0; i < getFrameWidth(); i++){
+            for (int j = 0; j < getFrameHeight(); j++) {
 
 
-        public Tile(float x, float y){
+                g.setFill(Color.DARKGREEN);
 
-            this.pos = new MathVector(x, y);
-            this.width = 20;
-            this.height = 17.5f;
-            this.walkable = true;
-          this.strength = 2.9f;
+                if (!nodes[i][j].getWalkable()) {
+                    g.setFill(Color.BLACK);
+                }
 
-        }
+
+                g.fillRoundRect(nodes[i][j].getX() * fieldWidth, nodes[i][j].getY() * fieldHeight, nodes[i][j].getWidth(), nodes[i][j].getHeight(), 3, 3);
+
+                if (nodes[i][j].getPrevVisited() && nodes[i][j].getWalkable()) {
+                    g.setFill(Color.YELLOW);
+                    g.fillRoundRect(nodes[i][j].getX() * fieldWidth, nodes[i][j].getY() * fieldHeight, nodes[i][j].getWidth(), nodes[i][j].getHeight(), 3, 3);
+                    nodes[i][j].setPrevVisited(false);
+                }
 
 
 
-        public float getWidth(){return width;}
-        public float getHeight(){return height;}
-        public float getX(){return pos.x;}
-        public float getY(){return pos.y;}
-        public MathVector getPos(){return pos;}
-        public void setWalkable(boolean w){this.walkable = w;}
-        public int getIndex(){return index;}
-
-        public MathVector repel(MovingObject o){
-
-
-            MathVector dir;
-            MathVector oPos = new MathVector(o.getX(), o.getY());
-            dir = oPos.sub(this.pos);
-            float d = (float)dir.mag();
-            d = constrain(d, 1, 2);
-            dir.normalize();
-            float force =    strength / (d * d);
-            dir.mult((int)force);
-            return dir;
-
-        }
-
-        public float constrain(float x, float a, float b){
-
-            if(x < a){
-                return a;
-            }
-            if(b < x){
-                return b;
-            }else{
-                return x;
             }
         }
-        
-
-        public boolean getWalkable() {return walkable;}
-
-        public String toString(){
-
-            StringBuilder sb = new StringBuilder();
-
-            sb.append(" x = " + this.pos.x + " y = " + this.pos.y);
-            sb.append( ", walkable = " + this.walkable);
-
-            return sb.toString();
-
-
-        }
 
 
 
     }
 
-    */
 
 }

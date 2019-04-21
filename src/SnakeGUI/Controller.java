@@ -183,56 +183,7 @@ public class Controller {
         // Clears the whole screen before re-drawing
         g.clearRect(0,0,width*fieldWidth ,height*fieldHeight);
 
-
-
-        for(int i = 0; i < myGrid.getFrameWidth(); i++){
-            for (int j = 0; j < myGrid.getFrameHeight(); j++){
-
-
-                g.setFill(Color.DARKGREEN);
-
-                   if(!myGrid.nodes[i][j].getWalkable()){
-                    g.setFill(Color.BLACK);
-                }
-
- /*
-                   if(ranRam.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
-                       g.setFill(Color.GREY);
-
-                   }
-
-
-                if(ranRamTwo.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
-                    g.setFill(Color.DARKGREY);
-
-                }
-
-                if(ranRamThree.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
-                    g.setFill(Color.LIGHTGREY);
-
-                } else if(ranRam.getTree().containsValue(myGrid.tiles[i][j].getIndex()) && ranRamTwo.getTree().containsValue(myGrid.tiles[i][j].getIndex()) && ranRamThree.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
-                    g.setFill(Color.LIGHTGREEN);
-
-                }
-                */
-
-                   /*
-                   if(myGrid.tree.containsValue(myGrid.tiles[i][j].getIndex())){
-                      // g.fillRoundRect(myGrid.tiles[i][]);
-
-                   }
-                   */
-
-                   /*
-                if(ranRam.getTree().containsValue(myGrid.tiles[i][j].getIndex()) && ranRamTwo.getTree().containsValue(myGrid.tiles[i][j].getIndex()) && ranRamThree.getTree().containsValue(myGrid.tiles[i][j].getIndex())){
-                    g.setFill(Color.LIGHTGREY);
-
-                }
-                */
-
-                        g.fillRoundRect(myGrid.nodes[i][j].getX() * fieldWidth, myGrid.nodes[i][j].getY() * fieldHeight, myGrid.nodes[i][j].getWidth(), myGrid.nodes[i][j].getHeight(), 3, 3);
-            }
-        }
+        myGrid.displayGrid(g);
 
        ranRam.displayPath(g, Color.LIGHTBLUE);
       //  ranRamTwo.displayPath(g, Color.LIGHTSALMON);

@@ -67,6 +67,7 @@ public class BFS {
 
     public void startBFS(){
 
+
         ArrayList<Node> openList;
          Tree<Node> closedList;
 
@@ -96,6 +97,8 @@ public class BFS {
 
             if(currentNode.getX() == target.getX() && currentNode.getY() == target.getY()){
 
+               // myGrid.setPrevVisited(myGrid.nodes);
+
                 target = currentNode;
                 retracePath(origin, target);
 
@@ -107,7 +110,7 @@ public class BFS {
             for (Node n : myGrid.getNeighbours(currentNode)){
 
            //     System.out.println(n.getTreeIndex() + " = node index");
-                if(closedList.containsValue(n.getIndex()) || !isWalkable(n)){
+                if(closedList.containsValue(n.getGridIndex()) || !isWalkable(n)){
                     continue;
 
                 }
