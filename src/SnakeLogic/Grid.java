@@ -74,7 +74,7 @@ return null;
                     float checkX = n.getX() + i;
                     float checkY = n.getY() + j;
 
-                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20) ) {
+                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20 && !nodes[(int)checkX][(int)checkY].getPrevVisited()) ) {
 
                         Node nTwo = nodes[(int) checkX][(int) checkY];
                       //  nTwo.setVisited(true);
@@ -85,18 +85,17 @@ return null;
                                 nTwo.assignDirFromOrigin("WEST");
                                 neighbours.add(nTwo);
                             }
-
-                            if (nTwo.getY() <= n.getY()) {
+                            if (nTwo.getY() < n.getY()) {
                               //  nTwo.setIAmNorth(true);
                                 nTwo.assignDirFromOrigin("NORTH");
                                 neighbours.add(nTwo);
                             }
-                        if (nTwo.getX() >= n.getX()) {
+                        if (nTwo.getX() > n.getX()) {
                           //  nTwo.setIAmEast(true);
                             nTwo.assignDirFromOrigin("EAST");
                             neighbours.add(nTwo);
                         }
-                            if (nTwo.getY() >= n.getY()) {
+                            if (nTwo.getY() > n.getY()) {
                               //  nTwo.setIAmSouth(true);
                                 nTwo.assignDirFromOrigin("SOUTH");
                                 neighbours.add(nTwo);

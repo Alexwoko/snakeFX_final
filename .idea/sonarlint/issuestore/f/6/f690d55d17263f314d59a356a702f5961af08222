@@ -1,7 +1,7 @@
 
-ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 51 to the 15 allowed.(´ï¬úÿÿÿÿ8½äæ¤-
-ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(šƒÄïûÿÿÿÿ8½äæ¤-
-„"squid:ClassVariableVisibilityCheck"QMake nodes a static final constant or non-public and provide accessors if needed.(şİÚÙ8ºªÚ¡-
+†"squid:ClassVariableVisibilityCheck"QMake nodes a static final constant or non-public and provide accessors if needed.(şİÚÙ8ºªÚ¡-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ
-‰"squid:ClassVariableVisibilityCheck"QMake tiles a static final constant or non-public and provide accessors if needed.(ÚÉ˜üüÿÿÿÿ8š°Æ„¥-
-Ksquid:S00108")Either remove or fill this block of code.(½®ÎÍıÿÿÿÿ8š°Æ„¥-
+usquid:S3776>"RRefactor this method to reduce its Cognitive Complexity from 41 to the 15 allowed.(´ï¬úÿÿÿÿ8½äæ¤-
+9squid:S3626G"Remove this redundant jump.(ÉŠ©ƒ8‰É„¥-
+Œ"squid:ClassVariableVisibilityCheck"WMake prevVisited a static final constant or non-public and provide accessors if needed.(—Ÿ¶8‰É„¥-
+vsquid:S3776Ÿ"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(šƒÄïûÿÿÿÿ8½äæ¤-

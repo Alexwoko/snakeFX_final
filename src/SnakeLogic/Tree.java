@@ -26,12 +26,12 @@ public class Tree<T extends TreeItem> {
 
     public boolean add(T node) {
 
-      //  if(node.getVisited()){
-        if(node.getPrevVisited()){
-           return false;
-        }
+       // if(node.getVisited()){
+      //  if(node.getPrevVisited()){
+       //    return false;
+     //   }
 
-    
+
         if(rootNode == null){
             //  node.setTreeIndex(numOfNodes);
             node.setTreeIndex(numOfNodes);
@@ -96,6 +96,11 @@ public class Tree<T extends TreeItem> {
 
     public boolean containsValue(Node node){
 
+        if(node.getTreeIndex() == Integer.MAX_VALUE){
+
+            return false;
+        }
+
         if(rootNode != null){
             if(rootNode.getGridIndex() == node.getGridIndex()){
                 return true;
@@ -112,7 +117,7 @@ public class Tree<T extends TreeItem> {
            if(node.getIAmWest() && node.getGridIndex() == rootNode.getGridIndex()){
                return true;
            } else if(node.getIAmWest()){
-               containsValue(rootNode, node);
+               containsValue((T)rootNode.getWest(), node);
 
            }
        }
@@ -121,7 +126,7 @@ public class Tree<T extends TreeItem> {
            if(node.getIAmNorth() && node.getGridIndex() == rootNode.getGridIndex()){
                return true;
            } else if(node.getIAmNorth()){
-               containsValue(rootNode, node);
+               containsValue((T)rootNode.getNorth(), node);
            }
        }
 
@@ -129,7 +134,7 @@ public class Tree<T extends TreeItem> {
         if(node.getIAmEast() && node.getGridIndex() == rootNode.getGridIndex()){
             return true;
         } else if(node.getIAmEast()){
-            containsValue(rootNode, node);
+            containsValue((T)rootNode.getEast(), node);
         }
 
        }
@@ -138,20 +143,11 @@ public class Tree<T extends TreeItem> {
            if(node.getIAmSouth() && node.getGridIndex() == rootNode.getGridIndex()){
                return true;
            } else if(node.getIAmSouth()){
-               containsValue(rootNode, node);
+               containsValue((T)rootNode.getSouth(), node);
            }
        }
 
-
-
-
         return false;
-
-
-
-
-
-
 
 
         /*
