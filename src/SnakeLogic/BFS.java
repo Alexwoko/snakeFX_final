@@ -90,7 +90,7 @@ public class BFS {
 
             for (Node n : myGrid.getNeighbours(currentNode)){
 
-                if(closedList.containsValue(n.getGridIndex()) || !isWalkable(n)){
+                if(closedList.containsValue(n) || !isWalkable(n)){
                     continue;
 
                 }

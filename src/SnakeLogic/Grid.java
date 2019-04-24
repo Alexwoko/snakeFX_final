@@ -68,33 +68,37 @@ return null;
 
 
                 if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
-
+                continue;
                 }else{
 
-                    float checkX = n.getX() +i;
+                    float checkX = n.getX() + i;
                     float checkY = n.getY() + j;
 
-                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20) && !nodes[(int)checkX][(int)checkY].getVisited()) {
+                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20) ) {
 
                         Node nTwo = nodes[(int) checkX][(int) checkY];
-                        nTwo.setVisited(true);
+                      //  nTwo.setVisited(true);
                         nTwo.setPrevVisited(true);
 
                             if (nTwo.getX() < n.getX()) {
-                                nTwo.setIAmWest(true);
+                              //  nTwo.setIAmWest(true);
+                                nTwo.assignDirFromOrigin("WEST");
                                 neighbours.add(nTwo);
                             }
 
-                            if (nTwo.getY() < n.getY()) {
-                                nTwo.setIAmNorth(true);
+                            if (nTwo.getY() <= n.getY()) {
+                              //  nTwo.setIAmNorth(true);
+                                nTwo.assignDirFromOrigin("NORTH");
                                 neighbours.add(nTwo);
                             }
-                        if (nTwo.getX() > n.getX()) {
-                            nTwo.setIAmEast(true);
+                        if (nTwo.getX() >= n.getX()) {
+                          //  nTwo.setIAmEast(true);
+                            nTwo.assignDirFromOrigin("EAST");
                             neighbours.add(nTwo);
                         }
-                            if (nTwo.getY() > n.getY()) {
-                                nTwo.setIAmSouth(true);
+                            if (nTwo.getY() >= n.getY()) {
+                              //  nTwo.setIAmSouth(true);
+                                nTwo.assignDirFromOrigin("SOUTH");
                                 neighbours.add(nTwo);
                             }
                     }
@@ -247,6 +251,7 @@ return null;
 
         for(int i = 0; i < getFrameWidth(); i++){
             for (int j = 0; j < getFrameHeight(); j++) {
+
 
                 g.setFill(Color.DARKGREEN);
 

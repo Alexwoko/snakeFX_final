@@ -140,6 +140,7 @@ public int getTreeIndex(){return treeIndex;}
 
 
 
+
     public void setWest(TreeItem westNode){this.westNode = westNode;}
     public void setNorth(TreeItem northNode){this.northNode = northNode;}
     public void setEast(TreeItem eastNode){this.eastNode = eastNode;}

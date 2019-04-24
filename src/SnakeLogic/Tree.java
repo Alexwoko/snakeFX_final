@@ -25,11 +25,12 @@ public class Tree<T extends TreeItem> {
     }
 
     public boolean add(T node) {
-/*
-        if(node.getVisited()){
-            return false;
+
+      //  if(node.getVisited()){
+        if(node.getPrevVisited()){
+           return false;
         }
-*/
+
 
         if(rootNode == null){
             //  node.setTreeIndex(numOfNodes);
@@ -38,7 +39,7 @@ public class Tree<T extends TreeItem> {
             node.setVisited(true);
             rootNode = node;
         }else{
-          //  System.out.println(numOfNodes);
+
             addChildNote(rootNode, node);
         }
 
@@ -52,6 +53,7 @@ public class Tree<T extends TreeItem> {
             if(rootNode.getWest() == null){
                 node.setTreeIndex(numOfNodes);
                 numOfNodes += 1;
+                node.setVisited(true);
                 rootNode.setWest(node);
             }else if(rootNode.getWest() != null && node.getIAmWest()){
                 addChildNote((T)rootNode.getWest(), node);
@@ -62,6 +64,7 @@ public class Tree<T extends TreeItem> {
             if(rootNode.getNorth() == null){
                 node.setTreeIndex(numOfNodes);
                 numOfNodes += 1;
+                node.setVisited(true);
                 rootNode.setNorth(node);
             }else if(rootNode.getNorth() != null && node.getIAmNorth()){
                 addChildNote((T)rootNode.getNorth(), node);
@@ -72,6 +75,7 @@ public class Tree<T extends TreeItem> {
             if(rootNode.getEast() == null){
                 node.setTreeIndex(numOfNodes);
                 numOfNodes += 1;
+                node.setVisited(true);
                 rootNode.setEast(node);
             }else if(rootNode.getEast() != null && node.getIAmEast()){
                 addChildNote((T)rootNode.getEast(), node);
@@ -82,6 +86,7 @@ public class Tree<T extends TreeItem> {
             if(rootNode.getSouth() == null){
                 node.setTreeIndex(numOfNodes);
                 numOfNodes += 1;
+                node.setVisited(true);
                 rootNode.setSouth(node);
             }else if(rootNode.getSouth() != null && node.getIAmSouth()){
                 addChildNote((T)rootNode.getSouth(), node);
@@ -89,20 +94,67 @@ public class Tree<T extends TreeItem> {
         }
     }
 
-    public boolean containsValue(int index){
+    public boolean containsValue(Node node){
 
         if(rootNode != null){
-            if(rootNode.getGridIndex() == index){
+            if(rootNode.getGridIndex() == node.getGridIndex()){
                 return true;
             } else{
-                containsValue(rootNode, index);
+                containsValue(rootNode, node);
             }
         }
         return false;
     }
 
-    public boolean containsValue(T rootNode, int index){
+    public boolean containsValue(T rootNode, Node node){
 
+       if(rootNode.getWest() != null){
+           if(node.getIAmWest() && node.getGridIndex() == rootNode.getGridIndex()){
+               return true;
+           } else if(node.getIAmWest()){
+               containsValue(rootNode, node);
+
+           }
+       }
+
+       if(rootNode.getNorth() != null){
+           if(node.getIAmNorth() && node.getGridIndex() == rootNode.getGridIndex()){
+               return true;
+           } else if(node.getIAmNorth()){
+               containsValue(rootNode, node);
+           }
+       }
+
+       if(rootNode.getEast() != null){
+        if(node.getIAmEast() && node.getGridIndex() == rootNode.getGridIndex()){
+            return true;
+        } else if(node.getIAmEast()){
+            containsValue(rootNode, node);
+        }
+
+       }
+
+       if(rootNode.getSouth() != null){
+           if(node.getIAmSouth() && node.getGridIndex() == rootNode.getGridIndex()){
+               return true;
+           } else if(node.getIAmSouth()){
+               containsValue(rootNode, node);
+           }
+       }
+
+
+
+
+        return false;
+
+
+
+
+
+
+
+
+        /*
         if(rootNode.getWest() != null){
             if(rootNode.getWest().getGridIndex() == index){
                 return  true;
@@ -128,6 +180,7 @@ public class Tree<T extends TreeItem> {
             }
         }
         return false;
+        */
     }
 
     public String toString(){
