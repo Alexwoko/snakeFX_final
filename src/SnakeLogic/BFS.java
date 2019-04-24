@@ -29,7 +29,7 @@ public class BFS {
 
         while(currentNode != startNode){
 
-            this.thePath.add(currentNode);
+            thePath.add(currentNode);
             currentNode = currentNode.getParent();
 
         }

@@ -31,7 +31,7 @@ public class Tree<T extends TreeItem> {
            return false;
         }
 
-
+    
         if(rootNode == null){
             //  node.setTreeIndex(numOfNodes);
             node.setTreeIndex(numOfNodes);
