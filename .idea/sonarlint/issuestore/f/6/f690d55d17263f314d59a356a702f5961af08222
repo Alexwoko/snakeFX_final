@@ -1,5 +1,6 @@
 
-†"squid:ClassVariableVisibilityCheck"QMake nodes a static final constant or non-public and provide accessors if needed.(şİÚÙ8ºªÚ¡-
-vsquid:S3776Ÿ"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(šƒÄïûÿÿÿÿ8½äæ¤-
-rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ
 Œ"squid:ClassVariableVisibilityCheck"WMake prevVisited a static final constant or non-public and provide accessors if needed.(—Ÿ¶8‰É„¥-
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ
+‡"squid:ClassVariableVisibilityCheck"RMake gNodes a static final constant or non-public and provide accessors if needed.(àû¿8Ôş“Ù¥-
+vsquid:S3776®"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(šƒÄïûÿÿÿÿ8ÍºÕÛ¥-
+†"squid:ClassVariableVisibilityCheck"QMake nodes a static final constant or non-public and provide accessors if needed.(şİÚÙ8ºªÚ¡-

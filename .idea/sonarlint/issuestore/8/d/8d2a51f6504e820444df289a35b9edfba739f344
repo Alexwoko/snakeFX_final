@@ -1,9 +1,9 @@
 
-¤squid:S1186a"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼»´Ûúÿÿÿÿ8…ºçÕ¥-
-Isquid:S1068"+Remove this unused "thePath" private field.(Ãê»õ8²øÎÕ¥-
-Hsquid:S1172"+Remove this unused method parameter "grid".(­™†c8ËšÖÕ¥-
-psquid:S37760"RRefactor this method to reduce its Cognitive Complexity from 41 to the 15 allowed.(š¹ˆî8‚¯÷Õ¥-
+ysquid:S1450"VRemove the "visited" field and declare it as a local variable in the relevant methods.(àªûÿÿÿÿ8˜æ…Ú¥-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ
-Psquid:S1068"-Remove this unused "algorithm" private field.(ğ®–ıùÿÿÿÿ8«—ÕÕ¥-
-9squid:S36269"Remove this redundant jump.(ÉŠ©ƒ8‚¯÷Õ¥-
-ssquid:S1450"URemove the "target" field and declare it as a local variable in the relevant methods.(ñ®Ææ8¹ÆåÕ¥-
+9squid:S3626;"Remove this redundant jump.(ÉŠ©ƒ8‚¯÷Õ¥-
+psquid:S37762"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(š¹ˆî8‚¯÷Õ¥-
+psquid:S3776`"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ï íĞ8²ÛÓÚ¥-
+nsquid:S1149h"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(ô¢Ü8Î£‡Ü¥-
+ssquid:S1450
+"URemove the "target" field and declare it as a local variable in the relevant methods.(ñ®Ææ8¹ÆåÕ¥-
