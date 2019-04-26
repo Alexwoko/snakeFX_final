@@ -22,8 +22,11 @@ public class RandomRambler extends MovingObject {
 
     }
 
+
+
+
     @Override
-    public void applyRepeller(Node node) {
+    public void applyRepeller(GNode node) {
 
         MathVector force = node.repel(this);
         this.applyForce(force);
@@ -35,7 +38,7 @@ public class RandomRambler extends MovingObject {
 
             for (int i = 0; i < getMyPath().size(); i++) {
 
-                TreeItem t = getMyPath().get(i); //    path.get(i);
+                GraphItem t = getMyPath().get(i); //    path.get(i);
 
                 this.setX(getMyPath().get(i).getX());
                 this.setY(getMyPath().get(i).getY());
@@ -56,7 +59,7 @@ public class RandomRambler extends MovingObject {
     public void displayPath(GraphicsContext g, Color c) {
 
         if (this.getMyPath() != null) {
-            for (TreeItem t : this.getMyPath()) {
+            for (GraphItem t : this.getMyPath()) {
                 g.setFill(c);
                 g.fillRoundRect(t.getX() * fieldWidth, t.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 

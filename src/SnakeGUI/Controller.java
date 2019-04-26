@@ -29,7 +29,7 @@ public class Controller {
     private RandomRambler ranRamTwo = new RandomRambler(14, 9);
     private RandomRambler ranRamThree = new RandomRambler(15, 9);
 
-    BFS pathfinder;
+   // BFS pathfinder;
     Grid myGrid = new Grid();
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
@@ -111,24 +111,26 @@ public class Controller {
         checkEdges(ranRamThree);
 
         if(player.getPos().x >= 0 && player.getPos().x < 29) {
-            pathfinder = new BFS(ranRam, player, myGrid);
-            pathfinder = new BFS(ranRamTwo, player, myGrid);
-            pathfinder = new BFS(ranRamThree, player, myGrid);
+          //  pathfinder = new BFS(ranRam, player, myGrid);
+          //  pathfinder = new BFS(ranRamTwo, player, myGrid);
+           // pathfinder = new BFS(ranRamThree, player, myGrid);
+            myGrid.controlTheHunt(ranRam, player, "DEPTH FIRST SEARCH");
+
 
         }else{
             ranRam.stop();
-           ranRamTwo.stop();
-            ranRamThree.stop();
+         // ranRamTwo.stop();
+          //  ranRamThree.stop();
         }
 
         ranRam.followPath();
-        ranRamTwo.followPath();
-        ranRamThree.followPath();
+     //   ranRamTwo.followPath();
+      //  ranRamThree.followPath();
 
         player.update();
         ranRam.update();
-        ranRamTwo.update();
-        ranRamThree.update();
+       // ranRamTwo.update();
+       // ranRamThree.update();
 
         drawCanvas();
 

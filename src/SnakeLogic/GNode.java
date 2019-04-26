@@ -12,6 +12,11 @@ public class GNode implements GraphItem {
     private int numOfEdges;
     private int gridIndex;
     private MathVector gridPos;
+    private boolean walkable;
+    private final int width = 20;
+    private final float height = 17.5f;
+    private boolean prevVisited;
+    private final float  strength = 2.9f;
 
     public GNode(int gridIndex){
         edges = new Edge[4];
@@ -20,6 +25,19 @@ public class GNode implements GraphItem {
         numOfEdges = 0;
         this.gridIndex = gridIndex;
     }
+
+    GNode(float x, float y, int gridIndex){
+
+        edges = new Edge[4];
+        nodeFrom = null;
+        visited = false;
+        numOfEdges = 0;
+        this.gridIndex = gridIndex;
+      gridPos = new MathVector(x, y);
+      walkable = true;
+
+    }
+
 
     GNode(int gridIndex, MathVector gridPos){
 
@@ -61,25 +79,66 @@ public void addEdge(Edge e){
 
 }
 
-    @Override
-    public void setX(int x) {
+    public float constrain(float x, float a, float b){
+
+        if(x < a){
+            return a;
+        }
+        if(b < x){
+            return b;
+        }else{
+            return x;
+        }
+    }
+
+    public MathVector repel(MovingObject o){
+
+
+        MathVector dir;
+        MathVector oPos = new MathVector(o.getX(), o.getY());
+        dir = oPos.sub(this.gridPos);
+        float d = (float)dir.mag();
+        d = constrain(d, 1, 2);
+        dir.normalize();
+        float force =    strength / (d * d);
+        dir.mult((int)force);
+        return dir;
 
     }
 
-    @Override
-    public void setY(int y) {
 
+public boolean getWalkable(){return walkable;}
+
+public void setWalkable(boolean walkable){
+        this.walkable = walkable;
+
+}
+
+
+public void setPrevVisited(boolean prevVisited){this.prevVisited = prevVisited;}
+public boolean getPrevVisited(){return prevVisited;}
+
+    public int getWidth() {
+        return width;
+    }
+
+    public float getHeight() {
+        return height;
     }
 
     @Override
-    public int getX() {
-        return 0;
+    public void setX(int x) {gridPos.x = x;}
+
+    @Override
+    public void setY(int y) {gridPos.y = y;}
+
+    @Override
+    public float getX() {
+        return gridPos.x;
     }
 
     @Override
-    public int getY() {
-        return 0;
-    }
+    public float getY() {return gridPos.y;}
 
     @Override
     public void setEdges(Edge[] edges) {this.edges = edges;}
@@ -105,4 +164,20 @@ public void addEdge(Edge e){
 
     @Override
     public int getNumOfEdges() {return numOfEdges;}
+
+    public String toString(){
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Grid index = " + gridIndex);
+        sb.append(", Num of Edges = " + numOfEdges);
+        sb.append("Edges length = " + edges.length);
+      //  sb.append(", Grid pos = " + gridPos);
+        sb.append( ", parent = " + nodeFrom);
+      //  sb.append(", Walkable = " + walkable);
+
+return sb.toString();
+
+    }
+
 }

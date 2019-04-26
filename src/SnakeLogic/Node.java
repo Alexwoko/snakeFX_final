@@ -82,7 +82,7 @@ public class Node implements TreeItem<Node>{
         }
 
     }
-
+/*
 
     public MathVector repel(MovingObject o){
 
@@ -98,7 +98,9 @@ public class Node implements TreeItem<Node>{
         return dir;
 
     }
+    */
 
+/*
     public float constrain(float x, float a, float b){
 
         if(x < a){
@@ -110,7 +112,7 @@ public class Node implements TreeItem<Node>{
             return x;
         }
     }
-
+*/
 
     public int getWidth(){return width;}
     public float getHeight(){return height;}

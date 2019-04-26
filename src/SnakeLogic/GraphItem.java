@@ -14,8 +14,8 @@ public interface GraphItem<T> {
     void addEdge(Edge e);
     void setX(int x);
     void setY(int y);
-    int getX();
-    int getY();
+    float getX();
+    float getY();
 
 
 }

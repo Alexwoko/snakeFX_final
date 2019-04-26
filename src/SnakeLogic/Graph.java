@@ -3,36 +3,41 @@ package SnakeLogic;
 public class Graph<T extends GraphItem> {
 
     T rootNode;
-
+int graphSize;
 
     public void Graph(){
 
-
+graphSize = 0;
 
     }
 
     public boolean addNode(T node){
 
         if(rootNode == null){
+            rootNode = node;
+            rootNode.setVisited(true);
+            graphSize++;
             return true;
         } else{
             return addNeighbourNode(rootNode, node);
 
         }
 
-
     }
 
     public boolean addNeighbourNode(T rootNode, T node){
 
-        if(rootNode.getEdges().length < 4){
+        if(rootNode.getNumOfEdges() < 4){
             Edge e = new Edge(rootNode, node);
+            node.setVisited(true);
+            node.setFrom(rootNode);
             rootNode.addEdge(e);
+            graphSize++;
             return true;
 
-        }else {
+        }else if(rootNode.getNumOfEdges() > 0){
             for(Edge e : rootNode.getEdges()){
-                addNeighbourNode((T)e, node);
+                addNeighbourNode((T)e.getEnd(), node);
 
             }
         }
@@ -46,32 +51,49 @@ public class Graph<T extends GraphItem> {
         } else if(rootNode.getGridIndex() == index){
             return true;
         } else{
-           return askNeighbours(rootNode, index);
+           return containsNeighbours(rootNode, index);
         }
 
 
     }
 
-public boolean askNeighbours(T rootNode, int index){
+public boolean containsNeighbours(T rootNode, int index){
 
 
-        if(rootNode.getEdges().length <= 4){
+        if(rootNode.getNumOfEdges() <= 4 && rootNode.getNumOfEdges() > 0){
             for(Edge e : rootNode.getEdges()){
-                if(e.getEnd().getGridIndex() == index){
+                if(e.getEnd() != null && e.getEnd().getGridIndex() == index){
                     return true;
                 }
-
             }
 
-        }else{
+        }else if(rootNode.getNumOfEdges() > 0){
             for(Edge e : rootNode.getEdges()){
-                askNeighbours((T)e.getEnd(), index);
+                containsNeighbours((T)e.getEnd(), index);
 
             }
 
         }
 
 return false;
+
+}
+
+public void emptyGraph(){
+
+        rootNode = null;
+        graphSize =  0;
+
+}
+
+public String toString(){
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Root node = " + rootNode);
+        sb.append(", Graph size = " + graphSize);
+
+        return sb.toString();
 
 }
 

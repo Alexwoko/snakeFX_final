@@ -15,7 +15,7 @@ public abstract class MovingObject implements GameObject{
     private float maxForce;
     private float maxSpeed;
     private String dir;
-    private List<TreeItem> myPath;
+    private List<GraphItem> myPath;
 
     public MovingObject(int x, int y){
 
@@ -36,8 +36,8 @@ public abstract class MovingObject implements GameObject{
     }
 
 
-    public void setMyPath(List<TreeItem> path){myPath = path;}
-    public List<TreeItem> getMyPath(){return  myPath;}
+    public void setMyPath(List<GraphItem> path){myPath = path;}
+    public List<GraphItem> getMyPath(){return  myPath;}
 
 public void stopMoving(String t){
 
@@ -152,7 +152,7 @@ public MathVector getAccel(){return accel;}
 
     }
 
-    public void applyRepeller(Node node) {
+    public void applyRepeller(GNode node) {
 
         MathVector force = node.repel(this);
         this.applyForce(force);

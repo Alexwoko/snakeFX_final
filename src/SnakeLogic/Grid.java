@@ -7,13 +7,13 @@ import java.util.*;
 
 public class Grid {
 
-
-
     private int frameWidth;
     private int frameHeight;
     public Node[][] nodes;
+    public GNode[][] gNodes;
     private double fieldWidth;
     private double fieldHeight;
+    private Pathfinder pathfinder;
 
     public Node[][] prevVisited;
 
@@ -24,9 +24,22 @@ public class Grid {
         frameWidth = 30;
         frameHeight = 20;
         nodes = new Node[frameWidth][frameHeight];
+        gNodes = new GNode[frameWidth][frameHeight];
         createGrid();
         buildMaze();
         createFrame();
+        pathfinder = new Pathfinder(this);
+    }
+
+    public void controlTheHunt(MovingObject seeker, MovingObject target, String algorithm){
+
+
+            pathfinder.findPath(seeker, target, algorithm);
+
+
+
+
+
     }
 
     public int getFrameWidth(){return  frameWidth;}
@@ -37,19 +50,20 @@ public class Grid {
         for (int i = 0; i < frameWidth; i++){
             for(int j = 0; j < frameHeight; j++){
                 nodes[i][j].setVisited(false);
-
+                gNodes[i][j].setVisited(false);
             }
         }
 
     }
 
-    public Node getTile(float x, float y){
+    public GNode getTile(float x, float y){
 
         for(int i = 0; i < frameWidth; i ++){
             for (int j = 0; j < frameHeight; j++){
 
                 if(i == x && j == y){
-                    return nodes[i][j];
+                    return gNodes[i][j];
+                  //  return nodes[i][j];
                 }
 
             }
@@ -150,7 +164,8 @@ return null;
             for (int j = 0; j < fields.length; j ++){
 
                 if(fields[j] == i){
-                    nodes[i][posY].setWalkable(false);
+                    gNodes[i][posY].setWalkable(false);
+                    gNodes[i][posY].setWalkable(false);
                 }
             }
         }
@@ -161,10 +176,10 @@ return null;
         int checkX;
         int checkY;
 
-        Node left;
-        Node right;
-        Node up;
-        Node down;
+        GNode left;
+        GNode right;
+        GNode up;
+        GNode down;
 
         for(int i = -1; i <= 1; i+=1f){
             for(int j = -1; j <= 1; j+=1f){
@@ -174,23 +189,23 @@ return null;
 
                 if(checkX >= 0 && checkX <= 29 && checkY >= 0 && checkY <= frameHeight) {
 
-                    if (checkX == o.getX() + 1 && checkY == o.getY() && !nodes[checkX][checkY].getWalkable() && o.getDir() == "RIGHT") {
-                        right = nodes[checkX][checkY];
+                    if (checkX == o.getX() + 1 && checkY == o.getY() && !gNodes[checkX][checkY].getWalkable() && o.getDir() == "RIGHT") {
+                        right = gNodes[checkX][checkY];
                         o.applyRepeller(right);
                         return "right";
                     }
-                    if (checkX == o.getX() -1 && checkY == o.getY() && !nodes[checkX][checkY].getWalkable() && o.getDir() == "LEFT") {
-                        left = nodes[checkX][checkY];
+                    if (checkX == o.getX() -1 && checkY == o.getY() && !gNodes[checkX][checkY].getWalkable() && o.getDir() == "LEFT") {
+                        left = gNodes[checkX][checkY];
                         o.applyRepeller(left);
                         return "left";
                     }
-                    if (checkX == o.getX() && checkY == o.getY() -1 && !nodes[checkX][checkY].getWalkable()&& o.getDir() == "UP") {
-                        up = nodes[checkX][checkY];
+                    if (checkX == o.getX() && checkY == o.getY() -1 && !gNodes[checkX][checkY].getWalkable()&& o.getDir() == "UP") {
+                        up = gNodes[checkX][checkY];
                         o.applyRepeller(up);
                         return "up";
                     }
-                    if (checkX == o.getX() && checkY == o.getY() + 1 && !nodes[checkX][checkY].getWalkable() && o.getDir() == "DOWN") {
-                        down = nodes[checkX][checkY];
+                    if (checkX == o.getX() && checkY == o.getY() + 1 && !gNodes[checkX][checkY].getWalkable() && o.getDir() == "DOWN") {
+                        down = gNodes[checkX][checkY];
                         o.applyRepeller(down);
                         return "down";
                     }
@@ -205,7 +220,7 @@ return null;
      for(int i = 0; i < frameWidth; i+=1f){
          for(int j = 0; j <  frameHeight; j+=1f){
 
-             if(o.getX() == i && o.getY() == j && nodes[i][j].getWalkable()){
+             if(o.getX() == i && o.getY() == j && gNodes[i][j].getWalkable()){
 
                  o.stopMoving(scanForWalls(o));
              }
@@ -217,18 +232,18 @@ return null;
 
         for(int i = 0; i < frameWidth; i+=1){
 
-            nodes[i][0].setWalkable(false);
-            nodes[i][frameHeight-1].setWalkable(false);
+            gNodes[i][0].setWalkable(false);
+            gNodes[i][frameHeight-1].setWalkable(false);
         }
 
         for (int i = 0; i < frameHeight; i+= 1){
 
-            nodes[0][i].setWalkable(false);
-            nodes[frameWidth-1][i].setWalkable(false);
+            gNodes[0][i].setWalkable(false);
+            gNodes[frameWidth-1][i].setWalkable(false);
 
         }
-        nodes[0][9].setWalkable(true);
-        nodes[frameWidth-1][9].setWalkable(true);
+        gNodes[0][9].setWalkable(true);
+        gNodes[frameWidth-1][9].setWalkable(true);
     }
 
 
@@ -239,12 +254,14 @@ return null;
         for(int i = 0; i < frameWidth; i++){
             for(int j = 0; j < frameHeight; j++){
 
-                nodes[i][j] = new Node(i, j, indexer);
+                gNodes[i][j] = new GNode(i, j, indexer);
                 indexer++;
 
             }
         }
     }
+
+    public Grid getGrid(){return this;}
 
     public void displayGrid(GraphicsContext g){
 
@@ -254,16 +271,16 @@ return null;
 
                 g.setFill(Color.DARKGREEN);
 
-                if (!nodes[i][j].getWalkable()) {
+                if (!gNodes[i][j].getWalkable()) {
                     g.setFill(Color.BLACK);
                 }
 
-                g.fillRoundRect(nodes[i][j].getX() * fieldWidth, nodes[i][j].getY() * fieldHeight, nodes[i][j].getWidth(), nodes[i][j].getHeight(), 3, 3);
+                g.fillRoundRect(gNodes[i][j].getX() * fieldWidth, gNodes[i][j].getY() * fieldHeight, gNodes[i][j].getWidth(), gNodes[i][j].getHeight(), 3, 3);
 
-                if (nodes[i][j].getPrevVisited() && nodes[i][j].getWalkable()) {
+                if (gNodes[i][j].getPrevVisited() && gNodes[i][j].getWalkable()) {
                     g.setFill(new Color(1, 1, 0, 0.25f));
-                    g.fillRoundRect(nodes[i][j].getX() * fieldWidth, nodes[i][j].getY() * fieldHeight, nodes[i][j].getWidth(), nodes[i][j].getHeight(), 3, 3);
-                    nodes[i][j].setPrevVisited(false);
+                    g.fillRoundRect(gNodes[i][j].getX() * fieldWidth, gNodes[i][j].getY() * fieldHeight, gNodes[i][j].getWidth(), gNodes[i][j].getHeight(), 3, 3);
+                    gNodes[i][j].setPrevVisited(false);
                 }
             }
         }
