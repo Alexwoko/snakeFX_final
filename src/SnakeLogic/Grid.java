@@ -57,8 +57,8 @@ public class Grid {
 return null;
 
     }
-
-
+/*
+// MOVE TO PATHFINDER SINCE WE ONLY CONNECT WITH THE GRID IN THE CONSTRUCTER OF PATHFINDER
     public List<Node> getNeighbours(Node n){
 
         List<Node> neighbours = new ArrayList<>();
@@ -106,7 +106,7 @@ return null;
         }
         return neighbours;
     }
-
+*/
     private void buildMaze(){
 
         int[] firstLine = {14};

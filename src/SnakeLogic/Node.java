@@ -18,6 +18,7 @@ public class Node implements TreeItem<Node>{
     private boolean visited;
     private boolean prevVisited;
 
+
     private float strength;
 
     private final int width = 20;

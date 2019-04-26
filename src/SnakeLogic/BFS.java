@@ -38,6 +38,7 @@ public class BFS {
         this.startNode.setMyPath(thePath);
     }
 
+    /*
     public boolean isWalkable(Node n){
 
         for(int i = 0; i < myGrid.getFrameWidth(); i++){
@@ -50,7 +51,7 @@ public class BFS {
         }
         return false;
     }
-
+*/
 
     public void startBFS(){
 

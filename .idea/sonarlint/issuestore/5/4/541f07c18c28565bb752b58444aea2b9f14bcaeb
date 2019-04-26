@@ -1,0 +1,8 @@
+
+osquid:S1223"LRename this method to prevent any misunderstanding or make it a constructor.(ÇÜáÓÿÿÿÿÿ8ã¢‚Ô¥-
+¤squid:S1186A"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ôÑ½şüÿÿÿÿ8–ôıÕ¥-
+Nsquid:S1068"+Remove this unused "visited" private field.(ØÔûÿÿÿÿ8ÆÎÜÓ¥-
+osquid:S1223("LRename this method to prevent any misunderstanding or make it a constructor.(‘ÜÎœüÿÿÿÿ8úŠŠÔ¥-
+Nsquid:S1068"+Remove this unused "gridPos" private field.(‚ïº­úÿÿÿÿ8â…ÿÕ¥-
+¤squid:S1186F"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‰§¸Êşÿÿÿÿ8–ôıÕ¥-
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ

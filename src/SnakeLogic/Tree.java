@@ -166,45 +166,6 @@ public class Tree<T extends TreeItem> {
 
         return false;
 
-        /*
-
-       if(rootNode.getWest() != null){
-           if(node.getIAmWest() && node.getGridIndex() == rootNode.getGridIndex()){
-            //   return true;
-           } else if(node.getIAmWest()){
-               containsValue((T)rootNode.getWest(), node);
-
-           }
-       }
-
-       if(rootNode.getNorth() != null){
-           if(node.getIAmNorth() && node.getGridIndex() == rootNode.getGridIndex()){
-          //     return true;
-           } else if(node.getIAmNorth()){
-               containsValue((T)rootNode.getNorth(), node);
-           }
-       }
-
-       if(rootNode.getEast() != null){
-        if(node.getIAmEast() && node.getGridIndex() == rootNode.getGridIndex()){
-         //   return true;
-        } else if(node.getIAmEast()){
-            containsValue((T)rootNode.getEast(), node);
-        }
-
-       }
-
-       if(rootNode.getSouth() != null){
-           if(node.getIAmSouth() && node.getGridIndex() == rootNode.getGridIndex()){
-            //   return true;
-           } else if(node.getIAmSouth()){
-               containsValue((T)rootNode.getSouth(), node);
-           }
-       }
-
-        return true;
-
-       */
     }
 
     public String toString(){
