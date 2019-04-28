@@ -18,6 +18,7 @@ public class GNode implements GraphItem {
     private boolean prevVisited;
     private final float  strength = 2.9f;
 
+
     public GNode(int gridIndex){
         edges = new Edge[4];
         nodeFrom = null;
@@ -147,7 +148,7 @@ public boolean getPrevVisited(){return prevVisited;}
     public Edge[] getEdges() {return edges; }
 
     @Override
-    public boolean getVisited() { return false;}
+    public boolean getVisited() { return visited;}
 
     @Override
     public int getGridIndex() {return gridIndex;}
@@ -170,9 +171,9 @@ public boolean getPrevVisited(){return prevVisited;}
         StringBuilder sb = new StringBuilder();
 
         sb.append("Grid index = " + gridIndex);
-        sb.append(", Num of Edges = " + numOfEdges);
-        sb.append("Edges length = " + edges.length);
-      //  sb.append(", Grid pos = " + gridPos);
+       // sb.append(", Num of Edges = " + numOfEdges);
+      //  sb.append("Edges length = " + edges.length);
+        sb.append(", Grid pos = " + gridPos);
         sb.append( ", parent = " + nodeFrom);
       //  sb.append(", Walkable = " + walkable);
 

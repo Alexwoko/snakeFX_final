@@ -27,6 +27,28 @@ graphSize = 0;
 
     public boolean addNeighbourNode(T rootNode, T node){
 
+        while(!node.getVisited()){
+
+            if(rootNode.getNumOfEdges() < 4){
+                Edge e = new Edge(rootNode, node);
+                node.setVisited(true);
+                node.setFrom(rootNode);
+                rootNode.addEdge(e);
+                graphSize++;
+                return true;
+
+            }else if(rootNode.getNumOfEdges() ==  4){
+                for(Edge e : rootNode.getEdges()){
+                    addNeighbourNode((T)e.getEnd(), node);
+
+                }
+            }
+
+
+        }
+        return false;
+
+        /*
         if(rootNode.getNumOfEdges() < 4){
             Edge e = new Edge(rootNode, node);
             node.setVisited(true);
@@ -35,13 +57,15 @@ graphSize = 0;
             graphSize++;
             return true;
 
-        }else if(rootNode.getNumOfEdges() > 0){
+        }else if(rootNode.getNumOfEdges() ==  4){
             for(Edge e : rootNode.getEdges()){
                 addNeighbourNode((T)e.getEnd(), node);
 
             }
         }
         return false;
+
+        */
     }
 
     public boolean containsNode(int index){
@@ -61,13 +85,48 @@ public boolean containsNeighbours(T rootNode, int index){
 
 
         if(rootNode.getNumOfEdges() <= 4 && rootNode.getNumOfEdges() > 0){
+
+            for(int i = 0; i < rootNode.getEdges().length; i++){
+
+                Edge currentEdge = rootNode.getEdges()[i];
+
+                if(currentEdge != null){
+                    if(currentEdge.hasEnd() && currentEdge.getEnd().getGridIndex() == index){
+                        return true;
+                    } else if(rootNode.getNumOfEdges() == 4){
+                        containsNeighbours((T)currentEdge.getEnd(), index);
+                    }
+
+                }
+
+
+            }
+
+        }
+        return false;
+
+
+        /*
+        if(rootNode.getNumOfEdges() <= 4 && rootNode.getNumOfEdges() > 0){
             for(Edge e : rootNode.getEdges()){
-                if(e.getEnd() != null && e.getEnd().getGridIndex() == index){
-                    return true;
+
+
+                if(!e.hasEnd()){
+
+                  return false;
+
+                } else{
+
+                    if(e.getEnd().getGridIndex() == index) {
+
+
+                        return true;
+                    }
+
                 }
             }
 
-        }else if(rootNode.getNumOfEdges() > 0){
+        }else if(rootNode.getNumOfEdges() == 4){
             for(Edge e : rootNode.getEdges()){
                 containsNeighbours((T)e.getEnd(), index);
 
@@ -76,6 +135,8 @@ public boolean containsNeighbours(T rootNode, int index){
         }
 
 return false;
+
+        */
 
 }
 

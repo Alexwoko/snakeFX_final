@@ -30,5 +30,21 @@ public T getEnd(){return end;}
 public void setStart(T s){start = s;}
 public void setEnd(T e){end = e;}
 
+public boolean hasEnd(){if(end != null){return true;}
+
+    return false;
+    }
+
+
+public String toString(){
+
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(" Node A = " + start);
+        sb.append(", Node B = " + end);
+
+        return sb.toString();
+}
+
 
 }

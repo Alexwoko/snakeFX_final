@@ -2,15 +2,12 @@ package SnakeGUI;
 
 import SnakeLogic.*;
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-
-import java.util.*;
 
 public class Controller {
 
@@ -25,7 +22,7 @@ public class Controller {
     private int height = 20;
     private float refreshRate =150;
     private Player player = new Player(13, 14);
-    private RandomRambler ranRam = new RandomRambler(13, 9);
+    private RandomRambler ranRam = new RandomRambler(28, 13);
     private RandomRambler ranRamTwo = new RandomRambler(14, 9);
     private RandomRambler ranRamThree = new RandomRambler(15, 9);
 
@@ -101,10 +98,10 @@ public class Controller {
                 break;
         }
 
-        myGrid.playerScanner(player);
-        myGrid.playerScanner(ranRam);
-        myGrid.playerScanner(ranRamTwo);
-        myGrid.playerScanner(ranRamThree);
+        myGrid.wallScanner(player);
+        myGrid.wallScanner(ranRam);
+        myGrid.wallScanner(ranRamTwo);
+        myGrid.wallScanner(ranRamThree);
         checkEdges(player);
         checkEdges(ranRam);
         checkEdges(ranRamTwo);
@@ -115,7 +112,6 @@ public class Controller {
           //  pathfinder = new BFS(ranRamTwo, player, myGrid);
            // pathfinder = new BFS(ranRamThree, player, myGrid);
             myGrid.controlTheHunt(ranRam, player, "DEPTH FIRST SEARCH");
-
 
         }else{
             ranRam.stop();

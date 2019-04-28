@@ -40,8 +40,11 @@ public class RandomRambler extends MovingObject {
 
                 GraphItem t = getMyPath().get(i); //    path.get(i);
 
-                this.setX(getMyPath().get(i).getX());
-                this.setY(getMyPath().get(i).getY());
+             //   this.setX(getMyPath().get(i).getX());
+              //  this.setY(getMyPath().get(i).getY());
+
+                this.setX(t.getX());
+                this.setY(t.getY());
                 break;
 
             }
@@ -75,6 +78,7 @@ public class RandomRambler extends MovingObject {
         getVel().limit(1f);
         getPos().add(getVel());
         getAccel().mult(0f);
+      //  getMyPath().removeAll(getMyPath());
 
 
     }

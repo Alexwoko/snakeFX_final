@@ -2,6 +2,7 @@ package SnakeLogic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public abstract class MovingObject implements GameObject{
 
@@ -16,6 +17,7 @@ public abstract class MovingObject implements GameObject{
     private float maxSpeed;
     private String dir;
     private List<GraphItem> myPath;
+
 
     public MovingObject(int x, int y){
 
@@ -36,6 +38,7 @@ public abstract class MovingObject implements GameObject{
     }
 
 
+
     public void setMyPath(List<GraphItem> path){myPath = path;}
     public List<GraphItem> getMyPath(){return  myPath;}
 
@@ -43,9 +46,8 @@ public void stopMoving(String t){
 
 
         if (t == "up" || t == "right" || t == "left" || t== "down"){
-           // System.out.println("UUUUUUUUUUPPPPPPPPPPPPPPPP!!!");
+
             this.vel.mult(0);
-            setAccel(new MathVector(0, 0));
             this.accel.mult(0);
         }
 }

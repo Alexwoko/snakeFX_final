@@ -14,6 +14,7 @@ public class Grid {
     private double fieldWidth;
     private double fieldHeight;
     private Pathfinder pathfinder;
+    private ArrayList<GNode> closedList;
 
     public Node[][] prevVisited;
 
@@ -29,6 +30,8 @@ public class Grid {
         buildMaze();
         createFrame();
         pathfinder = new Pathfinder(this);
+        closedList = new ArrayList<>();
+
     }
 
     public void controlTheHunt(MovingObject seeker, MovingObject target, String algorithm){
@@ -42,6 +45,7 @@ public class Grid {
 
     }
 
+    public void setClosedList(ArrayList<GNode> list){closedList = list;}
     public int getFrameWidth(){return  frameWidth;}
     public int getFrameHeight(){return frameHeight;}
 
@@ -49,7 +53,7 @@ public class Grid {
 
         for (int i = 0; i < frameWidth; i++){
             for(int j = 0; j < frameHeight; j++){
-                nodes[i][j].setVisited(false);
+          //      nodes[i][j].setVisited(false);
                 gNodes[i][j].setVisited(false);
             }
         }
@@ -71,56 +75,7 @@ public class Grid {
 return null;
 
     }
-/*
-// MOVE TO PATHFINDER SINCE WE ONLY CONNECT WITH THE GRID IN THE CONSTRUCTER OF PATHFINDER
-    public List<Node> getNeighbours(Node n){
 
-        List<Node> neighbours = new ArrayList<>();
-
-        for(int i =  - 1; i <=   1; i++){
-            for(int j =  -1; j <= 1; j++){
-
-
-                if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
-                continue;
-                }else{
-
-                    float checkX = n.getX() + i;
-                    float checkY = n.getY() + j;
-
-                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY < 20 && !nodes[(int)checkX][(int)checkY].getPrevVisited()) ) {
-
-                        Node nTwo = nodes[(int) checkX][(int) checkY];
-                      //  nTwo.setVisited(true);
-                        nTwo.setPrevVisited(true);
-
-                            if (nTwo.getX() < n.getX()) {
-                              //  nTwo.setIAmWest(true);
-                                nTwo.assignDirFromOrigin("WEST");
-                                neighbours.add(nTwo);
-                            }
-                            if (nTwo.getY() < n.getY()) {
-                              //  nTwo.setIAmNorth(true);
-                                nTwo.assignDirFromOrigin("NORTH");
-                                neighbours.add(nTwo);
-                            }
-                        if (nTwo.getX() > n.getX()) {
-                          //  nTwo.setIAmEast(true);
-                            nTwo.assignDirFromOrigin("EAST");
-                            neighbours.add(nTwo);
-                        }
-                            if (nTwo.getY() > n.getY()) {
-                              //  nTwo.setIAmSouth(true);
-                                nTwo.assignDirFromOrigin("SOUTH");
-                                neighbours.add(nTwo);
-                            }
-                    }
-                }
-            }
-        }
-        return neighbours;
-    }
-*/
     private void buildMaze(){
 
         int[] firstLine = {14};
@@ -215,7 +170,7 @@ return null;
 return null;
     }
 
-    public void playerScanner(MovingObject o){
+    public void wallScanner(MovingObject o){
 
      for(int i = 0; i < frameWidth; i+=1f){
          for(int j = 0; j <  frameHeight; j+=1f){
@@ -275,6 +230,7 @@ return null;
                     g.setFill(Color.BLACK);
                 }
 
+
                 g.fillRoundRect(gNodes[i][j].getX() * fieldWidth, gNodes[i][j].getY() * fieldHeight, gNodes[i][j].getWidth(), gNodes[i][j].getHeight(), 3, 3);
 
                 if (gNodes[i][j].getPrevVisited() && gNodes[i][j].getWalkable()) {
@@ -282,6 +238,7 @@ return null;
                     g.fillRoundRect(gNodes[i][j].getX() * fieldWidth, gNodes[i][j].getY() * fieldHeight, gNodes[i][j].getWidth(), gNodes[i][j].getHeight(), 3, 3);
                     gNodes[i][j].setPrevVisited(false);
                 }
+
             }
         }
     }
