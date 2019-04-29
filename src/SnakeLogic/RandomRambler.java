@@ -11,18 +11,20 @@ public class RandomRambler extends MovingObject {
 
     private double fieldWidth;
     private double fieldHeight;
+    private String name;
 
-
-    public RandomRambler(int x, int y) {
+    public RandomRambler(int x, int y, String name) {
         super(x, y);
         setMaxSpeed(1f);
         fieldWidth = 20;
         fieldHeight = 17.85;
+        this.name = name;
 
 
     }
 
-
+    public void setName(String name){this.name = name;}
+    public String getName(){return  name;}
 
 
     @Override

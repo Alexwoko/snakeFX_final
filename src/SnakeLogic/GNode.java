@@ -16,6 +16,8 @@ public class GNode implements GraphItem {
     private final int width = 20;
     private final float height = 17.5f;
     private boolean prevVisited;
+    private boolean prevVisitedTwo;
+    private boolean prevVisitedThree;
     private final float  strength = 2.9f;
 
 
@@ -118,6 +120,11 @@ public void setWalkable(boolean walkable){
 
 public void setPrevVisited(boolean prevVisited){this.prevVisited = prevVisited;}
 public boolean getPrevVisited(){return prevVisited;}
+public void setPrevVisitedTwo(boolean prevVisitedTwo){this.prevVisitedTwo = prevVisitedTwo;}
+public boolean getPrevVisitedTwo(){return prevVisitedTwo;}
+public void setPrevVisitedThree(boolean prevVisitedThree){this.prevVisitedThree = prevVisitedThree;}
+public boolean getPrevVisitedThree(){return prevVisitedThree;}
+
 
     public int getWidth() {
         return width;
@@ -170,9 +177,10 @@ public boolean getPrevVisited(){return prevVisited;}
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Grid index = " + gridIndex);
+       // sb.append("Grid index = " + gridIndex);
        // sb.append(", Num of Edges = " + numOfEdges);
       //  sb.append("Edges length = " + edges.length);
+        sb.append(", been visited = " + visited);
         sb.append(", Grid pos = " + gridPos);
         sb.append( ", parent = " + nodeFrom);
       //  sb.append(", Walkable = " + walkable);

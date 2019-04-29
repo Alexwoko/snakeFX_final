@@ -17,6 +17,8 @@ public abstract class MovingObject implements GameObject{
     private float maxSpeed;
     private String dir;
     private List<GraphItem> myPath;
+    private GNode[][] visited;
+    String name;
 
 
     public MovingObject(int x, int y){
@@ -34,8 +36,12 @@ public abstract class MovingObject implements GameObject{
         maxSpeed = 1;
         maxForce = 2;
         myPath = new ArrayList<>();
+        visited = new GNode[30][20];
+        this.name = name;
 
     }
+
+
 
 
 

@@ -15,6 +15,7 @@ public class Grid {
     private double fieldHeight;
     private Pathfinder pathfinder;
     private ArrayList<GNode> closedList;
+    MovingObject currentMover;
 
     public Node[][] prevVisited;
 
@@ -34,9 +35,10 @@ public class Grid {
 
     }
 
-    public void controlTheHunt(MovingObject seeker, MovingObject target, String algorithm){
+    public void controlTheHunt(RandomRambler seeker, MovingObject target, String algorithm){
 
 
+        currentMover = seeker;
             pathfinder.findPath(seeker, target, algorithm);
 
 
@@ -233,11 +235,27 @@ return null;
 
                 g.fillRoundRect(gNodes[i][j].getX() * fieldWidth, gNodes[i][j].getY() * fieldHeight, gNodes[i][j].getWidth(), gNodes[i][j].getHeight(), 3, 3);
 
+            //    if (currentMover.visitedContainsNode(gNodes[i][j]) && gNodes[i][j].getWalkable()) {
+
                 if (gNodes[i][j].getPrevVisited() && gNodes[i][j].getWalkable()) {
-                    g.setFill(new Color(1, 1, 0, 0.25f));
-                    g.fillRoundRect(gNodes[i][j].getX() * fieldWidth, gNodes[i][j].getY() * fieldHeight, gNodes[i][j].getWidth(), gNodes[i][j].getHeight(), 3, 3);
-                    gNodes[i][j].setPrevVisited(false);
+
+                    g.setFill(new Color(0, 0.70, 1, 0.50f));
+
+                } else if(gNodes[i][j].getPrevVisitedTwo() && gNodes[i][j].getWalkable()){
+
+                    g.setFill(new Color(1, 0.5, 0.5, 0.50f));
+
+                } else if(gNodes[i][j].getPrevVisitedThree() && gNodes[i][j].getWalkable()){
+
+                    g.setFill(new Color(1, 0, 0.5, 0.50f));
                 }
+
+
+
+                g.fillRoundRect(gNodes[i][j].getX() * fieldWidth, gNodes[i][j].getY() * fieldHeight, gNodes[i][j].getWidth(), gNodes[i][j].getHeight(), 3, 3);
+                gNodes[i][j].setPrevVisited(false);
+
+
 
             }
         }

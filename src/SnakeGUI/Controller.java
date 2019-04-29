@@ -22,11 +22,12 @@ public class Controller {
     private int height = 20;
     private float refreshRate =150;
     private Player player = new Player(13, 14);
-    private RandomRambler ranRam = new RandomRambler(28, 13);
-    private RandomRambler ranRamTwo = new RandomRambler(14, 9);
-    private RandomRambler ranRamThree = new RandomRambler(15, 9);
+    private RandomRambler ranRam = new RandomRambler(13, 9, "One");
+    private RandomRambler ranRamTwo = new RandomRambler(14, 9, "Two");
+    private RandomRambler ranRamThree = new RandomRambler(15, 9, "Three");
 
-   // BFS pathfinder;
+
+    // BFS pathfinder;
     Grid myGrid = new Grid();
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
@@ -36,7 +37,7 @@ public class Controller {
     {
         System.out.println("btn clicked");
         labelStatus.setText("test");
-      //  getRandomPosition();
+        //  getRandomPosition();
         drawCanvas();
     }
 
@@ -98,6 +99,7 @@ public class Controller {
                 break;
         }
 
+
         myGrid.wallScanner(player);
         myGrid.wallScanner(ranRam);
         myGrid.wallScanner(ranRamTwo);
@@ -108,25 +110,27 @@ public class Controller {
         checkEdges(ranRamThree);
 
         if(player.getPos().x >= 0 && player.getPos().x < 29) {
-          //  pathfinder = new BFS(ranRam, player, myGrid);
-          //  pathfinder = new BFS(ranRamTwo, player, myGrid);
-           // pathfinder = new BFS(ranRamThree, player, myGrid);
+            //  pathfinder = new BFS(ranRam, player, myGrid);
+            //  pathfinder = new BFS(ranRamTwo, player, myGrid);
+            // pathfinder = new BFS(ranRamThree, player, myGrid);
             myGrid.controlTheHunt(ranRam, player, "DEPTH FIRST SEARCH");
+            myGrid.controlTheHunt(ranRamTwo, player, "BREADTH FIRST SEARCH");
+
 
         }else{
             ranRam.stop();
-         // ranRamTwo.stop();
-          //  ranRamThree.stop();
+            ranRamTwo.stop();
+            //  ranRamThree.stop();
         }
 
         ranRam.followPath();
-     //   ranRamTwo.followPath();
-      //  ranRamThree.followPath();
+       ranRamTwo.followPath();
+        //  ranRamThree.followPath();
 
         player.update();
         ranRam.update();
-       // ranRamTwo.update();
-       // ranRamThree.update();
+        ranRamTwo.update();
+        // ranRamThree.update();
 
         drawCanvas();
 
@@ -151,9 +155,9 @@ public class Controller {
 
         myGrid.displayGrid(g);
 
-       ranRam.displayPath(g, Color.LIGHTBLUE);
-      //  ranRamTwo.displayPath(g, Color.LIGHTSALMON);
-       // ranRamThree.displayPath(g, Color.LIGHTPINK);
+        ranRam.displayPath(g, Color.LIGHTBLUE);
+        ranRamTwo.displayPath(g, Color.LIGHTSALMON);
+        // ranRamThree.displayPath(g, Color.LIGHTPINK);
 
         ranRam.displaySelf(g, Color.PURPLE);
         ranRamTwo.displaySelf(g, Color.RED);

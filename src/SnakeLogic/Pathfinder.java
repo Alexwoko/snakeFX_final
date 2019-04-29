@@ -6,14 +6,12 @@ public class Pathfinder {
 
 
     private Grid myGrid;
-    private MovingObject seeker;
-  //  private MovingObject target;
-   // private LinkedList<GraphItem> thePath;
     private String algorithm;
     private Graph<GraphItem> visited;
     private Stack<GNode> openList;
     private ArrayList<GNode> closedList;
     private Deque<GNode> stack = new ArrayDeque<>();
+    private RandomRambler seeker;
 
 
 
@@ -31,15 +29,19 @@ public class Pathfinder {
     public String getAlgorithm(){return algorithm;}
     public void setAlgorithm(String algorithm){this.algorithm = algorithm;}
 
-    public void findPath(MovingObject seeker, MovingObject target, String algorithm){
+    public void findPath(RandomRambler seeker, MovingObject target, String algorithm){
 
         MovingObject endTarget = target;
 
-
         this.seeker = seeker;
+
 
         if(algorithm.equals("DEPTH FIRST SEARCH")){
             depthFirstSearch(this.seeker, endTarget);
+        }
+
+        if(algorithm.equals("BREADTH FIRST SEARCH")){
+            breadthFirstSearch(this.seeker, target);
         }
 
 
@@ -58,33 +60,41 @@ public class Pathfinder {
         return false;
     }
 
-    public List<GNode> getNeighbours(GNode n){
+
+    private List<GNode> getNeighbours(GNode n, RandomRambler ram){
 
         List<GNode> neighbours = new ArrayList<>();
+
 
         for(int i =  - 1; i <=   1; i++){
             for(int j =  -1; j <= 1; j++){
 
-
                 if(i == 0 && j == 0 || i == -1 && j == -1 || i == 1 && j == 1 || i == -1 && j == 1 || i == 1 && j == -1){
-                 //   continue;
+
                 }else{
 
                     float checkX = n.getX() + i;
                     float checkY = n.getY() + j;
 
-                   // if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY <= 20 && !myGrid.gNodes[(int)checkX][(int)checkY].getPrevVisited()) ) {
-
-
-                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY <= 20) ) {
-
+                    if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY <= 20)){
 
                         GNode nTwo = myGrid.gNodes[(int) checkX][(int) checkY];
-                        //  nTwo.setVisited(true);
-                      //  nTwo.setPrevVisited(true);
+
+                        if(ram.getName().equals("One")){
+                            nTwo.setPrevVisited(true);
+                        }
+                        if(ram.getName().equals("Two")){
+                            nTwo.setPrevVisitedTwo(true);
+                        }
+                        if(ram.getName().equals("Three")){
+                            nTwo.setPrevVisitedThree(true);
+                        }
+
+
+
+
+
                         neighbours.add(nTwo);
-
-
                     }
                 }
             }
@@ -92,7 +102,8 @@ public class Pathfinder {
         return neighbours;
     }
 
-    public void retracePath(GNode startNode, GNode targetNode){
+
+    private void retracePath(GNode startNode, GNode targetNode){
 
         LinkedList<GraphItem> thePath;
 
@@ -109,9 +120,11 @@ public class Pathfinder {
         Collections.reverse(thePath);
         this.seeker.setMyPath(thePath);
 
+
     }
 
-private void depthFirstSearch(MovingObject seeker, MovingObject target){
+private void depthFirstSearch(RandomRambler seeker, MovingObject target){
+
 
 
         GNode start = myGrid.getTile(seeker.getX(), seeker.getY());
@@ -119,19 +132,13 @@ private void depthFirstSearch(MovingObject seeker, MovingObject target){
 
     GNode currentNode = start;
 
-      //  openList.add(start);
-    //stack.push(currentNode);
     stack.addLast(currentNode);
 
-       // while(!openList.empty()){
-  //  while(!stack.isEmpty()){
     while (true){
 
-            currentNode = stack.pop();
-      //  currentNode = openList.remove(openList.size()-1);
+           currentNode = stack.pop();
         closedList.add(currentNode);
         currentNode.setVisited(true);
-
 
         if(currentNode.getX() == end.getX() && currentNode.getY() == end.getY()){
 
@@ -140,88 +147,76 @@ private void depthFirstSearch(MovingObject seeker, MovingObject target){
             myGrid.resetVisited();
           //  openList.clear();
             stack.clear();
-            myGrid.setClosedList(closedList);
             emptyList(closedList);
            return;
 
         } else{
 
-            for(GNode n : getNeighbours(currentNode)){
+            for(GNode n : getNeighbours(currentNode, seeker)){
                 if(closedList.contains(n) || !n.getWalkable() || n.getVisited()){
-                 //   continue;
-             //   }else if(!openList.contains(n)){
+
                 }else if(!stack.contains(n)){
 
                     n.setFrom(currentNode);
-                  //  openList.add(n);
-                  //  stack.push(n);
                     stack.addLast(n);
+
                 }
             }
         }
         }
 }
 
-public void emptyList(List<GNode> list){
+public void breadthFirstSearch(RandomRambler seeker, MovingObject target){
+
+        LinkedList<GNode> nodesToVisit = new LinkedList<>();
+      //  ArrayList<GNode> closedList = new ArrayList<>();
+
+
+        GNode start = myGrid.getTile(seeker.getX(), seeker.getY());
+        GNode end = myGrid.getTile(target.getX(), target.getY());
+
+        GNode currentNode = start;
+
+        nodesToVisit.add(currentNode);
+
+        while (!nodesToVisit.isEmpty()){
+
+            currentNode = nodesToVisit.remove(0);
+            closedList.add(currentNode);
+
+            if(currentNode.getX() == end.getX() && currentNode.getY() == end.getY()){
+
+
+                currentNode = end;
+                retracePath(start, currentNode);
+                myGrid.resetVisited();
+                closedList.clear();
+                nodesToVisit.clear();
+
+            }else{
+
+                for(GNode n : getNeighbours(currentNode, seeker)){
+                    if(closedList.contains(n) || !n.getWalkable() || n.getVisited()){
+
+                    }else if (!nodesToVisit.contains(n)){
+                        n.setFrom(currentNode);
+                        nodesToVisit.add(n);
+                    }
+                }
+            }
+        }
+}
+
+
+// WE HAVE TO CLEAR PREV VISITED FOR THE OTHER RANDOMRAMBLERS
+
+
+private void emptyList(List<GNode> list){
 
         for(int i = list.size()-1; i >= 0; i--){
             list.remove(i);
 
         }
 }
-
-
-    /*
-    private void depthFirstSearch(MovingObject seeker, MovingObject target){
-
-
-        GNode start = myGrid.getTile(seeker.getX(), seeker.getY());
-        GNode end = myGrid.getTile(target.getX(), target.getY());
-
-        GNode currentNode;
-        ArrayList<GNode> openList = new ArrayList<>();
-
-
-        visited = new Graph();
-
-        openList.add(start);
-
-        while (!openList.isEmpty()){
-
-
-            currentNode = openList.remove(0);
-            visited.addNode(currentNode);
-
-
-            if(currentNode.getGridIndex() == end.getGridIndex()){
-
-                end = currentNode;
-                retracePath(start, end);
-
-                visited.emptyGraph();
-                myGrid.resetVisited();
-
-            }else{
-
-
-                for(GNode n : getNeighbours(currentNode)){
-
-                    if(visited.containsNode(n.getGridIndex()) || !isWalkable(n)){
-                 //   if(visited.containsNode(n.getGridIndex()) || !n.getWalkable()){
-
-                        continue;
-                    }
-
-                    if(!openList.contains(n)){
-
-                        n.setFrom(currentNode);
-                        openList.add(n);
-                    }
-                }
-            }
-        }
-
-    }
-    */
 
 }
