@@ -18,16 +18,7 @@ public class GNode implements GraphItem {
     private boolean prevVisited;
     private boolean prevVisitedTwo;
     private boolean prevVisitedThree;
-    private final float  strength = 2.9f;
-
-
-    public GNode(int gridIndex){
-        edges = new Edge[4];
-        nodeFrom = null;
-        visited = false;
-        numOfEdges = 0;
-        this.gridIndex = gridIndex;
-    }
+    private float moveCost;
 
     GNode(float x, float y, int gridIndex){
 
@@ -38,39 +29,16 @@ public class GNode implements GraphItem {
         this.gridIndex = gridIndex;
       gridPos = new MathVector(x, y);
       walkable = true;
+      moveCost = Float.MAX_VALUE;
 
     }
 
 
-    GNode(int gridIndex, MathVector gridPos){
+    public void setMoveCost(float moveCost) {this.moveCost = moveCost;}
 
-        this.gridIndex = gridIndex;
-        this.gridPos = gridPos;
+    public float getMoveCost() {return moveCost;}
 
-    }
-
-    public void GNode(int gridIndex, boolean visited){
-        this.gridIndex = gridIndex;
-        this.visited = visited;
-        edges = new Edge[4];
-        nodeFrom = null;
-        numOfEdges = 0;
-
-    }
-
-    public void GNode(int gridIndex, boolean visited, Edge[] edges){
-
-        this.gridIndex = gridIndex;
-        this.visited = visited;
-        this.edges = edges;
-        nodeFrom = null;
-        numOfEdges = 0;
-
-    }
-
-
-
-public void addEdge(Edge e){
+    public void addEdge(Edge e){
 
         for(int i = 0; i < edges.length; i++){
 
@@ -96,6 +64,7 @@ public void addEdge(Edge e){
 
     public MathVector repel(MovingObject o){
 
+        final float  strength = 2.9f;
 
         MathVector dir;
         MathVector oPos = new MathVector(o.getX(), o.getY());
@@ -106,7 +75,6 @@ public void addEdge(Edge e){
         float force =    strength / (d * d);
         dir.mult((int)force);
         return dir;
-
     }
 
 
@@ -172,6 +140,10 @@ public boolean getPrevVisitedThree(){return prevVisitedThree;}
 
     @Override
     public int getNumOfEdges() {return numOfEdges;}
+
+
+
+
 
     public String toString(){
 

@@ -17,17 +17,13 @@ public class Pathfinder {
 
     public Pathfinder(Grid grid){
 
-
         myGrid = grid;
-
         closedList = new ArrayList<>();
         openList = new Stack<>();
         visited = new Graph();
-
     }
 
-    public String getAlgorithm(){return algorithm;}
-    public void setAlgorithm(String algorithm){this.algorithm = algorithm;}
+
 
     public void findPath(RandomRambler seeker, MovingObject target, String algorithm){
 
@@ -43,23 +39,14 @@ public class Pathfinder {
         if(algorithm.equals("BREADTH FIRST SEARCH")){
             breadthFirstSearch(this.seeker, target);
         }
+        if(algorithm.equals("BEST FIRST SEARCH")){
 
+            bestFirstSearch(this.seeker, endTarget);
 
-    }
-
-    public boolean isWalkable(GNode n){
-
-        for(int i = 0; i < myGrid.getFrameWidth(); i++){
-            for(int j = 0; j < myGrid.getFrameHeight(); j++){
-
-                if(n.getX() == i && n.getY() == j && myGrid.gNodes[i][j].getWalkable()){
-                    return true;
-                }
-            }
         }
-        return false;
-    }
 
+
+    }
 
     private List<GNode> getNeighbours(GNode n, RandomRambler ram){
 
@@ -89,11 +76,6 @@ public class Pathfinder {
                         if(ram.getName().equals("Three")){
                             nTwo.setPrevVisitedThree(true);
                         }
-
-
-
-
-
                         neighbours.add(nTwo);
                     }
                 }
@@ -123,53 +105,52 @@ public class Pathfinder {
 
     }
 
-private void depthFirstSearch(RandomRambler seeker, MovingObject target){
+    private void depthFirstSearch(RandomRambler seeker, MovingObject target){
 
 
 
         GNode start = myGrid.getTile(seeker.getX(), seeker.getY());
         GNode end = myGrid.getTile(target.getX(), target.getY());
 
-    GNode currentNode = start;
+        GNode currentNode = start;
 
-    stack.addLast(currentNode);
+        stack.addLast(currentNode);
 
-    while (true){
+        while (true){
 
-           currentNode = stack.pop();
-        closedList.add(currentNode);
-        currentNode.setVisited(true);
+            currentNode = stack.pop();
+            closedList.add(currentNode);
+            currentNode.setVisited(true);
 
-        if(currentNode.getX() == end.getX() && currentNode.getY() == end.getY()){
+            if(currentNode.getX() == end.getX() && currentNode.getY() == end.getY()){
 
-            currentNode = end;
-            retracePath(start, currentNode);
-            myGrid.resetVisited();
-          //  openList.clear();
-            stack.clear();
-            emptyList(closedList);
-           return;
+                currentNode = end;
+                retracePath(start, currentNode);
+                myGrid.resetVisited();
+                stack.clear();
+                emptyList(closedList);
+                return;
 
-        } else{
+            } else{
 
-            for(GNode n : getNeighbours(currentNode, seeker)){
-                if(closedList.contains(n) || !n.getWalkable() || n.getVisited()){
+                for(GNode n : getNeighbours(currentNode, seeker)){
+                    if(closedList.contains(n) || !n.getWalkable() || n.getVisited()){
 
-                }else if(!stack.contains(n)){
+                    }else if(!stack.contains(n)){
 
-                    n.setFrom(currentNode);
-                    stack.addLast(n);
+                        n.setFrom(currentNode);
+                        stack.addLast(n);
 
+                    }
                 }
             }
         }
-        }
-}
+    }
 
-public void breadthFirstSearch(RandomRambler seeker, MovingObject target){
+    public void breadthFirstSearch(RandomRambler seeker, MovingObject target){
 
         LinkedList<GNode> nodesToVisit = new LinkedList<>();
-      //  ArrayList<GNode> closedList = new ArrayList<>();
+        //  ArrayList<GNode> closedList = new ArrayList<>();
 
 
         GNode start = myGrid.getTile(seeker.getX(), seeker.getY());
@@ -185,7 +166,6 @@ public void breadthFirstSearch(RandomRambler seeker, MovingObject target){
             closedList.add(currentNode);
 
             if(currentNode.getX() == end.getX() && currentNode.getY() == end.getY()){
-
 
                 currentNode = end;
                 retracePath(start, currentNode);
@@ -205,10 +185,10 @@ public void breadthFirstSearch(RandomRambler seeker, MovingObject target){
                 }
             }
         }
-}
+    }
 
 
-private void bestFirstSearch(RandomRambler seeker, MovingObject target){
+    private void bestFirstSearch(RandomRambler seeker, MovingObject target){
 
 
         GNode start = myGrid.getTile(seeker.getX(), seeker.getY());
@@ -223,41 +203,66 @@ private void bestFirstSearch(RandomRambler seeker, MovingObject target){
         while (!nodesToVisit.isEmpty()){
 
 
-           currentNode = nodesToVisit.remove(0);
-           closedList.add(currentNode);
-           currentNode.setVisited(true);
+            currentNode = nodesToVisit.remove(0);
+            closedList.add(currentNode);
+            currentNode.setVisited(true);
 
-           if(currentNode.getX() == end.getX() && currentNode.getY() == end.getY()){
+            if(currentNode.getX() == end.getX() && currentNode.getY() == end.getY()){
+
+                currentNode = end;
+
+                retracePath(start, currentNode);
+                myGrid.resetVisited();
+                closedList.clear();
+                nodesToVisit.clear();
+
+            }else{
+
+                for(GNode n : getNeighbours(currentNode, seeker)){
+
+                    if(closedList.contains(n) || !n.getWalkable()){
+                        continue;
+                    }
 
 
-               currentNode = end;
-
-           retracePath(start, end);
-           
+                    float newMoveCost = getMoveCost(currentNode, n);
 
 
+                    if(newMoveCost < currentNode.getMoveCost() || !openList.contains(n)){
+
+                        n.setMoveCost(newMoveCost);
+                        n.setFrom(currentNode);
+
+                        if(!openList.contains(n)){
+                            nodesToVisit.add(n);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 
-           }
+    private float getMoveCost(GNode nodeA, GNode nodeB){
 
+        float dstX = nodeA.getX() - nodeB.getX();
+        float dstY = nodeA.getY() - nodeB.getY();
+
+        if(dstX > dstY){
+
+            return 14 * dstY + 10 * (dstX - dstY);
+
+        } else{
+
+            return 14 * dstX + 10 * (dstY - dstX);
 
         }
+    }
 
-
-
-}
-
-
-
-
-
-
-private void emptyList(List<GNode> list){
+    private void emptyList(List<GNode> list){
 
         for(int i = list.size()-1; i >= 0; i--){
             list.remove(i);
-
         }
-}
-
+    }
 }

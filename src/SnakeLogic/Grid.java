@@ -9,15 +9,12 @@ public class Grid {
 
     private int frameWidth;
     private int frameHeight;
-    public Node[][] nodes;
     public GNode[][] gNodes;
     private double fieldWidth;
     private double fieldHeight;
     private Pathfinder pathfinder;
-    private ArrayList<GNode> closedList;
     MovingObject currentMover;
 
-    public Node[][] prevVisited;
 
     public Grid(){
 
@@ -25,13 +22,11 @@ public class Grid {
         fieldHeight = 17.85;
         frameWidth = 30;
         frameHeight = 20;
-        nodes = new Node[frameWidth][frameHeight];
         gNodes = new GNode[frameWidth][frameHeight];
         createGrid();
         buildMaze();
         createFrame();
         pathfinder = new Pathfinder(this);
-        closedList = new ArrayList<>();
 
     }
 
@@ -39,15 +34,11 @@ public class Grid {
 
 
         currentMover = seeker;
-            pathfinder.findPath(seeker, target, algorithm);
-
-
-
-
+        pathfinder.findPath(seeker, target, algorithm);
 
     }
 
-    public void setClosedList(ArrayList<GNode> list){closedList = list;}
+
     public int getFrameWidth(){return  frameWidth;}
     public int getFrameHeight(){return frameHeight;}
 
@@ -55,11 +46,9 @@ public class Grid {
 
         for (int i = 0; i < frameWidth; i++){
             for(int j = 0; j < frameHeight; j++){
-          //      nodes[i][j].setVisited(false);
                 gNodes[i][j].setVisited(false);
             }
         }
-
     }
 
     public GNode getTile(float x, float y){
@@ -69,12 +58,12 @@ public class Grid {
 
                 if(i == x && j == y){
                     return gNodes[i][j];
-                  //  return nodes[i][j];
+                    //  return nodes[i][j];
                 }
 
             }
         }
-return null;
+        return null;
 
     }
 
@@ -169,20 +158,20 @@ return null;
                 }
             }
         }
-return null;
+        return null;
     }
 
     public void wallScanner(MovingObject o){
 
-     for(int i = 0; i < frameWidth; i+=1f){
-         for(int j = 0; j <  frameHeight; j+=1f){
+        for(int i = 0; i < frameWidth; i+=1f){
+            for(int j = 0; j <  frameHeight; j+=1f){
 
-             if(o.getX() == i && o.getY() == j && gNodes[i][j].getWalkable()){
+                if(o.getX() == i && o.getY() == j && gNodes[i][j].getWalkable()){
 
-                 o.stopMoving(scanForWalls(o));
-             }
-         }
-     }
+                    o.stopMoving(scanForWalls(o));
+                }
+            }
+        }
     }
 
     private void createFrame(){
@@ -218,7 +207,6 @@ return null;
         }
     }
 
-    public Grid getGrid(){return this;}
 
     public void displayGrid(GraphicsContext g){
 
@@ -235,7 +223,7 @@ return null;
 
                 g.fillRoundRect(gNodes[i][j].getX() * fieldWidth, gNodes[i][j].getY() * fieldHeight, gNodes[i][j].getWidth(), gNodes[i][j].getHeight(), 3, 3);
 
-            //    if (currentMover.visitedContainsNode(gNodes[i][j]) && gNodes[i][j].getWalkable()) {
+                //    if (currentMover.visitedContainsNode(gNodes[i][j]) && gNodes[i][j].getWalkable()) {
 
                 if (gNodes[i][j].getPrevVisited() && gNodes[i][j].getWalkable()) {
 
@@ -256,6 +244,7 @@ return null;
                 gNodes[i][j].setPrevVisited(false);
                 gNodes[i][j].setPrevVisitedTwo(false);
                 gNodes[i][j].setPrevVisitedThree(false);
+                gNodes[i][j].setMoveCost(Float.MAX_VALUE);
 
 
 

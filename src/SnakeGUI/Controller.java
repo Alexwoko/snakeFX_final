@@ -25,14 +25,10 @@ public class Controller {
     private RandomRambler ranRam = new RandomRambler(13, 9, "One");
     private RandomRambler ranRamTwo = new RandomRambler(14, 9, "Two");
     private RandomRambler ranRamThree = new RandomRambler(15, 9, "Three");
-
-
-    // BFS pathfinder;
-    Grid myGrid = new Grid();
+    private Grid myGrid = new Grid();
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
 
-    //public void btnStartAction(ActionEvent event)
     public void btnStartAction()
     {
         System.out.println("btn clicked");
@@ -99,6 +95,15 @@ public class Controller {
                 break;
         }
 
+controlPlayers();
+
+
+
+        drawCanvas();
+
+    }
+
+    private void controlPlayers(){
 
         myGrid.wallScanner(player);
         myGrid.wallScanner(ranRam);
@@ -110,31 +115,28 @@ public class Controller {
         checkEdges(ranRamThree);
 
         if(player.getPos().x >= 0 && player.getPos().x < 29) {
-            //  pathfinder = new BFS(ranRam, player, myGrid);
-            //  pathfinder = new BFS(ranRamTwo, player, myGrid);
-            // pathfinder = new BFS(ranRamThree, player, myGrid);
+
             myGrid.controlTheHunt(ranRam, player, "DEPTH FIRST SEARCH");
             myGrid.controlTheHunt(ranRamTwo, player, "BREADTH FIRST SEARCH");
-
+            myGrid.controlTheHunt(ranRamThree,player, "BEST FIRST SEARCH");
 
         }else{
             ranRam.stop();
             ranRamTwo.stop();
-            //  ranRamThree.stop();
+            ranRamThree.stop();
+
         }
 
         ranRam.followPath();
-       ranRamTwo.followPath();
-        //  ranRamThree.followPath();
+        ranRamTwo.followPath();
+        ranRamThree.followPath();
 
         player.update();
         ranRam.update();
         ranRamTwo.update();
-        // ranRamThree.update();
-
-        drawCanvas();
-
+        ranRamThree.update();
     }
+
 
     /**
      * Calculate height and width of each field
@@ -157,7 +159,7 @@ public class Controller {
 
         ranRam.displayPath(g, Color.LIGHTBLUE);
         ranRamTwo.displayPath(g, Color.LIGHTSALMON);
-        // ranRamThree.displayPath(g, Color.LIGHTPINK);
+         ranRamThree.displayPath(g, Color.LIGHTPINK);
 
         ranRam.displaySelf(g, Color.PURPLE);
         ranRamTwo.displaySelf(g, Color.RED);
@@ -172,22 +174,23 @@ public class Controller {
 
     void checkEdges(GameObject o){
 
+        int canvasX = 0;
+        int canvasY = 0;
+        int canvasWidth = width - 1;
+        int canvasHeight = height - 1;
+
         if(o.getX() * fieldWidth > canvas.getWidth() - fieldWidth){
-            o.setX(0);
+            o.setX(canvasX);
         }
-        if(o.getX() < 0){
-            o.setX(29);
+        if(o.getX() < canvasX){
+            o.setX(canvasWidth);
         }
 
         if(o.getY() * fieldHeight >= canvas.getHeight()){
-            o.setY(0);
+            o.setY(canvasY);
         }
-        if(o.getY() < 0){
-            o.setY(19);
+        if(o.getY() < canvasY){
+            o.setY(canvasHeight);
         }
     }
-
-    public double getFieldWidth(){return fieldWidth;}
-    public double getFieldHeight(){return fieldHeight;}
-
 }

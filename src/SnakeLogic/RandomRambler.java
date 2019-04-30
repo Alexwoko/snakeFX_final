@@ -19,11 +19,8 @@ public class RandomRambler extends MovingObject {
         fieldWidth = 20;
         fieldHeight = 17.85;
         this.name = name;
-
-
     }
 
-    public void setName(String name){this.name = name;}
     public String getName(){return  name;}
 
 
@@ -40,10 +37,7 @@ public class RandomRambler extends MovingObject {
 
             for (int i = 0; i < getMyPath().size(); i++) {
 
-                GraphItem t = getMyPath().get(i); //    path.get(i);
-
-             //   this.setX(getMyPath().get(i).getX());
-              //  this.setY(getMyPath().get(i).getY());
+                GraphItem t = getMyPath().get(i);
 
                 this.setX(t.getX());
                 this.setY(t.getY());
@@ -80,8 +74,6 @@ public class RandomRambler extends MovingObject {
         getVel().limit(1f);
         getPos().add(getVel());
         getAccel().mult(0f);
-      //  getMyPath().removeAll(getMyPath());
-
 
     }
 }
