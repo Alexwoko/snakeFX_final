@@ -254,6 +254,8 @@ return null;
 
                 g.fillRoundRect(gNodes[i][j].getX() * fieldWidth, gNodes[i][j].getY() * fieldHeight, gNodes[i][j].getWidth(), gNodes[i][j].getHeight(), 3, 3);
                 gNodes[i][j].setPrevVisited(false);
+                gNodes[i][j].setPrevVisitedTwo(false);
+                gNodes[i][j].setPrevVisitedThree(false);
 
 
 

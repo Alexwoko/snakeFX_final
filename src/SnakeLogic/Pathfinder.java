@@ -208,7 +208,48 @@ public void breadthFirstSearch(RandomRambler seeker, MovingObject target){
 }
 
 
-// WE HAVE TO CLEAR PREV VISITED FOR THE OTHER RANDOMRAMBLERS
+private void bestFirstSearch(RandomRambler seeker, MovingObject target){
+
+
+        GNode start = myGrid.getTile(seeker.getX(), seeker.getY());
+        GNode end = myGrid.getTile(target.getX(), target.getY());
+
+        LinkedList<GNode> nodesToVisit = new LinkedList<>();
+
+        nodesToVisit.add(start);
+
+        GNode currentNode;
+
+        while (!nodesToVisit.isEmpty()){
+
+
+           currentNode = nodesToVisit.remove(0);
+           closedList.add(currentNode);
+           currentNode.setVisited(true);
+
+           if(currentNode.getX() == end.getX() && currentNode.getY() == end.getY()){
+
+
+               currentNode = end;
+
+           retracePath(start, end);
+           
+
+
+
+
+           }
+
+
+        }
+
+
+
+}
+
+
+
+
 
 
 private void emptyList(List<GNode> list){
