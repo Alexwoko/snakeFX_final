@@ -58,7 +58,6 @@ public class Grid {
 
                 if(i == x && j == y){
                     return gNodes[i][j];
-                    //  return nodes[i][j];
                 }
 
             }
@@ -176,20 +175,25 @@ public class Grid {
 
     private void createFrame(){
 
+        int canvasX = 0;
+        int canvasY = 0;
+        int canvasWidth = frameWidth - 1;
+        int canvasHeight = frameHeight - 1;
+
         for(int i = 0; i < frameWidth; i+=1){
 
-            gNodes[i][0].setWalkable(false);
-            gNodes[i][frameHeight-1].setWalkable(false);
+            gNodes[i][canvasY].setWalkable(false);
+            gNodes[i][canvasHeight].setWalkable(false);
         }
 
         for (int i = 0; i < frameHeight; i+= 1){
 
-            gNodes[0][i].setWalkable(false);
-            gNodes[frameWidth-1][i].setWalkable(false);
+            gNodes[canvasX][i].setWalkable(false);
+            gNodes[canvasWidth][i].setWalkable(false);
 
         }
-        gNodes[0][9].setWalkable(true);
-        gNodes[frameWidth-1][9].setWalkable(true);
+        gNodes[canvasX][9].setWalkable(true);
+        gNodes[canvasWidth][9].setWalkable(true);
     }
 
 

@@ -27,9 +27,9 @@ public class GNode implements GraphItem {
         visited = false;
         numOfEdges = 0;
         this.gridIndex = gridIndex;
-      gridPos = new MathVector(x, y);
-      walkable = true;
-      moveCost = Float.MAX_VALUE;
+        gridPos = new MathVector(x, y);
+        walkable = true;
+        moveCost = Float.MAX_VALUE;
 
     }
 
@@ -48,7 +48,7 @@ public class GNode implements GraphItem {
         }
         numOfEdges++;
 
-}
+    }
 
     public float constrain(float x, float a, float b){
 
@@ -66,10 +66,11 @@ public class GNode implements GraphItem {
 
         final float  strength = 2.9f;
 
+
         MathVector dir;
         MathVector oPos = new MathVector(o.getX(), o.getY());
         dir = oPos.sub(this.gridPos);
-        float d = (float)dir.mag();
+        float d = (float)dir.mag();  // Distance?
         d = constrain(d, 1, 2);
         dir.normalize();
         float force =    strength / (d * d);
@@ -78,20 +79,20 @@ public class GNode implements GraphItem {
     }
 
 
-public boolean getWalkable(){return walkable;}
+    public boolean getWalkable(){return walkable;}
 
-public void setWalkable(boolean walkable){
+    public void setWalkable(boolean walkable){
         this.walkable = walkable;
 
-}
+    }
 
 
-public void setPrevVisited(boolean prevVisited){this.prevVisited = prevVisited;}
-public boolean getPrevVisited(){return prevVisited;}
-public void setPrevVisitedTwo(boolean prevVisitedTwo){this.prevVisitedTwo = prevVisitedTwo;}
-public boolean getPrevVisitedTwo(){return prevVisitedTwo;}
-public void setPrevVisitedThree(boolean prevVisitedThree){this.prevVisitedThree = prevVisitedThree;}
-public boolean getPrevVisitedThree(){return prevVisitedThree;}
+    public void setPrevVisited(boolean prevVisited){this.prevVisited = prevVisited;}
+    public boolean getPrevVisited(){return prevVisited;}
+    public void setPrevVisitedTwo(boolean prevVisitedTwo){this.prevVisitedTwo = prevVisitedTwo;}
+    public boolean getPrevVisitedTwo(){return prevVisitedTwo;}
+    public void setPrevVisitedThree(boolean prevVisitedThree){this.prevVisitedThree = prevVisitedThree;}
+    public boolean getPrevVisitedThree(){return prevVisitedThree;}
 
 
     public int getWidth() {
@@ -142,22 +143,19 @@ public boolean getPrevVisitedThree(){return prevVisitedThree;}
     public int getNumOfEdges() {return numOfEdges;}
 
 
-
-
-
     public String toString(){
 
         StringBuilder sb = new StringBuilder();
 
-       // sb.append("Grid index = " + gridIndex);
-       // sb.append(", Num of Edges = " + numOfEdges);
-      //  sb.append("Edges length = " + edges.length);
+        // sb.append("Grid index = " + gridIndex);
+        // sb.append(", Num of Edges = " + numOfEdges);
+        //  sb.append("Edges length = " + edges.length);
         sb.append(", been visited = " + visited);
         sb.append(", Grid pos = " + gridPos);
         sb.append( ", parent = " + nodeFrom);
-      //  sb.append(", Walkable = " + walkable);
+        //  sb.append(", Walkable = " + walkable);
 
-return sb.toString();
+        return sb.toString();
 
     }
 

@@ -95,7 +95,7 @@ public class Controller {
                 break;
         }
 
-controlPlayers();
+        controlPlayers();
 
 
 
@@ -159,7 +159,7 @@ controlPlayers();
 
         ranRam.displayPath(g, Color.LIGHTBLUE);
         ranRamTwo.displayPath(g, Color.LIGHTSALMON);
-         ranRamThree.displayPath(g, Color.LIGHTPINK);
+        ranRamThree.displayPath(g, Color.LIGHTPINK);
 
         ranRam.displaySelf(g, Color.PURPLE);
         ranRamTwo.displaySelf(g, Color.RED);
