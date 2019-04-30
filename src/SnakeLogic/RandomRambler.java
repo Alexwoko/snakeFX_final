@@ -42,6 +42,32 @@ public class RandomRambler extends MovingObject {
      * @return
      */
 
+    public void randomWalk(){
+
+        Random ran = new Random();
+
+        int caseNum = ran.nextInt(3);
+
+
+        switch (caseNum){
+
+            case 0:
+                this.moveDown();
+                break;
+            case 1:
+                this.moveLeft();
+               break;
+            case 2:
+                this.moveRight();
+                break;
+            case 3:
+                this.moveUp();
+                break;
+
+        }
+
+    }
+
     public String getName(){return  name;}
 
     /**

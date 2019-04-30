@@ -18,6 +18,7 @@ public class Grid {
 
 
 
+
     public Grid(){
 
         fieldWidth = 20;
@@ -77,6 +78,101 @@ public class Grid {
 
 
     }
+
+    /*
+    public void collision(MovingObject[] list){
+
+
+
+        for(int o = 0; o < list.length;o++) {
+
+            int checkX;
+            int checkY;
+
+            MovingObject obj = list[o];
+
+            for(int oTwo = 0; oTwo < list.length; oTwo++) {
+
+                if(o == oTwo){
+                    continue;
+                }
+
+                MovingObject objToCompare = list[oTwo];
+
+
+
+                for (int i = -1; i <= 1; i++) {
+                    for (int j = -1; j <= 1; j++) {
+
+                        checkX = (int) obj.getX() + i;
+                        checkY = (int) obj.getY() + j;
+
+
+                        if (checkX >= 0 && checkX <= frameWidth - 1 && checkY >= 0 && checkY <= frameHeight-1) {
+
+                            if (checkX == -1 && checkY == -1 || checkX == 0 && checkY == 0 || checkX == 1 && checkY == -1 || checkX == 1 && checkY == 1 || checkX == -1 && checkY == 1) {
+                                continue;
+                            }
+
+
+                             if(objToCompare.getX() == checkX && objToCompare.getY() == checkY && gNodes[checkX][checkY].getWalkable()) {
+                                 // if(objToCompare.getDir().equals("UP")){
+                                 objToCompare.stop();
+                                 objToCompare.applyRepeller(gNodes[(int) obj.getX()][(int) obj.getY()]);
+
+                                 objToCompare.update();
+
+
+
+                                 //  }
+                             }
+
+                            }
+
+
+
+
+
+
+                    }
+
+                }
+
+
+            }
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+            /*
+            for (int i = 0; i < frameWidth; i++) {
+                for (int j = 0; j < frameHeight; j++) {
+
+                    if(obj.getX() == i && obj.getY() == j){
+
+gNodes[i][j].setPlayerField(true);
+return true;
+
+                    }
+
+                }
+
+            }
+        }
+return false;
+
+
+        */
+ //   }
 
 
    public void insertCookies(){
@@ -298,7 +394,6 @@ int cookieOdds = ran.nextInt(100);
             for (int j = 0; j < getFrameHeight(); j++) {
 
 
-                System.out.println(gNodes[i][j].getHasSuperCookie());
 
 
                 g.setFill(Color.DARKGREEN);
@@ -333,13 +428,7 @@ int cookieOdds = ran.nextInt(100);
                 gNodes[i][j].setPrevVisitedThree(false);
                 gNodes[i][j].setMoveCost(Float.MAX_VALUE);
 
-                if(gNodes[i][j].getHasSuperCookie()){
 
-                      System.out.println(gNodes[i][j].getHasSuperCookie() + " " + gNodes[i][j].toString());
-                    g.setFill(Color.YELLOW);
-                    g.fillRoundRect(gNodes[i][j].getX() * fieldHeight + (fieldWidth/2), gNodes[i][j].getY() * fieldHeight + (fieldHeight/2), 15, 15, 3, 3);
-
-                }
 
                 if(gNodes[i][j].getHasCookie()){
 
@@ -347,9 +436,6 @@ int cookieOdds = ran.nextInt(100);
                     g.fillRoundRect(gNodes[i][j].getX() * fieldWidth + (fieldWidth/2), gNodes[i][j].getY() * fieldHeight + (fieldHeight/2), 3, 3, 2,2);
 
                 }
-
-
-
             }
         }
     }

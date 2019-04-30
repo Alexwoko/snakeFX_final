@@ -1,9 +1,4 @@
 
-?squid:S1170"!Make this final field static too.(åÂÁ¿8ØñÉÙ¥-
-osquid:S12232"LRename this method to prevent any misunderstanding or make it a constructor.(ÇÜáÓÿÿÿÿÿ8ã¢‚Ô¥-
-rsquid:S00100;"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘ÜÎœüÿÿÿÿ8£ğÛ¥-
-Dsquid:S1170"!Make this final field static too.(£ëÃşÿÿÿÿ8åéÚ¥-
-Dsquid:S1170"!Make this final field static too.(õêÚ“øÿÿÿÿ8ØñÉÙ¥-
-osquid:S1223;"LRename this method to prevent any misunderstanding or make it a constructor.(‘ÜÎœüÿÿÿÿ8úŠŠÔ¥-
-rsquid:S001002"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÇÜáÓÿÿÿÿÿ8£ğÛ¥-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ
+Dsquid:S1170"!Make this final field static too.(õêÚ“øÿÿÿÿ8´Ğóó¦-
+?squid:S1170"!Make this final field static too.(åÂÁ¿8´Ğóó¦-

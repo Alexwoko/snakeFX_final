@@ -268,4 +268,5 @@ public MathVector getAccel(){return accel;}
         MathVector force = node.repel(this);
         this.applyForce(force);
     }
+
 }

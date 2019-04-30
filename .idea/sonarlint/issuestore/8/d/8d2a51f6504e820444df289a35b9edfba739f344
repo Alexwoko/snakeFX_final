@@ -1,11 +1,10 @@
 
-psquid:S37763"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(š¹ˆî8‚¯÷Õ¥-
-ssquid:S1450
-"URemove the "target" field and declare it as a local variable in the relevant methods.(ñ®Ææ8¹ÆåÕ¥-
-psquid:S3776b"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ï íÐ8²ÛÓÚ¥-
-9squid:S3626<"Remove this redundant jump.(ÉŠ©ƒ8‚¯÷Õ¥-
-nsquid:S1149k"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(Žô¢Ü8¡¢†¦-
+Psquid:S1068"-Remove this unused "algorithm" private field.(ð®–ýùÿÿÿÿ8àµÞó¦-
+nsquid:S1149"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(òë†‚8ƒ­Ö¦-
+Hsquid:S00108I")Either remove or fill this block of code.(°»˜·8„î¹ð¦-
+usquid:S3776A"RRefactor this method to reduce its Cognitive Complexity from 36 to the 15 allowed.(Ïòó¹ÿÿÿÿÿ8„î¹ð¦-
+Isquid:S00108—")Either remove or fill this block of code.(ßÅŒ³8„î¹ð¦-
+Isquid:S00108Å")Either remove or fill this block of code.(ßÅŒ³8„î¹ð¦-
+Nsquid:S1068"+Remove this unused "visited" private field.(àªûÿÿÿÿ8áèÑð¦-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ
-tsquid:S1450"VRemove the "thePath" field and declare it as a local variable in the relevant methods.(Ãê»õ8Êøõ¥-
-ysquid:S1450"VRemove the "visited" field and declare it as a local variable in the relevant methods.(àªûÿÿÿÿ8˜æ…Ú¥-
-|squid:S1450"YRemove the "closedList" field and declare it as a local variable in the relevant methods.(µƒàåüÿÿÿÿ8ÑÅ‹†¦-
+qsquid:S3776Ñ"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(»®›8ŽÍÓñ¦-

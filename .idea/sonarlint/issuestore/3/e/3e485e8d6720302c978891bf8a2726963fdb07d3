@@ -1,5 +1,5 @@
 
-Ssquid:S1751-"5Remove this "break" statement or make it conditional.(›ûä·8‹É„¥-
-Isquid:S1481)"&Remove this unused "t" local variable.(¶­ª¥ÿÿÿÿÿ8‹É„¥-
-Xsquid:S1854)"5Remove this useless assignment to local variable "t".(¶­ª¥ÿÿÿÿÿ8‹É„¥-
+\"squid:SwitchLastCaseIsDefaultCheck4""Add a default case to this switch.(óÿî–şÿÿÿÿ8éËæƒ§-
+Ssquid:S1751c"5Remove this "break" statement or make it conditional.(›ûä·8˜ûĞü¦-
+<squid:S2119/"Save and re-use this "Random".(¸Í×8¦ññƒ§-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ

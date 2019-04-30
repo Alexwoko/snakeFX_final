@@ -21,6 +21,7 @@ public class GNode implements GraphItem {
     private float moveCost;
     private boolean hasCookie;
     private boolean hasSuperCookie;
+    private boolean playerField;
 
     GNode(float x, float y, int gridIndex){
 
@@ -35,6 +36,8 @@ public class GNode implements GraphItem {
 
     }
 
+    public void setPlayerField(boolean playerField){this.playerField = playerField;}
+    public boolean getPlayerField(){return playerField;}
 
     public void setHasSuperCookie(boolean hasSuperCookie){this.hasSuperCookie = hasSuperCookie;}
     public boolean getHasSuperCookie(){return hasSuperCookie;}
@@ -71,7 +74,7 @@ public class GNode implements GraphItem {
 
     public MathVector repel(MovingObject o){
 
-        final float  strength = 2.9f;
+        final float  strength = 1.01f;
 
 
         MathVector dir;

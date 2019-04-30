@@ -2,8 +2,15 @@ package SnakeLogic;
 
 import java.util.*;
 
+/**
+ * Pathfinder class
+ */
+
 public class Pathfinder {
 
+    /**
+     * class variables
+     */
 
     private Grid myGrid;
     private String algorithm;
@@ -12,9 +19,13 @@ public class Pathfinder {
     private ArrayList<GNode> closedList;
     private Deque<GNode> stack = new ArrayDeque<>();
     private RandomRambler seeker;
-    MovingObject player;
+  //  private MovingObject player;
 
 
+    /**
+     * class constructor
+     * @param grid
+     */
 
     public Pathfinder(Grid grid){
 
@@ -25,7 +36,8 @@ public class Pathfinder {
     }
 
 
-    public void setPlayer(Player player){this.player = player;}
+
+  //  public void setPlayer(Player player){this.player = player;}
 
     public void findPath(RandomRambler seeker, MovingObject target, String algorithm){
 
@@ -136,7 +148,7 @@ public class Pathfinder {
             } else{
 
                 for(GNode n : getNeighbours(currentNode, seeker)){
-                    if(closedList.contains(n) || !n.getWalkable() || n.getVisited()){
+                    if(closedList.contains(n) || !n.getWalkable() || n.getVisited() || n.getPlayerField()){
 
                     }else if(!stack.contains(n)){
 
@@ -182,7 +194,7 @@ public class Pathfinder {
             }else{
 
                 for(GNode n : getNeighbours(currentNode, seeker)){
-                    if(closedList.contains(n) || !n.getWalkable() || n.getVisited()){
+                    if(closedList.contains(n) || !n.getWalkable() || n.getVisited() || n.getPlayerField()){
 
                     }else if (!nodesToVisit.contains(n)){
                         n.setFrom(currentNode);
@@ -234,7 +246,7 @@ public class Pathfinder {
                     float newMoveCost = getMoveCost(currentNode, n);
 
 
-                    if(newMoveCost < currentNode.getMoveCost() || !openList.contains(n)){
+                    if(newMoveCost < currentNode.getMoveCost() || !openList.contains(n) || n.getPlayerField()){
 
                         n.setMoveCost(newMoveCost);
                         n.setFrom(currentNode);

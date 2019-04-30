@@ -48,7 +48,7 @@ public class Controller {
 
 
         calculateFields();
-        myGrid.getPathfinder().setPlayer(player);
+      //  myGrid.getPathfinder().setPlayer(player);
 
         // Start and control game loop
         new AnimationTimer(){
@@ -111,6 +111,8 @@ public class Controller {
 
     private void controlPlayers(){
 
+
+
         myGrid.wallScanner(player);
         myGrid.wallScanner(ranRam);
         myGrid.wallScanner(ranRamTwo);
@@ -127,11 +129,6 @@ public class Controller {
                 myGrid.controlTheHunt(ranRamTwo, player, "BREADTH FIRST SEARCH");
             myGrid.controlTheHunt(ranRamThree,player, "BEST FIRST SEARCH");
 
-        }else{
-            ranRam.stop();
-            ranRamTwo.stop();
-            ranRamThree.stop();
-
         }
 
         ranRam.followPath();
@@ -144,6 +141,8 @@ public class Controller {
         ranRam.update();
         ranRamTwo.update();
         ranRamThree.update();
+
+
     }
 
 
