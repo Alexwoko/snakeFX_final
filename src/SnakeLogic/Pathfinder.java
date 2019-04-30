@@ -12,6 +12,7 @@ public class Pathfinder {
     private ArrayList<GNode> closedList;
     private Deque<GNode> stack = new ArrayDeque<>();
     private RandomRambler seeker;
+    MovingObject player;
 
 
 
@@ -24,6 +25,7 @@ public class Pathfinder {
     }
 
 
+    public void setPlayer(Player player){this.player = player;}
 
     public void findPath(RandomRambler seeker, MovingObject target, String algorithm){
 
@@ -65,7 +67,7 @@ public class Pathfinder {
 
                     if((checkX >= 0 && checkX < 30 && checkY >= 0 && checkY <= 20)){
 
-                        GNode nTwo = myGrid.gNodes[(int) checkX][(int) checkY];
+                        GNode nTwo = myGrid.getGNodes()[(int) checkX][(int) checkY];
 
                         if(ram.getName().equals("One")){
                             nTwo.setPrevVisited(true);
@@ -150,11 +152,15 @@ public class Pathfinder {
     public void breadthFirstSearch(RandomRambler seeker, MovingObject target){
 
         LinkedList<GNode> nodesToVisit = new LinkedList<>();
-        //  ArrayList<GNode> closedList = new ArrayList<>();
 
-
+        GNode end;
         GNode start = myGrid.getTile(seeker.getX(), seeker.getY());
-        GNode end = myGrid.getTile(target.getX(), target.getY());
+
+
+
+             end = myGrid.getTile(target.getX(), target.getY());
+
+
 
         GNode currentNode = start;
 

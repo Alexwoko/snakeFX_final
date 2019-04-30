@@ -26,6 +26,9 @@ public class Controller {
     private RandomRambler ranRamTwo = new RandomRambler(14, 9, "Two");
     private RandomRambler ranRamThree = new RandomRambler(15, 9, "Three");
     private Grid myGrid = new Grid();
+    private MovingObject[] movingObjects = {player, ranRam, ranRamTwo, ranRamThree};
+
+
 
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
 
@@ -43,8 +46,9 @@ public class Controller {
     public void initialize()
     {
 
-        calculateFields();
 
+        calculateFields();
+        myGrid.getPathfinder().setPlayer(player);
 
         // Start and control game loop
         new AnimationTimer(){
@@ -62,6 +66,8 @@ public class Controller {
                 }             }
         }.start();
     }
+
+
 
     public void keyPressed(KeyCode keyCode)
     {
@@ -109,15 +115,16 @@ public class Controller {
         myGrid.wallScanner(ranRam);
         myGrid.wallScanner(ranRamTwo);
         myGrid.wallScanner(ranRamThree);
-        checkEdges(player);
-        checkEdges(ranRam);
-        checkEdges(ranRamTwo);
-        checkEdges(ranRamThree);
+
+        myGrid.checkEdges(player);
+        myGrid.checkEdges(ranRam);
+        myGrid.checkEdges(ranRamTwo);
+        myGrid.checkEdges(ranRamThree);
 
         if(player.getPos().x >= 0 && player.getPos().x < 29) {
 
             myGrid.controlTheHunt(ranRam, player, "DEPTH FIRST SEARCH");
-            myGrid.controlTheHunt(ranRamTwo, player, "BREADTH FIRST SEARCH");
+                myGrid.controlTheHunt(ranRamTwo, player, "BREADTH FIRST SEARCH");
             myGrid.controlTheHunt(ranRamThree,player, "BEST FIRST SEARCH");
 
         }else{
@@ -130,6 +137,8 @@ public class Controller {
         ranRam.followPath();
         ranRamTwo.followPath();
         ranRamThree.followPath();
+
+        myGrid.eatCookie(player);
 
         player.update();
         ranRam.update();
@@ -169,28 +178,8 @@ public class Controller {
         // draw 'player'
         g.setFill(Color.YELLOW);
         g.fillRoundRect(this.player.getX() * fieldWidth, this.player.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
-    }
 
+        g.fillText("Score: " + Integer.toString(myGrid.getShowScore()), canvas.getWidth() - 160, 10, 100);
 
-    void checkEdges(GameObject o){
-
-        int canvasX = 0;
-        int canvasY = 0;
-        int canvasWidth = width - 1;
-        int canvasHeight = height - 1;
-
-        if(o.getX() * fieldWidth > canvas.getWidth() - fieldWidth){
-            o.setX(canvasX);
-        }
-        if(o.getX() < canvasX){
-            o.setX(canvasWidth);
-        }
-
-        if(o.getY() * fieldHeight >= canvas.getHeight()){
-            o.setY(canvasY);
-        }
-        if(o.getY() < canvasY){
-            o.setY(canvasHeight);
-        }
     }
 }

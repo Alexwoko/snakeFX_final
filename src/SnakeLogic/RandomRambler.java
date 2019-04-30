@@ -6,12 +6,27 @@ import javafx.scene.paint.Color;
 import java.awt.*;
 import java.util.*;
 
+/**
+ * class Random Rambler --> extends MovingObject
+ */
 
 public class RandomRambler extends MovingObject {
+
+    /**
+     * Class variables
+     */
 
     private double fieldWidth;
     private double fieldHeight;
     private String name;
+
+
+    /**
+     * Class constructor
+     * @param x Position X
+     * @param y position Y
+     * @param name
+     */
 
     public RandomRambler(int x, int y, String name) {
         super(x, y);
@@ -19,10 +34,20 @@ public class RandomRambler extends MovingObject {
         fieldWidth = 20;
         fieldHeight = 17.85;
         this.name = name;
+
     }
+
+    /**
+     * Getter for name
+     * @return
+     */
 
     public String getName(){return  name;}
 
+    /**
+     * Method used in wall detection
+     * @param node
+     */
 
     @Override
     public void applyRepeller(GNode node) {
@@ -30,6 +55,10 @@ public class RandomRambler extends MovingObject {
         MathVector force = node.repel(this);
         this.applyForce(force);
     }
+
+    /**
+     * Method to follow the path give by Pathfinder class
+     */
 
     public void followPath() {
 
@@ -47,6 +76,12 @@ public class RandomRambler extends MovingObject {
         }
     }
 
+    /**
+     * Method to display self
+     * @param g GraphicsContext
+     * @param c Color
+     */
+
     public void displaySelf(GraphicsContext g, Color c) {
 
 
@@ -55,6 +90,11 @@ public class RandomRambler extends MovingObject {
 
     }
 
+    /**
+     * method to display the path
+     * @param g GraphicsContext
+     * @param c Color
+     */
     public void displayPath(GraphicsContext g, Color c) {
 
         if (this.getMyPath() != null) {
@@ -65,6 +105,11 @@ public class RandomRambler extends MovingObject {
             }
         }
     }
+
+    /**
+     * Update methods
+     * updates velocity and position an resets acceleration so it doesn't accumulate
+     */
 
     @Override
     public void update() {

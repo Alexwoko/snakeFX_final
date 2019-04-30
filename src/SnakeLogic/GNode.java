@@ -19,6 +19,8 @@ public class GNode implements GraphItem {
     private boolean prevVisitedTwo;
     private boolean prevVisitedThree;
     private float moveCost;
+    private boolean hasCookie;
+    private boolean hasSuperCookie;
 
     GNode(float x, float y, int gridIndex){
 
@@ -33,6 +35,11 @@ public class GNode implements GraphItem {
 
     }
 
+
+    public void setHasSuperCookie(boolean hasSuperCookie){this.hasSuperCookie = hasSuperCookie;}
+    public boolean getHasSuperCookie(){return hasSuperCookie;}
+    public void setHasCookie(boolean hasCookie){this.hasCookie = hasCookie;}
+    public boolean getHasCookie(){return hasCookie;}
 
     public void setMoveCost(float moveCost) {this.moveCost = moveCost;}
 
@@ -150,6 +157,8 @@ public class GNode implements GraphItem {
         // sb.append("Grid index = " + gridIndex);
         // sb.append(", Num of Edges = " + numOfEdges);
         //  sb.append("Edges length = " + edges.length);
+        sb.append(", has cookie = " + hasCookie);
+        sb.append(", has supercookie = " + hasSuperCookie);
         sb.append(", been visited = " + visited);
         sb.append(", Grid pos = " + gridPos);
         sb.append( ", parent = " + nodeFrom);

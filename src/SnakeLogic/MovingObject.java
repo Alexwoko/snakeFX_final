@@ -4,7 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ *
+ *  Abstract class MovingObject --> implements GameObject
+ *
+ */
+
 public abstract class MovingObject implements GameObject{
+
+    /**
+     * Class Variables
+     *
+     */
 
     private MathVector pos;
     private MathVector vel;
@@ -18,8 +29,15 @@ public abstract class MovingObject implements GameObject{
     private String dir;
     private List<GraphItem> myPath;
     private GNode[][] visited;
-    String name;
+    private String name;
+    private int score;
 
+    /**
+     *
+     * class constructor
+     * @param x position X
+     * @param y position Y
+     */
 
     public MovingObject(int x, int y){
 
@@ -37,16 +55,43 @@ public abstract class MovingObject implements GameObject{
         maxForce = 2;
         myPath = new ArrayList<>();
         visited = new GNode[30][20];
-        this.name = name;
+        score = 0;
 
     }
 
 
+    /**
+     *  Setter score
+     * @param  score
+     */
 
+    public void setScore(int score){this.score = score;}
 
+    /**
+     * Getter score
+     * @return int score
+     */
+
+    public int getScore(){return score;}
+
+    /**
+     * Setter for list of nodes in path
+     * @param path
+     */
 
     public void setMyPath(List<GraphItem> path){myPath = path;}
+
+    /**
+     * Getter for list of nodes in path
+     * @return List
+     */
+
     public List<GraphItem> getMyPath(){return  myPath;}
+
+    /**
+     * Stop movement
+     * @param t
+     */
 
 public void stopMoving(String t){
 
@@ -58,39 +103,87 @@ public void stopMoving(String t){
         }
 }
 
+    /**
+     * getter for velocity
+     * @return velocity
+     */
 
-public void setVel(MathVector newVal){vel = newVal;}
-    public void setAccel(MathVector newVal){accel = newVal;}
 public MathVector getVel(){return vel;}
+
+    /**
+     * Getter for acceleration
+     * @return acceleration
+     */
+
 public MathVector getAccel(){return accel;}
 
-   @Override
-   public float getVelX(){return vel.x;}
-   @Override
-   public float getVelY(){return vel.y;}
-   @Override
-   public void setVelX(float velX){this.vel.x = velX;}
-   @Override
-   public void setVelY(float velY){this.vel.y = velY;}
+    /**
+     * Setter for maximum speed
+     * @param max
+     */
 
    public void setMaxSpeed(float max){this.maxSpeed = max;}
 
+    /**
+     * getter for position X
+     * @return position X
+     */
+
     @Override
     public float getX() {return pos.x;}
+
+    /**
+     * getter for position Y
+     * @return position Y
+     */
+
     @Override
     public float getY() {return pos.y;}
+
+    /**
+     * Setter for position X
+     * @param x
+     */
+
     @Override
     public void setX(float x) {this.pos.x = x;}
+
+    /**
+     * Setter for position Y
+     * @param y
+     */
+
     @Override
-    public void setY(float y) {
-        this.pos.y = y;
-    }
+    public void setY(float y) {this.pos.y = y; }
+
+
+    /**
+     * Getter for direction
+     * @return direction
+     */
+
     @Override
     public String getDir() {
         return dir;
     }
+
+    /**
+     * Setter for Direction
+     * @param dir
+     */
+
     public void setDir(String dir){this.dir = dir;}
+
+    /**
+     * Getter for full MathVector position
+     * @return
+     */
+
     public MathVector getPos(){return pos;}
+
+    /**
+     * Update method - updates velocity and position and sets acceleration to zero so it doesn't accumulate
+     */
 
     @Override
     public void update() {
@@ -101,12 +194,22 @@ public MathVector getAccel(){return accel;}
         accel.mult(0);
     }
 
+    /**
+     * Apply force method - mainly for applying acceleration
+     * @param force
+     */
+
     @Override
     public void applyForce(MathVector force) {
 
         force.limit(maxForce);
         accel.add(force);
     }
+
+    /**
+     * To string method
+     * @return
+     */
 
     public String toString(){
 

@@ -3,17 +3,19 @@ package SnakeLogic;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+
 import java.util.*;
 
 public class Grid {
 
     private int frameWidth;
     private int frameHeight;
-    public GNode[][] gNodes;
+    private GNode[][] gNodes;
     private double fieldWidth;
     private double fieldHeight;
     private Pathfinder pathfinder;
-    MovingObject currentMover;
+    private int showScore;
+
 
 
     public Grid(){
@@ -26,19 +28,27 @@ public class Grid {
         createGrid();
         buildMaze();
         createFrame();
+        insertCookies();
+        insertSuperCookies();
         pathfinder = new Pathfinder(this);
+        showScore = 0;
+
 
     }
 
+    public Pathfinder getPathfinder(){return pathfinder;}
+
     public void controlTheHunt(RandomRambler seeker, MovingObject target, String algorithm){
 
-
-        currentMover = seeker;
         pathfinder.findPath(seeker, target, algorithm);
 
     }
 
 
+    public int getShowScore(){return showScore;}
+
+
+    public GNode[][] getGNodes(){return gNodes;}
     public int getFrameWidth(){return  frameWidth;}
     public int getFrameHeight(){return frameHeight;}
 
@@ -50,6 +60,46 @@ public class Grid {
             }
         }
     }
+
+    public void insertSuperCookies(){
+
+        for(int i = 0; i < frameWidth; i ++){
+            for(int j = 0; j < frameHeight; j++){
+
+                if(gNodes[i][j].getWalkable() && !gNodes[i][j].getHasCookie()){
+                    gNodes[i][j].setHasSuperCookie(true);
+
+                }
+
+            }
+        }
+
+
+
+    }
+
+
+   public void insertCookies(){
+
+
+    Random ran = new Random();
+
+        for(int i = 0; i < frameWidth; i++){
+            for(int j = 0; j < frameHeight; j++){
+
+int cookieOdds = ran.nextInt(100);
+                if(!gNodes[i][j].getWalkable()){
+               continue;
+                } else{
+
+                    if(cookieOdds < 98) {
+                        gNodes[i][j].setHasCookie(true);
+                    }
+                    }
+
+            }
+        }
+   }
 
     public GNode getTile(float x, float y){
 
@@ -126,8 +176,8 @@ public class Grid {
         GNode up;
         GNode down;
 
-        for(int i = -1; i <= 1; i+=1f){
-            for(int j = -1; j <= 1; j+=1f){
+        for(int i = -1; i <= 1; i++){
+            for(int j = -1; j <= 1; j++){
 
                 checkX = (int)o.getX() + i;
                 checkY = (int)o.getY() + j;
@@ -173,6 +223,36 @@ public class Grid {
         }
     }
 
+
+    public void eatCookie(Player player){
+
+        for(int i = 0; i < frameWidth; i++){
+            for(int j = 0; j < frameHeight; j++){
+
+                if(!gNodes[i][j].getWalkable()){
+                    continue;
+                }
+
+                if(player.getX() == i && player.getY() == j && gNodes[i][j].getHasCookie()){
+
+                    gNodes[i][j].setHasCookie(false);
+                    player.setScore(player.getScore() + 1);
+                    showScore = player.getScore();
+
+                }
+
+                else if(player.getX() == i && player.getY() == j && gNodes[i][j].getHasSuperCookie());
+
+             //   System.out.println("HAAAAAAAAAAPSSSS!!!!");
+                gNodes[i][j].setHasSuperCookie(false);
+                player.setInvincible(true);
+
+            }
+        }
+
+
+    }
+
     private void createFrame(){
 
         int canvasX = 0;
@@ -206,7 +286,6 @@ public class Grid {
 
                 gNodes[i][j] = new GNode(i, j, indexer);
                 indexer++;
-
             }
         }
     }
@@ -214,8 +293,12 @@ public class Grid {
 
     public void displayGrid(GraphicsContext g){
 
+
         for(int i = 0; i < getFrameWidth(); i++){
             for (int j = 0; j < getFrameHeight(); j++) {
+
+
+                System.out.println(gNodes[i][j].getHasSuperCookie());
 
 
                 g.setFill(Color.DARKGREEN);
@@ -250,9 +333,57 @@ public class Grid {
                 gNodes[i][j].setPrevVisitedThree(false);
                 gNodes[i][j].setMoveCost(Float.MAX_VALUE);
 
+                if(gNodes[i][j].getHasSuperCookie()){
+
+                      System.out.println(gNodes[i][j].getHasSuperCookie() + " " + gNodes[i][j].toString());
+                    g.setFill(Color.YELLOW);
+                    g.fillRoundRect(gNodes[i][j].getX() * fieldHeight + (fieldWidth/2), gNodes[i][j].getY() * fieldHeight + (fieldHeight/2), 15, 15, 3, 3);
+
+                }
+
+                if(gNodes[i][j].getHasCookie()){
+
+                    g.setFill(Color.LIGHTGRAY);
+                    g.fillRoundRect(gNodes[i][j].getX() * fieldWidth + (fieldWidth/2), gNodes[i][j].getY() * fieldHeight + (fieldHeight/2), 3, 3, 2,2);
+
+                }
+
 
 
             }
         }
+    }
+
+   public void checkEdges(GameObject o){
+
+        int canvasX = 0;
+        int canvasY = 0;
+        int canvasWidth = frameWidth - 1;
+        int canvasHeight = frameHeight - 1;
+
+        if(o.getX() * fieldWidth > 600 - fieldWidth){
+            o.setX(canvasX);
+        }
+        if(o.getX() < canvasX){
+            o.setX(canvasWidth);
+        }
+
+        if(o.getY() * fieldHeight >= 400){
+            o.setY(canvasY);
+        }
+        if(o.getY() < canvasY){
+            o.setY(canvasHeight);
+        }
+    }
+
+
+    public String toString(){
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(showScore);
+
+        return sb.toString();
+
     }
 }
