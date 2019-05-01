@@ -224,11 +224,9 @@ public MathVector getAccel(){return accel;}
         return sb.toString();
     }
 
-
-    public void stop(){
-        vel.x = 0;
-        vel.y = 0;
-    }
+    /**
+     * A method to control movement to the right
+     */
 
     @Override
     public void moveRight(){
@@ -238,6 +236,11 @@ public MathVector getAccel(){return accel;}
         applyForce(right);
 
     }
+
+    /**
+     * A method to control movement to the left
+     */
+
     @Override
     public void moveLeft(){
 
@@ -246,6 +249,11 @@ public MathVector getAccel(){return accel;}
         applyForce(left);
 
     }
+
+    /**
+     * A method to control movement up
+     */
+
     @Override
     public void moveUp(){
 
@@ -254,6 +262,11 @@ public MathVector getAccel(){return accel;}
         applyForce(up);
 
     }
+
+    /**
+     * A method to control movement down
+     */
+
     @Override
     public void moveDown(){
 
@@ -262,6 +275,12 @@ public MathVector getAccel(){return accel;}
         applyForce(down);
 
     }
+
+    /**
+     * A method that takes a node to let the node repel the movingobject
+     * if the node is a wall.
+     * @param node
+     */
 
     public void applyRepeller(GNode node) {
 

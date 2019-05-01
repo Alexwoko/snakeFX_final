@@ -13,13 +13,11 @@ public class Pathfinder {
      */
 
     private Grid myGrid;
-    private String algorithm;
     private Graph<GraphItem> visited;
     private Stack<GNode> openList;
     private ArrayList<GNode> closedList;
     private Deque<GNode> stack = new ArrayDeque<>();
     private RandomRambler seeker;
-  //  private MovingObject player;
 
 
     /**
@@ -36,8 +34,13 @@ public class Pathfinder {
     }
 
 
-
-  //  public void setPlayer(Player player){this.player = player;}
+    /**
+     *
+     * Method that starts the pathfinding and controls the algorithm to be used
+     * @param seeker
+     * @param target
+     * @param algorithm
+     */
 
     public void findPath(RandomRambler seeker, MovingObject target, String algorithm){
 
@@ -61,6 +64,13 @@ public class Pathfinder {
 
 
     }
+
+    /**
+     * A method that finds and returns the neigbhours of a specific ghost
+     * @param n
+     * @param ram
+     * @return
+     */
 
     private List<GNode> getNeighbours(GNode n, RandomRambler ram){
 
@@ -98,8 +108,14 @@ public class Pathfinder {
         return neighbours;
     }
 
+    /**
+     * A method to go back through the path, insert the nodes into the path list and
+     * finally reverse the list so we can do a "walking animation" travel.
+     * @param startNode
+     * @param targetNode
+     */
 
-    private void retracePath(GNode startNode, GNode targetNode){
+    public void retracePath(GNode startNode, GNode targetNode){
 
         LinkedList<GraphItem> thePath;
 
@@ -119,9 +135,15 @@ public class Pathfinder {
 
     }
 
+    /**
+     * Depth first search
+     * @param seeker
+     * @param target
+     */
+
     private void depthFirstSearch(RandomRambler seeker, MovingObject target){
 
-
+int visitedNodes = 0;
 
         GNode start = myGrid.getTile(seeker.getX(), seeker.getY());
         GNode end = myGrid.getTile(target.getX(), target.getY());
@@ -135,20 +157,24 @@ public class Pathfinder {
             currentNode = stack.pop();
             closedList.add(currentNode);
             currentNode.setVisited(true);
+            visitedNodes++;
+
 
             if(currentNode.getX() == end.getX() && currentNode.getY() == end.getY()){
 
+                System.out.println("Depth first search visited = " + visitedNodes);
                 currentNode = end;
                 retracePath(start, currentNode);
                 myGrid.resetVisited();
                 stack.clear();
-                emptyList(closedList);
+                       closedList.clear();
+
                 return;
 
             } else{
 
                 for(GNode n : getNeighbours(currentNode, seeker)){
-                    if(closedList.contains(n) || !n.getWalkable() || n.getVisited() || n.getPlayerField()){
+                    if(closedList.contains(n) || !n.getWalkable() || n.getVisited()){
 
                     }else if(!stack.contains(n)){
 
@@ -161,8 +187,16 @@ public class Pathfinder {
         }
     }
 
+    /**
+     * Breadth first search
+     * @param seeker
+     * @param target
+     */
+
     public void breadthFirstSearch(RandomRambler seeker, MovingObject target){
 
+
+        int visitedNodes = 0;
         LinkedList<GNode> nodesToVisit = new LinkedList<>();
 
         GNode end;
@@ -182,8 +216,11 @@ public class Pathfinder {
 
             currentNode = nodesToVisit.remove(0);
             closedList.add(currentNode);
+            visitedNodes++;
 
             if(currentNode.getX() == end.getX() && currentNode.getY() == end.getY()){
+
+                System.out.println("Breadth first search visited = " + visitedNodes);
 
                 currentNode = end;
                 retracePath(start, currentNode);
@@ -194,7 +231,7 @@ public class Pathfinder {
             }else{
 
                 for(GNode n : getNeighbours(currentNode, seeker)){
-                    if(closedList.contains(n) || !n.getWalkable() || n.getVisited() || n.getPlayerField()){
+                    if(closedList.contains(n) || !n.getWalkable() || n.getVisited()){
 
                     }else if (!nodesToVisit.contains(n)){
                         n.setFrom(currentNode);
@@ -205,9 +242,15 @@ public class Pathfinder {
         }
     }
 
+    /**
+     * Best first search
+     * @param seeker
+     * @param target
+     */
 
     private void bestFirstSearch(RandomRambler seeker, MovingObject target){
 
+        int visitedNodes = 0;
 
         GNode start = myGrid.getTile(seeker.getX(), seeker.getY());
         GNode end = myGrid.getTile(target.getX(), target.getY());
@@ -224,8 +267,11 @@ public class Pathfinder {
             currentNode = nodesToVisit.remove(0);
             closedList.add(currentNode);
             currentNode.setVisited(true);
+            visitedNodes++;
 
             if(currentNode.getX() == end.getX() && currentNode.getY() == end.getY()){
+
+                System.out.println("Best first search visited = " + visitedNodes);
 
                 currentNode = end;
 
@@ -246,7 +292,7 @@ public class Pathfinder {
                     float newMoveCost = getMoveCost(currentNode, n);
 
 
-                    if(newMoveCost < currentNode.getMoveCost() || !openList.contains(n) || n.getPlayerField()){
+                    if(newMoveCost < currentNode.getMoveCost() || !openList.contains(n)){
 
                         n.setMoveCost(newMoveCost);
                         n.setFrom(currentNode);
@@ -260,6 +306,12 @@ public class Pathfinder {
         }
     }
 
+    /**
+     * A method to return a movement cost between two nodes - used for best first
+     * @param nodeA
+     * @param nodeB
+     * @return
+     */
 
     private float getMoveCost(GNode nodeA, GNode nodeB){
 
@@ -277,10 +329,4 @@ public class Pathfinder {
         }
     }
 
-    private void emptyList(List<GNode> list){
-
-        for(int i = list.size()-1; i >= 0; i--){
-            list.remove(i);
-        }
-    }
 }

@@ -8,8 +8,6 @@ K
 =
 src/notes.txt,1/8/1816a902f227c9f0ce049385aa4760625b201143
 H
-src/SnakeLogic/Item.java,7/5/75fcb32396f859e1f7e260c38958cbc991dcab9b
-H
 src/SnakeLogic/Wall.java,5/c/5c68d5ae002925646dc55409313f11b043aa35fe
 J
 src/SnakeLogic/Player.java,5/1/51e73d7c7f067be411e1ed56e8f00ee2acb71815
@@ -17,14 +15,8 @@ N
 src/SnakeLogic/GameObject.java,8/d/8d219d7de2aaba5abd615a4ae57256c7a8e5fc18
 >
 .gitattributes,2/4/24139dae656713ba861751fb2c2ac38839349a7a
-G
-src/SnakeLogic/BFS.java,3/5/35339b54a24f7ffab43566bd0d4a0d0f139cc4b9
 H
 src/SnakeLogic/Grid.java,f/6/f690d55d17263f314d59a356a702f5961af08222
-H
-src/SnakeLogic/Node.java,9/3/934ebb724b8de6180feb1700205f7dccf87e3150
-H
-src/SnakeLogic/Tree.java,1/2/12b3bdd60bb1f6a9bb4b290f634f6799a76506fd
 L
 src/SnakeGUI/Controller.java,8/6/861501c7ffb1bdfda8c14e11b1775b47cfd2a139
 P
@@ -33,8 +25,6 @@ N
 src/SnakeLogic/MathVector.java,d/0/d0b40cdd3c31f8a7936c0dc62aeefc1cb88d01d4
 Q
 !src/SnakeLogic/RandomRambler.java,3/e/3e485e8d6720302c978891bf8a2726963fdb07d3
-L
-src/SnakeLogic/TreeItem.java,a/7/a76d6b8a3515d86c69b77eaf006096c9b2038cf4
 H
 src/SnakeLogic/Edge.java,c/a/ca3c862ca19427dd36921e38b2b3dafb0e4f5238
 I

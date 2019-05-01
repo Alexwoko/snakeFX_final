@@ -6,7 +6,15 @@ import javafx.scene.paint.Color;
 
 import java.util.*;
 
+/**
+ * The grid class
+ */
+
 public class Grid {
+
+    /**
+     * Class variables
+     */
 
     private int frameWidth;
     private int frameHeight;
@@ -17,7 +25,9 @@ public class Grid {
     private int showScore;
 
 
-
+    /**
+     * class constructor
+     */
 
     public Grid(){
 
@@ -30,14 +40,58 @@ public class Grid {
         buildMaze();
         createFrame();
         insertCookies();
-        insertSuperCookies();
         pathfinder = new Pathfinder(this);
         showScore = 0;
 
 
     }
 
+    /**
+     * Getter
+     * Thw grid controls the pathfinder object. This method returns the pathfinder object.
+     *
+     * @return Pathfinder
+     */
+
     public Pathfinder getPathfinder(){return pathfinder;}
+
+    /**
+     * Getter for the score
+     *
+     * @return int
+     */
+
+    public int getShowScore(){return showScore;}
+
+    /**
+     * Getter for the 2D array of nodes
+     * @return GNode[][]
+     */
+
+    public GNode[][] getGNodes(){return gNodes;}
+
+    /**
+     * Getter for the frameWidth
+     * @return int
+     */
+
+    public int getFrameWidth(){return  frameWidth;}
+
+    /**
+     * Getter for the frameHeight
+     * @return int
+     */
+
+    public int getFrameHeight(){return frameHeight;}
+
+
+    /**
+     * The grid controls the hunt (with the pathfinder object)
+     *
+     * @param seeker
+     * @param target
+     * @param algorithm
+     */
 
     public void controlTheHunt(RandomRambler seeker, MovingObject target, String algorithm){
 
@@ -45,13 +99,10 @@ public class Grid {
 
     }
 
-
-    public int getShowScore(){return showScore;}
-
-
-    public GNode[][] getGNodes(){return gNodes;}
-    public int getFrameWidth(){return  frameWidth;}
-    public int getFrameHeight(){return frameHeight;}
+    /**
+     * Method to reset all nodes in the grid to not have being visited
+     * - for every update
+     */
 
     public void resetVisited(){
 
@@ -62,140 +113,35 @@ public class Grid {
         }
     }
 
-    public void insertSuperCookies(){
 
-        for(int i = 0; i < frameWidth; i ++){
-            for(int j = 0; j < frameHeight; j++){
-
-                if(gNodes[i][j].getWalkable() && !gNodes[i][j].getHasCookie()){
-                    gNodes[i][j].setHasSuperCookie(true);
-
-                }
-
-            }
-        }
+    /**
+     * Puts "pac-man" food into the maze
+     */
 
 
-
-    }
-
-    /*
-    public void collision(MovingObject[] list){
-
-
-
-        for(int o = 0; o < list.length;o++) {
-
-            int checkX;
-            int checkY;
-
-            MovingObject obj = list[o];
-
-            for(int oTwo = 0; oTwo < list.length; oTwo++) {
-
-                if(o == oTwo){
-                    continue;
-                }
-
-                MovingObject objToCompare = list[oTwo];
-
-
-
-                for (int i = -1; i <= 1; i++) {
-                    for (int j = -1; j <= 1; j++) {
-
-                        checkX = (int) obj.getX() + i;
-                        checkY = (int) obj.getY() + j;
-
-
-                        if (checkX >= 0 && checkX <= frameWidth - 1 && checkY >= 0 && checkY <= frameHeight-1) {
-
-                            if (checkX == -1 && checkY == -1 || checkX == 0 && checkY == 0 || checkX == 1 && checkY == -1 || checkX == 1 && checkY == 1 || checkX == -1 && checkY == 1) {
-                                continue;
-                            }
-
-
-                             if(objToCompare.getX() == checkX && objToCompare.getY() == checkY && gNodes[checkX][checkY].getWalkable()) {
-                                 // if(objToCompare.getDir().equals("UP")){
-                                 objToCompare.stop();
-                                 objToCompare.applyRepeller(gNodes[(int) obj.getX()][(int) obj.getY()]);
-
-                                 objToCompare.update();
-
-
-
-                                 //  }
-                             }
-
-                            }
-
-
-
-
-
-
-                    }
-
-                }
-
-
-            }
-
-
-
-
-
-
-
-
-
-        }
-
-
-
-            /*
-            for (int i = 0; i < frameWidth; i++) {
-                for (int j = 0; j < frameHeight; j++) {
-
-                    if(obj.getX() == i && obj.getY() == j){
-
-gNodes[i][j].setPlayerField(true);
-return true;
-
-                    }
-
-                }
-
-            }
-        }
-return false;
-
-
-        */
- //   }
-
-
-   public void insertCookies(){
-
-
-    Random ran = new Random();
+    public void insertCookies(){
 
         for(int i = 0; i < frameWidth; i++){
             for(int j = 0; j < frameHeight; j++){
 
-int cookieOdds = ran.nextInt(100);
                 if(!gNodes[i][j].getWalkable()){
                continue;
                 } else{
 
-                    if(cookieOdds < 98) {
-                        gNodes[i][j].setHasCookie(true);
-                    }
-                    }
 
+                        gNodes[i][j].setHasCookie(true);
+
+                    }
             }
         }
    }
+
+    /**
+     * A method that returns a node by its pos x & y
+     * @param x position
+     * @param y position
+     * @return GNode
+     */
 
     public GNode getTile(float x, float y){
 
@@ -212,7 +158,11 @@ int cookieOdds = ran.nextInt(100);
 
     }
 
-    private void buildMaze(){
+    /**
+     * A method to "print" the pacman maze
+     */
+
+    public void buildMaze(){
 
         int[] firstLine = {14};
         buildWallHorizLine(firstLine, 1);
@@ -248,6 +198,12 @@ int cookieOdds = ran.nextInt(100);
         buildWallHorizLine(seventeenth, 17);
     }
 
+    /**
+     * The "Wall printer"
+     * @param fields List of nodes that are going to be walls
+     * @param posY the y position - hight of horizontal line
+     */
+
     private void buildWallHorizLine(int[] fields, int posY){
 
         for(int i = 0; i < frameWidth; i++){
@@ -261,6 +217,13 @@ int cookieOdds = ran.nextInt(100);
             }
         }
     }
+
+    /**
+     * A method that lets a MovingObject "scan" for walls in the grid and thereby
+     * react to the walls
+     * @param o MovingObject
+     * @return String - direction
+     */
 
     public String scanForWalls(MovingObject o){
 
@@ -306,6 +269,11 @@ int cookieOdds = ran.nextInt(100);
         return null;
     }
 
+    /**
+     * The "scanner"
+     * @param o MovingObject
+     */
+
     public void wallScanner(MovingObject o){
 
         for(int i = 0; i < frameWidth; i+=1f){
@@ -319,6 +287,10 @@ int cookieOdds = ran.nextInt(100);
         }
     }
 
+    /**
+     * Controls the eating of "Pac-man food" and therefore the score as well
+     * @param player
+     */
 
     public void eatCookie(Player player){
 
@@ -336,20 +308,15 @@ int cookieOdds = ran.nextInt(100);
                     showScore = player.getScore();
 
                 }
-
-                else if(player.getX() == i && player.getY() == j && gNodes[i][j].getHasSuperCookie());
-
-             //   System.out.println("HAAAAAAAAAAPSSSS!!!!");
-                gNodes[i][j].setHasSuperCookie(false);
-                player.setInvincible(true);
-
             }
         }
-
-
     }
 
-    private void createFrame(){
+    /**
+     * Creates the frame of walls
+     */
+
+    public void createFrame(){
 
         int canvasX = 0;
         int canvasY = 0;
@@ -372,6 +339,9 @@ int cookieOdds = ran.nextInt(100);
         gNodes[canvasWidth][9].setWalkable(true);
     }
 
+    /**
+     * Method to fill the grid(2D array) with nodes
+     */
 
     public void createGrid(){
 
@@ -386,6 +356,10 @@ int cookieOdds = ran.nextInt(100);
         }
     }
 
+    /**
+     * Method to let the grid draw itself
+     * @param g GraphicsContext
+     */
 
     public void displayGrid(GraphicsContext g){
 
@@ -440,6 +414,11 @@ int cookieOdds = ran.nextInt(100);
         }
     }
 
+    /**
+     * Method to let a GameObject react to going outside of the screen
+     * @param o GameObject
+     */
+
    public void checkEdges(GameObject o){
 
         int canvasX = 0;
@@ -462,6 +441,10 @@ int cookieOdds = ran.nextInt(100);
         }
     }
 
+    /**
+     * toString method
+     * @return String
+     */
 
     public String toString(){
 

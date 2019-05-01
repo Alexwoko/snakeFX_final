@@ -1,16 +1,22 @@
 package SnakeLogic;
 
+/**
+ * Player class --> extends MovingObject
+ */
+
 public class Player extends MovingObject {
 
-    private boolean isInvincible;
 
+    /**
+     * class constructor
+     * @param x position
+     * @param y position
+     */
 
     public Player(int x, int y) {
         super(x, y);
     }
 
-    public void setInvincible(boolean isInvincible){this.isInvincible = isInvincible;}
-    public boolean getInvincible(){return isInvincible;}
 
 
 }

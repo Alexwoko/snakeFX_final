@@ -1,10 +1,15 @@
 package SnakeLogic;
 
 
-
+/**
+ * Class GNode(GraphNode) --> implements GraphItem interface
+ */
 
 public class GNode implements GraphItem {
 
+    /**
+     * Class variables
+     */
 
     private Edge[] edges;
     private GraphItem nodeFrom;
@@ -23,6 +28,13 @@ public class GNode implements GraphItem {
     private boolean hasSuperCookie;
     private boolean playerField;
 
+    /**
+     * class constructor
+     * @param x float
+     * @param y float
+     * @param gridIndex int
+     */
+
     GNode(float x, float y, int gridIndex){
 
         edges = new Edge[4];
@@ -36,12 +48,17 @@ public class GNode implements GraphItem {
 
     }
 
-    public void setPlayerField(boolean playerField){this.playerField = playerField;}
-    public boolean getPlayerField(){return playerField;}
-
-    public void setHasSuperCookie(boolean hasSuperCookie){this.hasSuperCookie = hasSuperCookie;}
-    public boolean getHasSuperCookie(){return hasSuperCookie;}
+    /**
+     * Settter for hasCookie
+     * @param hasCookie boolean
+     */
     public void setHasCookie(boolean hasCookie){this.hasCookie = hasCookie;}
+
+    /**
+     * Getter for hasCookie
+     * @return boolean
+     */
+
     public boolean getHasCookie(){return hasCookie;}
 
     public void setMoveCost(float moveCost) {this.moveCost = moveCost;}
