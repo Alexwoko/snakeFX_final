@@ -178,6 +178,8 @@ public class Controller {
         g.setFill(Color.YELLOW);
         g.fillRoundRect(this.player.getX() * fieldWidth, this.player.getY() * fieldHeight, fieldWidth, fieldHeight, 3, 3);
 
+
+
         g.fillText("Score: " + Integer.toString(myGrid.getShowScore()), canvas.getWidth() - 160, 10, 100);
 
     }

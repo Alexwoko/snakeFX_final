@@ -13,7 +13,6 @@ public class Pathfinder {
      */
 
     private Grid myGrid;
-    private Graph<GraphItem> visited;
     private Stack<GNode> openList;
     private ArrayList<GNode> closedList;
     private Deque<GNode> stack = new ArrayDeque<>();
@@ -30,7 +29,7 @@ public class Pathfinder {
         myGrid = grid;
         closedList = new ArrayList<>();
         openList = new Stack<>();
-        visited = new Graph();
+
     }
 
 

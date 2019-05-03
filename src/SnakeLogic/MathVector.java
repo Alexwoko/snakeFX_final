@@ -25,9 +25,11 @@ public class MathVector {
     }
 
     public MathVector getPos(){
-          MathVector v = new MathVector(this.x, this.y);
 
-        return v;
+
+       return new MathVector(this.x, this.y);
+
+
     }
 
 
@@ -36,8 +38,8 @@ public class MathVector {
 
         this.x = this.x + in.x;
         this.y = this.y + in.y;
-        MathVector result = new MathVector(this.x, this.y);
-        return result;
+        return new MathVector(this.x, this.y);
+
     }
 
     public MathVector sub(MathVector in){
@@ -45,9 +47,9 @@ public class MathVector {
 
         this.x = this.x - in.x;
         this.y = this.y - in.y;
-        MathVector result = new MathVector(this.x, this.y);
 
-        return result;
+       return new MathVector(this.x, this.y);
+
     }
 
 

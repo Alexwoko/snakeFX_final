@@ -11,11 +11,8 @@ public class GNode implements GraphItem {
      * Class variables
      */
 
-    private Edge[] edges;
     private GraphItem nodeFrom;
     private boolean visited;
-    private int numOfEdges;
-    private int gridIndex;
     private MathVector gridPos;
     private boolean walkable;
     private final int width = 20;
@@ -25,8 +22,6 @@ public class GNode implements GraphItem {
     private boolean prevVisitedThree;
     private float moveCost;
     private boolean hasCookie;
-    private boolean hasSuperCookie;
-    private boolean playerField;
 
     /**
      * class constructor
@@ -37,11 +32,8 @@ public class GNode implements GraphItem {
 
     GNode(float x, float y, int gridIndex){
 
-        edges = new Edge[4];
         nodeFrom = null;
         visited = false;
-        numOfEdges = 0;
-        this.gridIndex = gridIndex;
         gridPos = new MathVector(x, y);
         walkable = true;
         moveCost = Float.MAX_VALUE;
@@ -65,17 +57,6 @@ public class GNode implements GraphItem {
 
     public float getMoveCost() {return moveCost;}
 
-    public void addEdge(Edge e){
-
-        for(int i = 0; i < edges.length; i++){
-
-            if(i == numOfEdges){
-                edges[i] = e;
-            }
-        }
-        numOfEdges++;
-
-    }
 
     public float constrain(float x, float a, float b){
 
@@ -131,12 +112,6 @@ public class GNode implements GraphItem {
     }
 
     @Override
-    public void setX(int x) {gridPos.x = x;}
-
-    @Override
-    public void setY(int y) {gridPos.y = y;}
-
-    @Override
     public float getX() {
         return gridPos.x;
     }
@@ -145,16 +120,7 @@ public class GNode implements GraphItem {
     public float getY() {return gridPos.y;}
 
     @Override
-    public void setEdges(Edge[] edges) {this.edges = edges;}
-
-    @Override
-    public Edge[] getEdges() {return edges; }
-
-    @Override
     public boolean getVisited() { return visited;}
-
-    @Override
-    public int getGridIndex() {return gridIndex;}
 
     @Override
     public void setVisited(boolean visited) {this.visited = visited;}
@@ -162,12 +128,8 @@ public class GNode implements GraphItem {
     @Override
     public GraphItem getFrom() {return nodeFrom;}
 
-
     @Override
     public void setFrom(GraphItem from) {this.nodeFrom = from;}
-
-    @Override
-    public int getNumOfEdges() {return numOfEdges;}
 
 
     public String toString(){
@@ -178,7 +140,6 @@ public class GNode implements GraphItem {
         // sb.append(", Num of Edges = " + numOfEdges);
         //  sb.append("Edges length = " + edges.length);
         sb.append(", has cookie = " + hasCookie);
-        sb.append(", has supercookie = " + hasSuperCookie);
         sb.append(", been visited = " + visited);
         sb.append(", Grid pos = " + gridPos);
         sb.append( ", parent = " + nodeFrom);
