@@ -1,6 +1,6 @@
 
-€"squid:ClassVariableVisibilityCheck"MMake x a static final constant or non-public and provide accessors if needed.(ÃÏ’ºıÿÿÿÿ
 zsquid:S1488I"^Immediately return this expression instead of assigning it to the temporary variable "result".(åíéüÿÿÿÿ
 ;squid:S1659"Declare "y" on a separate line.(ÃÏ’ºıÿÿÿÿ
 €"squid:ClassVariableVisibilityCheck"MMake y a static final constant or non-public and provide accessors if needed.(ÃÏ’ºıÿÿÿÿ
+€"squid:ClassVariableVisibilityCheck"MMake x a static final constant or non-public and provide accessors if needed.(ÃÏ’ºıÿÿÿÿ
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ

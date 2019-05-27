@@ -12,6 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         //loader.load(getClass().getResource("SnakeGUI.fxml".ope));
         Parent root = loader.load();
