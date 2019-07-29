@@ -8,6 +8,27 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+
+/**
+ *
+ *       -- PACMAN-REPLICA --
+ *
+ * Dette program er skrevet i forårssemesteret 2019 på RUC til kurset 'Essentiel Computing II' eksamen.
+ * Programmet er skrevet ud fra en skabelon (JakeGame) - og er efterfølgende bygget op med
+ * hjælp fra kursusmateriale samt undervisning.
+ *
+ * Selve pathfinding algoritmerne har jeg arbejdet med i et tidligere semester-projekt som
+ * delvist var inspireret af Sebastian Lauges implementering i C# Unity: https://www.youtube.com/user/Cercopithecan
+ *
+ * Derudover har jeg oprettet en 'MathVector' klasse som er tilsvarende til PVector klassen i processing med inspiration fra
+ * 'Shiffmann D., The Nature Of Code, 2012'. Dette er tydeligvis overkill, men var en ekstra udfordring jeg stillede mig selv.
+ *
+ *
+ * @version 
+ * @author alextao
+ *
+ */
+
 public class Main extends Application {
 
     @Override
