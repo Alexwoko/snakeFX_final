@@ -103,8 +103,6 @@ public class Controller {
 
         controlPlayers();
 
-
-
         drawCanvas();
 
     }

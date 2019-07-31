@@ -13,7 +13,6 @@ public class PathfinderTest {
     String algorithmOne;
     String algorithmTwo;
     String algorithmThree;
-    Pathfinder pathfinder;
     Grid myGrid;
 
 

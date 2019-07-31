@@ -66,9 +66,9 @@ public class Pathfinder {
 
     /**
      * A method that finds and returns the neigbhours of a specific ghost
-     * @param n
-     * @param ram
-     * @return
+     * @param n GNode
+     * @param ram RandomRambler
+     * @return List
      */
 
     private List<GNode> getNeighbours(GNode n, RandomRambler ram){
@@ -110,8 +110,8 @@ public class Pathfinder {
     /**
      * A method to go back through the path, insert the nodes into the path list and
      * finally reverse the list so we can do a "walking animation" travel.
-     * @param startNode
-     * @param targetNode
+     * @param startNode GNode
+     * @param targetNode GNode
      */
 
     public void retracePath(GNode startNode, GNode targetNode){
@@ -136,8 +136,8 @@ public class Pathfinder {
 
     /**
      * Depth first search
-     * @param seeker
-     * @param target
+     * @param seeker RandomRambler
+     * @param target MovingObject
      */
 
     private void depthFirstSearch(RandomRambler seeker, MovingObject target){
@@ -188,8 +188,8 @@ int visitedNodes = 0;
 
     /**
      * Breadth first search
-     * @param seeker
-     * @param target
+     * @param seeker RandomRambler
+     * @param target MovingObject
      */
 
     public void breadthFirstSearch(RandomRambler seeker, MovingObject target){
@@ -243,8 +243,8 @@ int visitedNodes = 0;
 
     /**
      * Best first search
-     * @param seeker
-     * @param target
+     * @param seeker RandomRambler
+     * @param target MovingObject
      */
 
     private void bestFirstSearch(RandomRambler seeker, MovingObject target){
@@ -307,9 +307,9 @@ int visitedNodes = 0;
 
     /**
      * A method to return a movement cost between two nodes - used for best first
-     * @param nodeA
-     * @param nodeB
-     * @return
+     * @param nodeA GNode
+     * @param nodeB GNode
+     * @return float
      */
 
     private float getMoveCost(GNode nodeA, GNode nodeB){

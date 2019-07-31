@@ -24,7 +24,7 @@ import javafx.stage.Stage;
  * 'Shiffmann D., The Nature Of Code, 2012'. Dette er tydeligvis overkill, men var en ekstra udfordring jeg stillede mig selv.
  *
  *
- * @version 
+ * @version 1.3
  * @author alextao
  *
  */

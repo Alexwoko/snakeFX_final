@@ -48,73 +48,108 @@ public class GNode implements GraphItem {
 
     /**
      * Getter for hasCookie
-     * @return boolean
+     * @return hasCookie boolean
      */
 
     public boolean getHasCookie(){return hasCookie;}
 
+    /**
+     * Setter for moveCost
+     * @param moveCost
+     */
+
     public void setMoveCost(float moveCost) {this.moveCost = moveCost;}
+
+    /**
+     * Getter for moveCost
+     * @return moveCost float
+     */
 
     public float getMoveCost() {return moveCost;}
 
-
-    public float constrain(float x, float a, float b){
-
-        if(x < a){
-            return a;
-        }
-        if(b < x){
-            return b;
-        }else{
-            return x;
-        }
-    }
-
-    public MathVector repel(MovingObject o){
-
-        final float  strength = 1.01f;
-
-
-        MathVector dir;
-        MathVector oPos = new MathVector(o.getX(), o.getY());
-        dir = oPos.sub(this.gridPos);
-        float d = (float)dir.mag();  // Distance?
-        d = constrain(d, 1, 2);
-        dir.normalize();
-        float force =    strength / (d * d);
-        dir.mult((int)force);
-        return dir;
-    }
-
+    /**
+     * Getter for walkable
+     * @return boolean
+     */
 
     public boolean getWalkable(){return walkable;}
 
-    public void setWalkable(boolean walkable){
-        this.walkable = walkable;
+    /**
+     * Setter for walkable
+     * @param walkable boolean
+     */
 
-    }
+    public void setWalkable(boolean walkable){this.walkable = walkable;}
 
+    /**
+     * Setter for prevVisited
+     * @param prevVisited boolean
+     */
 
     public void setPrevVisited(boolean prevVisited){this.prevVisited = prevVisited;}
+
+    /**
+     * getter for prevVisited
+     * @return boolean
+     */
+
     public boolean getPrevVisited(){return prevVisited;}
+
+    /**
+     * Setter for prevVisitedTwo (to track second ghost)
+     * @param prevVisitedTwo boolean
+     */
+
     public void setPrevVisitedTwo(boolean prevVisitedTwo){this.prevVisitedTwo = prevVisitedTwo;}
+
+    /**
+     * Getter for prevVisitedTwo (to track second ghost)
+     * @return boolean
+     */
+
     public boolean getPrevVisitedTwo(){return prevVisitedTwo;}
+
+    /**
+     * Setter for prevVisitedThree (to track third ghost)
+     * @param prevVisitedThree boolean
+     */
+
     public void setPrevVisitedThree(boolean prevVisitedThree){this.prevVisitedThree = prevVisitedThree;}
+
+    /**
+     * Getter for prevVisitedThree (to track third ghost)
+     * @return boolean
+     */
+
     public boolean getPrevVisitedThree(){return prevVisitedThree;}
 
 
-    public int getWidth() {
-        return width;
-    }
+    /**
+     * Getter for node width
+     * @return int
+     */
 
-    public float getHeight() {
-        return height;
-    }
+    public int getWidth() {return width;}
+
+    /**
+     * Getter for node height
+     * @return float
+     */
+
+    public float getHeight() {return height;}
+
+    /**
+     * Getter for gridPos x
+     * @return float
+     */
 
     @Override
-    public float getX() {
-        return gridPos.x;
-    }
+    public float getX() {return gridPos.x;}
+
+    /**
+     * Getter for gridPos y
+     * @return
+     */
 
     @Override
     public float getY() {return gridPos.y;}
@@ -131,6 +166,48 @@ public class GNode implements GraphItem {
     @Override
     public void setFrom(GraphItem from) {this.nodeFrom = from;}
 
+
+    /**
+     * Constrain methods - constrains a value between two values.
+     * @param x float
+     * @param a float
+     * @param b float
+     * @return float
+     */
+
+    public float constrain(float x, float a, float b){
+
+        if(x < a){
+            return a;
+        }
+        if(b < x){
+            return b;
+        }else{
+            return x;
+        }
+    }
+
+    /**
+     * Repel method - gives a node the ability to repel a moving object - (when the node is a wall).
+     * @param o MovingObject
+     * @return MathVector
+     */
+
+
+    public MathVector repel(MovingObject o){
+
+        final float  strength = 1.01f;
+
+        MathVector dir;
+        MathVector oPos = new MathVector(o.getX(), o.getY());
+        dir = oPos.sub(this.gridPos);
+        float d = (float)dir.mag();  // Distance?
+        d = constrain(d, 1, 2);
+        dir.normalize();
+        float force =    strength / (d * d);
+        dir.mult((int)force);
+        return dir;
+    }
 
     public String toString(){
 
