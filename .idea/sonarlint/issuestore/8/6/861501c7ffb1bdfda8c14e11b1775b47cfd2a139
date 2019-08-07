@@ -1,8 +1,8 @@
 
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(æÁëÏ
 [
 squid:S106K"9Replace this use of System.out or System.err by a logger.(ƒÙ­üÿÿÿÿ8ÓÔœÖ¦-
 Tsquid:S1068"1Remove this unused "movingObjects" private field.(Ùıàéıÿÿÿÿ8ğÔÕƒ§-
-Hsquid:S1172S"*Remove this unused method parameter "now".(ÈÕ¢×8ÓÔœÖ¦-
 V
 squid:S106%"9Replace this use of System.out or System.err by a logger.(àÅóè8ÓÔœÖ¦-
-rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(æÁëÏ
+Hsquid:S1172S"*Remove this unused method parameter "now".(ÈÕ¢×8ÓÔœÖ¦-
