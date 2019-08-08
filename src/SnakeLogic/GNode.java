@@ -148,20 +148,40 @@ public class GNode implements GraphItem {
 
     /**
      * Getter for gridPos y
-     * @return
+     * @return float
      */
 
     @Override
     public float getY() {return gridPos.y;}
 
+    /**
+     * Getter for visited
+     * @return boolean
+     */
+
     @Override
     public boolean getVisited() { return visited;}
+
+    /**
+     * Setter for visited
+     * @param visited boolean
+     */
 
     @Override
     public void setVisited(boolean visited) {this.visited = visited;}
 
+    /**
+     * Getter for the attribute nodeFrom (can point back to a neighbour node)
+     * @return GraphItem
+     */
+
     @Override
     public GraphItem getFrom() {return nodeFrom;}
+
+    /**
+     * Setter for the attribute nodeFrom (can point back to a neighbour node)
+     * @param from GraohNode
+     */
 
     @Override
     public void setFrom(GraphItem from) {this.nodeFrom = from;}

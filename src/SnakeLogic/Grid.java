@@ -160,7 +160,7 @@ public class Grid {
     }
 
     /**
-     * A method to "print" the pacman maze
+     * A method to "print"/build the pacman maze
      */
 
     public void buildMaze(){
@@ -378,7 +378,7 @@ public class Grid {
                 }
 
 
-                g.fillRoundRect(gNodes[i][j].getX() * fieldWidth, gNodes[i][j].getY() * fieldHeight, gNodes[i][j].getWidth(), gNodes[i][j].getHeight(), 3, 3);
+            //    g.fillRoundRect(gNodes[i][j].getX() * fieldWidth, gNodes[i][j].getY() * fieldHeight, gNodes[i][j].getWidth(), gNodes[i][j].getHeight(), 3, 3);
 
                 //    if (currentMover.visitedContainsNode(gNodes[i][j]) && gNodes[i][j].getWalkable()) {
 

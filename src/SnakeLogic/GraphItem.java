@@ -1,5 +1,11 @@
 package SnakeLogic;
 
+
+/**
+ * GraphItem interface
+ * @param <T>
+ */
+
 public interface GraphItem<T> {
 
 
