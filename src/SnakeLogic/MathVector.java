@@ -78,15 +78,15 @@ public class MathVector {
     }
 
     /**
-     * Get the magnitude/length of a vector. (We're calculating the hypotenus on a triangle where x and y makes up the sides. Since A^2 + B^2 = C^2
+     * Get the magnitude/length of a vector. (We're calculating the hypotenuse on a triangle where x and y makes up the sides. Since A^2 + B^2 = C^2
      * then we get C = √A^2 + B^2
      * @return result double
      */
 
     public double mag(){
 
-        double result = Math.sqrt((this.x * this.x) + (this.y * this.y));
-        return result;
+        return Math.sqrt((this.x * this.x) + (this.y * this.y));
+       // return result;
     }
 
     /**

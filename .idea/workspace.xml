@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/SnakeLogic/GNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/GNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SnakeLogic/GraphItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/GraphItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SnakeLogic/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/GNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/GNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/MathVector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/MathVector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/PathfinderTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/snakeFX/SnakeLogic/PathfinderTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SnakeLogic/MathVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/MathVector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SnakeLogic/PathfinderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SnakeLogic/PathfinderTest.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -21,21 +23,42 @@
     <SUITE FILE_PATH="coverage/snakeFX$Manual_container_configuration__TreeTest_getSize.ic" NAME="Manual container configuration: TreeTest.getSize Coverage Results" MODIFIED="1555504936709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>SnakeLogic.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/snakeFX$MathVectorTest.ic" NAME="MathVectorTest Coverage Results" MODIFIED="1565295961529" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>SnakeLogic.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/snakeFX$PathfinderTest_bestFirstSearch.ic" NAME="PathfinderTest.bestFirstSearch Coverage Results" MODIFIED="1556698336440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>SnakeLogic.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/snakeFX$PathfinderTest_playerPosition.ic" NAME="PathfinderTest.playerPosition Coverage Results" MODIFIED="1565286795436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>SnakeLogic.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/snakeFX$PathfinderTest.ic" NAME="PathfinderTest Coverage Results" MODIFIED="1565288934069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>SnakeLogic.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/snakeFX$PathfinderTest_testBreadthFirst.ic" NAME="PathfinderTest.testBreadthFirst Coverage Results" MODIFIED="1556698265331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>SnakeLogic.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/snakeFX$PathfinderTest_breadthFirstSearch.ic" NAME="PathfinderTest.breadthFirstSearch Coverage Results" MODIFIED="1565287613169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>SnakeLogic.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/snakeFX$MathVectorTest_setMagnitudeTest.ic" NAME="MathVectorTest.setMagnitudeTest Coverage Results" MODIFIED="1565296319672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>SnakeLogic.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/snakeFX$Main.ic" NAME="Main Coverage Results" MODIFIED="1555513856711" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>SnakeLogic.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/snakeFX$PathfinderTest_retracePath.ic" NAME="PathfinderTest.retracePath Coverage Results" MODIFIED="1556699593315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/snakeFX$PathfinderTest_retracePath.ic" NAME="PathfinderTest.retracePath Coverage Results" MODIFIED="1565258130814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>SnakeLogic.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/snakeFX$MathVectorTest_normalizeVectorTest.ic" NAME="MathVectorTest.normalizeVectorTest Coverage Results" MODIFIED="1565295919469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>SnakeLogic.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/snakeFX$MathVectorTest_limitVectorTest.ic" NAME="MathVectorTest.limitVectorTest Coverage Results" MODIFIED="1565296897495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>SnakeLogic.*</FILTER>
     </SUITE>
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="75" />
+    <option name="myElementSize" value="62" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -84,18 +107,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="24" column="2" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
+            <state relative-caret-position="-1048">
               <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -107,8 +121,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Pathfinder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4530">
-              <caret line="310" column="25" selection-start-line="310" selection-start-column="25" selection-end-line="310" selection-end-column="25" />
+            <state relative-caret-position="969">
+              <caret line="168" column="42" selection-start-line="168" selection-start-column="42" selection-end-line="168" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SnakeLogic/GNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2760">
+              <caret line="184" selection-start-line="184" selection-end-line="184" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MathVectorTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="98" column="22" lean-forward="true" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,8 +151,44 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MathVector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="115" lean-forward="true" selection-start-line="115" selection-end-line="115" />
+            <state relative-caret-position="459">
+              <caret line="88" column="24" lean-forward="true" selection-start-line="88" selection-start-column="24" selection-end-line="88" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SnakeLogic/PathfinderTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="831">
+              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Grid.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="81" column="33" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MovingObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="920">
+              <caret line="96" selection-start-line="96" selection-end-line="96" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -130,8 +201,8 @@
         <option value="CSS File" />
         <option value="Arquillian JUnit Test Class" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -174,20 +245,21 @@
         <option value="$PROJECT_DIR$/src/SnakeLogic/MovingObject.java" />
         <option value="$PROJECT_DIR$/src/SnakeLogic/Player.java" />
         <option value="$PROJECT_DIR$/src/SnakeGUI/Main.java" />
-        <option value="$PROJECT_DIR$/src/SnakeLogic/PathfinderTest.java" />
         <option value="$PROJECT_DIR$/src/SnakeGUI/Controller.java" />
         <option value="$PROJECT_DIR$/src/SnakeLogic/Pathfinder.java" />
         <option value="$PROJECT_DIR$/src/SnakeLogic/Grid.java" />
         <option value="$PROJECT_DIR$/src/SnakeLogic/GraphItem.java" />
         <option value="$PROJECT_DIR$/src/SnakeLogic/GNode.java" />
+        <option value="$PROJECT_DIR$/src/SnakeLogic/PathfinderTest.java" />
+        <option value="$PROJECT_DIR$/src/MathVectorTest.java" />
+        <option value="$PROJECT_DIR$/src/SnakeLogic/MathVectorTest.java" />
         <option value="$PROJECT_DIR$/src/SnakeLogic/MathVector.java" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="5" />
-    <option name="y" value="39" />
+    <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
   </component>
@@ -246,7 +318,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565257950756" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565297199600" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
@@ -263,8 +335,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -294,7 +365,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.MathVectorTest.limitVectorTest">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="DEPLOY" value="true" />
@@ -415,6 +486,85 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method v="2" />
     </configuration>
+    <configuration name="MathVectorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="snakeFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SnakeLogic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="SnakeLogic" />
+      <option name="MAIN_CLASS_NAME" value="SnakeLogic.MathVectorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MathVectorTest.limitVectorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="snakeFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SnakeLogic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="SnakeLogic" />
+      <option name="MAIN_CLASS_NAME" value="SnakeLogic.MathVectorTest" />
+      <option name="METHOD_NAME" value="limitVectorTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MathVectorTest.normalizeVectorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="snakeFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SnakeLogic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="SnakeLogic" />
+      <option name="MAIN_CLASS_NAME" value="SnakeLogic.MathVectorTest" />
+      <option name="METHOD_NAME" value="normalizeVectorTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MathVectorTest.setMagnitudeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="snakeFX" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SnakeLogic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="SnakeLogic" />
+      <option name="MAIN_CLASS_NAME" value="SnakeLogic.MathVectorTest" />
+      <option name="METHOD_NAME" value="setMagnitudeTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PathfinderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="snakeFX" />
       <extension name="coverage">
@@ -426,86 +576,6 @@
       <option name="PACKAGE_NAME" value="SnakeLogic" />
       <option name="MAIN_CLASS_NAME" value="SnakeLogic.PathfinderTest" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PathfinderTest.bestFirstSearch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="snakeFX" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="SnakeLogic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="SnakeLogic" />
-      <option name="MAIN_CLASS_NAME" value="SnakeLogic.PathfinderTest" />
-      <option name="METHOD_NAME" value="bestFirstSearch" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PathfinderTest.retracePath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="snakeFX" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="SnakeLogic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="SnakeLogic" />
-      <option name="MAIN_CLASS_NAME" value="SnakeLogic.PathfinderTest" />
-      <option name="METHOD_NAME" value="retracePath" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PathfinderTest.testBreadthFirst" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="snakeFX" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="SnakeLogic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="SnakeLogic" />
-      <option name="MAIN_CLASS_NAME" value="SnakeLogic.PathfinderTest" />
-      <option name="METHOD_NAME" value="testBreadthFirst" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PathfinderTest.testDepthFirst" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="snakeFX" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="SnakeLogic.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="SnakeLogic" />
-      <option name="MAIN_CLASS_NAME" value="SnakeLogic.PathfinderTest" />
-      <option name="METHOD_NAME" value="testDepthFirst" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
@@ -626,20 +696,20 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="JUnit.TreeTest" />
-      <item itemvalue="JUnit.PathfinderTest.testDepthFirst" />
       <item itemvalue="JUnit.PathfinderTest" />
-      <item itemvalue="JUnit.PathfinderTest.testBreadthFirst" />
-      <item itemvalue="JUnit.PathfinderTest.bestFirstSearch" />
-      <item itemvalue="JUnit.PathfinderTest.retracePath" />
       <item itemvalue="Maven.TreeTest" />
+      <item itemvalue="JUnit.MathVectorTest" />
+      <item itemvalue="JUnit.MathVectorTest.normalizeVectorTest" />
+      <item itemvalue="JUnit.MathVectorTest.setMagnitudeTest" />
+      <item itemvalue="JUnit.MathVectorTest.limitVectorTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PathfinderTest.retracePath" />
+        <item itemvalue="JUnit.MathVectorTest.limitVectorTest" />
+        <item itemvalue="JUnit.MathVectorTest.setMagnitudeTest" />
+        <item itemvalue="JUnit.MathVectorTest" />
+        <item itemvalue="JUnit.MathVectorTest.normalizeVectorTest" />
         <item itemvalue="JUnit.PathfinderTest" />
-        <item itemvalue="JUnit.PathfinderTest.bestFirstSearch" />
-        <item itemvalue="JUnit.PathfinderTest.testBreadthFirst" />
-        <item itemvalue="JUnit.PathfinderTest.testDepthFirst" />
       </list>
     </recent_temporary>
   </component>
@@ -728,44 +798,44 @@
       <workItem from="1565003819130" duration="226000" />
       <workItem from="1565020524837" duration="588000" />
       <workItem from="1565040750556" duration="107000" />
-      <workItem from="1565096208728" duration="3707000" />
+      <workItem from="1565096208728" duration="13836000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PathfinderTest_bestFirstSearch - 2019.05.01 at 10h 12m 59s.xml">
-      <configuration name="PathfinderTest.bestFirstSearch" configurationId="JUnit" />
+    <history-entry file="MathVectorTest - 2019.08.08 at 22h 23m 35s.xml">
+      <configuration name="MathVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PathfinderTest_retracePath - 2019.05.01 at 10h 21m 35s.xml">
-      <configuration name="PathfinderTest.retracePath" configurationId="JUnit" />
+    <history-entry file="MathVectorTest_normalizeVectorTest - 2019.08.08 at 22h 25m 21s.xml">
+      <configuration name="MathVectorTest.normalizeVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PathfinderTest_retracePath - 2019.05.01 at 10h 24m 11s.xml">
-      <configuration name="PathfinderTest.retracePath" configurationId="JUnit" />
+    <history-entry file="MathVectorTest - 2019.08.08 at 22h 25m 40s.xml">
+      <configuration name="MathVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PathfinderTest_retracePath - 2019.05.01 at 10h 24m 17s.xml">
-      <configuration name="PathfinderTest.retracePath" configurationId="JUnit" />
+    <history-entry file="MathVectorTest - 2019.08.08 at 22h 26m 03s.xml">
+      <configuration name="MathVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PathfinderTest_retracePath - 2019.05.01 at 10h 25m 31s.xml">
-      <configuration name="PathfinderTest.retracePath" configurationId="JUnit" />
+    <history-entry file="MathVectorTest_setMagnitudeTest - 2019.08.08 at 22h 32m 01s.xml">
+      <configuration name="MathVectorTest.setMagnitudeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PathfinderTest_retracePath - 2019.05.01 at 10h 25m 54s.xml">
-      <configuration name="PathfinderTest.retracePath" configurationId="JUnit" />
+    <history-entry file="MathVectorTest_limitVectorTest - 2019.08.08 at 22h 35m 33s.xml">
+      <configuration name="MathVectorTest.limitVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PathfinderTest - 2019.05.01 at 10h 26m 27s.xml">
-      <configuration name="PathfinderTest" configurationId="JUnit" />
+    <history-entry file="MathVectorTest_limitVectorTest - 2019.08.08 at 22h 36m 12s.xml">
+      <configuration name="MathVectorTest.limitVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PathfinderTest_retracePath - 2019.05.01 at 10h 27m 06s.xml">
-      <configuration name="PathfinderTest.retracePath" configurationId="JUnit" />
+    <history-entry file="MathVectorTest_limitVectorTest - 2019.08.08 at 22h 36m 42s.xml">
+      <configuration name="MathVectorTest.limitVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PathfinderTest_retracePath - 2019.05.01 at 10h 33m 15s.xml">
-      <configuration name="PathfinderTest.retracePath" configurationId="JUnit" />
+    <history-entry file="MathVectorTest_limitVectorTest - 2019.08.08 at 22h 39m 07s.xml">
+      <configuration name="MathVectorTest.limitVectorTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PathfinderTest_retracePath - 2019.05.01 at 10h 42m 19s.xml">
-      <configuration name="PathfinderTest.retracePath" configurationId="JUnit" />
+    <history-entry file="MathVectorTest_limitVectorTest - 2019.08.08 at 22h 41m 39s.xml">
+      <configuration name="MathVectorTest.limitVectorTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="540670000" />
+    <option name="totallyTimeSpent" value="550799000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -790,7 +860,7 @@
       <window_info id="Palette&#9;" order="7" />
       <window_info anchor="bottom" id="Application Servers" order="0" />
       <window_info anchor="bottom" id="Changes" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26751593" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26751593" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3057325" />
       <window_info anchor="bottom" id="Profiler" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" weight="0.3299363" />
@@ -807,7 +877,7 @@
       <window_info anchor="bottom" id="Database Changes" order="16" show_stripe_button="false" />
       <window_info anchor="bottom" id="Docker" order="17" show_stripe_button="false" />
       <window_info anchor="bottom" id="SonarLint" order="18" weight="0.31082803" />
-      <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.22603719" />
+      <window_info active="true" anchor="right" id="Coverage" order="0" side_tool="true" visible="true" weight="0.22603719" />
       <window_info anchor="right" id="Palette" order="1" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" id="JetGradle" order="3" />
@@ -1043,33 +1113,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Item.java" />
     <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Node.java" />
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/GameObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/RandomRambler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/Assert.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#594#595#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runners/ParentRunner.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
@@ -1081,17 +1124,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-          <folding>
-            <element signature="e#146#147#0" expanded="true" />
-            <element signature="e#173#174#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1111,43 +1143,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/PathfinderTest.java">
+    <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="270">
+          <caret line="24" column="2" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/GameObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="360">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MovingObject.java">
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1627">
-          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Grid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5685">
-          <caret line="379" lean-forward="true" selection-start-line="379" selection-end-line="379" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1158,31 +1171,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/GNode.java">
+    <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="184" lean-forward="true" selection-start-line="184" selection-end-line="184" />
+        <state relative-caret-position="-1048">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/RandomRambler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1122">
+          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MovingObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="920">
+          <caret line="96" selection-start-line="96" selection-end-line="96" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Grid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="81" column="33" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SnakeLogic/Pathfinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4530">
-          <caret line="310" column="25" selection-start-line="310" selection-start-column="25" selection-end-line="310" selection-end-column="25" />
+        <state relative-caret-position="969">
+          <caret line="168" column="42" selection-start-line="168" selection-start-column="42" selection-end-line="168" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SnakeGUI/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/MathVectorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="24" column="2" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
+        <state relative-caret-position="90">
+          <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/GNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2760">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/PathfinderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="831">
+          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/Assert.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="263" selection-start-line="263" selection-end-line="263" />
+          <folding>
+            <element signature="e#594#595#0" expanded="true" />
+            <element signature="e#645#646#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MathVectorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="98" column="22" lean-forward="true" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SnakeLogic/MathVector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="115" lean-forward="true" selection-start-line="115" selection-end-line="115" />
+        <state relative-caret-position="459">
+          <caret line="88" column="24" lean-forward="true" selection-start-line="88" selection-start-column="24" selection-end-line="88" selection-end-column="24" />
         </state>
       </provider>
     </entry>

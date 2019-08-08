@@ -18,7 +18,7 @@ public class PathfinderTest {
 
     @Before
 public void setUp() throws Exception{
-        ran = new RandomRambler(13, 9, "One" );
+        ran = new RandomRambler(6, 9, "One" );
         player = new Player(13, 14);
         algorithmOne = "DEPTH FIRST SEARCH";
         algorithmTwo = "BREADTH FIRST SEARCH";
@@ -30,47 +30,53 @@ public void setUp() throws Exception{
 
     }
 
-    @Test
-    public void retracePath(){
 
-        Assert.assertTrue(ran.getMyPath().isEmpty());
-        myGrid.getPathfinder().findPath(ran, player, "DEPTH FIRST SEARCH");
-        myGrid.getPathfinder().retracePath(myGrid.getTile(ran.getX(), ran.getY()), myGrid.getTile(player.getX(), player.getY()));
+
+    @Test
+    public void debthFirstTest(){
+
+    myGrid.controlTheHunt(ran, player, algorithmOne);
+
+    Assert.assertTrue(!ran.getMyPath().isEmpty());
+
+        float posX = ran.getMyPath().get(ran.getMyPath().size() - 1).getX();
+        float posY = ran.getMyPath().get(ran.getMyPath().size() - 1).getY();
+
+        assertEquals((double) posX, (double) player.getX(), 0);
+        assertEquals((double) posY, (double)player.getY(), 0);
+
+    }
+
+    @Test
+    public void breadthFirstSearch(){
+
+        myGrid.controlTheHunt(ran, player, algorithmTwo);
+
         Assert.assertTrue(!ran.getMyPath().isEmpty());
 
+        float targetX = ran.getMyPath().get(ran.getMyPath().size()-1).getX();
+        float targetY = ran.getMyPath().get(ran.getMyPath().size()-1).getY();
+
+        assertEquals((double) targetX, (double)player.getX(), 0);
+        assertEquals((double) targetY, (double)player.getY(), 0);
 
     }
 
-    @Test
-    public void testDepthFirst(){
-
-        Assert.assertTrue(ran.getMyPath().isEmpty());
-
-        myGrid.getPathfinder().findPath(ran, player, "DEPTH FIRST SEARCH");
-Assert.assertTrue(!ran.getMyPath().isEmpty());
-
-    }
-
-    @Test
-    public void testBreadthFirst(){
-
-        Assert.assertTrue(ran.getMyPath().isEmpty());
-
-        myGrid.getPathfinder().findPath(ran, player, "BREADTH FIRST SEARCH");
-        Assert.assertTrue(!ran.getMyPath().isEmpty());
-    }
 
     @Test
     public void bestFirstSearch(){
 
-        Assert.assertTrue(ran.getMyPath().isEmpty());
+        myGrid.controlTheHunt(ran, player, algorithmThree);
 
-        myGrid.getPathfinder().findPath(ran, player, "BEST FIRST SEARCH");
         Assert.assertTrue(!ran.getMyPath().isEmpty());
 
+        float targetX = ran.getMyPath().get(ran.getMyPath().size()-1).getX();
+        float targetY = ran.getMyPath().get(ran.getMyPath().size()-1).getY();
+
+        assertEquals((double) targetX, (double)player.getX(), 0);
+        assertEquals((double) targetY, (double)player.getY(), 0);
+
     }
-
-
 
 
 
