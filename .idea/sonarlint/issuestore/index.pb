@@ -33,3 +33,7 @@ I
 src/SnakeLogic/GNode.java,5/4/541f07c18c28565bb752b58444aea2b9f14bcaeb
 R
 "src/SnakeLogic/PathfinderTest.java,2/1/214c6b15371ac0fccd6b2581cc29e48217b9f20c
+R
+"src/SnakeLogic/MathVectorTest.java,3/7/378488cdc8990b2e0089dfad4c70768fb7c5d844
+T
+$src/SnakeLogic/MovingObjectTest.java,9/7/9765f4450a59c2cd0a98ae277274ff0976f844f0

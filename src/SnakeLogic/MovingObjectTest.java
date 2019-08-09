@@ -31,14 +31,11 @@ public class MovingObjectTest {
 
     }
 
+
     @Test
-    public void updateTest(){
+    public void stopTest(){
 
-        MathVector startVel = new MathVector(0, 0);
-        MathVector startAccel = new MathVector(0, 0);
-
-        assertEquals(mo1.getVel(), startVel);
-        assertEquals(mo1.getAccel(), startAccel);
+        mo1.stopMoving();
 
 
 

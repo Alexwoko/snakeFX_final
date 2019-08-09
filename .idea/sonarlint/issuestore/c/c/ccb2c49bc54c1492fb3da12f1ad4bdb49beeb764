@@ -1,5 +1,5 @@
 
-rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ
 Fsquid:S1068 "(Remove this unused "name" private field.(Ë¥¼8ğÅş¦-
-\squid:UselessImportCheck",Remove this unused import 'java.util.Stack'.(ŞÈ†üúÿÿÿÿ8÷ÕœÖ¦-
 Nsquid:S1068"+Remove this unused "visited" private field.(”íöóÿÿÿÿÿ8÷ÕœÖ¦-
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ
+\squid:UselessImportCheck",Remove this unused import 'java.util.Stack'.(ŞÈ†üúÿÿÿÿ8÷ÕœÖ¦-

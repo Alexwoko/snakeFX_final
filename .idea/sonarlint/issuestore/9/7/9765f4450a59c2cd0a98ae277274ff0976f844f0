@@ -1,3 +1,2 @@
 
-=squid:S2326	"T is not used in the interface.(ÓÚ8ºş­Ó¥-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ

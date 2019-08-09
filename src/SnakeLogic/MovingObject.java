@@ -100,7 +100,7 @@ public void stopMoving(String t){
 
             this.vel.mult(0);
             this.accel.mult(0);
-        }
+        } 
 }
 
     /**
