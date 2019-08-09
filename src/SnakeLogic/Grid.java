@@ -114,7 +114,6 @@ public class Grid {
         }
     }
 
-
     /**
      * Puts "pac-man" food into the maze
      */
@@ -226,7 +225,7 @@ public class Grid {
      * @return String - direction
      */
 
-    public String scanForWalls(MovingObject o){
+    public void scanForWalls(MovingObject o){
 
         int checkX;
         int checkY;
@@ -245,29 +244,24 @@ public class Grid {
                 if(checkX >= 0 && checkX <= 29 && checkY >= 0 && checkY <= frameHeight) {
 
                     if (checkX == o.getX() + 1 && checkY == o.getY() && !gNodes[checkX][checkY].getWalkable() && o.getDir() == "RIGHT") {
-                        right = gNodes[checkX][checkY];
-                        o.applyRepeller(right);
-                        return "right";
+                        o.stopMoving();
+
                     }
                     if (checkX == o.getX() -1 && checkY == o.getY() && !gNodes[checkX][checkY].getWalkable() && o.getDir() == "LEFT") {
-                        left = gNodes[checkX][checkY];
-                        o.applyRepeller(left);
-                        return "left";
+                        o.stopMoving();
+
                     }
                     if (checkX == o.getX() && checkY == o.getY() -1 && !gNodes[checkX][checkY].getWalkable()&& o.getDir() == "UP") {
-                        up = gNodes[checkX][checkY];
-                        o.applyRepeller(up);
-                        return "up";
+                        o.stopMoving();
+
                     }
                     if (checkX == o.getX() && checkY == o.getY() + 1 && !gNodes[checkX][checkY].getWalkable() && o.getDir() == "DOWN") {
-                        down = gNodes[checkX][checkY];
-                        o.applyRepeller(down);
-                        return "down";
+                        o.stopMoving();
+
                     }
                 }
             }
         }
-        return null;
     }
 
     /**
@@ -281,8 +275,8 @@ public class Grid {
             for(int j = 0; j <  frameHeight; j+=1f){
 
                 if(o.getX() == i && o.getY() == j && gNodes[i][j].getWalkable()){
+                    scanForWalls(o);
 
-                    o.stopMoving(scanForWalls(o));
                 }
             }
         }

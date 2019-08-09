@@ -209,11 +209,11 @@ public class GNode implements GraphItem {
 
     /**
      * Repel method - gives a node the ability to repel a moving object - (when the node is a wall).
-     * @param o MovingObject
+     * 
      * @return MathVector
      */
 
-
+/*
     public MathVector repel(MovingObject o){
 
         final float  strength = 1.01f;
@@ -228,6 +228,7 @@ public class GNode implements GraphItem {
         dir.mult((int)force);
         return dir;
     }
+    */
 
     public String toString(){
 

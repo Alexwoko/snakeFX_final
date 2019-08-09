@@ -75,12 +75,14 @@ public class RandomRambler extends MovingObject {
      * @param node
      */
 
+    /*
     @Override
     public void applyRepeller(GNode node) {
 
         MathVector force = node.repel(this);
         this.applyForce(force);
     }
+    */
 
     /**
      * Method to follow the path give by Pathfinder class

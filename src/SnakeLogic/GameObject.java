@@ -19,7 +19,7 @@ public interface GameObject {
     void moveUp();
     void moveDown();
     void setDir(String dir);
-    void applyRepeller(GNode node);
+ //   void applyRepeller(GNode node);
     void applyForce(MathVector force);
     String toString();
 

@@ -90,9 +90,17 @@ public abstract class MovingObject implements GameObject{
 
     /**
      * Stop movement
-     * @param t
+     *
      */
 
+    public void stopMoving(){
+
+            this.vel.mult(0);
+            this.accel.mult(0);
+
+    }
+
+    /*
 public void stopMoving(String t){
 
 
@@ -100,8 +108,10 @@ public void stopMoving(String t){
 
             this.vel.mult(0);
             this.accel.mult(0);
-        } 
+        }
 }
+
+*/
 
     /**
      * getter for velocity
@@ -282,10 +292,13 @@ public MathVector getAccel(){return accel;}
      * @param node
      */
 
+    /*
     public void applyRepeller(GNode node) {
 
         MathVector force = node.repel(this);
         this.applyForce(force);
     }
+
+    */
 
 }
