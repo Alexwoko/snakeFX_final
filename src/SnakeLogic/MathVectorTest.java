@@ -99,8 +99,8 @@ public class MathVectorTest {
         float max = 4;
         a.limit(max);
 
-        assertEquals(a.x, max, 0);
-        assertEquals(a.y, max, 0);
+        assertTrue(a.x < max);
+        assertTrue(a.y < max);
 
 
     }
