@@ -47,14 +47,6 @@ public class Grid {
 
     }
 
-    /**
-     * Getter
-     * Thw grid controls the pathfinder object. This method returns the pathfinder object.
-     *
-     * @return Pathfinder
-     */
-
-    public Pathfinder getPathfinder(){return pathfinder;}
 
     /**
      * Getter for the score
@@ -127,10 +119,7 @@ public class Grid {
                 if(!gNodes[i][j].getWalkable()){
                continue;
                 } else{
-
-
                         gNodes[i][j].setHasCookie(true);
-
                     }
             }
         }
@@ -230,10 +219,6 @@ public class Grid {
         int checkX;
         int checkY;
 
-        GNode left;
-        GNode right;
-        GNode up;
-        GNode down;
 
         for(int i = -1; i <= 1; i++){
             for(int j = -1; j <= 1; j++){

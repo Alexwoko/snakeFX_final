@@ -37,52 +37,11 @@ public class RandomRambler extends MovingObject {
 
     }
 
-    /**
-     * Getter for name
-     * @return
-     */
-
-    public void randomWalk(){
-
-        Random ran = new Random();
-
-        int caseNum = ran.nextInt(3);
-
-
-        switch (caseNum){
-
-            case 0:
-                this.moveDown();
-                break;
-            case 1:
-                this.moveLeft();
-               break;
-            case 2:
-                this.moveRight();
-                break;
-            case 3:
-                this.moveUp();
-                break;
-
-        }
-
-    }
 
     public String getName(){return  name;}
 
-    /**
-     * Method used in wall detection
-     * @param node
-     */
 
-    /*
-    @Override
-    public void applyRepeller(GNode node) {
 
-        MathVector force = node.repel(this);
-        this.applyForce(force);
-    }
-    */
 
     /**
      * Method to follow the path give by Pathfinder class
@@ -149,4 +108,22 @@ public class RandomRambler extends MovingObject {
         getAccel().mult(0f);
 
     }
+
+    public float getDistance(MovingObject o){
+
+        float x1 = this.getX();
+        float y1 = this.getY();
+
+        float x2 = o.getX();
+        float y2 = o.getY();
+
+        float distX = x2 - x1;
+        float distY = y2 - y1;
+
+        return distX + distY;
+
+
+    }
+
+
 }

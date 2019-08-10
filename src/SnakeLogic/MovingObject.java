@@ -97,21 +97,10 @@ public abstract class MovingObject implements GameObject{
 
             this.vel.mult(0);
             this.accel.mult(0);
+            this.dir = null;
 
     }
 
-    /*
-public void stopMoving(String t){
-
-
-        if (t == "up" || t == "right" || t == "left" || t== "down"){
-
-            this.vel.mult(0);
-            this.accel.mult(0);
-        }
-}
-
-*/
 
     /**
      * getter for velocity
@@ -285,20 +274,5 @@ public MathVector getAccel(){return accel;}
         applyForce(down);
 
     }
-
-    /**
-     * A method that takes a node to let the node repel the movingobject
-     * if the node is a wall.
-     * @param node
-     */
-
-    /*
-    public void applyRepeller(GNode node) {
-
-        MathVector force = node.repel(this);
-        this.applyForce(force);
-    }
-
-    */
 
 }

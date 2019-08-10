@@ -47,8 +47,10 @@ public class Controller {
     {
 
 
+
+
         calculateFields();
-      //  myGrid.getPathfinder().setPlayer(player);
+        //  myGrid.getPathfinder().setPlayer(player);
 
         // Start and control game loop
         new AnimationTimer(){
@@ -88,15 +90,19 @@ public class Controller {
             case S:
                 this.player.moveDown();
                 break;
+
             case A:
-                this.player.moveLeft();
-                break;
+                    this.player.moveLeft();
+                    break;
+
             case D:
-                this.player.moveRight();
-                break;
+                    this.player.moveRight();
+                    break;
+
             case W:
-                this.player.moveUp();
-                break;
+                    this.player.moveUp();
+                    break;
+
             default:
                 break;
         }
@@ -108,6 +114,11 @@ public class Controller {
     }
 
     private void controlPlayers(){
+
+
+
+//player.setMaxSpeed(2);
+
 
 
 
@@ -123,9 +134,39 @@ public class Controller {
 
         if(player.getPos().x >= 0 && player.getPos().x < 29) {
 
+
+            //   System.out.println(ranRam.getDistance(player));
+
+
             myGrid.controlTheHunt(ranRam, player, "DEPTH FIRST SEARCH");
+
+
+            if(ranRamTwo.getDistance(player) < -5 || ranRamTwo.getDistance(player) > 5){
+
+                myGrid.controlTheHunt(ranRamTwo, ranRam, "BREADTH FIRST SEARCH");
+
+            } else{
+
                 myGrid.controlTheHunt(ranRamTwo, player, "BREADTH FIRST SEARCH");
-            myGrid.controlTheHunt(ranRamThree,player, "BEST FIRST SEARCH");
+
+            }
+
+
+
+            if(ranRamThree.getDistance(player) < -5 || ranRamThree.getDistance(player) > 5){
+
+                myGrid.controlTheHunt(ranRamThree, predictTheFuture(player), "BEST FIRST SEARCH");
+
+              //  myGrid.controlTheHunt(ranRamThree, ranRamTwo, "BEST FIRST SEARCH");
+
+            } else{
+                myGrid.controlTheHunt(ranRamThree,player, "BEST FIRST SEARCH");
+            }
+
+            controlPlayerSpeed(player);
+
+
+
 
         }
 
@@ -181,4 +222,178 @@ public class Controller {
         g.fillText("Score: " + Integer.toString(myGrid.getShowScore()), canvas.getWidth() - 160, 10, 100);
 
     }
+
+
+    public MovingObject predictTheFuture(MovingObject o){
+
+        int checkX;
+        int checkY;
+
+        MovingObject predictionGhost;
+
+        for(int i = (int)o.getX() - 2; i < (int)o.getX() + 2; i++){
+           for(int j = (int)o.getY() - 2; j < (int)o.getX() + 2; j++){
+
+              checkX = i;
+              checkY = j;
+
+
+              if(checkX < 30 && checkX > 0 && checkY > 0 && checkY < 20) {
+                  if (myGrid.getTile(checkX, checkY).getWalkable()) {
+                      predictionGhost = new Player(checkX, checkY);
+                      return predictionGhost;
+
+                  }
+
+              }
+           }
+
+
+
+        }
+
+        return o;
+
+
+    }
+
+
+    /*
+    public MovingObject predictTheFuture(MovingObject o) {
+
+
+        MovingObject predictionGhost;
+
+        if (o.getDir() != null) {
+
+            if (o.getDir().equals("RIGHT")) {
+
+                int prediction = (int) o.getX() + 2;
+
+                if (prediction < 30 && myGrid.getTile(prediction, o.getY()).getWalkable()) {
+
+                    predictionGhost = new Player(prediction, (int) o.getY());
+                    return predictionGhost;
+
+                }
+            }
+
+            if (o.getDir().equals("LEFT")) {
+
+                int prediction = (int) o.getX() - 2;
+
+                if (prediction > 0 && myGrid.getTile(prediction, o.getY()).getWalkable()) {
+
+                    predictionGhost = new Player(prediction, (int) o.getY());
+                    return predictionGhost;
+                }
+            }
+
+            if (o.getDir().equals("UP")) {
+
+                int prediction = (int) o.getY() - 2;
+
+                if (prediction > 0 && myGrid.getTile(o.getX(), prediction).getWalkable()) {
+
+                    predictionGhost = new Player((int) o.getX(), prediction);
+                    return predictionGhost;
+                }
+            }
+
+            if (o.getDir().equals("DOWN")) {
+
+                int prediction = (int) o.getY() + 2;
+
+                if (prediction < 20 && myGrid.getTile(o.getX(), prediction).getWalkable()) {
+
+                    predictionGhost = new Player((int) player.getX(), prediction);
+                    return predictionGhost;
+
+                }
+
+            }
+
+
+
+        } else{
+            return ranRam;
+        }
+
+        return null;
+    }
+
+*/
+
+    public void controlPlayerSpeed(MovingObject o){
+
+            int firstNode;
+            int secondNode;
+
+         //   if (o.getDir() != null) {
+        if(o.getVel().x != 0 || o.getVel().y != 0){
+
+                if (o.getDir().equals("UP")) {
+
+                    firstNode = (int) o.getY() - 1;
+                    secondNode = (int) o.getY() - 2;
+
+                    if (myGrid.getTile(o.getX(), firstNode).getWalkable() && myGrid.getTile(o.getX(), secondNode).getWalkable()) {
+
+                        o.setMaxSpeed(2);
+
+                    } else if(!myGrid.getTile(o.getX(), secondNode).getWalkable()){
+                        o.setMaxSpeed(1);
+                    }
+
+
+                } else if (o.getDir().equals("DOWN")) {
+
+                    firstNode = (int) o.getY() + 1;
+                    secondNode = (int) o.getY() + 2;
+
+                    if (myGrid.getTile(o.getX(), firstNode).getWalkable() && myGrid.getTile(o.getX(), secondNode).getWalkable()) {
+
+                        o.setMaxSpeed(2);
+
+                    } else if(!myGrid.getTile(o.getX(), secondNode).getWalkable()){
+                        o.setMaxSpeed(1);
+                    }
+
+                } else if (o.getDir().equals("RIGHT")) {
+
+                    firstNode = (int) o.getX() + 1;
+                    secondNode = (int) o.getX() + 2;
+
+                    if (myGrid.getTile(firstNode, o.getY()).getWalkable() && myGrid.getTile(secondNode, o.getY()).getWalkable()) {
+
+                        o.setMaxSpeed(2);
+
+                    } else if(!myGrid.getTile(secondNode, o.getY()).getWalkable()){
+
+                        o.setMaxSpeed(1);
+                    }
+
+                } else if (o.getDir().equals("LEFT")) {
+
+                    firstNode = (int) o.getX() - 1;
+                    secondNode = (int) o.getX() - 2;
+
+                    if (myGrid.getTile(firstNode, o.getY()).getWalkable() && myGrid.getTile(secondNode, o.getY()).getWalkable()) {
+
+                        o.setMaxSpeed(2);
+
+                    } else if(!myGrid.getTile(secondNode, o.getY()).getWalkable()){
+                        o.setMaxSpeed(1);
+
+                    }
+
+
+                }
+
+            }
+
+        }
+
+
+
 }

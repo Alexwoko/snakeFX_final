@@ -187,51 +187,6 @@ public class GNode implements GraphItem {
     public void setFrom(GraphItem from) {this.nodeFrom = from;}
 
 
-    /**
-     * Constrain methods - constrains a value between two values.
-     * @param x float
-     * @param a float
-     * @param b float
-     * @return float
-     */
-
-    /*
-    public float constrain(float x, float a, float b){
-
-        if(x < a){
-            return a;
-        }
-        if(b < x){
-            return b;
-        }else{
-            return x;
-        }
-    }
-    */
-
-    /**
-     * Repel method - gives a node the ability to repel a moving object - (when the node is a wall).
-     *
-     * @return MathVector
-     */
-
-/*
-    public MathVector repel(MovingObject o){
-
-        final float  strength = 1.01f;
-
-        MathVector dir;
-        MathVector oPos = new MathVector(o.getX(), o.getY());
-        dir = oPos.sub(this.gridPos);
-        float d = (float)dir.mag();  // Distance?
-        d = constrain(d, 1, 2);
-        dir.normalize();
-        float force =    strength / (d * d);
-        dir.mult((int)force);
-        return dir;
-    }
-    */
-
     public String toString(){
 
         StringBuilder sb = new StringBuilder();
