@@ -195,6 +195,7 @@ public class GNode implements GraphItem {
      * @return float
      */
 
+    /*
     public float constrain(float x, float a, float b){
 
         if(x < a){
@@ -206,10 +207,11 @@ public class GNode implements GraphItem {
             return x;
         }
     }
+    */
 
     /**
      * Repel method - gives a node the ability to repel a moving object - (when the node is a wall).
-     * 
+     *
      * @return MathVector
      */
 
