@@ -123,6 +123,9 @@ public MathVector getAccel(){return accel;}
 
    public void setMaxSpeed(float max){this.maxSpeed = max;}
 
+
+   public float getMaxSpeed(){return maxSpeed;}
+
     /**
      * getter for position X
      * @return position X

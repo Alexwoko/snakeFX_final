@@ -275,17 +275,84 @@ public class Grid {
     public void eatCookie(Player player){
 
         for(int i = 0; i < frameWidth; i++){
-            for(int j = 0; j < frameHeight; j++){
+            for(int j = 0; j < frameHeight; j++) {
 
-                if(!gNodes[i][j].getWalkable()){
-                    continue;
-                }
+                if (player.getDir() != null) {
 
-                if(player.getX() == i && player.getY() == j && gNodes[i][j].getHasCookie()){
+                    if (!gNodes[i][j].getWalkable()) {
+                        continue;
+                    }
 
-                    gNodes[i][j].setHasCookie(false);
-                    player.setScore(player.getScore() + 1);
-                    showScore = player.getScore();
+                    if (player.getX() == i && player.getY() == j && gNodes[i][j].getHasCookie()) {
+
+                        gNodes[i][j].setHasCookie(false);
+                        player.setScore(player.getScore() + 1);
+                        showScore = player.getScore();
+
+                    }
+
+
+                    //   if(player.getMaxSpeed() > 1){
+
+                    if (player.getDir().equals("RIGHT")) {
+
+                        if (player.getX() == i && player.getY() == j && gNodes[i - 1][j].getWalkable() && gNodes[i - 1][j].getHasCookie()) {
+
+                            gNodes[i - 1][j].setHasCookie(false);
+                            player.setScore(player.getScore() + 1);
+                            showScore = player.getScore();
+
+
+                        }
+
+
+                    }
+
+                    if (player.getDir().equals("LEFT")) {
+
+                        if (player.getX() == i && player.getY() == j && gNodes[i + 1][j].getWalkable() && gNodes[i + 1][j].getHasCookie()) {
+
+                            gNodes[i + 1][j].setHasCookie(false);
+                            player.setScore(player.getScore() + 1);
+                            showScore = player.getScore();
+
+
+                        }
+
+
+                    }
+
+                    if (player.getDir().equals("UP")) {
+
+                        if (player.getX() == i && player.getY() == j && gNodes[i][j + 1].getWalkable() && gNodes[i][j + 1].getHasCookie()) {
+
+                            gNodes[i][j + 1].setHasCookie(false);
+                            player.setScore(player.getScore() + 1);
+                            showScore = player.getScore();
+
+
+                        }
+
+
+                    }
+
+                    if (player.getDir().equals("DOWN")) {
+
+                        if (player.getX() == i && player.getY() == j && gNodes[i][j - 1].getWalkable() && gNodes[i][j - 1].getHasCookie()) {
+
+                            gNodes[i][j - 1].setHasCookie(false);
+                            player.setScore(player.getScore() + 1);
+                            showScore = player.getScore();
+
+
+                        }
+
+
+                    }
+
+
+                    // }
+
 
                 }
             }
