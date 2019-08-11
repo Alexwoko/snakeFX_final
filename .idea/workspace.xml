@@ -236,7 +236,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SnakeLogic/PathfinderTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
+            <state relative-caret-position="303">
               <caret line="60" column="50" lean-forward="true" selection-start-line="60" selection-start-column="50" selection-end-line="60" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -374,7 +374,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565539595835" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565539598617" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
@@ -854,7 +854,7 @@
       <workItem from="1565040750556" duration="107000" />
       <workItem from="1565096208728" duration="15537000" />
       <workItem from="1565379802963" duration="4507000" />
-      <workItem from="1565430983169" duration="16191000" />
+      <workItem from="1565430983169" duration="16209000" />
     </task>
     <servers />
   </component>
@@ -891,7 +891,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="573198000" />
+    <option name="totallyTimeSpent" value="573216000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -904,7 +904,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.17310444" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -916,7 +915,7 @@
       <window_info id="Palette&#9;" order="7" />
       <window_info anchor="bottom" id="Application Servers" order="0" />
       <window_info anchor="bottom" id="Changes" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26751593" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26751593" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3057325" />
       <window_info anchor="bottom" id="Profiler" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" weight="0.3299363" />
@@ -1365,7 +1364,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SnakeLogic/PathfinderTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
+        <state relative-caret-position="303">
           <caret line="60" column="50" lean-forward="true" selection-start-line="60" selection-start-column="50" selection-end-line="60" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
