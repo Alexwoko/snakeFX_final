@@ -1,10 +1,10 @@
 
-Nsquid:S1066Ç"/Merge this if statement with the enclosing one.(ËùŠ8çÿÂÿÇ-
 Ssquid:S1066Õ"/Merge this if statement with the enclosing one.(›ôø¦øÿÿÿÿ8çÿÂÿÇ-
+qsquid:S3776“"RRefactor this method to reduce its Cognitive Complexity from 55 to the 15 allowed.(¨—Ëí8ñ¢ºÿÇ-
+vsquid:S3776Ù"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(š¾‚áüÿÿÿÿ8Ş ıÙÇ-
 qsquid:S3776›"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Ù³Ù8Ş ıÙÇ-
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ
+Nsquid:S1066Ç"/Merge this if statement with the enclosing one.(ËùŠ8çÿÂÿÇ-
+Ssquid:S1066¹"/Merge this if statement with the enclosing one.(†Ù¯öúÿÿÿÿ8ñ¢ºÿÇ-
 9squid:S3626x"Remove this redundant jump.(ÉŠ©ƒ8Æ“ä”§-
 Ssquid:S1066«"/Merge this if statement with the enclosing one.(ºÃâÀûÿÿÿÿ8µÚÀÿÇ-
-Ssquid:S1066¹"/Merge this if statement with the enclosing one.(†Ù¯öúÿÿÿÿ8ñ¢ºÿÇ-
-vsquid:S3776Ù"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(š¾‚áüÿÿÿÿ8Ş ıÙÇ-
-qsquid:S3776“"RRefactor this method to reduce its Cognitive Complexity from 55 to the 15 allowed.(¨—Ëí8ñ¢ºÿÇ-
-rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÑæŸ

@@ -1,10 +1,10 @@
 
+Hsquid:S1172U"*Remove this unused method parameter "now".(ÈÕ¢×8ÓÔœÖ¦-
 Tsquid:S1068"1Remove this unused "movingObjects" private field.(Ùıàéıÿÿÿÿ8ğÔÕƒ§-
 V
 squid:S106%"9Replace this use of System.out or System.err by a logger.(àÅóè8ÓÔœÖ¦-
-Hsquid:S1172U"*Remove this unused method parameter "now".(ÈÕ¢×8ÓÔœÖ¦-
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(æÁëÏ
 vsquid:S3776î"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(–çÏƒşÿÿÿÿ8Çœ¼ìÇ-
 Nsquid:S1066á"/Merge this if statement with the enclosing one.(Úª³â8ˆüŠíÇ-
-rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(æÁëÏ
 [
 squid:S106M"9Replace this use of System.out or System.err by a logger.(ƒÙ­üÿÿÿÿ8ÓÔœÖ¦-
